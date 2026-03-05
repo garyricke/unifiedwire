@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Navigator — Unified Wire & Cable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ─── CSS Variables (UWC Brand Guide) ──────────────────────────────── */
+    :root {
+      --blue:        #0362BC;
+      --blue-dk:     #024a90;
+      --blue-tint:   #7ebfff;
+      --orange:      #E36417;
+      --orange-dk:   #b84f10;
+      --orange-tint: #ffb07a;
+      --navy:        #0A1628;
+      --navy2:       #0d1e38;
+      --gray:        #B9BDBD;
+      --gray-lt:     #f0f2f4;
+      --white:       #ffffff;
+      --text:        #1a2535;
+      --text-lt:     #4a5568;
+      --border:      #dce3ed;
+      --radius:      12px;
+      --shadow:      0 4px 24px rgba(3,98,188,.12);
+      --shadow-lg:   0 12px 48px rgba(3,98,188,.2);
+      --font:        'Plus Jakarta Sans', -apple-system, sans-serif;
+      --mono:        'DM Mono', 'Courier New', monospace;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); min-height: 100vh; }
+
+    /* ─── Typography ─────────────────────────────────────────────────────── */
+    h1 { font-size: clamp(2.4rem,5vw,4rem); font-weight:800; letter-spacing:-.03em; line-height:1.08; }
+    h2 { font-size: clamp(1.6rem,3vw,2.5rem); font-weight:800; letter-spacing:-.02em; line-height:1.15; }
+    h3 { font-size:1.3rem; font-weight:700; }
+    h4 { font-size:1rem; font-weight:700; }
+    p  { font-size:1.05rem; font-weight:400; color:var(--text-lt); line-height:1.6; }
+    .label { font-family:var(--mono); font-size:.70rem; letter-spacing:.15em; text-transform:uppercase; }
+    .mono  { font-family:var(--mono); }
+
+    /* ─── Buttons ─────────────────────────────────────────────────────────── */
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 26px; border-radius:8px;
+      font-family:var(--font); font-size:.92rem; font-weight:700;
+      border:none; cursor:pointer; transition:all .2s; text-decoration:none;
+    }
+    .btn-primary     { background:var(--blue);   color:#fff; }
+    .btn-primary:hover { background:var(--blue-dk); transform:translateY(-1px); box-shadow:var(--shadow); }
+    .btn-orange      { background:var(--orange); color:#fff; }
+    .btn-orange:hover { background:var(--orange-dk); transform:translateY(-1px); }
+    .btn-outline     { background:transparent; color:var(--blue);   border:2px solid var(--blue); }
+    .btn-outline:hover { background:var(--blue); color:#fff; }
+    .btn-ghost       { background:rgba(255,255,255,.1); color:#fff; border:1.5px solid rgba(255,255,255,.25); }
+    .btn-ghost:hover { background:rgba(255,255,255,.18); }
+    .btn-sm { padding:8px 16px; font-size:.82rem; }
+    .btn-lg { padding:16px 36px; font-size:1.05rem; }
+
+    /* ─── Badges & Tags ──────────────────────────────────────────────────── */
+    .badge { display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:20px; font-family:var(--mono); }
+    .badge-blue   { background:var(--blue);    color:#fff; }
+    .badge-orange { background:var(--orange);  color:#fff; }
+    .badge-navy   { background:var(--navy);    color:#fff; }
+    .badge-green  { background:#0e7a4e;        color:#fff; }
+    .badge-gray   { background:var(--gray-lt); color:var(--text); border:1.5px solid var(--border); }
+    .badge-amber  { background:#d97706;        color:#fff; }
+    .tag { display:inline-flex; align-items:center; gap:6px; font-size:.78rem; font-weight:600; padding:4px 11px; border-radius:20px; border:1.5px solid; }
+    .tag-blue   { color:var(--blue);   border-color:var(--blue);   background:rgba(3,98,188,.07); }
+    .tag-orange { color:var(--orange); border-color:var(--orange); background:rgba(227,100,23,.07); }
+
+    /* ─── Scroll Animations ──────────────────────────────────────────────── */
+    .fade-in         { opacity:0; transform:translateY(20px); transition:opacity .55s ease, transform .55s ease; }
+    .fade-in.visible { opacity:1; transform:none; }
+
+    /* ═══ NAVIGATION ══════════════════════════════════════════════════════ */
+    .nav {
+      background:var(--navy);
+      position:sticky; top:0; z-index:100;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner {
+      max-width:1400px; margin:0 auto; padding:0 32px;
+      display:flex; align-items:center; gap:20px; height:64px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0; }
+    .nav-logo-mark {
+      width:40px; height:40px;
+      background:linear-gradient(135deg,var(--blue),var(--blue-dk));
+      border-radius:8px; display:flex; align-items:center; justify-content:center;
+      font-weight:800; font-size:.95rem; color:#fff; letter-spacing:-.02em;
+    }
+    .nav-logo-text { color:#fff; font-weight:700; font-size:.9rem; line-height:1.2; }
+    .nav-logo-sub  { color:rgba(255,255,255,.45); font-size:.7rem; font-weight:400; }
+    .nav-search { flex:1; max-width:400px; position:relative; }
+    .nav-search input {
+      width:100%; height:38px;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
+      border-radius:8px; padding:0 12px 0 38px;
+      color:#fff; font-family:var(--font); font-size:.88rem; outline:none; transition:all .2s;
+    }
+    .nav-search input::placeholder { color:rgba(255,255,255,.38); }
+    .nav-search input:focus { background:rgba(255,255,255,.12); border-color:var(--blue); }
+    .nav-search-icon { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:rgba(255,255,255,.38); }
+    .nav-actions { display:flex; align-items:center; gap:8px; margin-left:auto; }
+    .nav-bundle-btn {
+      display:flex; align-items:center; gap:8px; padding:8px 16px; border-radius:8px;
+      background:rgba(227,100,23,.15); border:1.5px solid rgba(227,100,23,.35);
+      color:var(--orange-tint); cursor:pointer; transition:all .2s;
+      font-family:var(--font); font-size:.85rem; font-weight:600;
+    }
+    .nav-bundle-btn:hover { background:rgba(227,100,23,.25); }
+    .bundle-count { background:var(--orange); color:#fff; border-radius:20px; padding:1px 8px; font-size:.72rem; font-weight:700; font-family:var(--mono); }
+
+    /* ═══ HERO / ENTRY ════════════════════════════════════════════════════ */
+    .hero {
+      background:var(--navy); padding:56px 0 0; position:relative; overflow:hidden;
+    }
+    .hero-video {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; object-position:center;
+      opacity:.28; pointer-events:none; z-index:0;
+    }
+    .hero::before {
+      content:''; position:absolute; inset:0; z-index:1;
+      background:
+        linear-gradient(to bottom, rgba(10,22,40,.55) 0%, rgba(10,22,40,.2) 60%, rgba(10,22,40,.85) 100%),
+        radial-gradient(ellipse at 70% 50%, rgba(3,98,188,.18) 0%, transparent 65%);
+      pointer-events:none;
+    }
+    .hero-inner { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:0 32px; }
+    .hero-eyebrow { color:var(--blue-tint); margin-bottom:12px; }
+    .hero h1 { color:#fff; max-width:680px; margin-bottom:16px; }
+    .hero h1 span { color:var(--blue-tint); }
+    .hero-sub { color:rgba(255,255,255,.58); font-size:1.08rem; max-width:500px; margin-bottom:36px; }
+    .mode-tabs {
+      display:flex; gap:4px;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+      border-radius:12px 12px 0 0; padding:6px 6px 0; width:fit-content;
+    }
+    .mode-tab {
+      display:flex; align-items:center; gap:8px; padding:11px 22px;
+      border-radius:8px 8px 0 0; font-family:var(--font); font-size:.9rem; font-weight:600;
+      color:rgba(255,255,255,.45); cursor:pointer; border:none; background:transparent; transition:all .2s;
+    }
+    .mode-tab:hover { color:rgba(255,255,255,.8); }
+    .mode-tab.active { background:var(--white); color:var(--text); }
+    .tab-dropdown-wrap { position:relative; }
+    .tab-dropdown {
+      position:fixed; z-index:400;
+      background:var(--white); border:1.5px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); min-width:230px; padding:6px;
+      opacity:0; pointer-events:none; transform:translateY(-6px);
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .tab-dropdown.open { opacity:1; pointer-events:all; transform:translateY(0); }
+    .tab-dropdown-item {
+      display:flex; align-items:center; gap:10px; width:100%; padding:9px 12px;
+      border:none; border-radius:8px; background:none; cursor:pointer; text-align:left;
+      font-family:var(--font); font-size:.875rem; font-weight:600; color:var(--text); transition:background .15s;
+    }
+    .tab-dropdown-item:hover { background:var(--gray-lt); color:var(--blue); }
+    .tab-dropdown-item svg { flex-shrink:0; color:var(--blue); }
+
+    /* ═══ MAIN ════════════════════════════════════════════════════════════ */
+    .main { max-width:1400px; margin:0 auto; padding:0 32px; }
+    .mode-panel { display:none; padding-top:32px; }
+    .mode-panel.active { display:block; }
+
+    /* ─── Application Mode ───────────────────────────────────────────────── */
+    .app-mode-header { margin-bottom:28px; }
+    .app-mode-header h2 { font-size:1.5rem; margin-bottom:6px; }
+    .app-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; margin-bottom:40px; }
+    .app-card {
+      border:1.5px solid var(--border); border-radius:var(--radius);
+      padding:0; cursor:pointer; transition:all .2s;
+      background:var(--navy); position:relative; overflow:hidden;
+      min-height:220px; display:flex; flex-direction:column; justify-content:flex-end;
+      background-size:cover; background-position:center;
+    }
+    .app-card::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(10,22,40,.92) 0%, rgba(10,22,40,.55) 55%, rgba(10,22,40,.25) 100%);
+      transition:opacity .25s; z-index:0;
+    }
+    .app-card::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:var(--blue); transform:scaleX(0); transform-origin:left; transition:transform .25s; z-index:1;
+    }
+    .app-card:hover::after { transform:scaleX(1); }
+    .app-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-3px); border-color:rgba(3,98,188,.4); }
+    .app-card:hover::before { opacity:.85; }
+    .app-card-body { position:relative; z-index:1; padding:24px; }
+    .app-card-icon { width:40px; height:40px; background:rgba(255,255,255,.12); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; color:#fff; backdrop-filter:blur(4px); }
+    .app-card h4 { margin-bottom:5px; color:#fff; }
+    .app-card p { font-size:.85rem; color:rgba(255,255,255,.72); margin-bottom:12px; line-height:1.5; }
+    .app-card-products { display:flex; flex-wrap:wrap; gap:6px; }
+
+    /* ─── App context bar ────────────────────────────────────────────────── */
+    .app-context-bar {
+      display:none; margin-bottom:24px; border-radius:var(--radius); overflow:hidden;
+      position:relative; height:120px;
+      background:var(--navy) center/cover no-repeat;
+    }
+    .app-context-bar.visible { display:block; }
+    .app-context-bar-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(90deg, var(--app-accent,var(--blue)) 0%, rgba(10,22,40,.6) 100%);
+    }
+    .app-context-bar-content {
+      position:relative; z-index:1; height:100%;
+      display:flex; align-items:center; gap:16px; padding:0 24px;
+    }
+    .app-context-icon {
+      width:44px; height:44px; flex-shrink:0; border-radius:10px;
+      background:rgba(255,255,255,.15); backdrop-filter:blur(6px);
+      display:flex; align-items:center; justify-content:center; color:#fff;
+    }
+    .app-context-text { flex:1; }
+    .app-context-label { font-family:var(--mono); font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:3px; }
+    .app-context-name  { font-size:1.1rem; font-weight:700; color:#fff; line-height:1.2; }
+    .app-context-close {
+      flex-shrink:0; padding:7px 14px; border-radius:6px; border:1.5px solid rgba(255,255,255,.3);
+      background:transparent; color:rgba(255,255,255,.75); font-family:var(--font); font-size:.8rem;
+      font-weight:600; cursor:pointer; transition:all .2s; white-space:nowrap;
+    }
+    .app-context-close:hover { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.6); }
+
+    /* ─── Spec / Parametric Mode ─────────────────────────────────────────── */
+    .spec-layout { display:grid; grid-template-columns:272px 1fr; gap:24px; align-items:start; }
+    .sidebar {
+      background:var(--white); border:1.5px solid var(--border); border-radius:var(--radius);
+      overflow:hidden; position:sticky; top:80px;
+      border-top:3px solid var(--app-accent, var(--border));
+      transition:border-color .35s;
+    }
+    .sidebar-header { padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .sidebar-header h4 { font-size:.9rem; }
+    .clear-filters { font-family:var(--mono); font-size:.7rem; color:var(--app-accent,var(--blue)); cursor:pointer; background:none; border:none; letter-spacing:.05em; text-transform:uppercase; padding:0; transition:color .3s; }
+    .clear-filters:hover { filter:brightness(.8); }
+    .filter-group { border-bottom:1px solid var(--border); }
+    .filter-group:last-child { border-bottom:none; }
+    .filter-group-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:13px 20px; cursor:pointer; font-weight:600; font-size:.87rem; user-select:none;
+    }
+    .filter-group-header:hover { background:var(--gray-lt); }
+    .filter-group-header svg { transition:transform .2s; flex-shrink:0; }
+    .filter-group-header.collapsed svg { transform:rotate(-90deg); }
+    .filter-options { padding:4px 20px 14px; }
+    .filter-options.hidden { display:none; }
+    .filter-option { display:flex; align-items:center; gap:10px; padding:6px 0; cursor:pointer; font-size:.87rem; color:var(--text); user-select:none; }
+    .filter-option input[type="checkbox"] { width:15px; height:15px; accent-color:var(--app-accent,var(--blue)); cursor:pointer; flex-shrink:0; }
+    .filter-option-count { margin-left:auto; font-family:var(--mono); font-size:.7rem; color:var(--text-lt); }
+    .results-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; gap:16px; }
+    .results-count { font-family:var(--mono); font-size:.82rem; color:var(--text-lt); }
+    .results-count strong { color:var(--text); }
+    .sort-select { padding:8px 14px; border-radius:8px; border:1.5px solid var(--border); font-family:var(--font); font-size:.85rem; background:var(--white); color:var(--text); cursor:pointer; outline:none; }
+    .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+
+    /* ─── Product Card ───────────────────────────────────────────────────── */
+    .product-card {
+      border:1.5px solid var(--border); border-radius:var(--radius);
+      background:var(--white); overflow:hidden; transition:all .2s;
+      display:flex; flex-direction:column;
+    }
+    .product-card:hover { box-shadow:var(--shadow); transform:translateY(-2px); }
+    .product-card.in-compare { border-color:var(--app-accent,var(--blue)); box-shadow:0 0 0 2px rgba(3,98,188,.18); }
+    .product-card-top { padding:20px 20px 0; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .product-type-icon { width:52px; height:52px; flex-shrink:0; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+    .product-card-badges { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+    .product-card-body { padding:16px 20px; flex:1; }
+    .product-sku { font-family:var(--mono); font-size:.7rem; color:var(--text-lt); letter-spacing:.08em; margin-bottom:4px; }
+    .product-name { font-weight:700; font-size:.97rem; margin-bottom:8px; line-height:1.3; }
+    .product-desc { font-size:.84rem; color:var(--text-lt); line-height:1.5; margin-bottom:14px; }
+    .product-specs-mini { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .spec-mini-label { font-family:var(--mono); font-size:.63rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-lt); margin-bottom:2px; }
+    .spec-mini-value { font-family:var(--mono); font-size:.82rem; font-weight:500; color:var(--text); }
+    .product-card-footer { padding:14px 20px; border-top:1px solid var(--border); display:flex; gap:8px; align-items:center; }
+    .compare-btn, .bundle-btn {
+      width:36px; height:36px; border-radius:8px; border:1.5px solid var(--border);
+      background:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:all .2s; flex-shrink:0; color:var(--text-lt);
+    }
+    .compare-btn:hover { border-color:var(--blue);   color:var(--blue);   background:rgba(3,98,188,.05); }
+    .bundle-btn:hover  { border-color:var(--orange); color:var(--orange); background:rgba(227,100,23,.05); }
+    .compare-btn.active { border-color:var(--blue);   color:var(--blue);   background:rgba(3,98,188,.1); }
+    .bundle-btn.active  { border-color:var(--orange); color:var(--orange); background:rgba(227,100,23,.1); }
+    .no-results { grid-column:1/-1; text-align:center; padding:64px 24px; color:var(--text-lt); }
+    .no-results h3 { margin-bottom:8px; }
+
+    /* ─── Search Mode ────────────────────────────────────────────────────── */
+    .search-mode { max-width:800px; margin:0 auto; }
+    .search-big { position:relative; margin-bottom:16px; }
+    .search-big input {
+      width:100%; height:60px; border:2px solid var(--border); border-radius:12px;
+      padding:0 20px 0 56px; font-family:var(--font); font-size:1.1rem;
+      color:var(--text); outline:none; transition:all .2s; box-shadow:var(--shadow);
+    }
+    .search-big input:focus { border-color:var(--blue); box-shadow:0 0 0 4px rgba(3,98,188,.12); }
+    .search-big-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--text-lt); }
+    .search-tips { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+    .search-tip { padding:6px 14px; border-radius:20px; border:1.5px solid var(--border); font-size:.83rem; color:var(--text-lt); cursor:pointer; transition:all .2s; background:var(--white); font-family:var(--font); }
+    .search-tip:hover { border-color:var(--blue); color:var(--blue); background:rgba(3,98,188,.05); }
+    .search-tip strong { color:var(--text); }
+
+    /* ═══ SPEC DETAIL PANEL ═══════════════════════════════════════════════ */
+    .panel-overlay {
+      position:fixed; inset:0; background:rgba(10,22,40,.5); backdrop-filter:blur(4px);
+      z-index:200; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .panel-overlay.active { opacity:1; pointer-events:all; }
+    .spec-panel {
+      position:fixed; top:0; right:0; bottom:0; width:min(560px,100vw);
+      background:var(--white); z-index:201;
+      transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+      overflow-y:auto; display:flex; flex-direction:column;
+    }
+    .spec-panel.active { transform:translateX(0); }
+    .panel-hero {
+      width:100%; height:260px; flex-shrink:0;
+      background:var(--gray-lt) center/cover no-repeat;
+    }
+    .panel-header {
+      padding:24px 28px 20px; border-bottom:1px solid var(--border);
+      position:sticky; top:0; background:var(--white); z-index:1;
+    }
+    .panel-close {
+      position:absolute; top:20px; right:20px; width:36px; height:36px; border-radius:8px;
+      border:1.5px solid var(--border); background:var(--white); cursor:pointer;
+      display:flex; align-items:center; justify-content:center; color:var(--text-lt); transition:all .2s;
+    }
+    .panel-close:hover { border-color:var(--text); color:var(--text); }
+    .panel-eyebrow { color:var(--blue); margin-bottom:4px; }
+    .panel-sku { font-family:var(--mono); font-size:.78rem; color:var(--text-lt); margin-bottom:6px; }
+    .panel-name { font-size:1.35rem; font-weight:700; margin-bottom:10px; line-height:1.3; }
+    .panel-badges { display:flex; gap:8px; flex-wrap:wrap; }
+    .panel-body { padding:24px 28px; flex:1; }
+    .panel-section { margin-bottom:28px; }
+    .panel-section-title {
+      font-family:var(--mono); font-size:.68rem; letter-spacing:.15em; text-transform:uppercase;
+      color:var(--text-lt); margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);
+    }
+    .cable-visual {
+      display:flex; align-items:center; justify-content:center;
+      padding:24px; background:var(--navy); border-radius:var(--radius); margin-bottom:8px;
+    }
+    .spec-table { width:100%; border-collapse:collapse; }
+    .spec-table tr { border-bottom:1px solid var(--border); }
+    .spec-table tr:last-child { border-bottom:none; }
+    .spec-table td { padding:10px 0; font-size:.9rem; vertical-align:top; }
+    .spec-table td:first-child { color:var(--text-lt); width:45%; font-size:.85rem; }
+    .spec-table td:last-child { font-family:var(--mono); font-weight:500; color:var(--text); }
+    .standards-list { display:flex; flex-wrap:wrap; gap:8px; }
+    .panel-footer {
+      padding:20px 28px; border-top:1px solid var(--border);
+      position:sticky; bottom:0; background:var(--white); display:flex; gap:10px;
+    }
+    .panel-footer .btn { flex:1; justify-content:center; }
+
+    /* ═══ COMPARE TRAY ════════════════════════════════════════════════════ */
+    .compare-tray {
+      position:fixed; bottom:0; left:0; right:0;
+      background:var(--navy); border-top:2px solid var(--blue); z-index:150;
+      transform:translateY(100%); transition:transform .3s cubic-bezier(.4,0,.2,1);
+      box-shadow:0 -8px 40px rgba(3,98,188,.25);
+    }
+    .compare-tray.active { transform:translateY(0); }
+    .compare-tray-inner {
+      max-width:1400px; margin:0 auto; padding:14px 32px;
+      display:flex; align-items:center; gap:16px;
+    }
+    .compare-tray-label { font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.45); flex-shrink:0; }
+    .compare-slots { display:flex; gap:10px; flex:1; }
+    .compare-slot {
+      flex:1; max-width:200px; height:50px; border-radius:8px;
+      display:flex; align-items:center; padding:0 14px; gap:10px; position:relative;
+    }
+    .compare-slot.empty { border:1.5px dashed rgba(255,255,255,.18); color:rgba(255,255,255,.28); font-size:.82rem; font-family:var(--font); }
+    .compare-slot.filled { background:rgba(3,98,188,.2); border:1.5px solid rgba(3,98,188,.5); }
+    .compare-slot-name { font-size:.78rem; font-weight:600; color:#fff; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; font-family:var(--font); }
+    .compare-slot-remove {
+      width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,.12); border:none;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.6); flex-shrink:0; transition:all .2s; font-size:.8rem; line-height:1;
+    }
+    .compare-slot-remove:hover { background:rgba(220,60,60,.4); color:#fff; }
+    .compare-tray-actions { display:flex; gap:8px; flex-shrink:0; }
+    body.tray-open { padding-bottom:86px; }
+
+    /* ═══ COMPARISON MODAL ════════════════════════════════════════════════ */
+    .modal-overlay {
+      position:fixed; inset:0; background:rgba(10,22,40,.75); backdrop-filter:blur(6px);
+      z-index:300; display:none; align-items:flex-start; justify-content:center;
+      padding:40px 20px; overflow-y:auto;
+    }
+    .modal-overlay.active { display:flex; }
+    .modal { background:var(--white); border-radius:16px; width:100%; max-width:1100px; overflow:hidden; box-shadow:var(--shadow-lg); }
+    .modal-header { padding:22px 32px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:var(--navy); }
+    .modal-header h3 { color:#fff; }
+    .modal-close { width:36px; height:36px; border-radius:8px; border:1.5px solid rgba(255,255,255,.2); background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.6); transition:all .2s; }
+    .modal-close:hover { border-color:#fff; color:#fff; }
+    .compare-table-wrap { overflow-x:auto; }
+    .compare-table { width:100%; border-collapse:collapse; min-width:560px; }
+    .compare-table th { padding:18px 20px 14px; text-align:left; border-right:1px solid var(--border); vertical-align:top; }
+    .compare-table th:last-child { border-right:none; }
+    .compare-table th:first-child { width:140px; background:var(--gray-lt); font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-lt); font-weight:400; }
+    .compare-table td { padding:11px 20px; border-top:1px solid var(--border); border-right:1px solid var(--border); vertical-align:middle; font-size:.88rem; }
+    .compare-table td:last-child { border-right:none; }
+    .compare-table td:first-child { background:var(--gray-lt); font-weight:600; font-size:.84rem; color:var(--text-lt); }
+    .compare-table td.diff { background:rgba(227,100,23,.07); color:var(--orange-dk); font-weight:600; }
+    .compare-table .mono-val { font-family:var(--mono); font-size:.86rem; }
+    .col-header-img { width:100%; height:140px; background:var(--gray-lt) center/cover no-repeat; border-radius:8px; margin-bottom:12px; }
+    .col-header-sku { font-family:var(--mono); font-size:.68rem; color:var(--text-lt); margin-bottom:4px; }
+    .col-header-name { font-weight:700; font-size:.93rem; margin-bottom:8px; line-height:1.3; }
+    .modal-footer { padding:18px 32px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; gap:10px; }
+
+    /* ═══ TOAST ═══════════════════════════════════════════════════════════ */
+    .toast-container { position:fixed; bottom:108px; right:24px; z-index:500; display:flex; flex-direction:column; gap:8px; pointer-events:none; }
+    .toast { padding:11px 18px; border-radius:10px; font-size:.875rem; font-weight:600; font-family:var(--font); color:#fff; pointer-events:none; animation:toast-in .3s ease, toast-out .3s ease 2.7s forwards; box-shadow:0 4px 20px rgba(0,0,0,.2); }
+    .toast-blue   { background:var(--blue); }
+    .toast-orange { background:var(--orange); }
+    .toast-green  { background:#0e7a4e; }
+    @keyframes toast-in  { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+    @keyframes toast-out { from { opacity:1; } to   { opacity:0; } }
+
+    /* ═══ WIRE VISUALS ═══════════════════════════════════════════════════ */
+    .product-card-visual {
+      height: 168px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--gray-lt);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .product-card-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(255,255,255,.55) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .product-card-visual-badges {
+      position: absolute;
+      top: 10px; right: 10px;
+      display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end;
+      z-index: 1;
+    }
+    @media print {
+      body > *:not(#specPanel) { display:none !important; }
+      #specPanel {
+        position:static !important; transform:none !important;
+        width:100% !important; box-shadow:none !important;
+        overflow:visible !important;
+      }
+      .panel-hero { height:320px !important; }
+      .panel-footer, .panel-close, .panel-overlay { display:none !important; }
+      @page { margin:0.75in; size:letter; }
+    }
+
+    /* ═══ POPUP FORMS ════════════════════════════════════════════════════ */
+    .form-overlay {
+      position:fixed; inset:0; background:rgba(10,22,40,.72); backdrop-filter:blur(8px);
+      z-index:400; display:none; align-items:center; justify-content:center; padding:20px;
+    }
+    .form-overlay.active { display:flex; }
+    .form-card {
+      background:var(--white); border-radius:16px; width:100%; max-width:520px;
+      box-shadow:var(--shadow-lg); overflow:hidden;
+      animation:form-in .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes form-in { from { opacity:0; transform:scale(.94) translateY(16px); } to { opacity:1; transform:none; } }
+    .form-header { background:var(--navy); padding:22px 28px 20px; position:relative; }
+    .form-header-eyebrow { color:var(--blue-tint); margin-bottom:6px; }
+    .form-header h3 { color:#fff; font-size:1.15rem; margin-bottom:6px; }
+    .form-header p { color:rgba(255,255,255,.55); font-size:.88rem; line-height:1.5; margin:0; }
+    .form-close {
+      position:absolute; top:18px; right:18px; width:32px; height:32px; border-radius:8px;
+      border:1.5px solid rgba(255,255,255,.2); background:transparent; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.6); transition:all .2s;
+    }
+    .form-close:hover { border-color:#fff; color:#fff; }
+    .form-context {
+      background:var(--gray-lt); border-radius:8px; padding:11px 14px;
+      margin-bottom:20px; border-left:3px solid var(--blue);
+    }
+    .form-context-label { font-family:var(--mono); font-size:.63rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-lt); margin-bottom:3px; }
+    .form-context-value { font-family:var(--mono); font-size:.82rem; font-weight:500; color:var(--text); }
+    .form-bundle-list { display:flex; flex-direction:column; gap:4px; margin-bottom:20px; }
+    .form-bundle-item { display:flex; align-items:center; gap:10px; padding:8px 12px; background:var(--gray-lt); border-radius:8px; font-size:.84rem; }
+    .form-bundle-sku { font-family:var(--mono); font-size:.7rem; color:var(--text-lt); flex-shrink:0; }
+    .form-body { padding:24px 28px; }
+    .form-group { margin-bottom:18px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .form-label { display:block; font-size:.84rem; font-weight:600; color:var(--text); margin-bottom:6px; }
+    .form-label .req { color:var(--orange); margin-left:2px; }
+    .form-input, .form-textarea, .form-select {
+      width:100%; padding:10px 14px; border:1.5px solid var(--border); border-radius:8px;
+      font-family:var(--font); font-size:.9rem; color:var(--text); background:var(--white);
+      outline:none; transition:border-color .2s, box-shadow .2s;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(3,98,188,.1); }
+    .form-input.error, .form-textarea.error { border-color:#dc2626; box-shadow:0 0 0 3px rgba(220,38,38,.1); }
+    .form-textarea { resize:vertical; min-height:78px; }
+    .form-hint { font-size:.78rem; color:var(--text-lt); margin-top:5px; }
+    .form-footer { padding:18px 28px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; gap:10px; align-items:center; }
+    .form-footer .btn { min-width:130px; justify-content:center; }
+    .form-success { text-align:center; padding:44px 28px 40px; }
+    .form-success-icon { width:64px; height:64px; background:rgba(14,122,78,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#0e7a4e; }
+    .form-success h3 { margin-bottom:8px; font-size:1.2rem; }
+    .form-success p { font-size:.95rem; max-width:320px; margin:0 auto; }
+    .spinner { width:15px; height:15px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; flex-shrink:0; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .notify-btn {
+      display:inline-flex; align-items:center; gap:6px; padding:7px 13px; border-radius:8px;
+      border:1.5px solid #d97706; background:rgba(217,119,6,.08); color:#b45309;
+      font-family:var(--font); font-size:.8rem; font-weight:600; cursor:pointer; transition:all .2s;
+    }
+    .notify-btn:hover { background:rgba(217,119,6,.18); border-color:#b45309; }
+    @media (max-width:560px) {
+      .form-row { grid-template-columns:1fr; }
+      .form-body { padding:20px; }
+      .form-footer { padding:16px 20px; }
+    }
+
+    /* ═══ RESPONSIVE ══════════════════════════════════════════════════════ */
+    @media (max-width:900px) {
+      .spec-layout { grid-template-columns:1fr; }
+      .sidebar { position:static; }
+    }
+    @media (max-width:640px) {
+      .nav-inner, .hero-inner, .main { padding:0 16px; }
+      .compare-tray-inner { padding:12px 16px; }
+      .compare-slots { display:none; }
+      .mode-tab span { display:none; }
+      .mode-tab { padding:11px 14px; }
+      .nav-logo-text, .nav-logo-sub { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ════════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">UWC</div>
+      <div>
+        <div class="nav-logo-text">Unified Wire &amp; Cable</div>
+        <div class="nav-logo-sub">Product Navigator</div>
+      </div>
+    </a>
+
+    <div class="nav-search">
+      <svg class="nav-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="navSearch" placeholder="Search by product, spec, or part number…" autocomplete="off">
+    </div>
+
+    <div class="nav-actions">
+      <button class="nav-bundle-btn" onclick="openBundle()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Project Bundle
+        <span class="bundle-count" id="bundleCount">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
+<div class="hero">
+  <video class="hero-video" autoplay loop muted playsinline preload="auto">
+    <source src="https://player.vimeo.com/progressive_redirect/playback/1170752441/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=711c6d73e860131e883033dd5aa582410461a11055b0c351e0a6cc1ef6895d62" type="video/mp4">
+  </video>
+  <div class="hero-inner">
+    <div class="label hero-eyebrow">Spec Sheet Navigator — Concept</div>
+    <h1>Find the right wire.<br><span>In under 60 seconds.</span></h1>
+    <p class="hero-sub">Browse by application, filter by specification, or search 15,000+ SKUs — built for engineers and procurement professionals who can't afford a callback.</p>
+
+    <div class="mode-tabs">
+      <div class="tab-dropdown-wrap">
+        <button class="mode-tab active" data-mode="application">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span>By Application</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity:.5;margin-left:-2px;"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="tab-dropdown" id="appDropdown"></div>
+      </div>
+      <button class="mode-tab" data-mode="spec">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        <span>By Specification</span>
+      </button>
+      <button class="mode-tab" data-mode="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span>Search</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MAIN CONTENT ══════════════════════════════════════════════════════ -->
+<div style="background:var(--white); padding-bottom:64px;">
+<div class="main">
+
+  <!-- ─── APPLICATION MODE ───────────────────────────────────────────────── -->
+  <div id="mode-application" class="mode-panel active">
+    <div class="app-mode-header fade-in">
+      <h2>Select your application</h2>
+      <p>Choose a project type to see pre-filtered, code-compliant product recommendations.</p>
+    </div>
+    <div class="app-grid" id="appGrid"></div>
+  </div>
+
+  <!-- ─── SPEC MODE ─────────────────────────────────────────────────────── -->
+  <div id="mode-spec" class="mode-panel">
+    <div class="app-context-bar" id="appContextBar">
+      <div class="app-context-bar-overlay"></div>
+      <div class="app-context-bar-content">
+        <div class="app-context-icon" id="appContextIcon"></div>
+        <div class="app-context-text">
+          <div class="app-context-label">Filtered by Application</div>
+          <div class="app-context-name" id="appContextName"></div>
+        </div>
+        <button class="app-context-close" onclick="clearFilters()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:5px;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Clear Application
+        </button>
+      </div>
+    </div>
+    <div class="spec-layout">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h4>Filter Products</h4>
+          <button class="clear-filters" onclick="clearFilters()">Clear all</button>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-header" onclick="toggleGroup(this)">
+            Product Family
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options" data-filter="family">
+            <label class="filter-option"><input type="checkbox" value="THHN/THWN-2"> THHN / THWN-2 <span class="filter-option-count">7</span></label>
+            <label class="filter-option"><input type="checkbox" value="XHHW-2"> XHHW-2 <span class="filter-option-count">2</span></label>
+            <label class="filter-option"><input type="checkbox" value="NM-B"> NM-B (Romex type) <span class="filter-option-count">2</span></label>
+            <label class="filter-option"><input type="checkbox" value="USE-2"> USE-2 <span class="filter-option-count">1</span></label>
+            <label class="filter-option"><input type="checkbox" value="SOOW"> SOOW Flexible Cord <span class="filter-option-count">1</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-header" onclick="toggleGroup(this)">
+            Conductor Material
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options" data-filter="material">
+            <label class="filter-option"><input type="checkbox" value="Copper"> Copper <span class="filter-option-count">13</span></label>
+            <label class="filter-option"><input type="checkbox" value="Aluminum"> Aluminum <span class="filter-option-count">0</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-header" onclick="toggleGroup(this)">
+            AWG / Size
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options" data-filter="awg">
+            <label class="filter-option"><input type="checkbox" value="14 AWG"> 14 AWG <span class="filter-option-count">2</span></label>
+            <label class="filter-option"><input type="checkbox" value="12 AWG"> 12 AWG <span class="filter-option-count">4</span></label>
+            <label class="filter-option"><input type="checkbox" value="10 AWG"> 10 AWG <span class="filter-option-count">2</span></label>
+            <label class="filter-option"><input type="checkbox" value="8 AWG"> 8 AWG <span class="filter-option-count">1</span></label>
+            <label class="filter-option"><input type="checkbox" value="6 AWG"> 6 AWG <span class="filter-option-count">2</span></label>
+            <label class="filter-option"><input type="checkbox" value="2 AWG"> 2 AWG <span class="filter-option-count">1</span></label>
+            <label class="filter-option"><input type="checkbox" value="4/0 AWG"> 4/0 AWG <span class="filter-option-count">1</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-header" onclick="toggleGroup(this)">
+            Voltage Rating
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options" data-filter="voltage">
+            <label class="filter-option"><input type="checkbox" value="300V"> 300V <span class="filter-option-count">1</span></label>
+            <label class="filter-option"><input type="checkbox" value="600V"> 600V <span class="filter-option-count">12</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-header" onclick="toggleGroup(this)">
+            Temperature Rating
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options" data-filter="temp">
+            <label class="filter-option"><input type="checkbox" value="75°C"> 75°C <span class="filter-option-count">1</span></label>
+            <label class="filter-option"><input type="checkbox" value="90°C"> 90°C <span class="filter-option-count">12</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-header" onclick="toggleGroup(this)">
+            Application
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options" data-filter="application">
+            <label class="filter-option"><input type="checkbox" value="Commercial"> Commercial</label>
+            <label class="filter-option"><input type="checkbox" value="Industrial"> Industrial</label>
+            <label class="filter-option"><input type="checkbox" value="Residential"> Residential</label>
+            <label class="filter-option"><input type="checkbox" value="Solar/PV"> Solar / PV</label>
+            <label class="filter-option"><input type="checkbox" value="Data Center"> Data Center</label>
+            <label class="filter-option"><input type="checkbox" value="EV Charging"> EV Charging</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-header" onclick="toggleGroup(this)">
+            Availability
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options" data-filter="stock">
+            <label class="filter-option"><input type="checkbox" value="In Stock"> In Stock</label>
+            <label class="filter-option"><input type="checkbox" value="Made to Order"> Made to Order</label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Results -->
+      <div>
+        <div class="results-header">
+          <div class="results-count"><strong id="resultCount">13</strong> products found</div>
+          <select class="sort-select" id="sortSelect" onchange="renderProducts()">
+            <option value="default">Sort: Default</option>
+            <option value="awg-asc">AWG: Fine to Heavy</option>
+            <option value="awg-desc">AWG: Heavy to Fine</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SEARCH MODE ────────────────────────────────────────────────────── -->
+  <div id="mode-search" class="mode-panel">
+    <div class="search-mode">
+      <div class="search-big">
+        <svg class="search-big-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder='Try: "12 AWG THHN red" or "romex" or "underground solar"…' autocomplete="off">
+      </div>
+      <div class="search-tips">
+        <span class="label" style="color:var(--text-lt);align-self:center;margin-right:4px;">Try:</span>
+        <button class="search-tip" onclick="setSearch('THHN')"><strong>THHN</strong></button>
+        <button class="search-tip" onclick="setSearch('romex')">romex → <strong>NM-B</strong></button>
+        <button class="search-tip" onclick="setSearch('underground')">underground → <strong>USE-2</strong></button>
+        <button class="search-tip" onclick="setSearch('solar')">solar → <strong>USE-2 / XHHW-2</strong></button>
+        <button class="search-tip" onclick="setSearch('flexible cord')"><strong>flexible cord</strong></button>
+        <button class="search-tip" onclick="setSearch('EV charging')"><strong>EV charging</strong></button>
+      </div>
+      <div class="results-header">
+        <div class="results-count" id="searchCount"></div>
+      </div>
+      <div class="products-grid" id="searchGrid"></div>
+    </div>
+  </div>
+
+</div><!-- /.main -->
+</div><!-- /white bg -->
+
+<!-- ═══ SPEC DETAIL PANEL ════════════════════════════════════════════════ -->
+<div class="panel-overlay" id="panelOverlay" onclick="closePanel()"></div>
+<div class="spec-panel" id="specPanel">
+  <div class="panel-hero" id="panelHero"></div>
+  <div class="panel-header">
+    <button class="panel-close" onclick="closePanel()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="label panel-eyebrow" id="panelEyebrow"></div>
+    <div class="panel-sku" id="panelSku"></div>
+    <div class="panel-name" id="panelName"></div>
+    <div class="panel-badges" id="panelBadges"></div>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+  <div class="panel-footer">
+    <button class="btn btn-outline btn-sm" onclick="addToCompareFromPanel()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Compare
+    </button>
+    <button class="btn btn-outline btn-sm" onclick="window.print()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print PDF
+    </button>
+    <button class="btn btn-orange btn-sm" id="panelNotifyBtn" style="display:none;" onclick="openStockAlertFromPanel()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      Notify Me
+    </button>
+    <button class="btn btn-orange btn-sm" id="panelBundleBtn2" onclick="addToBundleFromPanel()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Save to Bundle
+    </button>
+    <button class="btn btn-primary btn-sm" onclick="requestQuote()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Request Quote
+    </button>
+  </div>
+</div>
+
+<!-- ═══ COMPARE TRAY ══════════════════════════════════════════════════════ -->
+<div class="compare-tray" id="compareTray">
+  <div class="compare-tray-inner">
+    <div class="compare-tray-label">Comparing</div>
+    <div class="compare-slots" id="compareSlots"></div>
+    <div class="compare-tray-actions">
+      <button class="btn btn-ghost btn-sm" onclick="clearCompare()">Clear</button>
+      <button class="btn btn-primary btn-sm" onclick="openCompareModal()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Compare Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COMPARISON MODAL ══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="compareModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Side-by-Side Comparison</h3>
+      <button class="modal-close" onclick="closeCompareModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="compare-table-wrap">
+      <table class="compare-table" id="compareTableEl"></table>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" onclick="closeCompareModal()">Close</button>
+      <button class="btn btn-orange btn-sm" onclick="saveAllToBundle()">Save All to Bundle</button>
+      <button class="btn btn-primary btn-sm" onclick="requestQuote()">Request Quote for All</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FORM: QUOTE REQUEST ═══════════════════════════════════════════════ -->
+<div class="form-overlay" id="quoteOverlay">
+  <div class="form-card" id="quoteCard">
+
+    <!-- Header -->
+    <div class="form-header">
+      <button class="form-close" onclick="closeForm('quote')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="label form-header-eyebrow">Request a Quote</div>
+      <h3>Get pricing for your project</h3>
+      <p>A UWC rep will respond within one business day with lead time and pricing.</p>
+    </div>
+
+    <!-- Success state (hidden by default) -->
+    <div class="form-success" id="quoteSuccess" style="display:none;">
+      <div class="form-success-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Quote request received.</h3>
+      <p style="color:var(--text-lt);">A UWC representative will follow up within one business day with pricing and lead time.</p>
+      <button class="btn btn-primary" style="margin-top:24px;" onclick="closeForm('quote')">Done</button>
+    </div>
+
+    <!-- Form body -->
+    <div id="quoteFormWrap">
+      <div class="form-body">
+        <div class="form-context">
+          <div class="form-context-label">Product</div>
+          <div class="form-context-value" id="quoteProductCtx">—</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="qName">Name <span class="req">*</span></label>
+            <input class="form-input" id="qName" type="text" placeholder="Jane Smith" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="qCompany">Company</label>
+            <input class="form-input" id="qCompany" type="text" placeholder="Acme Electric" autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="qEmail">Email <span class="req">*</span></label>
+            <input class="form-input" id="qEmail" type="email" placeholder="jane@company.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="qPhone">Phone</label>
+            <input class="form-input" id="qPhone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="qQty">Quantity / Footage</label>
+            <input class="form-input" id="qQty" type="text" placeholder="e.g. 5,000 ft">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="qProject">Project Name</label>
+            <input class="form-input" id="qProject" type="text" placeholder="Level 2 EV Install">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="qNotes">Additional Notes</label>
+          <textarea class="form-textarea" id="qNotes" placeholder="Delivery requirements, packaging preferences, NEC compliance notes…"></textarea>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button class="btn btn-outline btn-sm" onclick="closeForm('quote')">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="quoteSubmitBtn" onclick="submitQuoteForm()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Send Request
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ FORM: BUNDLE EXPORT ════════════════════════════════════════════════ -->
+<div class="form-overlay" id="bundleOverlay">
+  <div class="form-card" id="bundleCard">
+
+    <div class="form-header">
+      <button class="form-close" onclick="closeForm('bundle')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="label form-header-eyebrow">Project Bundle</div>
+      <h3>Export your spec bundle</h3>
+      <p>Enter your details and we'll email your full bundle as a PDF spec package.</p>
+    </div>
+
+    <div class="form-success" id="bundleSuccess" style="display:none;">
+      <div class="form-success-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Bundle submitted.</h3>
+      <p style="color:var(--text-lt);">Your spec package will be emailed shortly. A UWC rep may also follow up to confirm requirements.</p>
+      <button class="btn btn-primary" style="margin-top:24px;" onclick="closeForm('bundle')">Done</button>
+    </div>
+
+    <div id="bundleFormWrap">
+      <div class="form-body">
+
+        <div class="form-context-label" style="font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:8px;">Products in bundle</div>
+        <div class="form-bundle-list" id="bundleProductList"></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="bName">Name <span class="req">*</span></label>
+            <input class="form-input" id="bName" type="text" placeholder="Jane Smith" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bCompany">Company</label>
+            <input class="form-input" id="bCompany" type="text" placeholder="Acme Electric" autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="bEmail">Email <span class="req">*</span></label>
+            <input class="form-input" id="bEmail" type="email" placeholder="jane@company.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bPhone">Phone</label>
+            <input class="form-input" id="bPhone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="bProject">Project Name</label>
+          <input class="form-input" id="bProject" type="text" placeholder="e.g. Building 4 — Panel Upgrade">
+          <div class="form-hint">Used to label your exported spec package.</div>
+        </div>
+
+      </div>
+      <div class="form-footer">
+        <button class="btn btn-outline btn-sm" onclick="closeForm('bundle')">Cancel</button>
+        <button class="btn btn-orange btn-sm" id="bundleSubmitBtn" onclick="submitBundleForm()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Send Bundle
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ FORM: STOCK ALERT ══════════════════════════════════════════════════ -->
+<div class="form-overlay" id="alertOverlay">
+  <div class="form-card" id="alertCard">
+
+    <div class="form-header">
+      <button class="form-close" onclick="closeForm('alert')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="label form-header-eyebrow">Availability Alert</div>
+      <h3>Notify me when available</h3>
+      <p>We'll contact you as soon as production is confirmed and a ship date is set.</p>
+    </div>
+
+    <div class="form-success" id="alertSuccess" style="display:none;">
+      <div class="form-success-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Alert set.</h3>
+      <p style="color:var(--text-lt);">We'll notify you when production is confirmed for this product.</p>
+      <button class="btn btn-primary" style="margin-top:24px;" onclick="closeForm('alert')">Done</button>
+    </div>
+
+    <div id="alertFormWrap">
+      <div class="form-body">
+        <div class="form-context">
+          <div class="form-context-label">Product</div>
+          <div class="form-context-value" id="alertProductCtx">—</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="aName">Name <span class="req">*</span></label>
+            <input class="form-input" id="aName" type="text" placeholder="Jane Smith" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="aEmail">Email <span class="req">*</span></label>
+            <input class="form-input" id="aEmail" type="email" placeholder="jane@company.com" autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="aPhone">Phone</label>
+            <input class="form-input" id="aPhone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="aQty">Quantity Needed</label>
+            <input class="form-input" id="aQty" type="text" placeholder="e.g. 2,500 ft">
+          </div>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button class="btn btn-outline btn-sm" onclick="closeForm('alert')">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="alertSubmitBtn" onclick="submitAlertForm()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Set Alert
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ TOAST ═════════════════════════════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// PRODUCT DATA  (placeholder — representative of PIM output)
+// ═══════════════════════════════════════════════════════════════════════════
+const PRODUCTS = [
+  {
+    id:1, sku:'UWC-TH14R',
+    name:'THHN / THWN-2  14 AWG  Red',
+    family:'THHN/THWN-2',
+    desc:'Standard building wire for branch circuits and feeders in conduit. Dual-rated for wet and dry locations at 90°C.',
+    awg:'14 AWG', awgNum:14, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (19×27)',
+    insulation:'PVC / Nylon', jacket:'Nylon',
+    color:'Red', colorHex:'#c62828',
+    packaging:['500 ft Coil','2,500 ft Reel'],
+    standards:['UL 83','NFPA 70 NEC','RoHS'],
+    applications:['Commercial','Industrial','Data Center','EV Charging'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'15A', weight:'17.8 lb/MFT', od:'0.105 in',
+    layers:{ conductor:'#b5791e', insulation:'#c62828', jacket:'#1a1a2e' },
+    crossRef:['Southwire 22967599','General Cable C0551A.41.10'],
+  },
+  {
+    id:2, sku:'UWC-TH12R',
+    name:'THHN / THWN-2  12 AWG  Red',
+    family:'THHN/THWN-2',
+    desc:'Dual-rated THHN/THWN-2 for general wiring in conduit. Suitable for most branch circuit applications per NEC 2023.',
+    awg:'12 AWG', awgNum:12, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×27)',
+    insulation:'PVC / Nylon', jacket:'Nylon',
+    color:'Red', colorHex:'#c62828',
+    packaging:['500 ft Coil','2,500 ft Reel'],
+    standards:['UL 83','NFPA 70 NEC','RoHS'],
+    applications:['Commercial','Industrial','EV Charging'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'20A', weight:'26.3 lb/MFT', od:'0.130 in',
+    layers:{ conductor:'#b5791e', insulation:'#c62828', jacket:'#1a1a2e' },
+    crossRef:['Southwire 22969299','Belden 29500'],
+  },
+  {
+    id:3, sku:'UWC-TH12BK',
+    name:'THHN / THWN-2  12 AWG  Black',
+    family:'THHN/THWN-2',
+    desc:'Industry-standard black conductor for hot/phase wiring in conduit. Dual-rated wet and dry, 90°C.',
+    awg:'12 AWG', awgNum:12, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×27)',
+    insulation:'PVC / Nylon', jacket:'Nylon',
+    color:'Black', colorHex:'#212121',
+    packaging:['500 ft Coil','2,500 ft Reel','Cut to Length'],
+    standards:['UL 83','NFPA 70 NEC','RoHS'],
+    applications:['Commercial','Industrial','EV Charging','Data Center'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'20A', weight:'26.3 lb/MFT', od:'0.130 in',
+    layers:{ conductor:'#b5791e', insulation:'#212121', jacket:'#1a1a2e' },
+    crossRef:['Southwire 22968199','Encore Wire E11121'],
+  },
+  {
+    id:4, sku:'UWC-TH10BK',
+    name:'THHN / THWN-2  10 AWG  Black',
+    family:'THHN/THWN-2',
+    desc:'Heavy-gauge feeder conductor for HVAC equipment, sub-panels, and 30A circuits. Dual-rated 90°C wet/dry.',
+    awg:'10 AWG', awgNum:10, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×27)',
+    insulation:'PVC / Nylon', jacket:'Nylon',
+    color:'Black', colorHex:'#212121',
+    packaging:['500 ft Coil','2,500 ft Reel'],
+    standards:['UL 83','NFPA 70 NEC','RoHS'],
+    applications:['Commercial','Industrial','EV Charging'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'30A', weight:'40.0 lb/MFT', od:'0.164 in',
+    layers:{ conductor:'#b5791e', insulation:'#212121', jacket:'#1a1a2e' },
+    crossRef:['Southwire 22970399'],
+  },
+  {
+    id:5, sku:'UWC-TH10GR',
+    name:'THHN / THWN-2  10 AWG  Green',
+    family:'THHN/THWN-2',
+    desc:'Equipment grounding conductor (EGC) per NEC 250.119. Green insulation for immediate identification in conduit systems.',
+    awg:'10 AWG', awgNum:10, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×27)',
+    insulation:'PVC / Nylon', jacket:'Nylon',
+    color:'Green', colorHex:'#2e7d32',
+    packaging:['500 ft Coil','2,500 ft Reel'],
+    standards:['UL 83','NFPA 70 NEC','NEC 250.119'],
+    applications:['Commercial','Industrial','Residential'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'30A', weight:'40.0 lb/MFT', od:'0.164 in',
+    layers:{ conductor:'#b5791e', insulation:'#2e7d32', jacket:'#1a1a2e' },
+    crossRef:[],
+  },
+  {
+    id:6, sku:'UWC-TH8BK',
+    name:'THHN / THWN-2  8 AWG  Black',
+    family:'THHN/THWN-2',
+    desc:'High-ampacity feeder for sub-panels, EV chargers, and large HVAC. Dual-rated 90°C wet/dry in conduit.',
+    awg:'8 AWG', awgNum:8, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×24)',
+    insulation:'PVC / Nylon', jacket:'Nylon',
+    color:'Black', colorHex:'#212121',
+    packaging:['500 ft Coil','2,500 ft Reel'],
+    standards:['UL 83','NFPA 70 NEC','RoHS'],
+    applications:['Commercial','Industrial','EV Charging'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'40A', weight:'63.0 lb/MFT', od:'0.216 in',
+    layers:{ conductor:'#b5791e', insulation:'#212121', jacket:'#1a1a2e' },
+    crossRef:['Southwire 22971499'],
+  },
+  {
+    id:7, sku:'UWC-TH6GR',
+    name:'THHN / THWN-2  6 AWG  Green',
+    family:'THHN/THWN-2',
+    desc:'Large equipment ground conductor for service entrance and feeder circuits. Solid green for code compliance.',
+    awg:'6 AWG', awgNum:6, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×21)',
+    insulation:'PVC / Nylon', jacket:'Nylon',
+    color:'Green', colorHex:'#2e7d32',
+    packaging:['500 ft Coil','2,500 ft Reel'],
+    standards:['UL 83','NFPA 70 NEC','NEC 250.119'],
+    applications:['Commercial','Industrial','Data Center'],
+    stock:'Made to Order', leadTime:'2–3 Weeks',
+    ampacity:'55A', weight:'97.0 lb/MFT', od:'0.270 in',
+    layers:{ conductor:'#b5791e', insulation:'#2e7d32', jacket:'#1a1a2e' },
+    crossRef:[],
+  },
+  {
+    id:8, sku:'UWC-XH2BK',
+    name:'XHHW-2  2 AWG  Black',
+    family:'XHHW-2',
+    desc:'XLPE-insulated conductor rated 90°C wet and dry. Superior moisture, heat, and chemical resistance for demanding installations.',
+    awg:'2 AWG', awgNum:2, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×19)',
+    insulation:'XLPE', jacket:'None (single conductor)',
+    color:'Black', colorHex:'#212121',
+    packaging:['500 ft Reel','1,000 ft Reel'],
+    standards:['UL 44','NFPA 70 NEC','RoHS'],
+    applications:['Commercial','Industrial','Solar/PV','Data Center'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'130A', weight:'155 lb/MFT', od:'0.445 in',
+    layers:{ conductor:'#b5791e', insulation:'#212121', jacket:null },
+    crossRef:['Southwire 15360099','Prysmian 2222'],
+  },
+  {
+    id:9, sku:'UWC-XH4/0BK',
+    name:'XHHW-2  4/0 AWG  Black',
+    family:'XHHW-2',
+    desc:'Large-gauge feeder and service entrance conductor. XLPE insulation for harsh environments. Rated for conduit and direct burial.',
+    awg:'4/0 AWG', awgNum:-4, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (19×19)',
+    insulation:'XLPE', jacket:'None (single conductor)',
+    color:'Black', colorHex:'#212121',
+    packaging:['500 ft Reel','1,000 ft Reel'],
+    standards:['UL 44','NFPA 70 NEC','RoHS'],
+    applications:['Commercial','Industrial','Data Center'],
+    stock:'Made to Order', leadTime:'3–4 Weeks',
+    ampacity:'230A', weight:'570 lb/MFT', od:'0.780 in',
+    layers:{ conductor:'#b5791e', insulation:'#212121', jacket:null },
+    crossRef:['Southwire 15363499'],
+  },
+  {
+    id:10, sku:'UWC-NMB122',
+    name:'NM-B  12/2 w/ Ground',
+    family:'NM-B',
+    desc:'Non-metallic sheathed cable for residential branch circuits. Two insulated conductors plus bare ground in PVC jacket. Dry locations only.',
+    awg:'12 AWG', awgNum:12, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Solid',
+    insulation:'PVC', jacket:'PVC Sheath (White)',
+    color:'White Jacket / Black + White conductors', colorHex:'#e0e0e0',
+    packaging:['250 ft Roll','1,000 ft Reel'],
+    standards:['UL 719','NFPA 70 Article 334'],
+    applications:['Residential','Commercial'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'20A', weight:'58 lb/MFT', od:'0.41 × 0.25 in (flat)',
+    layers:{ conductor:'#b5791e', insulation:'#e0e0e0', jacket:'#f5f5f5' },
+    crossRef:['Southwire 28827422','Encore Wire NM12-2'],
+  },
+  {
+    id:11, sku:'UWC-NMB142',
+    name:'NM-B  14/2 w/ Ground',
+    family:'NM-B',
+    desc:'Standard residential cable for lighting and 15A general circuits. Solid copper conductors with ground in PVC jacket. Dry locations only.',
+    awg:'14 AWG', awgNum:14, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Solid',
+    insulation:'PVC', jacket:'PVC Sheath (White)',
+    color:'White Jacket / Black + White conductors', colorHex:'#e0e0e0',
+    packaging:['250 ft Roll','1,000 ft Reel'],
+    standards:['UL 719','NFPA 70 Article 334'],
+    applications:['Residential'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'15A', weight:'42 lb/MFT', od:'0.36 × 0.22 in (flat)',
+    layers:{ conductor:'#b5791e', insulation:'#e0e0e0', jacket:'#f5f5f5' },
+    crossRef:['Southwire 28827322'],
+  },
+  {
+    id:12, sku:'UWC-USE6BK',
+    name:'USE-2  6 AWG  Black',
+    family:'USE-2',
+    desc:'Underground service entrance and direct-burial rated. Sunlight resistant, 90°C. Approved for PV solar systems and utility service laterals.',
+    awg:'6 AWG', awgNum:6, voltage:'600V', temp:'90°C',
+    material:'Copper', stranding:'Stranded (7×21)',
+    insulation:'XLPE', jacket:'None (single conductor)',
+    color:'Black', colorHex:'#212121',
+    packaging:['500 ft Reel','1,000 ft Reel'],
+    standards:['UL 854','NFPA 70 NEC','UL 4703 (PV)'],
+    applications:['Residential','Solar/PV','Industrial'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'75A', weight:'105 lb/MFT', od:'0.340 in',
+    layers:{ conductor:'#b5791e', insulation:'#212121', jacket:null },
+    crossRef:['Southwire USE2-6BK'],
+  },
+  {
+    id:13, sku:'UWC-SOOW123',
+    name:'SOOW  12/3  300V',
+    family:'SOOW',
+    desc:'Heavy-duty portable power cord with oil-resistant CPE jacket. Three 12 AWG conductors for industrial tools, equipment, and portable generators.',
+    awg:'12 AWG', awgNum:12, voltage:'300V', temp:'90°C',
+    material:'Copper', stranding:'Flexible (Class K)',
+    insulation:'EPDM', jacket:'CPE (Black)',
+    color:'Black Jacket', colorHex:'#212121',
+    packaging:['250 ft Reel','500 ft Reel','Cut to Length'],
+    standards:['UL 62','CSA C22.2 No. 49','NFPA 70 NEC'],
+    applications:['Industrial','Commercial'],
+    stock:'In Stock', leadTime:null,
+    ampacity:'20A', weight:'98 lb/MFT', od:'0.650 in',
+    layers:{ conductor:'#b5791e', insulation:'#424242', jacket:'#1a1a1a' },
+    crossRef:['Carol Brand C2105A.41.01'],
+  },
+];
+
+// ─── Application definitions ──────────────────────────────────────────────
+const APPLICATIONS = [
+  {
+    id:'commercial', label:'Commercial Construction',
+    desc:'Office, retail, and mixed-use projects. NEC 2023 compliant.',
+    icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+    apps:['Commercial'], families:['THHN/THWN-2','NM-B'],
+    bg:'images/app-commercial.png',
+    palette:{ accent:'#0362BC', dk:'#024a90' },
+  },
+  {
+    id:'industrial', label:'Industrial & Manufacturing',
+    desc:'Harsh environments, heavy machinery, and plant wiring.',
+    icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M6 20V10l6-6 6 6v10"/><rect x="9" y="14" width="6" height="6"/></svg>`,
+    apps:['Industrial'], families:['THHN/THWN-2','XHHW-2','SOOW'],
+    bg:'images/app-industrial.png',
+    palette:{ accent:'#d97706', dk:'#b45309' },
+  },
+  {
+    id:'ev', label:'EV Charging Infrastructure',
+    desc:'Level 2 & DCFC charger circuits. High-ampacity feeders.',
+    icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    apps:['EV Charging'], families:['THHN/THWN-2'],
+    bg:'images/app-ev.png',
+    palette:{ accent:'#0891b2', dk:'#0e7490' },
+  },
+  {
+    id:'solar', label:'Solar / PV Systems',
+    desc:'Sunlight-resistant, direct-burial, and array wiring.',
+    icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>`,
+    apps:['Solar/PV'], families:['USE-2','XHHW-2'],
+    bg:'images/app-solar.png',
+    palette:{ accent:'#ca8a04', dk:'#a16207' },
+  },
+  {
+    id:'residential', label:'Residential Wiring',
+    desc:'New construction, renovation, and service upgrades.',
+    icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    apps:['Residential'], families:['NM-B','USE-2'],
+    bg:'images/app-residential.png',
+    palette:{ accent:'#16a34a', dk:'#15803d' },
+  },
+  {
+    id:'datacenter', label:'Data Center & Mission Critical',
+    desc:'High-density feeders, 24/7 uptime requirements.',
+    icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+    apps:['Data Center'], families:['THHN/THWN-2','XHHW-2'],
+    bg:'images/app-datacenter.png',
+    palette:{ accent:'#7c3aed', dk:'#6d28d9' },
+  },
+];
+
+// ─── Wire image map (product id → file) ──────────────────────────────────
+const WIRE_IMAGES = {
+  1:  'images/wire-thhn-red.png',
+  2:  'images/wire-thhn-red-12.png',
+  3:  'images/wire-thhn-black-12.png',
+  4:  'images/wire-thhn-black-10.png',
+  5:  'images/wire-thhn-green.png',
+  6:  'images/wire-thhn-black-8.png',
+  7:  'images/wire-thhn-green-6.png',
+  8:  'images/wire-xhhw2-2awg.png',
+  9:  'images/wire-xhhw2-4-0.png',
+  10: 'images/wire-nmb.png',
+  11: 'images/wire-nmb.png',
+  12: 'images/wire-use2.png',
+  13: 'images/wire-soow.png',
+};
+
+// ─── Jargon / alias map ───────────────────────────────────────────────────
+const ALIASES = {
+  'romex':'NM-B', 'nmb':'NM-B', 'nm-b':'NM-B',
+  'underground':'USE-2', 'direct burial':'USE-2',
+  'solar':'USE-2 XHHW-2', 'pv':'USE-2',
+  'flexible cord':'SOOW', 'portable cord':'SOOW',
+  'extension cord':'SOOW',
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════════════
+let activeFilters    = {};
+let compareList      = [];
+let bundleList       = [];
+let currentPanel     = null;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  buildAppGrid();
+  buildAppDropdown();
+  renderProducts();
+  setupFilters();
+  setupNavSearch();
+  setupSearchInput();
+  setupScrollAnimations();
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MODE SWITCHING
+// ═══════════════════════════════════════════════════════════════════════════
+document.querySelectorAll('.mode-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchMode(tab.dataset.mode));
+});
+
+function switchMode(mode) {
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+  document.querySelectorAll('.mode-panel').forEach(p => p.classList.toggle('active', p.id === `mode-${mode}`));
+  if (mode === 'search') setTimeout(() => document.getElementById('searchInput').focus(), 80);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// APPLICATION GRID
+// ═══════════════════════════════════════════════════════════════════════════
+function buildAppGrid() {
+  document.getElementById('appGrid').innerHTML = APPLICATIONS.map(app => `
+    <div class="app-card fade-in" onclick="selectApplication('${app.id}')"
+         style="${app.bg ? `background-image:url('${app.bg}');` : ''}">
+      <div class="app-card-body">
+        <div class="app-card-icon">${app.icon}</div>
+        <h4>${app.label}</h4>
+        <p>${app.desc}</p>
+        <div class="app-card-products">
+          ${app.families.map(f => `<span class="tag tag-blue" style="font-size:.7rem;padding:3px 9px;border-color:rgba(126,191,255,.5);color:rgba(255,255,255,.9);background:rgba(3,98,188,.25);">${f}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function buildAppDropdown() {
+  const dropdown = document.getElementById('appDropdown');
+  dropdown.innerHTML = APPLICATIONS.map(app => `
+    <button class="tab-dropdown-item" onclick="selectApplication('${app.id}')">
+      ${app.icon}
+      ${app.label.replace('&amp;','&')}
+    </button>
+  `).join('');
+
+  const wrap = dropdown.closest('.tab-dropdown-wrap');
+  let closeTimer;
+
+  function openDropdown() {
+    clearTimeout(closeTimer);
+    const rect = wrap.getBoundingClientRect();
+    dropdown.style.top  = (rect.bottom + 6) + 'px';
+    dropdown.style.left = rect.left + 'px';
+    dropdown.classList.add('open');
+  }
+  function closeDropdown() {
+    closeTimer = setTimeout(() => dropdown.classList.remove('open'), 120);
+  }
+
+  wrap.addEventListener('mouseenter', openDropdown);
+  wrap.addEventListener('mouseleave', closeDropdown);
+  dropdown.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+  dropdown.addEventListener('mouseleave', closeDropdown);
+}
+
+function selectApplication(appId) {
+  const app = APPLICATIONS.find(a => a.id === appId);
+  if (!app) return;
+  clearFilters();
+  app.apps.forEach(a => {
+    const cb = document.querySelector(`[data-filter="application"] input[value="${a}"]`);
+    if (cb) { cb.checked = true; applyFilter('application', a, true); }
+  });
+  switchMode('spec');
+  renderProducts();
+  applyAppTheme(app);
+}
+
+function applyAppTheme(app) {
+  const modeSpec = document.getElementById('mode-spec');
+  if (app && app.palette) {
+    modeSpec.style.setProperty('--app-accent', app.palette.accent);
+    modeSpec.style.setProperty('--app-accent-dk', app.palette.dk);
+    // context bar
+    const bar = document.getElementById('appContextBar');
+    bar.style.backgroundImage = app.bg ? `url('${app.bg}')` : '';
+    document.getElementById('appContextIcon').innerHTML = app.icon;
+    document.getElementById('appContextName').textContent = app.label;
+    bar.classList.add('visible');
+  } else {
+    modeSpec.style.removeProperty('--app-accent');
+    modeSpec.style.removeProperty('--app-accent-dk');
+    document.getElementById('appContextBar').classList.remove('visible');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FILTER SYSTEM
+// ═══════════════════════════════════════════════════════════════════════════
+function setupFilters() {
+  document.querySelectorAll('.filter-options').forEach(group => {
+    const key = group.dataset.filter;
+    group.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => applyFilter(key, cb.value, cb.checked));
+    });
+  });
+}
+
+function applyFilter(key, value, checked) {
+  if (!activeFilters[key]) activeFilters[key] = new Set();
+  checked ? activeFilters[key].add(value) : activeFilters[key].delete(value);
+  if (activeFilters[key].size === 0) delete activeFilters[key];
+  renderProducts();
+}
+
+function clearFilters() {
+  activeFilters = {};
+  document.querySelectorAll('.filter-options input[type="checkbox"]').forEach(cb => cb.checked = false);
+  applyAppTheme(null);
+  renderProducts();
+}
+
+function toggleGroup(header) {
+  header.classList.toggle('collapsed');
+  header.nextElementSibling.classList.toggle('hidden');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FILTERING + RENDERING
+// ═══════════════════════════════════════════════════════════════════════════
+function getFiltered() {
+  return PRODUCTS.filter(p => {
+    for (const [key, vals] of Object.entries(activeFilters)) {
+      if (vals.size === 0) continue;
+      if (key === 'family'      && !vals.has(p.family))   return false;
+      if (key === 'material'    && !vals.has(p.material)) return false;
+      if (key === 'awg'         && !vals.has(p.awg))      return false;
+      if (key === 'voltage'     && !vals.has(p.voltage))  return false;
+      if (key === 'temp'        && !vals.has(p.temp))     return false;
+      if (key === 'application' && ![...vals].some(v => p.applications.includes(v))) return false;
+      if (key === 'stock'       && ![...vals].some(v => p.stock === v)) return false;
+    }
+    return true;
+  });
+}
+
+function getSorted(list) {
+  const sort = document.getElementById('sortSelect').value;
+  const s = [...list];
+  if (sort === 'awg-asc')  s.sort((a,b) => b.awgNum - a.awgNum);
+  if (sort === 'awg-desc') s.sort((a,b) => a.awgNum - b.awgNum);
+  if (sort === 'name')     s.sort((a,b) => a.name.localeCompare(b.name));
+  return s;
+}
+
+function renderProducts() {
+  const list = getSorted(getFiltered());
+  document.getElementById('resultCount').textContent = list.length;
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = list.length
+    ? list.map(p => cardHTML(p)).join('')
+    : `<div class="no-results"><h3>No products match your filters</h3><p>Try adjusting or clearing your filters.</p></div>`;
+}
+
+function cardHTML(p) {
+  const inC = compareList.includes(p.id);
+  const inB = bundleList.includes(p.id);
+  const stockBadge = p.stock === 'In Stock'
+    ? `<span class="badge badge-green">In Stock</span>`
+    : `<span class="badge badge-amber">MTO · ${p.leadTime}</span>`;
+  const img = WIRE_IMAGES[p.id];
+  return `
+    <div class="product-card${inC?' in-compare':''}" id="card-${p.id}">
+      <div class="product-card-visual" style="background-image:url('${img}');">
+        <div class="product-card-visual-badges">
+          <span class="badge badge-navy">${p.family}</span>
+          ${stockBadge}
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-sku">${p.sku}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-specs-mini">
+          <div><div class="spec-mini-label">AWG</div><div class="spec-mini-value">${p.awg}</div></div>
+          <div><div class="spec-mini-label">Voltage</div><div class="spec-mini-value">${p.voltage}</div></div>
+          <div><div class="spec-mini-label">Temp</div><div class="spec-mini-value">${p.temp}</div></div>
+          <div><div class="spec-mini-label">Ampacity</div><div class="spec-mini-value">${p.ampacity}</div></div>
+        </div>
+      </div>
+      <div class="product-card-footer">
+        <button class="btn btn-primary btn-sm" style="flex:1;justify-content:center;" onclick="openPanel(${p.id})">View Spec Sheet</button>
+        ${p.stock !== 'In Stock' ? `<button class="notify-btn" title="Get notified when available" onclick="openStockAlert(${p.id})">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Notify Me
+        </button>` : ''}
+        <button class="compare-btn${inC?' active':''}" title="Add to Compare" onclick="toggleCompare(${p.id})">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="bundle-btn${inB?' active':''}" title="Save to Bundle" onclick="toggleBundle(${p.id})">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+function cableIcon(p) {
+  const c = p.layers.conductor, i = p.layers.insulation, j = p.layers.jacket;
+  return j
+    ? `<svg width="36" height="36" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="${j}"/><circle cx="18" cy="18" r="10" fill="${i}"/><circle cx="18" cy="18" r="5" fill="${c}"/></svg>`
+    : `<svg width="36" height="36" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="${i}"/><circle cx="18" cy="18" r="7" fill="${c}"/></svg>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════════════════════════════════
+function setupSearchInput() {
+  document.getElementById('searchInput').addEventListener('input', doSearch);
+}
+
+function setupNavSearch() {
+  document.getElementById('navSearch').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+      setSearch(e.target.value.trim()); e.target.value = '';
+    }
+  });
+}
+
+function setSearch(term) {
+  switchMode('search');
+  document.getElementById('searchInput').value = term;
+  doSearch();
+}
+
+function doSearch() {
+  const raw = document.getElementById('searchInput').value.trim().toLowerCase();
+  const countEl = document.getElementById('searchCount');
+  const grid    = document.getElementById('searchGrid');
+  if (!raw) { countEl.innerHTML = ''; grid.innerHTML = ''; return; }
+
+  let term = raw, aliasNote = '';
+  for (const [alias, resolved] of Object.entries(ALIASES)) {
+    if (raw === alias || raw.includes(alias)) {
+      term = resolved.toLowerCase() + ' ' + raw;
+      aliasNote = ` <span style="color:var(--orange);font-family:var(--mono);font-size:.75rem;">→ resolved to "${resolved}"</span>`;
+      break;
+    }
+  }
+
+  const words = term.split(/\s+/).filter(Boolean);
+  const results = PRODUCTS.filter(p => {
+    const hay = [p.name,p.sku,p.family,p.material,p.awg,p.voltage,p.temp,p.insulation,p.jacket,p.color,p.desc,
+      ...(p.standards||[]),...(p.applications||[]),...(p.crossRef||[])].join(' ').toLowerCase();
+    return words.every(w => hay.includes(w));
+  });
+
+  countEl.innerHTML = `<strong>${results.length}</strong> result${results.length!==1?'s':''} for "<em>${raw}</em>"${aliasNote}`;
+  grid.innerHTML = results.length
+    ? results.map(p => cardHTML(p)).join('')
+    : `<div class="no-results" style="grid-column:1/-1"><h3>No results found</h3><p>Try a product family name, AWG size, or part number.</p></div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SPEC DETAIL PANEL
+// ═══════════════════════════════════════════════════════════════════════════
+function openPanel(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  currentPanel = p;
+  document.getElementById('panelEyebrow').textContent = p.family;
+  document.getElementById('panelSku').textContent = p.sku;
+  document.getElementById('panelName').textContent = p.name;
+  document.getElementById('panelBadges').innerHTML = `
+    ${p.stock==='In Stock'?'<span class="badge badge-green">In Stock</span>':`<span class="badge badge-amber">MTO · ${p.leadTime}</span>`}
+    <span class="badge badge-blue">${p.voltage}</span>
+    <span class="badge badge-navy">${p.temp} Rated</span>`;
+  document.getElementById('panelBody').innerHTML = buildPanelBody(p);
+  const isMTO = p.stock !== 'In Stock';
+  document.getElementById('panelNotifyBtn').style.display  = isMTO ? '' : 'none';
+  document.getElementById('panelBundleBtn2').style.display = isMTO ? 'none' : '';
+
+  // Apply wire image to hero block
+  const hero = document.getElementById('panelHero');
+  const img = WIRE_IMAGES[p.id];
+  hero.style.backgroundImage = img ? `url('${img}')` : '';
+
+  document.getElementById('panelOverlay').classList.add('active');
+  document.getElementById('specPanel').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function buildPanelBody(p) {
+  const crossRows = p.crossRef && p.crossRef.length
+    ? p.crossRef.map(r => `<tr><td>Cross-Reference</td><td>${r}</td></tr>`).join('') : '';
+  return `
+    <div class="panel-section">
+      <div class="panel-section-title">Technical Specifications</div>
+      <table class="spec-table">
+        <tr><td>AWG / Size</td><td>${p.awg}</td></tr>
+        <tr><td>Conductor</td><td>${p.material} · ${p.stranding}</td></tr>
+        <tr><td>Insulation</td><td>${p.insulation}</td></tr>
+        <tr><td>Jacket</td><td>${p.jacket}</td></tr>
+        <tr><td>Color</td><td>${p.color}</td></tr>
+        <tr><td>Voltage Rating</td><td>${p.voltage}</td></tr>
+        <tr><td>Temperature Rating</td><td>${p.temp} Wet &amp; Dry</td></tr>
+        <tr><td>Ampacity</td><td>${p.ampacity}</td></tr>
+        <tr><td>Outside Diameter</td><td>${p.od}</td></tr>
+        <tr><td>Weight</td><td>${p.weight}</td></tr>
+        ${crossRows}
+      </table>
+    </div>
+    <div class="panel-section">
+      <div class="panel-section-title">Standards &amp; Certifications</div>
+      <div class="standards-list">${(p.standards||[]).map(s=>`<span class="badge badge-gray">${s}</span>`).join('')}</div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-section-title">Suitable Applications</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">${(p.applications||[]).map(a=>`<span class="tag tag-orange" style="font-size:.74rem;">${a}</span>`).join('')}</div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-section-title">Available Packaging</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">${(p.packaging||[]).map(pkg=>`<span class="tag tag-blue" style="font-size:.74rem;">${pkg}</span>`).join('')}</div>
+    </div>
+    <div style="background:var(--gray-lt);border-radius:var(--radius);padding:14px 16px;margin-top:4px;">
+      <div class="label" style="color:var(--text-lt);font-size:.65rem;letter-spacing:.12em;margin-bottom:6px;">Placeholder Notice</div>
+      <p style="font-size:.8rem;color:var(--text-lt);line-height:1.5;">All specifications are representative placeholders for concept demonstration. Final data will be sourced from the UWC PIM system.</p>
+    </div>`;
+}
+
+function buildViz(layers) {
+  const c = layers.conductor, i = layers.insulation, j = layers.jacket;
+  if (j) {
+    return `<svg width="150" height="150" viewBox="0 0 150 150">
+      <circle cx="75" cy="75" r="68" fill="${j}"/>
+      <circle cx="75" cy="75" r="46" fill="${i}"/>
+      <circle cx="75" cy="75" r="24" fill="${c}"/>
+      <text x="78" y="18" fill="rgba(255,255,255,.5)" font-size="8.5" font-family="DM Mono,monospace">Jacket</text>
+      <text x="78" y="38" fill="rgba(255,255,255,.4)" font-size="8.5" font-family="DM Mono,monospace">Insulation</text>
+      <text x="78" y="58" fill="rgba(255,255,255,.35)" font-size="8.5" font-family="DM Mono,monospace">Conductor</text>
+    </svg>`;
+  }
+  return `<svg width="150" height="150" viewBox="0 0 150 150">
+    <circle cx="75" cy="75" r="68" fill="${i}"/>
+    <circle cx="75" cy="75" r="36" fill="${c}"/>
+    <text x="78" y="22" fill="rgba(255,255,255,.5)" font-size="8.5" font-family="DM Mono,monospace">Insulation</text>
+    <text x="78" y="48" fill="rgba(255,255,255,.4)" font-size="8.5" font-family="DM Mono,monospace">Conductor</text>
+  </svg>`;
+}
+
+function closePanel() {
+  document.getElementById('panelOverlay').classList.remove('active');
+  document.getElementById('specPanel').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('panelHero').style.backgroundImage = '';
+  currentPanel = null;
+}
+
+function addToCompareFromPanel()    { if (currentPanel) toggleCompare(currentPanel.id); }
+function addToBundleFromPanel()     { if (currentPanel) toggleBundle(currentPanel.id); }
+function openStockAlertFromPanel()  { if (currentPanel) { closePanel(); openStockAlert(currentPanel.id); } }
+
+// ─── requestQuote: now opens the quote form ──────────────────────────────
+function requestQuote() {
+  const ctx = currentPanel ? `${currentPanel.name}  ·  ${currentPanel.sku}` : buildCompareContext();
+  openQuoteForm(ctx);
+}
+
+function buildCompareContext() {
+  if (compareList.length === 0) return 'Multiple Products';
+  return compareList.map(id => {
+    const p = PRODUCTS.find(x => x.id === id);
+    return p ? p.sku : '';
+  }).filter(Boolean).join(', ');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COMPARE
+// ═══════════════════════════════════════════════════════════════════════════
+function toggleCompare(id) {
+  const idx = compareList.indexOf(id);
+  if (idx > -1) {
+    compareList.splice(idx, 1);
+    syncCard(id, false, true);
+    showToast('Removed from comparison.', 'blue');
+  } else {
+    if (compareList.length >= 4) { showToast('Maximum 4 products can be compared at once.', 'blue'); return; }
+    compareList.push(id);
+    syncCard(id, true, true);
+    showToast('Added to comparison tray.', 'blue');
+  }
+  updateTray();
+}
+
+function syncCard(id, compareActive, isCompare) {
+  document.querySelectorAll(`#card-${id}`).forEach(card => {
+    if (isCompare) {
+      card.classList.toggle('in-compare', compareActive);
+      card.querySelector('.compare-btn')?.classList.toggle('active', compareActive);
+    } else {
+      card.querySelector('.bundle-btn')?.classList.toggle('active', bundleList.includes(id));
+    }
+  });
+}
+
+function updateTray() {
+  const tray = document.getElementById('compareTray');
+  if (compareList.length === 0) { tray.classList.remove('active'); document.body.classList.remove('tray-open'); return; }
+  tray.classList.add('active');
+  document.body.classList.add('tray-open');
+  const slots = [];
+  for (let i = 0; i < 4; i++) {
+    if (i < compareList.length) {
+      const p = PRODUCTS.find(x => x.id === compareList[i]);
+      slots.push(`<div class="compare-slot filled"><span class="compare-slot-name">${p.name}</span><button class="compare-slot-remove" onclick="toggleCompare(${p.id})">×</button></div>`);
+    } else {
+      slots.push(`<div class="compare-slot empty">+ Add product</div>`);
+    }
+  }
+  document.getElementById('compareSlots').innerHTML = slots.join('');
+}
+
+function clearCompare() {
+  [...compareList].forEach(id => syncCard(id, false, true));
+  compareList = [];
+  updateTray();
+}
+
+function openCompareModal() {
+  if (compareList.length < 2) { showToast('Add at least 2 products to compare.', 'blue'); return; }
+  buildCompareTable();
+  document.getElementById('compareModal').classList.add('active');
+}
+
+function closeCompareModal() { document.getElementById('compareModal').classList.remove('active'); }
+
+function buildCompareTable() {
+  const products = compareList.map(id => PRODUCTS.find(p => p.id === id));
+  const rows = [
+    {label:'SKU',         key:'sku'},
+    {label:'Family',      key:'family'},
+    {label:'AWG / Size',  key:'awg'},
+    {label:'Conductor',   key:'material'},
+    {label:'Stranding',   key:'stranding'},
+    {label:'Insulation',  key:'insulation'},
+    {label:'Jacket',      key:'jacket'},
+    {label:'Voltage',     key:'voltage'},
+    {label:'Temperature', key:'temp'},
+    {label:'Ampacity',    key:'ampacity'},
+    {label:'O.D.',        key:'od'},
+    {label:'Weight',      key:'weight'},
+    {label:'Availability',key:'stock'},
+  ];
+  const monoKeys = new Set(['sku','awg','voltage','temp','ampacity','od','weight']);
+  let html = '<thead><tr><th></th>';
+  products.forEach(p => {
+    const img = WIRE_IMAGES[p.id];
+    html += `<th>
+      ${img ? `<div class="col-header-img" style="background-image:url('${img}');"></div>` : ''}
+      <div class="col-header-sku">${p.sku}</div>
+      <div class="col-header-name">${p.name}</div>
+      <div style="margin-top:8px;">${p.stock==='In Stock'?'<span class="badge badge-green">In Stock</span>':`<span class="badge badge-amber">MTO · ${p.leadTime}</span>`}</div>
+    </th>`;
+  });
+  html += '</tr></thead><tbody>';
+  rows.forEach(row => {
+    const vals = products.map(p => String(p[row.key]||'—'));
+    const allSame = vals.every(v => v === vals[0]);
+    html += `<tr><td>${row.label}</td>${vals.map(v =>
+      `<td class="${!allSame?'diff':''}${monoKeys.has(row.key)?' mono-val':''}">${v}</td>`
+    ).join('')}</tr>`;
+  });
+  html += '<tr><td>Standards</td>' + products.map(p=>`<td>${(p.standards||[]).join(', ')}</td>`).join('') + '</tr>';
+  html += '<tr><td>Actions</td>' + products.map(p=>`<td>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button class="btn btn-primary btn-sm" onclick="openPanel(${p.id});closeCompareModal();" style="font-size:.74rem;padding:5px 10px;">View Spec</button>
+      <button class="btn btn-orange btn-sm" onclick="addToBundle(${p.id});" style="font-size:.74rem;padding:5px 10px;">+ Bundle</button>
+    </div></td>`).join('') + '</tr>';
+  html += '</tbody>';
+  document.getElementById('compareTableEl').innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUNDLE
+// ═══════════════════════════════════════════════════════════════════════════
+function toggleBundle(id) {
+  const idx = bundleList.indexOf(id);
+  if (idx > -1) {
+    bundleList.splice(idx, 1);
+    showToast('Removed from project bundle.', 'orange');
+  } else {
+    bundleList.push(id);
+    showToast('Added to project bundle.', 'orange');
+  }
+  document.querySelectorAll(`#card-${id} .bundle-btn`).forEach(btn => btn.classList.toggle('active', bundleList.includes(id)));
+  document.getElementById('bundleCount').textContent = bundleList.length;
+}
+
+function addToBundle(id) {
+  if (!bundleList.includes(id)) {
+    bundleList.push(id);
+    document.querySelectorAll(`#card-${id} .bundle-btn`).forEach(btn => btn.classList.add('active'));
+    document.getElementById('bundleCount').textContent = bundleList.length;
+    showToast('Added to project bundle.', 'orange');
+  }
+}
+
+function saveAllToBundle() {
+  compareList.forEach(id => addToBundle(id));
+  closeCompareModal();
+}
+
+function openBundle() {
+  if (bundleList.length === 0) {
+    showToast('Your bundle is empty. Save products to get started.', 'orange');
+    return;
+  }
+  openBundleForm();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// POPUP FORMS — Netlify Connected
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ─── Encode data for Netlify application/x-www-form-urlencoded POST ───────
+function netlifyEncode(data) {
+  return Object.entries(data)
+    .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v ?? ''))
+    .join('&');
+}
+
+async function netlifySubmit(formName, data) {
+  const res = await fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: netlifyEncode({ 'form-name': formName, 'bot-field': '', ...data }),
+  });
+  return res.ok;
+}
+
+// ─── Generic form open / close ─────────────────────────────────────────────
+function openFormOverlay(name) {
+  document.getElementById(`${name}Overlay`).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeForm(name) {
+  document.getElementById(`${name}Overlay`).classList.remove('active');
+  document.body.style.overflow = '';
+  // Reset after close animation
+  setTimeout(() => resetForm(name), 300);
+}
+
+function resetForm(name) {
+  const successEl  = document.getElementById(`${name}Success`);
+  const wrapEl     = document.getElementById(`${name}FormWrap`);
+  if (successEl) successEl.style.display = 'none';
+  if (wrapEl)    wrapEl.style.display = '';
+  // Clear inputs
+  document.querySelectorAll(`#${name}Card .form-input, #${name}Card .form-textarea`)
+    .forEach(el => { el.value = ''; el.classList.remove('error'); });
+}
+
+// ─── Validation helper ─────────────────────────────────────────────────────
+function validateRequired(ids) {
+  let valid = true;
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const empty = !el.value.trim();
+    el.classList.toggle('error', empty);
+    if (empty) valid = false;
+  });
+  return valid;
+}
+
+function setSubmitLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  if (loading) {
+    btn._origHTML = btn.innerHTML;
+    btn.innerHTML = `<span class="spinner"></span> Sending…`;
+    btn.disabled = true;
+  } else {
+    btn.innerHTML = btn._origHTML || 'Submit';
+    btn.disabled = false;
+  }
+}
+
+function showFormSuccess(name) {
+  const wrapEl    = document.getElementById(`${name}FormWrap`);
+  const successEl = document.getElementById(`${name}Success`);
+  if (wrapEl)    wrapEl.style.display = 'none';
+  if (successEl) successEl.style.display = '';
+}
+
+// ─── ESC to close any open form ────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  ['quote','bundle','alert'].forEach(name => {
+    if (document.getElementById(`${name}Overlay`)?.classList.contains('active')) closeForm(name);
+  });
+});
+
+// ─── Click overlay backdrop to close ──────────────────────────────────────
+['quote','bundle','alert'].forEach(name => {
+  document.getElementById(`${name}Overlay`)?.addEventListener('click', function(e) {
+    if (e.target === this) closeForm(name);
+  });
+});
+
+// ─── QUOTE FORM ────────────────────────────────────────────────────────────
+function openQuoteForm(productContext) {
+  resetForm('quote');
+  document.getElementById('quoteProductCtx').textContent = productContext || '—';
+  openFormOverlay('quote');
+  setTimeout(() => document.getElementById('qName').focus(), 100);
+}
+
+async function submitQuoteForm() {
+  if (!validateRequired(['qName','qEmail'])) {
+    showToast('Please fill in the required fields.', 'blue');
+    return;
+  }
+  setSubmitLoading('quoteSubmitBtn', true);
+  const ok = await netlifySubmit('quote-request', {
+    name:         document.getElementById('qName').value.trim(),
+    company:      document.getElementById('qCompany').value.trim(),
+    email:        document.getElementById('qEmail').value.trim(),
+    phone:        document.getElementById('qPhone').value.trim(),
+    quantity:     document.getElementById('qQty').value.trim(),
+    'project-name': document.getElementById('qProject').value.trim(),
+    notes:        document.getElementById('qNotes').value.trim(),
+    product:      document.getElementById('quoteProductCtx').textContent,
+  });
+  setSubmitLoading('quoteSubmitBtn', false);
+  if (ok) {
+    showFormSuccess('quote');
+  } else {
+    showToast('Submission error — please try again or call us directly.', 'blue');
+  }
+}
+
+// ─── BUNDLE EXPORT FORM ────────────────────────────────────────────────────
+function openBundleForm() {
+  resetForm('bundle');
+  const products = bundleList.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+  const listEl = document.getElementById('bundleProductList');
+  listEl.innerHTML = products.map(p => `
+    <div class="form-bundle-item">
+      <span class="form-bundle-sku">${p.sku}</span>
+      <span style="flex:1;font-size:.84rem;color:var(--text);">${p.name}</span>
+      <span class="badge ${p.stock==='In Stock'?'badge-green':'badge-amber'}" style="font-size:.62rem;">${p.stock==='In Stock'?'In Stock':'MTO'}</span>
+    </div>`).join('');
+  openFormOverlay('bundle');
+  setTimeout(() => document.getElementById('bName').focus(), 100);
+}
+
+async function submitBundleForm() {
+  if (!validateRequired(['bName','bEmail'])) {
+    showToast('Please fill in the required fields.', 'blue');
+    return;
+  }
+  const products = bundleList.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+  const bundleContents = products.map(p => `${p.sku} — ${p.name}`).join(' | ');
+  setSubmitLoading('bundleSubmitBtn', true);
+  const ok = await netlifySubmit('bundle-export', {
+    name:            document.getElementById('bName').value.trim(),
+    company:         document.getElementById('bCompany').value.trim(),
+    email:           document.getElementById('bEmail').value.trim(),
+    phone:           document.getElementById('bPhone').value.trim(),
+    'project-name':  document.getElementById('bProject').value.trim(),
+    'bundle-count':  String(products.length),
+    'bundle-contents': bundleContents,
+  });
+  setSubmitLoading('bundleSubmitBtn', false);
+  if (ok) {
+    showFormSuccess('bundle');
+  } else {
+    showToast('Submission error — please try again.', 'orange');
+  }
+}
+
+// ─── STOCK ALERT FORM ──────────────────────────────────────────────────────
+function openStockAlert(productId) {
+  const p = PRODUCTS.find(x => x.id === productId);
+  if (!p) return;
+  resetForm('alert');
+  document.getElementById('alertProductCtx').textContent = `${p.name}  ·  ${p.sku}  ·  Est. ${p.leadTime}`;
+  openFormOverlay('alert');
+  setTimeout(() => document.getElementById('aName').focus(), 100);
+}
+
+async function submitAlertForm() {
+  if (!validateRequired(['aName','aEmail'])) {
+    showToast('Please fill in the required fields.', 'blue');
+    return;
+  }
+  setSubmitLoading('alertSubmitBtn', true);
+  const ok = await netlifySubmit('stock-alert', {
+    name:     document.getElementById('aName').value.trim(),
+    email:    document.getElementById('aEmail').value.trim(),
+    phone:    document.getElementById('aPhone').value.trim(),
+    quantity: document.getElementById('aQty').value.trim(),
+    product:  document.getElementById('alertProductCtx').textContent,
+  });
+  setSubmitLoading('alertSubmitBtn', false);
+  if (ok) {
+    showFormSuccess('alert');
+  } else {
+    showToast('Submission error — please try again.', 'blue');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════════════════════════════════
+function showToast(msg, type='blue') {
+  const t = document.createElement('div');
+  t.className = `toast toast-${type}`;
+  t.textContent = msg;
+  document.getElementById('toastContainer').appendChild(t);
+  setTimeout(() => t.remove(), 3200);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCROLL ANIMATIONS (UWC Brand Guide pattern)
+// ═══════════════════════════════════════════════════════════════════════════
+function setupScrollAnimations() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold:0.08, rootMargin:'0px 0px -32px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+}
+</script>
+
+<!-- ═══ NETLIFY FORM DETECTION (hidden — required for build-time parsing) ═ -->
+<form name="quote-request" netlify netlify-honeypot="bot-field" hidden>
+  <input name="bot-field">
+  <input name="name">
+  <input name="company">
+  <input name="email">
+  <input name="phone">
+  <input name="product">
+  <input name="quantity">
+  <input name="project-name">
+  <textarea name="notes"></textarea>
+</form>
+
+<form name="bundle-export" netlify netlify-honeypot="bot-field" hidden>
+  <input name="bot-field">
+  <input name="name">
+  <input name="company">
+  <input name="email">
+  <input name="phone">
+  <input name="project-name">
+  <input name="bundle-count">
+  <textarea name="bundle-contents"></textarea>
+</form>
+
+<form name="stock-alert" netlify netlify-honeypot="bot-field" hidden>
+  <input name="bot-field">
+  <input name="name">
+  <input name="email">
+  <input name="phone">
+  <input name="quantity">
+  <input name="product">
+</form>
+
+</body>
+</html>
