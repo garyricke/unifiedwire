@@ -91,10 +91,8 @@
     }
     .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0; }
     .nav-logo-mark {
-      width:40px; height:40px;
-      background:linear-gradient(135deg,var(--blue),var(--blue-dk));
-      border-radius:8px; display:flex; align-items:center; justify-content:center;
-      font-weight:800; font-size:.95rem; color:#fff; letter-spacing:-.02em;
+      height:38px; width:auto; display:block;
+      mix-blend-mode:screen;
     }
     .nav-logo-text { color:#fff; font-weight:700; font-size:.9rem; line-height:1.2; }
     .nav-logo-sub  { color:rgba(255,255,255,.45); font-size:.7rem; font-weight:400; }
@@ -551,7 +549,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">UWC</div>
+      <img class="nav-logo-mark" src="Unified-Logo-current.png" alt="UWC">
       <div>
         <div class="nav-logo-text">Unified Wire &amp; Cable</div>
         <div class="nav-logo-sub">Product Navigator</div>
