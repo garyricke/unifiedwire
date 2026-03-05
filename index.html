@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unified Wire & Cable — 2026 Brand Transformation Proposal</title>
+  <style>
+    /* ── Brand Tokens ─────────────────────────────────── */
+    :root {
+      --blue:    #0362BC;
+      --blue-dk: #024a90;
+      --orange:  #E36417;
+      --orange-dk:#b84f10;
+      --gray:    #B9BDBD;
+      --gray-lt: #f0f2f4;
+      --navy:    #0A1628;
+      --navy2:   #0d1e38;
+      --white:   #ffffff;
+      --text:    #1a2535;
+      --text-lt: #4a5568;
+      --border:  #dce3ed;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(3,98,188,.12);
+      --shadow-lg: 0 12px 48px rgba(3,98,188,.2);
+    }
+
+    /* ── Reset ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Utility ──────────────────────────────────────── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section-alt { background: var(--gray-lt); }
+    .section-dark { background: var(--navy); color: var(--white); }
+    .badge { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+    .badge-blue  { background: var(--blue);   color: #fff; }
+    .badge-orange{ background: var(--orange); color: #fff; }
+    .badge-gray  { background: var(--gray);   color: var(--text); }
+    .tag { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1.5px solid; }
+    .tag-blue   { color: var(--blue);   border-color: var(--blue);   background: rgba(3,98,188,.07); }
+    .tag-orange { color: var(--orange); border-color: var(--orange); background: rgba(227,100,23,.07);}
+
+    h1 { font-size: clamp(2rem,5vw,3.4rem); line-height: 1.15; font-weight: 800; }
+    h2 { font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 800; line-height: 1.2; }
+    h3 { font-size: 1.25rem; font-weight: 700; }
+    h4 { font-size: 1rem; font-weight: 700; }
+    p  { color: var(--text-lt); }
+    .section-dark p { color: rgba(255,255,255,.75); }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 8px; font-size: .95rem; font-weight: 700; cursor: pointer; border: none; transition: all .2s; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-dk); transform: translateY(-1px); box-shadow: var(--shadow); text-decoration: none; }
+    .btn-orange  { background: var(--orange); color: #fff; }
+    .btn-orange:hover  { background: var(--orange-dk); transform: translateY(-1px); box-shadow: var(--shadow); text-decoration: none; }
+    .btn-outline { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline:hover { background: var(--blue); color: #fff; text-decoration: none; }
+    .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: #fff; text-decoration: none; }
+    .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.25); }
+    .btn-ghost:hover { background: rgba(255,255,255,.2); text-decoration: none; }
+    .btn-sm { padding: 9px 18px; font-size: .85rem; }
+
+    /* fade-in on scroll */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── NAV ──────────────────────────────────────────── */
+    nav { position: sticky; top: 0; z-index: 900; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 16px; }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-brand img { height: 32px; width: auto; }
+    .nav-brand-text { color: rgba(255,255,255,.8); font-size: .85rem; font-weight: 600; white-space: nowrap; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { color: rgba(255,255,255,.65); font-size: .85rem; font-weight: 500; padding: 6px 12px; border-radius: 6px; white-space: nowrap; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); text-decoration: none; }
+    @media(max-width:700px){ .nav-links { display: none; } .nav-brand-text { display: none; } }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #0a2040 100%); padding: 90px 0 80px; overflow: hidden; position: relative; }
+    .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(3,98,188,.18) 0%, transparent 70%); pointer-events:none; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-logo { height: 60px; width: auto; margin-bottom: 28px; filter: brightness(1); }
+    .hero h1 { color: var(--white); margin-bottom: 16px; }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,.7); margin-bottom: 32px; max-width: 520px; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .chip { padding: 8px 16px; border-radius: 24px; font-size: .85rem; font-weight: 700; }
+    .chip-blue   { background: rgba(3,98,188,.25); color: #7ebfff; border: 1px solid rgba(3,98,188,.4); }
+    .chip-orange { background: rgba(227,100,23,.25); color: #ffb07a; border: 1px solid rgba(227,100,23,.4); }
+    .chip-green  { background: rgba(16,185,129,.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,.35); }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-visual { display: flex; flex-direction: column; gap: 16px; }
+    .hero-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 20px; backdrop-filter: blur(8px); }
+    .hero-card-label { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+    .hero-card-val { font-size: 1.8rem; font-weight: 800; color: var(--white); }
+    .hero-card-val .hero-card-sub { font-size: .85rem; font-weight: 400; color: rgba(255,255,255,.5); }
+    .hero-cards-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .hero-deadline { display: flex; align-items: center; gap: 10px; background: rgba(227,100,23,.15); border: 1px solid rgba(227,100,23,.35); border-radius: 8px; padding: 14px 18px; }
+    .hero-deadline-icon { font-size: 1.4rem; }
+    .hero-deadline-text { font-size: .85rem; color: rgba(255,255,255,.8); }
+    .hero-deadline-text strong { color: #ffb07a; }
+    @media(max-width:900px){ .hero-grid { grid-template-columns:1fr; } .hero-visual { order:-1; } .hero-cards-row { grid-template-columns:1fr 1fr; } }
+    @media(max-width:500px){ .hero-cards-row { grid-template-columns:1fr; } }
+
+    /* ── INVESTMENT CARDS ─────────────────────────────── */
+    .inv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .inv-card { border-radius: var(--radius); padding: 32px 28px; border: 1.5px solid var(--border); position: relative; transition: transform .2s, box-shadow .2s; cursor: default; }
+    .inv-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .inv-card-rec { border-color: var(--blue); box-shadow: var(--shadow); }
+    .rec-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg,var(--blue),#0480e0); color:#fff; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:4px 16px; border-radius:20px; white-space:nowrap; }
+    .inv-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .inv-price { font-size: 2.2rem; font-weight: 800; margin: 8px 0 4px; }
+    .inv-price-note { font-size: .8rem; color: var(--text-lt); margin-bottom: 16px; }
+    .inv-card h3 { margin-bottom: 6px; }
+    .inv-features { list-style: none; margin: 16px 0; }
+    .inv-features li { font-size: .88rem; color: var(--text-lt); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
+    .inv-features li:last-child { border-bottom: none; }
+    .inv-features li::before { content: '✓'; color: var(--blue); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .inv-card-orange .inv-features li::before { color: var(--orange); }
+    .inv-card-blue   .inv-price { color: var(--blue); }
+    .inv-card-orange .inv-price { color: var(--orange); }
+    .inv-card-rec    .inv-price { background: linear-gradient(90deg,var(--blue),var(--orange)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    @media(max-width:850px){ .inv-grid { grid-template-columns: 1fr; } }
+
+    /* ── SECTION HEADER ───────────────────────────────── */
+    .sec-head { max-width: 660px; margin-bottom: 48px; }
+    .sec-head .badge { margin-bottom: 12px; }
+    .sec-head h2 { margin-bottom: 12px; }
+    .sec-head p { font-size: 1.05rem; }
+
+    /* ── ICON GRID ────────────────────────────────────── */
+    .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 20px; }
+    .icon-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 22px; transition: border-color .2s, box-shadow .2s; }
+    .icon-card:hover { border-color: var(--blue); box-shadow: var(--shadow); }
+    .section-alt .icon-card { background: var(--white); }
+    .icon-card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .icon-card h4 { margin-bottom: 4px; }
+    .icon-card p  { font-size: .85rem; }
+
+    /* ── INNOVATION ROW ───────────────────────────────── */
+    .innovation-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin: 40px 0; }
+    .inno-card { border-radius: var(--radius); padding: 28px; background: linear-gradient(135deg, rgba(3,98,188,.06) 0%, rgba(3,98,188,.02) 100%); border: 1.5px solid rgba(3,98,188,.15); }
+    .inno-card-icon { font-size: 2rem; margin-bottom: 12px; }
+    .inno-card h4 { color: var(--blue); margin-bottom: 6px; }
+    .inno-card p { font-size: .88rem; }
+    @media(max-width:750px){ .innovation-row { grid-template-columns:1fr; } }
+
+    /* ── IMAGE SHOWCASE ───────────────────────────────── */
+    .img-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; border-radius: var(--radius); overflow: hidden; }
+    .img-showcase img { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius); }
+    .img-caption { font-size: .8rem; color: var(--text-lt); margin-top: 8px; text-align: center; }
+    @media(max-width:600px){ .img-showcase { grid-template-columns:1fr; } }
+
+    /* ── BEFORE/AFTER SLIDER ──────────────────────────── */
+    .ba-section { margin: 40px 0; }
+    .ba-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .ba-item { border-radius: var(--radius); overflow: hidden; border: 1.5px solid var(--border); }
+    .ba-label-row { display: flex; justify-content: space-between; padding: 10px 14px; background: var(--gray-lt); }
+    .ba-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .ba-label.before { color: var(--text-lt); }
+    .ba-label.after  { color: var(--blue); }
+    .ba-slider-wrap { position: relative; user-select: none; overflow: hidden; }
+    .ba-slider-wrap img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .ba-after-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; clip-path: inset(0 0 0 50%); transition: clip-path .05s; }
+    .ba-divider { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 3px; height: 100%; background: var(--white); z-index: 2; pointer-events: none; }
+    .ba-divider::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:28px; height:28px; background:var(--white); border-radius:50%; border:2px solid var(--blue); z-index:3; box-shadow:0 2px 8px rgba(0,0,0,.2); }
+    .ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; -webkit-appearance: none; background: transparent; cursor: ew-resize; z-index: 5; opacity: 0; }
+    .ba-name { padding: 10px 14px; font-size: .85rem; font-weight: 600; background: var(--white); text-align: center; }
+    @media(max-width:750px){ .ba-grid { grid-template-columns:1fr; } }
+
+    /* ── PHASE TABLE ──────────────────────────────────── */
+    .phase-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .phase-table th { background: var(--blue); color: #fff; padding: 12px 16px; text-align: left; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+    .phase-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    .phase-table tr:last-child td { border-bottom: none; }
+    .phase-table tr:nth-child(even) td { background: var(--gray-lt); }
+    .phase-table .total-row td { font-weight: 800; background: var(--navy); color: #fff; }
+
+    /* ── TIMELINE ─────────────────────────────────────── */
+    .timeline { display: flex; gap: 0; margin: 40px 0; position: relative; }
+    .timeline::before { content:''; position:absolute; top:28px; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--blue), var(--orange)); }
+    .tl-item { flex: 1; padding: 0 8px; text-align: center; position: relative; }
+    .tl-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--blue); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--blue); margin: 20px auto 16px; position: relative; z-index: 1; }
+    .tl-item:nth-child(3) .tl-dot, .tl-item:nth-child(4) .tl-dot { background: var(--orange); box-shadow: 0 0 0 2px var(--orange); }
+    .tl-item:nth-child(5) .tl-dot { background: #10b981; box-shadow: 0 0 0 2px #10b981; }
+    .tl-date { font-size: .78rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .tl-item:nth-child(3) .tl-date, .tl-item:nth-child(4) .tl-date { color: var(--orange); }
+    .tl-item:nth-child(5) .tl-date { color: #10b981; }
+    .tl-title { font-size: .82rem; font-weight: 700; margin-bottom: 4px; }
+    .tl-desc  { font-size: .75rem; color: var(--text-lt); }
+    @media(max-width:700px){ .timeline { flex-direction:column; } .timeline::before { display:none; } .tl-item { text-align:left; padding:8px 0 8px 40px; position:relative; } .tl-dot { position:absolute; left:0; top:10px; margin:0; } }
+
+    /* ── SPEC SHEET SECTION ───────────────────────────── */
+    .cat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .cat-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 18px; transition: border-color .2s, box-shadow .2s; }
+    .cat-card:hover { border-color: var(--orange); box-shadow: 0 4px 20px rgba(227,100,23,.12); }
+    .cat-num { font-size: .72rem; font-weight: 800; color: var(--orange); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+    .cat-card h4 { margin-bottom: 4px; font-size: .95rem; }
+    .cat-card p  { font-size: .8rem; }
+    @media(max-width:900px){ .cat-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:500px){ .cat-grid { grid-template-columns:1fr; } }
+
+    /* ── PROCESS FLOW ─────────────────────────────────── */
+    .process-flow { display: flex; gap: 16px; align-items: center; margin: 32px 0; flex-wrap: wrap; }
+    .proc-step { flex: 1; min-width: 160px; text-align: center; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 20px 14px; }
+    .proc-icon { font-size: 2rem; margin-bottom: 8px; }
+    .proc-step h4 { font-size: .9rem; margin-bottom: 4px; }
+    .proc-step p  { font-size: .78rem; }
+    .proc-arrow { font-size: 1.5rem; color: var(--orange); flex-shrink: 0; }
+    .section-alt .proc-step { background: var(--white); }
+
+    /* ── PRINT SPECS ──────────────────────────────────── */
+    .spec-chips { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+    .spec-chip { background: var(--navy); color: var(--white); padding: 7px 14px; border-radius: 6px; font-size: .82rem; font-weight: 600; }
+
+    /* ── AI WIRE SECTION ──────────────────────────────── */
+    .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .ai-image-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
+    .ai-image-wrap img { width: 100%; }
+    @media(max-width:750px){ .ai-grid { grid-template-columns:1fr; } }
+    .json-preview { background: #0d1117; border-radius: 8px; padding: 20px; overflow-x: auto; font-family: 'SF Mono', 'Fira Code', Consolas, monospace; font-size: .8rem; line-height: 1.7; color: #c9d1d9; }
+    .json-key   { color: #79c0ff; }
+    .json-str   { color: #a5d6ff; }
+    .json-num   { color: #f0883e; }
+
+    /* ── BUNDLE SECTION ───────────────────────────────── */
+    .synergy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 40px 0; }
+    .synergy-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 28px; }
+    .synergy-card h4 { color: #7ebfff; margin: 12px 0 8px; }
+    .synergy-icon { font-size: 2rem; }
+    @media(max-width:750px){ .synergy-grid { grid-template-columns:1fr; } }
+    .savings-box { background: linear-gradient(135deg, rgba(3,98,188,.2), rgba(227,100,23,.2)); border: 1.5px solid rgba(255,255,255,.2); border-radius: var(--radius); padding: 32px; text-align: center; margin-top: 40px; }
+    .savings-box h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 8px; }
+
+    /* ── MODAL ────────────────────────────────────────── */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(10,22,40,.75); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: var(--white); border-radius: 16px; max-width: 820px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,.35); animation: modalIn .25s ease; }
+    @keyframes modalIn { from { opacity:0; transform:scale(.96) translateY(12px); } to { opacity:1; transform:none; } }
+    .modal-head { padding: 28px 32px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; position: sticky; top: 0; background: var(--white); z-index: 1; border-radius: 16px 16px 0 0; }
+    .modal-head h3 { font-size: 1.4rem; }
+    .modal-close { background: var(--gray-lt); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+    .modal-close:hover { background: #dde3ea; }
+    .modal-body { padding: 28px 32px 32px; }
+    .modal-body h4 { margin: 20px 0 8px; color: var(--navy); }
+    .modal-body h4:first-child { margin-top: 0; }
+    .modal-body p { margin-bottom: 12px; }
+    .modal-body ul { padding-left: 20px; }
+    .modal-body li { font-size: .9rem; color: var(--text-lt); margin-bottom: 6px; }
+    .modal-body .phase-table { margin: 12px 0; }
+    .support-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 12px 0; }
+    .support-card { border: 1.5px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+    .support-hrs { font-size: 1.4rem; font-weight: 800; color: var(--blue); }
+    .support-rate { font-size: .75rem; color: var(--text-lt); }
+    .support-price{ font-size: .9rem; font-weight: 700; }
+    @media(max-width:700px){ .support-grid { grid-template-columns:repeat(2,1fr); } .modal-head { padding:20px 20px 16px; } .modal-body { padding:20px 20px 24px; } }
+    @media(max-width:500px){ .support-grid { grid-template-columns:1fr; } }
+    .comp-table { width:100%; border-collapse:collapse; font-size:.88rem; margin:10px 0; }
+    .comp-table th { background:var(--gray-lt); padding:9px 14px; text-align:left; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; border-bottom:2px solid var(--border); }
+    .comp-table td { padding:9px 14px; border-bottom:1px solid var(--border); }
+    .comp-table .highlight td { background:rgba(3,98,188,.06); font-weight:700; }
+
+    /* ── PRINT CONCEPT IMAGES ────────────────────────── */
+    .print-concept-wrap { cursor: zoom-in; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; }
+    .print-concept-wrap img { width: 100%; height: auto !important; aspect-ratio: 8.5 / 11; object-fit: cover; display: block; transition: transform .3s; }
+    .print-concept-wrap:hover img { transform: scale(1.02); }
+    .print-concept-wrap::after { content: '🔍 Click to enlarge'; position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,.55); color: #fff; font-size: .72rem; font-weight: 600; padding: 4px 9px; border-radius: 4px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+    .print-concept-wrap:hover::after { opacity: 1; }
+
+    /* ── LIGHTBOX ─────────────────────────────────────── */
+    .lightbox-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+    .lightbox-overlay.open { display: flex; }
+    .lightbox-img { max-height: 92vh; max-width: 92vw; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,.5); animation: modalIn .2s ease; cursor: default; }
+    .lightbox-close { position: fixed; top: 20px; right: 24px; background: rgba(255,255,255,.15); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .lightbox-close:hover { background: rgba(255,255,255,.25); }
+    .lightbox-caption { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.7); font-size: .85rem; background: rgba(0,0,0,.5); padding: 6px 16px; border-radius: 20px; white-space: nowrap; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer { background: var(--navy); color: rgba(255,255,255,.6); padding: 56px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    footer h4 { color: var(--white); margin-bottom: 14px; }
+    footer p { font-size: .88rem; }
+    footer ul { list-style: none; }
+    footer ul li { font-size: .88rem; margin-bottom: 6px; }
+    .footer-logo { height: 36px; width: auto; margin-bottom: 14px; opacity: .8; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 0 0 24px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; gap: 16px; flex-wrap: wrap; }
+    .cta-section { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%); padding: 72px 0; text-align: center; }
+    .cta-section h2 { color: var(--white); margin-bottom: 12px; }
+    .cta-section p { color: rgba(255,255,255,.75); font-size: 1.1rem; max-width: 520px; margin: 0 auto 32px; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    @media(max-width:750px){ .footer-grid { grid-template-columns:1fr; gap:28px; } }
+
+    /* ── PAYMENT SCHEDULE ─────────────────────────────── */
+    .pay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+    .pay-card { border-radius: var(--radius); border: 1.5px solid var(--border); overflow: hidden; transition: transform .2s, box-shadow .2s; background: var(--white); }
+    .pay-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .pay-card-featured { border-color: var(--blue); box-shadow: var(--shadow); overflow: visible; }
+    .pay-card-featured .pay-card-head { border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0; background: linear-gradient(135deg,rgba(3,98,188,.06),rgba(227,100,23,.04)); }
+    .pay-card-head { padding: 24px 22px 18px; border-bottom: 1px solid var(--border); position: relative; }
+    .pay-featured-badge { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,var(--blue),#0480e0); color:#fff; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:4px 16px; border-radius:20px; white-space:nowrap; }
+    .pay-card-icon { font-size: 2rem; margin-bottom: 8px; }
+    .pay-card-title { font-size: .92rem; font-weight: 700; margin-bottom: 6px; }
+    .pay-card-total { font-size: 2rem; font-weight: 800; line-height: 1.1; margin: 4px 0; }
+    .pay-card-note { font-size: .75rem; color: var(--text-lt); }
+    .pay-inst-row { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; padding: 12px 22px; border-bottom: 1px solid var(--border); }
+    .pay-inst-row:last-child { border-bottom: none; }
+    .pay-inst-num { width: 24px; height: 24px; border-radius: 50%; font-size: .7rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pay-inst-label { font-size: .82rem; font-weight: 700; line-height: 1.3; }
+    .pay-inst-date  { font-size: .72rem; color: var(--text-lt); }
+    .pay-inst-amount { font-size: .98rem; font-weight: 800; text-align: right; white-space: nowrap; }
+    .pay-inst-pct { font-size: .7rem; color: var(--text-lt); display: block; text-align: right; }
+    .pay-total-row { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; padding: 12px 22px; background: var(--gray-lt); border-top: 2px solid var(--border); }
+    .pay-total-label { font-size: .85rem; font-weight: 800; }
+    .pay-total-amt { font-size: 1.05rem; font-weight: 800; text-align: right; white-space: nowrap; }
+    @media(max-width:900px){ .pay-grid { grid-template-columns:1fr; } }
+    /* Terms Extension */
+    .terms-box { margin-top: 52px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .terms-box-head { padding: 28px 32px 20px; border-bottom: 1px solid var(--border); }
+    .terms-box-head h3 { margin-bottom: 6px; }
+    .terms-pills { display: flex; gap: 12px; flex-wrap: wrap; padding: 20px 32px; border-bottom: 1px solid var(--border); background: var(--gray-lt); }
+    .terms-pill { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--white); flex: 1; min-width: 180px; transition: border-color .2s, box-shadow .2s; }
+    .terms-pill:hover { border-color: var(--orange); box-shadow: 0 4px 16px rgba(227,100,23,.1); }
+    .terms-pill-fee { font-size: 1.6rem; font-weight: 800; color: var(--orange); white-space: nowrap; }
+    .terms-pill-name { font-size: .9rem; font-weight: 700; }
+    .terms-pill-basis { font-size: .74rem; color: var(--text-lt); }
+    .terms-wrap { overflow-x: auto; }
+    .terms-table { width: 100%; border-collapse: collapse; font-size: .86rem; min-width: 520px; }
+    .terms-table th { padding: 10px 16px; text-align: right; font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; border-bottom: 2px solid rgba(255,255,255,.15); white-space: nowrap; }
+    .terms-table th:first-child { text-align: left; }
+    .terms-table th.col-base { background: var(--navy); color: rgba(255,255,255,.55); }
+    .terms-table th.col-n15  { background: #0b4f9e; color: #fff; }
+    .terms-table th.col-n30  { background: var(--blue); color: #fff; }
+    .terms-table th.col-n45  { background: var(--orange); color: #fff; }
+    .terms-table td { padding: 10px 16px; border-bottom: 1px solid var(--border); text-align: right; color: var(--text-lt); white-space: nowrap; }
+    .terms-table td:first-child { text-align: left; font-weight: 600; color: var(--text); }
+    .terms-table tr.terms-group-head td { background: var(--navy); color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 8px 16px; }
+    .terms-table .fee-col { font-weight: 700; color: var(--text); }
+    .terms-footnote { padding: 14px 32px 18px; font-size: .77rem; color: var(--text-lt); border-top: 1px solid var(--border); background: var(--gray-lt); line-height: 1.7; }
+  </style>
+</head>
+<body>
+
+<!-- ────────────────────────────── NAV ──────────────────────────────────── -->
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-brand">
+      <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521424/Unified-Logo-current_v4uzrb.png" alt="Unified Wire & Cable" />
+      <span class="nav-brand-text">2026 Proposal</span>
+    </div>
+    <div class="nav-links">
+      <a href="#website">Website</a>
+      <a href="#specsheets">Spec Sheets</a>
+      <a href="#imagery">New Imagery</a>
+      <a href="#bundle">Bundle</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#payment">Payment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ────────────────────────────── HERO ─────────────────────────────────── -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521424/Unified-Logo-current_v4uzrb.png" alt="Unified Wire & Cable" class="hero-logo" />
+      <h1>Your Complete<br>2026 Brand<br>Transformation</h1>
+      <p class="hero-sub">An integrated website redesign and premium print collateral suite — engineered to make Unified Wire & Cable the standout presence at the <strong style="color:rgba(255,255,255,.9)">May 2026 tradeshow</strong>.</p>
+      <div class="hero-chips">
+        <span class="chip chip-blue">Website Redesign</span>
+        <span class="chip chip-orange">Premium Spec Sheets</span>
+        <span class="chip chip-green">Bundle: Save $5,000–$8,000</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#website" class="btn btn-primary">Review Website Proposal</a>
+        <a href="#specsheets" class="btn btn-outline-white">View Spec Sheet Suite</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-cards-row">
+        <div class="hero-card">
+          <div class="hero-card-label">Website Build</div>
+          <div class="hero-card-val">$25,000</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Spec Sheet Suite</div>
+          <div class="hero-card-val" style="white-space:nowrap">$15K–$18K</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Bundle Total</div>
+          <div class="hero-card-val" style="color:#f5c842">$35,000</div>
+        </div>
+      </div>
+      <div class="hero-deadline">
+        <div class="hero-deadline-icon">📅</div>
+        <div class="hero-deadline-text">
+          <strong>May 2026 Tradeshow Deadline</strong><br>
+          Full delivery guaranteed for your show. Both projects run concurrently on an accelerated timeline.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── INVESTMENT ───────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-blue">Investment Overview</span>
+      <h2>Three Ways to Engage</h2>
+      <p>Choose the scope that fits your needs — or bundle both for the best value. Every option delivers enterprise-grade results ahead of the May tradeshow.</p>
+    </div>
+    <div class="inv-grid">
+      <div class="inv-card inv-card-blue fade-in">
+        <div class="inv-icon">🌐</div>
+        <h3>Website Redesign</h3>
+        <div class="inv-price">$25,000</div>
+        <div class="inv-price-note">One-time project investment</div>
+        <ul class="inv-features">
+          <li>7-key landing page architecture</li>
+          <li>Dynamic Google Sheet–powered spec sheets</li>
+          <li>Advanced mega-menu product navigation</li>
+          <li>Brand logo modernization (3 options)</li>
+          <li>On-site iPhone photography</li>
+          <li>Launch email campaign</li>
+          <li>1 month free post-launch support</li>
+        </ul>
+        <a href="#website" class="btn btn-outline btn-sm" style="width:100%;justify-content:center">See Full Details ↓</a>
+      </div>
+      <div class="inv-card inv-card-orange fade-in">
+        <div class="inv-icon">🖨️</div>
+        <h3>Print Spec Sheet Suite</h3>
+        <div class="inv-price">$15K–$18K</div>
+        <div class="inv-price-note">Includes design + 6,000 physical prints</div>
+        <ul class="inv-features">
+          <li>8 unique double-sided 8.5″×11″ designs</li>
+          <li>Agency on-site iPhone shoot</li>
+          <li>AI-refined 4K product photography</li>
+          <li>Technical data table migration</li>
+          <li>100lb gloss cover, AQ coating</li>
+          <li>6,000 printed units (750 per design)</li>
+          <li>Guaranteed May 2026 delivery</li>
+        </ul>
+        <a href="#specsheets" class="btn btn-orange btn-sm" style="width:100%;justify-content:center;background:var(--orange)">See Full Details ↓</a>
+      </div>
+      <div class="inv-card inv-card-rec fade-in">
+        <div class="rec-badge">⭐ Recommended Bundle</div>
+        <div class="inv-icon">🚀</div>
+        <h3>Full Transformation Bundle</h3>
+        <div class="inv-price">$35,000</div>
+        <div class="inv-price-note">Flat rate — save $5,000–$8,000 vs. standalone</div>
+        <ul class="inv-features">
+          <li>Everything in Website + Spec Sheets</li>
+          <li>Single consolidated iPhone shoot (saves $1,000–$1,300)</li>
+          <li>Shared AI asset production pipeline</li>
+          <li>Unified Google Sheet data migration</li>
+          <li>Cohesive brand rollout strategy</li>
+          <li>Streamlined single-team approval process</li>
+          <li><strong>Standalone total: $40,000–$43,000</strong></li>
+        </ul>
+        <a href="#bundle" class="btn btn-primary btn-sm" style="width:100%;justify-content:center">See Full Savings Breakdown ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── WEBSITE ──────────────────────────────── -->
+<section class="section section-alt" id="website">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-blue">Website Proposal — $25,000</span>
+      <h2>An Enterprise Digital Presence at a Mid-Market Price</h2>
+      <p>Based on deep analysis of eight leading competitors, we'll deliver a modern, comprehensive Squarespace website that actively matches and beats the competition — ready for the May tradeshow.</p>
+      <button class="btn btn-primary" style="margin-top:16px" onclick="openModal('modal-website')">Deep Dive: Pricing & Support Packages ↗</button>
+    </div>
+
+    <h3 style="margin-bottom:20px" class="fade-in">7-Key Site Architecture</h3>
+    <div class="icon-grid fade-in">
+      <div class="icon-card">
+        <div class="icon-card-icon">🏠</div>
+        <h4>Home</h4>
+        <p>Featured products, latest innovations, quick links to reps and catalog downloads.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon">📦</div>
+        <h4>Products (Mega-Menu)</h4>
+        <p>Advanced navigation by material (Copper, Aluminum) and product type — find anything fast.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon">🏭</div>
+        <h4>Markets & Industries</h4>
+        <p>Dedicated pathways for construction, industrial, utility, data centers, renewables, and automotive/marine.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon">📋</div>
+        <h4>Resources & Engineering Tools</h4>
+        <p>Searchable spec library and certificates of compliance — the trust signals engineers demand.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon">⚙️</div>
+        <h4>Services & Capabilities</h4>
+        <p>Custom cable manufacturing, copper drawing, and supply chain logistics.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon">🏢</div>
+        <h4>About Us</h4>
+        <p>Company story, quality policies, sustainability, news, and the human side of the organization.</p>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon">📞</div>
+        <h4>Contact & Support</h4>
+        <p>Rep locator map, general contact form, and dedicated sales & engineering support directory.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:48px 0 20px" class="fade-in">3 Key Technology Innovations</h3>
+    <div class="innovation-row fade-in">
+      <div class="inno-card">
+        <div class="inno-card-icon">⚡</div>
+        <h4>Dynamic Auto-Updating Spec Sheets</h4>
+        <p>Powered by an editable Google Sheet. Update a cell and the web page refreshes within 5 minutes — visitors always download the latest PDF without any software.</p>
+      </div>
+      <div class="inno-card">
+        <div class="inno-card-icon">🤖</div>
+        <h4>AI-Enhanced Efficiency</h4>
+        <p>AI tools for coding, navigation, graphics, and video editing drastically cut costs and speed up deployment — with massive human oversight to keep everything authentic.</p>
+      </div>
+      <div class="inno-card">
+        <div class="inno-card-icon">📧</div>
+        <h4>Proactive Email Marketing</h4>
+        <p>A launch announcement campaign set up from day one — a low-cost, high-impact channel to keep Unified top of mind for engineers and buyers.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px" class="fade-in">
+      <div>
+        <h3 style="margin-bottom:12px">Dynamic Spec Sheet Preview</h3>
+        <p style="margin-bottom:16px;font-size:.9rem">The web-based spec sheet pulls live data from Google Sheets — click to see it in action.</p>
+        <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521445/dynamic-spec-sheet_cfslol.jpg" alt="Dynamic Spec Sheet" style="width:100%;display:block;" />
+        </div>
+        <p class="img-caption">Live web spec sheet — auto-updates within 5 min of Google Sheet changes</p>
+        <a href="https://codepen.io/garyricke/live/XJKwNGJ" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:14px;width:100%;justify-content:center">
+          ↗ View Live Spec Sheet
+        </a>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Google Sheet Data Source</h3>
+        <p style="margin-bottom:16px;font-size:.9rem">Non-technical staff edit a simple spreadsheet — the website handles the rest automatically.</p>
+        <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521445/dynamic-spec-sheet-google-sheet-source_vaorj4.jpg" alt="Google Sheet Source" style="width:100%;display:block;" />
+        </div>
+        <p class="img-caption">Single source of truth: one sheet powers both web and downloadable PDFs</p>
+        <a href="https://docs.google.com/spreadsheets/d/1jkbFtgp9Ithf5LSJ2xD_VrbdOFKC-iYpXnqypbAWRfU/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:14px;width:100%;justify-content:center">
+          ✏️ Try Editing the Spreadsheet
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="fade-in">
+      <h3 style="margin-bottom:16px">Brand Modernization</h3>
+      <p style="margin-bottom:20px;max-width:640px">The current UWC logo carries a mid-2000s aesthetic with metallic gradients that feel dated on modern screens. We propose three simplified directions — each preserving the brand's bold character while improving digital readability.</p>
+      <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);">
+        <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521445/unified-refresh-logo-concepts-19feb2026_sdavzt.jpg" alt="Logo Refresh Concepts" style="width:100%;display:block;" />
+      </div>
+      <p class="img-caption">Three logo refresh concepts — Option A (Flat-Plus), Option B (Geometry), Option C (Contemporary Typography)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── SPEC SHEETS ──────────────────────────── -->
+<section class="section" id="specsheets">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-orange">Spec Sheet Suite — $15,000–$18,000</span>
+      <h2>The "Elite Industrial" Print Suite</h2>
+      <p>Eight unique double-sided 8.5″×11″ designs — lifestyle photography on the front, precise technical data on the reverse. 6,000 premium prints guaranteed for the May tradeshow.</p>
+      <button class="btn btn-orange" style="margin-top:16px" onclick="openModal('modal-specs')">Deep Dive: Phase Breakdown & Pricing ↗</button>
+    </div>
+
+    <h3 style="margin-bottom:20px" class="fade-in">8 Strategic Collateral Categories</h3>
+    <div class="cat-grid fade-in">
+      <div class="cat-card">
+        <div class="cat-num">01 | Corporate</div>
+        <h4>Corporate Capabilities</h4>
+        <p>Full vertical manufacturing, Made in USA, ISO 9001:2015 certification overview.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-num">02 | Automotive</div>
+        <h4>Automotive Solutions</h4>
+        <p>XLPE (GXL, SXL, TXL) and GPT primary wires meeting SAE J1128 standards.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-num">03 | Marine</div>
+        <h4>Marine & Boat Cable</h4>
+        <p>Corrosion-resistant GPTM and tinned copper conductors for harsh environments.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-num">04 | Building</div>
+        <h4>Building & Lighting</h4>
+        <p>THHN and TFN/TFFN deep-dive with gauge ranges up to 750 MCM.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-num">05 | Hook-Up</div>
+        <h4>UL Style & Hook-Up Wire</h4>
+        <p>Detailed tables for UL 1028, 1007/1569, and 1061 styles.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-num">06 | Power</div>
+        <h4>Power & Battery</h4>
+        <p>Heavy-duty SGT, SGX, and STT battery cable configurations.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-num">07 | Specialty</div>
+        <h4>Specialty Cords</h4>
+        <p>Portable and flexible cord types including SOOW and STOW.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-num">08 | Custom OEM</div>
+        <h4>Custom OEM & Industrial</h4>
+        <p>Hoistway/elevator cables and Mil-Spec (Type B/C) custom constructions.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:48px 0 16px" class="fade-in">Production Process: iPhone Capture → AI Refinement → 4K Print</h3>
+    <div class="process-flow fade-in">
+      <div class="proc-step">
+        <div class="proc-icon">📱</div>
+        <h4>Agency iPhone Shoot</h4>
+        <p>On-site plant capture provides structural grounding for AI processing.</p>
+      </div>
+      <div class="proc-arrow">→</div>
+      <div class="proc-step">
+        <div class="proc-icon">🍌</div>
+        <h4>Nano Banana AI Refinement</h4>
+        <p>Gemini-powered model resurfaces captures with 4K studio lighting &amp; industrial environments.</p>
+      </div>
+      <div class="proc-arrow">→</div>
+      <div class="proc-step">
+        <div class="proc-icon">🎨</div>
+        <h4>Design &amp; Data Layout</h4>
+        <p>8 custom double-sided layouts with migrated technical data tables.</p>
+      </div>
+      <div class="proc-arrow">→</div>
+      <div class="proc-step">
+        <div class="proc-icon">🖨️</div>
+        <h4>Premium Print Production</h4>
+        <p>6,000 units on 100lb gloss cover with AQ coating — May 1 delivery.</p>
+      </div>
+    </div>
+
+    <div style="margin:40px 0" class="fade-in">
+      <h3 style="margin-bottom:8px">Premium Print Specifications</h3>
+      <div class="spec-chips">
+        <span class="spec-chip">8.5″ × 11″ Full-Bleed</span>
+        <span class="spec-chip">100lb Gloss Cover</span>
+        <span class="spec-chip">Aqueous (AQ) Coating</span>
+        <span class="spec-chip">6,000 Total Units</span>
+        <span class="spec-chip">750 Per Design</span>
+        <span class="spec-chip">Double-Sided</span>
+        <span class="spec-chip">UL · REACH · RoHS · Made in USA</span>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 20px" class="fade-in">Print Design Concepts</h3>
+    <div class="img-showcase fade-in" style="grid-template-columns:1fr 1fr;gap:20px">
+      <div>
+        <div class="print-concept-wrap" onclick="openLightbox('https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521446/print-spec-sheet-new-design-frontpage-concept_ljt6pl.jpg','Front: High-impact lifestyle photography with branding')">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521446/print-spec-sheet-new-design-frontpage-concept_ljt6pl.jpg" alt="Front Page Concept" />
+        </div>
+        <p class="img-caption">Front: High-impact lifestyle photography with branding</p>
+      </div>
+      <div>
+        <div class="print-concept-wrap" onclick="openLightbox('https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521446/print-spec-sheet-new-design-backpage-concept_wzoh5w.jpg','Reverse: Clean, scannable technical data tables')">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521446/print-spec-sheet-new-design-backpage-concept_wzoh5w.jpg" alt="Back Page Concept" />
+        </div>
+        <p class="img-caption">Reverse: Clean, scannable technical data tables</p>
+      </div>
+    </div>
+
+    <h3 style="margin:48px 0 12px" class="fade-in">Before &amp; After: AI Wire Image Refinement</h3>
+    <p style="margin-bottom:24px;color:var(--text-lt);font-size:.9rem" class="fade-in">Drag the slider to compare raw iPhone captures with the AI-refined 4K output used in the final designs.</p>
+    <div class="ba-grid fade-in">
+      <!-- Break Cable -->
+      <div class="ba-item">
+        <div class="ba-label-row"><span class="ba-label before">Before</span><span class="ba-label after">After AI</span></div>
+        <div class="ba-slider-wrap" id="ba-wrap-0">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521445/Break-Cable-before_odr8zp.jpg" alt="Break Cable Before" />
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521444/Break-Cable-after_s4rigb.jpg" alt="Break Cable After" class="ba-after-img" id="ba-after-0" />
+          <div class="ba-divider" id="ba-div-0"></div>
+          <input type="range" class="ba-range" min="0" max="100" value="50" oninput="updateBA(this,0)" />
+        </div>
+        <div class="ba-name">Break Cable</div>
+      </div>
+      <!-- TFFNTFN Wire -->
+      <div class="ba-item">
+        <div class="ba-label-row"><span class="ba-label before">Before</span><span class="ba-label after">After AI</span></div>
+        <div class="ba-slider-wrap" id="ba-wrap-1">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521446/TFFNTFN-Wire-before_itbh7q.jpg" alt="TFFNTFN Wire Before" />
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521444/TFFNTFN-Wire-after_bppyeb.jpg" alt="TFFNTFN Wire After" class="ba-after-img" id="ba-after-1" />
+          <div class="ba-divider" id="ba-div-1"></div>
+          <input type="range" class="ba-range" min="0" max="100" value="50" oninput="updateBA(this,1)" />
+        </div>
+        <div class="ba-name">TFFNTFN Wire</div>
+      </div>
+      <!-- X-Link Wire -->
+      <div class="ba-item">
+        <div class="ba-label-row"><span class="ba-label before">Before</span><span class="ba-label after">After AI</span></div>
+        <div class="ba-slider-wrap" id="ba-wrap-2">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521444/X-Link-before_afglh2.jpg" alt="X-Link Wire Before" />
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521444/X-Link-after_xga2ye.jpg" alt="X-Link Wire After" class="ba-after-img" id="ba-after-2" />
+          <div class="ba-divider" id="ba-div-2"></div>
+          <input type="range" class="ba-range" min="0" max="100" value="50" oninput="updateBA(this,2)" />
+        </div>
+        <div class="ba-name">X-Link Wire</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── NEW IMAGERY ──────────────────────────── -->
+<section class="section section-dark" id="imagery">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge" style="background:rgba(255,255,255,.15);color:#7ebfff">New Wire Imagery</span>
+      <h2 style="color:var(--white)">AI-Powered Product Photography</h2>
+      <p>We generate hyper-realistic, photorealistic wire assets using precise JSON scene configurations — delivering consistent studio-grade imagery without expensive traditional photography.</p>
+      <button class="btn btn-ghost btn-sm" style="margin-top:16px" onclick="openModal('modal-json')">View Full JSON Prompt Example ↗</button>
+    </div>
+
+    <div class="ai-grid fade-in">
+      <div>
+        <div class="ai-image-wrap">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521444/json-view-of-3d-wire-image-generation_rhjnul.jpg" alt="JSON 3D Wire Generation" />
+        </div>
+        <p class="img-caption" style="color:rgba(255,255,255,.5)">JSON configuration driving precise AI wire rendering</p>
+      </div>
+      <div>
+        <h3 style="color:var(--white);margin-bottom:20px">How It Works</h3>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(3,98,188,.3);border:1.5px solid rgba(3,98,188,.5);display:flex;align-items:center;justify-content:center;color:#7ebfff;font-weight:800;flex-shrink:0">1</div>
+            <div>
+              <h4 style="color:#7ebfff;margin-bottom:3px">Define the Scene</h4>
+              <p style="font-size:.88rem">Camera angle, focal length, lighting style, background, and shadow properties are specified in JSON.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(3,98,188,.3);border:1.5px solid rgba(3,98,188,.5);display:flex;align-items:center;justify-content:center;color:#7ebfff;font-weight:800;flex-shrink:0">2</div>
+            <div>
+              <h4 style="color:#7ebfff;margin-bottom:3px">Specify the Wire</h4>
+              <p style="font-size:.88rem">Layer composition, material, color, finish, conductor strand count, and cut style are all controlled precisely.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(3,98,188,.3);border:1.5px solid rgba(3,98,188,.5);display:flex;align-items:center;justify-content:center;color:#7ebfff;font-weight:800;flex-shrink:0">3</div>
+            <div>
+              <h4 style="color:#7ebfff;margin-bottom:3px">Generate at 4K</h4>
+              <p style="font-size:.88rem">The Nano Banana AI model renders studio-softbox lighting with high-gloss reflections on a professional white cove — ready for print.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(3,98,188,.3);border:1.5px solid rgba(3,98,188,.5);display:flex;align-items:center;justify-content:center;color:#7ebfff;font-weight:800;flex-shrink:0">4</div>
+            <div>
+              <h4 style="color:#7ebfff;margin-bottom:3px">Repeatable & Scalable</h4>
+              <p style="font-size:.88rem">Any wire in your catalog can be rendered consistently — same lighting, same quality — at a fraction of traditional photography cost.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;display:flex;gap:20px;flex-wrap:wrap" class="fade-in">
+      <div class="tag tag-blue" style="background:rgba(3,98,188,.2);border-color:rgba(3,98,188,.4);color:#7ebfff">📷 Three-Quarters Top-Down Camera</div>
+      <div class="tag tag-blue" style="background:rgba(3,98,188,.2);border-color:rgba(3,98,188,.4);color:#7ebfff">💡 Studio Softbox Lighting</div>
+      <div class="tag tag-blue" style="background:rgba(3,98,188,.2);border-color:rgba(3,98,188,.4);color:#7ebfff">✨ Infinite White Cove Background</div>
+      <div class="tag tag-blue" style="background:rgba(3,98,188,.2);border-color:rgba(3,98,188,.4);color:#7ebfff">🔬 65-Strand Tinned Copper Detail</div>
+      <div class="tag tag-blue" style="background:rgba(3,98,188,.2);border-color:rgba(3,98,188,.4);color:#7ebfff">📐 50mm Focal Length, Shallow DOF</div>
+      <div class="tag tag-blue" style="background:rgba(3,98,188,.2);border-color:rgba(3,98,188,.4);color:#7ebfff">🖨️ 4K Output for Print Ready</div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── BUNDLE ───────────────────────────────── -->
+<section class="section section-dark" id="bundle">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-orange">Recommended: Bundle</span>
+      <h2 style="color:var(--white)">Why Bundle Both Projects?</h2>
+      <p>Running the website build and spec sheet modernization concurrently unlocks three significant efficiency gains — eliminating redundant labor and consolidating strategic planning into a single cohesive brand rollout.</p>
+    </div>
+    <div class="synergy-grid fade-in">
+      <div class="synergy-card">
+        <div class="synergy-icon">📱</div>
+        <h4>Consolidated Media Capture</h4>
+        <p>The on-site plant and people photography using an iPhone only needs to be executed <em>once</em>. This captures assets for both the website's visual build and the spec sheet photography — eliminating $1,000–$1,300 in redundant on-site shoot labor.</p>
+      </div>
+      <div class="synergy-card">
+        <div class="synergy-icon">🤖</div>
+        <h4>Unified AI Asset Production</h4>
+        <p>The structural grounding from the single iPhone shoot feeds directly into the Nano Banana AI model to generate 4K industrial environments for <em>both</em> the web pages and the printed collateral simultaneously.</p>
+      </div>
+      <div class="synergy-card">
+        <div class="synergy-icon">📊</div>
+        <h4>Streamlined Data Migration</h4>
+        <p>Technical data is centralized into one editable Google Sheet — a single source of truth powering both the dynamic, auto-updating web spec sheets <em>and</em> the clean technical tables on the back of the printed collateral.</p>
+      </div>
+    </div>
+    <div class="savings-box fade-in">
+      <h3>Save $5,000–$8,000 by Bundling</h3>
+      <p style="color:rgba(255,255,255,.75);max-width:580px;margin:0 auto 28px">By treating this as a single, holistic brand transformation rather than two siloed projects, we apply a significant efficiency discount to the total investment.</p>
+
+      <div style="background:rgba(0,0,0,.25);border-radius:10px;overflow:hidden;max-width:600px;margin:0 auto 28px;border:1px solid rgba(255,255,255,.1)">
+        <table style="width:100%;border-collapse:collapse;font-size:.92rem">
+          <thead>
+            <tr style="background:rgba(255,255,255,.08)">
+              <th style="padding:12px 18px;text-align:left;color:rgba(255,255,255,.6);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em">Deliverable</th>
+              <th style="padding:12px 18px;text-align:right;color:rgba(255,255,255,.6);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em">Standalone</th>
+              <th style="padding:12px 18px;text-align:right;color:rgba(255,255,255,.6);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em">Bundled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid rgba(255,255,255,.07)">
+              <td style="padding:13px 18px;color:rgba(255,255,255,.85)">🌐 Website &amp; Digital Architecture</td>
+              <td style="padding:13px 18px;text-align:right;color:rgba(255,255,255,.7)">$25,000</td>
+              <td style="padding:13px 18px;text-align:right;color:#6ee7b7;font-weight:700">Included</td>
+            </tr>
+            <tr style="border-top:1px solid rgba(255,255,255,.07)">
+              <td style="padding:13px 18px;color:rgba(255,255,255,.85)">🖨️ Elite Industrial Spec Sheet Suite</td>
+              <td style="padding:13px 18px;text-align:right;color:rgba(255,255,255,.7)">$15,000–$18,000</td>
+              <td style="padding:13px 18px;text-align:right;color:#6ee7b7;font-weight:700">Included</td>
+            </tr>
+            <tr style="border-top:1px solid rgba(255,255,255,.07)">
+              <td style="padding:13px 18px;color:#fca5a5;font-style:italic">Applied Synergy Discount</td>
+              <td style="padding:13px 18px;text-align:right;color:rgba(255,255,255,.4)">—</td>
+              <td style="padding:13px 18px;text-align:right;color:#fca5a5;font-weight:700">−$5,000–$8,000</td>
+            </tr>
+            <tr style="border-top:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06)">
+              <td style="padding:14px 18px;color:#fff;font-weight:800;font-size:1rem;white-space:nowrap">Total Investment</td>
+              <td style="padding:14px 18px;text-align:right;color:rgba(255,255,255,.55);font-weight:700;text-decoration:line-through;white-space:nowrap">$40,000–$43,000</td>
+              <td style="padding:14px 18px;text-align:right;color:#f5c842;font-weight:800;font-size:1.8rem;white-space:nowrap">$35,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="openModal('modal-website')">Website Details</button>
+        <button class="btn btn-orange"  onclick="openModal('modal-specs')">Spec Sheet Details</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── TIMELINE ─────────────────────────────── -->
+<section class="section" id="timeline">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-blue">Accelerated Timeline</span>
+      <h2>Late February to First Week of May</h2>
+      <p>Both projects run on a tightly coordinated accelerated schedule — with weekly Zoom check-ins and clear milestone gates — to guarantee everything is ready for your May tradeshow.</p>
+    </div>
+    <div class="timeline fade-in">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Late February</div>
+        <div class="tl-title">Strategy & Media Capture</div>
+        <div class="tl-desc">Finalize site structure, approve logo direction, execute on-site iPhone shoot &amp; 360° plant capture.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">March</div>
+        <div class="tl-title">Design & Development</div>
+        <div class="tl-desc">Build Squarespace platform, AI drafting &amp; refinement, dynamic spec sheet infrastructure, advanced navigation.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Early–Mid April</div>
+        <div class="tl-title">Integration & Approvals</div>
+        <div class="tl-desc">Video editing, 360° integration, final spec sheet design approvals by April 10.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Late April</div>
+        <div class="tl-title">QA & Launch Prep</div>
+        <div class="tl-desc">Massive human oversight, QA all AI-assisted content, stage email announcement campaign.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">First Week of May</div>
+        <div class="tl-title">🚀 Go-Live</div>
+        <div class="tl-desc">Website officially launches + 6,000 print units delivered for the tradeshow.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;justify-content:center" class="fade-in">
+      <div class="tag tag-blue">🔵 Blue milestones = Website</div>
+      <div class="tag tag-orange">🟠 Orange milestones = Spec Sheets</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;padding:5px 12px;border-radius:20px;border:1.5px solid #10b981;color:#10b981;background:rgba(16,185,129,.07)">🟢 Green = Full Launch</div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────── PAYMENT SCHEDULE ───────────────────────── -->
+<section class="section section-alt" id="payment">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-blue">Payment Schedule</span>
+      <h2>Flexible 3-Installment Plans</h2>
+      <p>Choose your project path below. Each plan splits the investment across three milestone-aligned invoices — Kickoff (this week), Mid-Project (March 31), and Final Delivery (first week of May). All invoices are due upon receipt, with optional extended terms available for a finance fee.</p>
+    </div>
+
+    <!-- ── 3 Payment Option Cards ── -->
+    <div class="pay-grid fade-in">
+
+      <!-- CARD 1: Website Only -->
+      <div class="pay-card">
+        <div class="pay-card-head">
+          <div class="pay-card-icon">🌐</div>
+          <div class="pay-card-title">New Website Only</div>
+          <div class="pay-card-total" style="color:var(--blue)">$25,000</div>
+          <div class="pay-card-note">Flat-rate project investment</div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--blue);color:#fff">1</div>
+          <div>
+            <div class="pay-inst-label">Project Kickoff</div>
+            <div class="pay-inst-date">Contract signing · Strategy &amp; media capture begins</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--blue);margin-top:2px">Due: Feb 25, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--blue)">$10,000</div>
+            <span class="pay-inst-pct">40%</span>
+          </div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--blue);color:#fff">2</div>
+          <div>
+            <div class="pay-inst-label">Development Milestone</div>
+            <div class="pay-inst-date">Squarespace build complete · Content integrated</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--blue);margin-top:2px">Due: Mar 31, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--blue)">$7,500</div>
+            <span class="pay-inst-pct">30%</span>
+          </div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--blue);color:#fff">3</div>
+          <div>
+            <div class="pay-inst-label">Website Launch</div>
+            <div class="pay-inst-date">Site live · Post-launch support begins</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--blue);margin-top:2px">Due: May 5, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--blue)">$7,500</div>
+            <span class="pay-inst-pct">30%</span>
+          </div>
+        </div>
+        <div class="pay-total-row">
+          <div></div>
+          <div class="pay-total-label">Total Investment</div>
+          <div class="pay-total-amt" style="color:var(--blue)">$25,000</div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Spec Sheets Only -->
+      <div class="pay-card">
+        <div class="pay-card-head">
+          <div class="pay-card-icon">🖨️</div>
+          <div class="pay-card-title">Spec Sheet Suite Only</div>
+          <div class="pay-card-total" style="color:var(--orange)">~$16,500</div>
+          <div class="pay-card-note">Midpoint estimate · Range: $15,000–$18,000</div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--orange);color:#fff">1</div>
+          <div>
+            <div class="pay-inst-label">Project Kickoff</div>
+            <div class="pay-inst-date">Strategy, on-site iPhone shoot &amp; style guide</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--orange);margin-top:2px">Due: Feb 25, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--orange)">$6,600</div>
+            <span class="pay-inst-pct">40%</span>
+          </div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--orange);color:#fff">2</div>
+          <div>
+            <div class="pay-inst-label">Design Milestone</div>
+            <div class="pay-inst-date">All 8 layouts approved · Technical data migrated</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--orange);margin-top:2px">Due: Mar 31, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--orange)">$4,950</div>
+            <span class="pay-inst-pct">30%</span>
+          </div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--orange);color:#fff">3</div>
+          <div>
+            <div class="pay-inst-label">Print Delivery</div>
+            <div class="pay-inst-date">6,000 units delivered · Ready for tradeshow</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--orange);margin-top:2px">Due: May 5, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--orange)">$4,950</div>
+            <span class="pay-inst-pct">30%</span>
+          </div>
+        </div>
+        <div class="pay-total-row">
+          <div></div>
+          <div class="pay-total-label">Total Investment</div>
+          <div class="pay-total-amt" style="color:var(--orange)">~$16,500</div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Bundle (Featured) -->
+      <div class="pay-card pay-card-featured">
+        <div class="pay-card-head">
+          <div class="pay-featured-badge">★ Recommended Bundle</div>
+          <div class="pay-card-icon">⚡</div>
+          <div class="pay-card-title">Website + Spec Sheets Bundle</div>
+          <div class="pay-card-total" style="background:linear-gradient(90deg,var(--blue),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$35,000</div>
+          <div class="pay-card-note">Saves $5,000–$8,000 vs. standalone pricing</div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--blue);color:#fff">1</div>
+          <div>
+            <div class="pay-inst-label">Unified Project Kickoff</div>
+            <div class="pay-inst-date">Combined strategy · Single on-site iPhone shoot</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--blue);margin-top:2px">Due: Feb 25, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--blue)">$14,000</div>
+            <span class="pay-inst-pct">40%</span>
+          </div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--blue);color:#fff">2</div>
+          <div>
+            <div class="pay-inst-label">Development Milestone</div>
+            <div class="pay-inst-date">Web build complete · All 8 print designs approved</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--blue);margin-top:2px">Due: Mar 31, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--blue)">$10,500</div>
+            <span class="pay-inst-pct">30%</span>
+          </div>
+        </div>
+        <div class="pay-inst-row">
+          <div class="pay-inst-num" style="background:var(--blue);color:#fff">3</div>
+          <div>
+            <div class="pay-inst-label">Launch &amp; Delivery</div>
+            <div class="pay-inst-date">Website live · 6,000 print units delivered</div>
+            <div class="pay-inst-date" style="font-weight:700;color:var(--blue);margin-top:2px">Due: May 5, 2026</div>
+          </div>
+          <div>
+            <div class="pay-inst-amount" style="color:var(--blue)">$10,500</div>
+            <span class="pay-inst-pct">30%</span>
+          </div>
+        </div>
+        <div class="pay-total-row">
+          <div></div>
+          <div class="pay-total-label">Total Investment</div>
+          <div class="pay-total-amt" style="background:linear-gradient(90deg,var(--blue),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$35,000</div>
+        </div>
+      </div>
+
+    </div><!-- /pay-grid -->
+
+    <!-- ── Extended Terms Section ── -->
+    <div class="terms-box fade-in">
+      <div class="terms-box-head">
+        <h3>Extended Payment Terms</h3>
+        <p style="max-width:700px;font-size:.93rem">All invoices are due upon receipt. If extended terms are required, a finance fee based on <strong>18% APR</strong> — the industry-standard B2B rate used by most agency contracts and accounting platforms — is applied to that individual invoice at the time the extension is requested. Extensions must be requested before the invoice due date.</p>
+      </div>
+      <div class="terms-pills">
+        <div class="terms-pill">
+          <div class="terms-pill-fee">+1.0%</div>
+          <div>
+            <div class="terms-pill-name">Net 15</div>
+            <div class="terms-pill-basis">+15 days to pay · 18% APR × 15/365 ≈ 0.74%</div>
+          </div>
+        </div>
+        <div class="terms-pill">
+          <div class="terms-pill-fee">+1.5%</div>
+          <div>
+            <div class="terms-pill-name">Net 30</div>
+            <div class="terms-pill-basis">+30 days to pay · 18% APR × 30/365 ≈ 1.48%</div>
+          </div>
+        </div>
+        <div class="terms-pill">
+          <div class="terms-pill-fee">+2.5%</div>
+          <div>
+            <div class="terms-pill-name">Net 45</div>
+            <div class="terms-pill-basis">+45 days to pay · 18% APR × 45/365 ≈ 2.22%</div>
+          </div>
+        </div>
+      </div>
+      <div class="terms-wrap">
+        <table class="terms-table">
+          <thead>
+            <tr>
+              <th class="col-base" style="text-align:left">Invoice</th>
+              <th class="col-base">Base Amount</th>
+              <th class="col-n15">Net 15 (+1.0%)</th>
+              <th class="col-n30">Net 30 (+1.5%)</th>
+              <th class="col-n45">Net 45 (+2.5%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="terms-group-head">
+              <td colspan="5">⚡ Full Bundle — $35,000</td>
+            </tr>
+            <tr>
+              <td>Invoice #1 — Feb 25</td>
+              <td>$14,000</td>
+              <td class="fee-col">$14,140</td>
+              <td class="fee-col">$14,210</td>
+              <td class="fee-col">$14,350</td>
+            </tr>
+            <tr>
+              <td>Invoice #2 — Mar 31</td>
+              <td>$10,500</td>
+              <td class="fee-col">$10,605</td>
+              <td class="fee-col">$10,658</td>
+              <td class="fee-col">$10,763</td>
+            </tr>
+            <tr>
+              <td>Invoice #3 — May 5</td>
+              <td>$10,500</td>
+              <td class="fee-col">$10,605</td>
+              <td class="fee-col">$10,658</td>
+              <td class="fee-col">$10,763</td>
+            </tr>
+            <tr class="terms-group-head">
+              <td colspan="5">🌐 New Website — $25,000</td>
+            </tr>
+            <tr>
+              <td>Invoice #1 — Feb 25</td>
+              <td>$10,000</td>
+              <td class="fee-col">$10,100</td>
+              <td class="fee-col">$10,150</td>
+              <td class="fee-col">$10,250</td>
+            </tr>
+            <tr>
+              <td>Invoice #2 — Mar 31</td>
+              <td>$7,500</td>
+              <td class="fee-col">$7,575</td>
+              <td class="fee-col">$7,613</td>
+              <td class="fee-col">$7,688</td>
+            </tr>
+            <tr>
+              <td>Invoice #3 — May 5</td>
+              <td>$7,500</td>
+              <td class="fee-col">$7,575</td>
+              <td class="fee-col">$7,613</td>
+              <td class="fee-col">$7,688</td>
+            </tr>
+            <tr class="terms-group-head">
+              <td colspan="5">🖨️ Spec Sheet Suite — ~$16,500</td>
+            </tr>
+            <tr>
+              <td>Invoice #1 — Feb 25</td>
+              <td>$6,600</td>
+              <td class="fee-col">$6,666</td>
+              <td class="fee-col">$6,699</td>
+              <td class="fee-col">$6,765</td>
+            </tr>
+            <tr>
+              <td>Invoice #2 — Mar 31</td>
+              <td>$4,950</td>
+              <td class="fee-col">$5,000</td>
+              <td class="fee-col">$5,025</td>
+              <td class="fee-col">$5,074</td>
+            </tr>
+            <tr>
+              <td>Invoice #3 — May 5</td>
+              <td>$4,950</td>
+              <td class="fee-col">$5,000</td>
+              <td class="fee-col">$5,025</td>
+              <td class="fee-col">$5,074</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="terms-footnote">
+        <strong>How fees are calculated:</strong> Finance fees are based on 18% APR (standard B2B rate) applied to the number of days extended — Net 15: 18% × 15/365 = 0.74%, billed at a flat 1.0% · Net 30: 18% × 30/365 = 1.48%, billed at 1.5% · Net 45: 18% × 45/365 = 2.22%, billed at 2.5%. Fees apply per individual invoice only and are not compounded. The fee is added to that invoice at the time the extension is approved. Maximum additional cost if all three invoices are extended to Net 45: Website +$625 · Spec Sheets +$413 · Bundle +$875.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ────────────────────────────── CTA ──────────────────────────────────── -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-in">Ready to Move Forward?</h2>
+    <p class="fade-in">Let's lock in the timeline and get started before late February — every week matters on the path to May.</p>
+    <div class="cta-actions fade-in">
+      <button class="btn btn-outline-white" onclick="openModal('modal-website')">Review Website Proposal</button>
+      <button class="btn" style="background:#fff;color:var(--blue)" onclick="openModal('modal-specs')">Review Spec Sheet Proposal</button>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── FOOTER ───────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771521424/Unified-Logo-current_v4uzrb.png" alt="Unified Wire & Cable" class="footer-logo" />
+        <p>2026 Brand Transformation Proposal — prepared with care for Unified Wire &amp; Cable ahead of the May tradeshow launch.</p>
+      </div>
+      <div>
+        <h4>This Proposal</h4>
+        <ul>
+          <li><a href="#website" style="color:rgba(255,255,255,.6)">Website Redesign ($25K)</a></li>
+          <li><a href="#specsheets" style="color:rgba(255,255,255,.6)">Spec Sheet Suite ($15K–18K)</a></li>
+          <li><a href="#imagery" style="color:rgba(255,255,255,.6)">AI Wire Imagery</a></li>
+          <li><a href="#bundle" style="color:rgba(255,255,255,.6)">Bundle Value</a></li>
+          <li><a href="#timeline" style="color:rgba(255,255,255,.6)">Project Timeline</a></li>
+          <li><a href="#payment" style="color:rgba(255,255,255,.6)">Payment Schedule</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Key Dates</h4>
+        <ul>
+          <li style="color:rgba(255,255,255,.6)">📅 iPhone Shoot: Late Feb 2026</li>
+          <li style="color:rgba(255,255,255,.6)">✅ Design Approvals: April 10</li>
+          <li style="color:rgba(255,255,255,.6)">🖨️ Print Delivery: May 1, 2026</li>
+          <li style="color:rgba(255,255,255,.6)">🚀 Website Launch: First Week of May</li>
+          <li style="color:rgba(255,255,255,.6)">🏆 Tradeshow: Second Week of May</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <span>Prepared February 2026 · Unified Wire &amp; Cable 2026 Brand Transformation</span>
+      <span style="display:flex;gap:16px">
+        <span class="tag tag-blue" style="font-size:.75rem">🌐 Squarespace Platform</span>
+        <span class="tag tag-orange" style="font-size:.75rem">🍌 Nano Banana AI</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ LIGHTBOX ════════════════ -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<!-- ═══════════════════ MODALS ═══════════════════ -->
+
+<!-- MODAL: Website Deep Dive -->
+<div class="modal-overlay" id="modal-website" onclick="handleOverlayClick(event,'modal-website')">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <span class="badge badge-blue" style="margin-bottom:8px">Website Proposal</span>
+        <h3>Full Website Pricing & Support Packages</h3>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-website')">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Project Investment: $25,000</h4>
+      <p>This investment delivers an enterprise-level digital presence on Squarespace that rivals the largest players in the wire & cable space. We leverage advanced AI tools to drastically increase efficiencies — delivering top-tier functionality at a mid-market price point.</p>
+
+      <h4>Competitor Cost Context</h4>
+      <table class="comp-table">
+        <thead><tr><th>Competitor Type</th><th>Typical Build Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Enterprise (Southwire, Encore Wire)</td><td>$75,000 – $200,000+</td><td>Full custom development</td></tr>
+          <tr><td>Mid-Size (Lake Cable, Alan Wire)</td><td>$20,000 – $60,000</td><td>Agency-built platforms</td></tr>
+          <tr class="highlight"><td><strong>Our Proposal for UWC</strong></td><td><strong>$25,000</strong></td><td><strong>Enterprise capabilities at mid-market price</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4>Platform Hosting (Post-Launch)</h4>
+      <p>The site will be hosted on Squarespace. UWC enters a credit card directly into Squarespace at <strong>$23/month (billed annually)</strong>. This covers core hosting, basic support, and ongoing platform security upgrades.</p>
+
+      <h4>Post-Launch: 1 Month Free Support Included</h4>
+      <p>After the website goes live, one full month of free agency support is included to ensure everything runs flawlessly and any issues are resolved immediately.</p>
+
+      <h4>Prepaid Agency Support Packages (After Free Month)</h4>
+      <p>Purchase a prepaid block of hours for ongoing support, design updates, or marketing enhancements. Larger packages earn a heavier hourly discount.</p>
+      <div class="support-grid">
+        <div class="support-card"><div class="support-hrs">4 hrs</div><div class="support-price">$600</div><div class="support-rate">$150/hr</div></div>
+        <div class="support-card"><div class="support-hrs">8 hrs</div><div class="support-price">$1,000</div><div class="support-rate">$125/hr</div></div>
+        <div class="support-card"><div class="support-hrs">13 hrs</div><div class="support-price">$1,500</div><div class="support-rate">$115/hr</div></div>
+        <div class="support-card"><div class="support-hrs">20 hrs</div><div class="support-price">$2,000</div><div class="support-rate">$100/hr</div></div>
+        <div class="support-card"><div class="support-hrs">27 hrs</div><div class="support-price">$2,500</div><div class="support-rate">$93/hr</div></div>
+        <div class="support-card"><div class="support-hrs">34 hrs</div><div class="support-price">$3,000</div><div class="support-rate">$88/hr</div></div>
+        <div class="support-card"><div class="support-hrs">50 hrs</div><div class="support-price">$4,000</div><div class="support-rate">$80/hr</div></div>
+        <div class="support-card" style="border-color:var(--blue)"><div class="support-hrs">67 hrs</div><div class="support-price">$5,000</div><div class="support-rate" style="color:var(--blue)">$75/hr — Best Rate</div></div>
+      </div>
+      <p style="font-size:.82rem;color:var(--text-lt);margin-top:8px">Hours are carefully logged against your chosen budget. Monthly usage reports provided. Automatic notification when budget nears depletion.</p>
+
+      <h4>What's Included in the $25,000</h4>
+      <ul>
+        <li>7-key Squarespace landing pages with custom design</li>
+        <li>Advanced mega-menu product navigation system</li>
+        <li>Dynamic Google Sheet–powered spec sheets (auto-updates within 5 min)</li>
+        <li>On-site iPhone plant photography + 360° capture</li>
+        <li>Staff video interview recording and editing</li>
+        <li>Logo modernization (3 options, 1 final)</li>
+        <li>Email announcement campaign setup</li>
+        <li>Weekly Zoom progress meetings</li>
+        <li>1 month free post-launch support</li>
+        <li>Full QA and human oversight review before launch</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Spec Sheet Deep Dive -->
+<div class="modal-overlay" id="modal-specs" onclick="handleOverlayClick(event,'modal-specs')">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <span class="badge badge-orange" style="margin-bottom:8px">Spec Sheet Proposal</span>
+        <h3>Phase Breakdown & Investment Details</h3>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-specs')">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Project Objective</h4>
+      <p>Transition Unified Wire & Cable from text-heavy technical sheets to a high-end, visual-first "Elite Industrial" collateral suite — eight (8) double-sided designs featuring lifestyle photography on the front and technical data tables on the reverse.</p>
+
+      <h4>Investment by Phase</h4>
+      <table class="phase-table">
+        <thead><tr><th>Phase</th><th>Deliverables</th><th>Investment</th></tr></thead>
+        <tbody>
+          <tr><td><strong>I: Creative Strategy</strong></td><td>Research, category architecture, AI style guide definition</td><td>$2,000 – $2,400</td></tr>
+          <tr><td><strong>II: Agency On-Site Shoot</strong></td><td>On-site iPhone photoshoot labor for all 8 categories</td><td>$1,000 – $1,300</td></tr>
+          <tr><td><strong>III: Design & Data</strong></td><td>8 custom double-sided layouts with full technical data migration</td><td>$5,800 – $6,800</td></tr>
+          <tr><td><strong>IV: AI Image Production</strong></td><td>Nano Banana / Gemini-powered refinement into 4K assets</td><td>$2,450 – $3,200</td></tr>
+          <tr><td><strong>V: Print & Production</strong></td><td>Pre-press labor + 6,000 premium physical units</td><td>$3,750 – $4,300</td></tr>
+          <tr class="total-row"><td colspan="2"><strong>Total Project Estimate (All Agency Labor + Physical Production)</strong></td><td><strong>$15,000 – $18,000</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.82rem;color:var(--text-lt);margin-top:8px">Note: When bundled with the website project, Phase II (on-site shoot) is consolidated — eliminating the redundant $1,000–$1,300 shoot labor from the spec sheet estimate.</p>
+
+      <h4>Project Timeline</h4>
+      <ul>
+        <li><strong>On-Site Photography:</strong> Week of February 16, 2026</li>
+        <li><strong>AI Drafting & Refinement:</strong> February 23 – March 13, 2026</li>
+        <li><strong>Final Design Approvals:</strong> April 10, 2026</li>
+        <li><strong>Print Delivery:</strong> May 1, 2026 (Guaranteed for tradeshow)</li>
+      </ul>
+
+      <h4>Premium Print Specifications</h4>
+      <ul>
+        <li><strong>Format:</strong> 8.5″ × 11″ (US Letter), double-sided, full-bleed</li>
+        <li><strong>Stock:</strong> Heavy-weight 100lb gloss cover</li>
+        <li><strong>Finish:</strong> Aqueous (AQ) coating for durability and premium feel</li>
+        <li><strong>Volume:</strong> 750 units per design × 8 designs = 6,000 total units</li>
+        <li><strong>Compliance Marks:</strong> UL, REACH, RoHS, and Made in USA badge on all sheets</li>
+      </ul>
+
+      <h4>The 8 Collateral Categories</h4>
+      <ul>
+        <li><strong>01 | Corporate Capabilities:</strong> Flagship sheet — vertical integration, Made in USA, ISO 9001:2015</li>
+        <li><strong>02 | Automotive Solutions:</strong> XLPE (GXL, SXL, TXL) + GPT primary wires, SAE J1128</li>
+        <li><strong>03 | Marine & Boat Cable:</strong> GPTM and tinned copper for corrosive environments</li>
+        <li><strong>04 | Building & Lighting:</strong> THHN, TFN/TFFN, up to 750 MCM</li>
+        <li><strong>05 | UL Style & Hook-Up Wire:</strong> UL 1028, 1007/1569, 1061 style tables</li>
+        <li><strong>06 | Power & Battery:</strong> SGT, SGX, STT heavy-duty battery cables</li>
+        <li><strong>07 | Specialty Cords:</strong> SOOW, STOW portable and flexible cords</li>
+        <li><strong>08 | Custom OEM & Industrial:</strong> Hoistway/elevator + Mil-Spec (Type B/C)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: JSON Wire Generation -->
+<div class="modal-overlay" id="modal-json" onclick="handleOverlayClick(event,'modal-json')">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <span class="badge" style="background:#161b22;color:#7ebfff;margin-bottom:8px">AI Wire Generation</span>
+        <h3>JSON Scene Configuration Example</h3>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-json')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Every wire product image is generated using a precise JSON configuration that controls the camera, environment, and wire construction. This ensures consistent, repeatable, professional-grade output for every SKU in the catalog.</p>
+      <div class="json-preview"><span class="json-key">"scene_configuration"</span>: {<br>&nbsp;&nbsp;<span class="json-key">"camera"</span>: {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"angle"</span>: <span class="json-str">"three-quarters_top-down"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"focal_length_mm"</span>: <span class="json-num">50</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"depth_of_field"</span>: <span class="json-str">"shallow"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"focus_point"</span>: <span class="json-str">"wire_tips"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"composition"</span>: <span class="json-str">"leading_line_from_top_right"</span><br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;<span class="json-key">"environment"</span>: {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"background_color"</span>: <span class="json-str">"#FFFFFF"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"lighting_style"</span>: <span class="json-str">"studio_softbox"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"reflections"</span>: <span class="json-str">"high_gloss_on_jacket"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"shadows"</span>: <span class="json-str">"soft_contact_shadow"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"surface"</span>: <span class="json-str">"infinite_white_cove"</span><br>&nbsp;&nbsp;}<br>},<br><span class="json-key">"wire_specification"</span>: {<br>&nbsp;&nbsp;<span class="json-key">"model_name"</span>: <span class="json-str">"X-Link-XLPE-Industrial"</span>,<br>&nbsp;&nbsp;<span class="json-key">"layers"</span>: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"layer_name"</span>: <span class="json-str">"outer_jacket"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"color"</span>: <span class="json-str">"black"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"material"</span>: <span class="json-str">"XLPE"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"finish"</span>: <span class="json-str">"matte_textured"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"cut_style"</span>: <span class="json-str">"flush_circular"</span><br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"layer_name"</span>: <span class="json-str">"inner_insulation"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"color"</span>: <span class="json-str">"white"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"material"</span>: <span class="json-str">"polyethylene"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"finish"</span>: <span class="json-str">"smooth_matte"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"exposed_length_mm"</span>: <span class="json-num">2.0</span><br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;<span class="json-key">"core"</span>: {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"type"</span>: <span class="json-str">"highly_stranded"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"material"</span>: <span class="json-str">"tinned_copper"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"strand_count"</span>: <span class="json-num">65</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"layout"</span>: <span class="json-str">"concentric_bundle"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="json-key">"appearance"</span>: <span class="json-str">"dense_cross_section"</span><br>&nbsp;&nbsp;}<br>}</div>
+      <p style="margin-top:16px;font-size:.88rem">This JSON-driven approach eliminates guesswork, allows any wire in the UWC catalog to be photographed virtually with <strong>consistent lighting, consistent quality</strong> — and can be updated any time a new SKU is added or a specification changes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+  /* ── Modal ──────────────────────────────────────── */
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e, id) {
+    if (e.target === e.currentTarget) closeModal(id);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+
+  /* ── Before/After Slider ─────────────────────────  */
+  function updateBA(input, idx) {
+    const pct = input.value;
+    const after  = document.getElementById('ba-after-' + idx);
+    const divider = document.getElementById('ba-div-' + idx);
+    const right = 100 - pct;
+    after.style.clipPath = `inset(0 0 0 ${right}%)`;
+    divider.style.left = pct + '%';
+  }
+
+  /* ── Lightbox ────────────────────────────────────── */
+  function openLightbox(src, caption) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-caption').textContent = caption;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  /* ── Scroll Fade-In ──────────────────────────────── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

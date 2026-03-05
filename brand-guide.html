@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UWC Brand Guide — 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ── Brand Tokens ─────────────────────────────────── */
+    :root {
+      --blue:      #0362BC;
+      --blue-dk:   #024a90;
+      --orange:    #E36417;
+      --orange-dk: #b84f10;
+      --navy:      #0A1628;
+      --navy2:     #0d1e38;
+      --gray:      #B9BDBD;
+      --gray-lt:   #f0f2f4;
+      --white:     #ffffff;
+      --text:      #1a2535;
+      --text-lt:   #4a5568;
+      --border:    #dce3ed;
+      --radius:    12px;
+      --shadow:    0 4px 24px rgba(3,98,188,.12);
+      --shadow-lg: 0 12px 48px rgba(3,98,188,.2);
+      --font:      'Plus Jakarta Sans', -apple-system, sans-serif;
+      --mono:      'DM Mono', 'Courier New', monospace;
+    }
+
+    /* ── Reset ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.6; }
+    img  { max-width: 100%; display: block; }
+    a    { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ───────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    .section     { padding: 96px 0; }
+    .section-alt  { background: var(--gray-lt); }
+    .section-dark { background: var(--navy); color: var(--white); }
+    .section-dark p { color: rgba(255,255,255,.7); }
+    .rule { border: none; border-top: 1.5px solid var(--border); margin: 56px 0; }
+    .section-dark .rule { border-color: rgba(255,255,255,.1); }
+
+    /* ── Type Scale ───────────────────────────────────── */
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; line-height: 1.08; letter-spacing: -.03em; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+    h3 { font-size: 1.3rem; font-weight: 700; }
+    h4 { font-size: 1rem; font-weight: 700; }
+    p  { color: var(--text-lt); font-size: 1.05rem; }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .section-dark .eyebrow { color: var(--orange); }
+    .sec-head { max-width: 680px; margin-bottom: 56px; }
+    .sec-head h2 { margin-bottom: 14px; }
+    .sec-head p  { font-size: 1.1rem; }
+
+    /* scroll reveal */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── NAV ──────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 900;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav-inner {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: 60px; gap: 16px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 14px; }
+    .nav-brand img { height: 26px; width: auto; }
+    .nav-divider { width: 1px; height: 16px; background: rgba(255,255,255,.2); }
+    .nav-label {
+      font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-links a {
+      font-size: .82rem; font-weight: 500;
+      color: rgba(255,255,255,.5);
+      padding: 6px 11px; border-radius: 6px; white-space: nowrap;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); text-decoration: none; }
+    @media(max-width:720px) { .nav-links { display: none; } }
+
+    /* ── COVER ────────────────────────────────────────── */
+    .cover {
+      background: linear-gradient(150deg, var(--navy) 0%, var(--navy2) 55%, #09213f 100%);
+      padding: 100px 0 88px;
+      position: relative; overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 65% 80% at 100% 55%, rgba(3,98,188,.16) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cover::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--orange));
+    }
+    .cover-inner { position: relative; }
+    .cover-logo  { height: 80px; width: auto; margin-bottom: 44px; }
+    .cover h1    { color: var(--white); margin-bottom: 10px; }
+    .cover-sub   {
+      font-size: 1.3rem; font-weight: 300;
+      color: rgba(255,255,255,.55); margin-bottom: 44px;
+      letter-spacing: .01em;
+    }
+    .cover-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .cover-tag {
+      font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+    }
+    .cover-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,.2); }
+
+    /* ── BRAND STORY ──────────────────────────────────── */
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: start;
+    }
+    .story-text h2 { margin-bottom: 20px; }
+    .story-text p  { margin-bottom: 14px; }
+    .pillars { display: flex; flex-direction: column; gap: 14px; }
+    .pillar {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px 22px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      border-left: 3px solid var(--blue);
+    }
+    .pillar.accent { border-left-color: var(--orange); }
+    .pillar-icon  { width: 24px; height: 24px; flex-shrink: 0; color: var(--blue); }
+    .pillar-icon svg { width: 24px; height: 24px; display: block; }
+    .pillar.accent .pillar-icon { color: var(--orange); }
+    .pillar h4    { margin-bottom: 3px; }
+    .pillar p     { font-size: .9rem; }
+    @media(max-width:820px) { .story-grid { grid-template-columns: 1fr; gap: 44px; } }
+
+    /* ── COLORS ───────────────────────────────────────── */
+    .palette-group { margin-bottom: 48px; }
+    .group-label {
+      font-family: var(--mono); font-size: .7rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-lt); margin-bottom: 14px;
+    }
+    .palette-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .swatch { border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(0,0,0,.07); flex: 1; min-width: 148px; }
+    .swatch-color { height: 96px; }
+    .swatch-info  { padding: 12px 14px; background: var(--white); }
+    .swatch-name  { font-size: .88rem; font-weight: 700; margin-bottom: 3px; }
+    .swatch-hex   { font-family: var(--mono); font-size: .78rem; color: var(--text-lt); margin-bottom: 2px; }
+    .swatch-vals  { font-family: var(--mono); font-size: .7rem; color: var(--gray); line-height: 1.7; }
+
+    .color-usage { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; }
+    .cu-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 22px; }
+    .cu-dot  { width: 36px; height: 36px; border-radius: 8px; margin-bottom: 14px; }
+    .cu-card h4 { margin-bottom: 6px; }
+    .cu-card p  { font-size: .88rem; }
+    @media(max-width:680px) { .color-usage { grid-template-columns: 1fr; } }
+
+    /* ── TYPOGRAPHY ───────────────────────────────────── */
+    .sub-label {
+      font-family: var(--mono); font-size: .7rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-lt); margin-bottom: 18px;
+      padding-bottom: 10px; border-bottom: 1.5px solid var(--border);
+    }
+    .weight-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 14px; margin-bottom: 48px;
+    }
+    .weight-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 22px 20px; text-align: center;
+    }
+    .weight-sample { font-size: 2.2rem; line-height: 1; margin-bottom: 10px; color: var(--text); }
+    .weight-meta   { font-family: var(--mono); font-size: .68rem; color: var(--text-lt); line-height: 1.5; }
+    @media(max-width:680px) { .weight-grid { grid-template-columns: 1fr 1fr; } }
+
+    .type-box {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 40px;
+    }
+    .type-box-head {
+      display: flex; align-items: baseline;
+      justify-content: space-between; gap: 16px;
+      padding: 16px 22px;
+      background: var(--gray-lt);
+      border-bottom: 1.5px solid var(--border);
+    }
+    .type-box-head h4 { font-size: .88rem; }
+    .type-box-meta    { font-family: var(--mono); font-size: .7rem; color: var(--text-lt); }
+    .type-box-body    { padding: 28px; }
+
+    .scale-table { width: 100%; border-collapse: collapse; }
+    .scale-table tr { border-bottom: 1.5px solid var(--border); }
+    .scale-table tr:last-child { border-bottom: none; }
+    .scale-table td { padding: 18px 0; vertical-align: middle; }
+    .scale-table td:first-child { width: 80px; }
+    .scale-table td:last-child  {
+      font-family: var(--mono); font-size: .72rem;
+      color: var(--text-lt); text-align: right;
+      white-space: nowrap;
+    }
+    .scale-label {
+      font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--gray);
+    }
+
+    /* ── LOGO ─────────────────────────────────────────── */
+    .logo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 48px; }
+    .logo-cell {
+      border-radius: var(--radius); padding: 44px 32px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 18px;
+      border: 1.5px solid var(--border);
+    }
+    .logo-cell-white { background: var(--white); }
+    .logo-cell-gray  { background: var(--gray-lt); }
+    .logo-cell-navy  { background: var(--navy); border-color: transparent; }
+    .logo-cell-blue  { background: linear-gradient(135deg,var(--blue),var(--blue-dk)); border-color: transparent; }
+    .logo-cell img   { height: 58px; width: auto; }
+    .logo-cell-lbl   {
+      font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--text-lt);
+    }
+    .logo-cell-navy .logo-cell-lbl,
+    .logo-cell-blue .logo-cell-lbl { color: rgba(255,255,255,.45); }
+    @media(max-width:680px) { .logo-grid { grid-template-columns: 1fr 1fr; } }
+
+    .clearspace-wrap {
+      display: inline-flex; flex-direction: column;
+      align-items: center; gap: 24px; margin-bottom: 40px;
+    }
+    .clearspace-box {
+      position: relative;
+      padding: 32px;
+      border: 1.5px dashed rgba(3,98,188,.4);
+      border-radius: 4px;
+      background: var(--gray-lt);
+    }
+    .clearspace-box img { height: 56px; width: auto; }
+    .cs-ann {
+      position: absolute;
+      font-family: var(--mono); font-size: .62rem;
+      color: var(--blue); letter-spacing: .08em; text-transform: uppercase;
+    }
+    .cs-top   { top: 7px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+    .cs-left  { left: 4px; top: 50%; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; }
+    .cs-note  { font-size: .88rem; color: var(--text-lt); text-align: center; max-width: 340px; }
+
+    .dont-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .dont-card {
+      background: #fff9f8; border: 1.5px solid #fde8e8;
+      border-radius: var(--radius); padding: 20px;
+    }
+    .dont-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .72rem; font-weight: 700; color: #c0392b;
+      background: #fde8e8; padding: 4px 10px;
+      border-radius: 20px; margin-bottom: 10px;
+    }
+    .dont-tag svg { width: 12px; height: 12px; display: block; flex-shrink: 0; }
+    .dont-card p { font-size: .88rem; }
+    @media(max-width:680px) { .dont-grid { grid-template-columns: 1fr; } }
+
+    /* ── COMPONENTS ───────────────────────────────────── */
+    .comp-block { margin-bottom: 56px; }
+    .comp-block:last-child { margin-bottom: 0; }
+    .comp-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px; }
+    .dark-stage { background: var(--navy); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 14px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px; border-radius: 8px;
+      font-family: var(--font); font-size: .92rem; font-weight: 700;
+      cursor: pointer; border: none; transition: all .2s; line-height: 1;
+    }
+    .btn-primary        { background: var(--blue);   color: #fff; }
+    .btn-primary:hover  { background: var(--blue-dk); transform: translateY(-1px); box-shadow: var(--shadow); text-decoration: none; }
+    .btn-orange         { background: var(--orange);  color: #fff; }
+    .btn-orange:hover   { background: var(--orange-dk); transform: translateY(-1px); text-decoration: none; }
+    .btn-outline        { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline:hover  { background: var(--blue); color: #fff; text-decoration: none; }
+    .btn-outline-org    { background: transparent; color: var(--orange); border: 2px solid var(--orange); }
+    .btn-outline-org:hover { background: var(--orange); color: #fff; text-decoration: none; }
+    .btn-ghost          { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.25); }
+    .btn-ghost:hover    { background: rgba(255,255,255,.2); text-decoration: none; }
+    .btn-outline-wh     { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.45); }
+    .btn-outline-wh:hover { background: rgba(255,255,255,.1); border-color: #fff; text-decoration: none; }
+    .btn-sm { padding: 9px 18px; font-size: .82rem; }
+    .btn-lg { padding: 16px 36px; font-size: 1.05rem; }
+
+    /* Badges */
+    .badge { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+    .badge-blue   { background: var(--blue);    color: #fff; }
+    .badge-orange { background: var(--orange);  color: #fff; }
+    .badge-navy   { background: var(--navy);    color: #fff; }
+    .badge-gray   { background: var(--gray-lt); color: var(--text); border: 1.5px solid var(--border); }
+
+    /* Tags */
+    .tag { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1.5px solid; }
+    .tag-blue   { color: var(--blue);   border-color: var(--blue);   background: rgba(3,98,188,.07); }
+    .tag-orange { color: var(--orange); border-color: var(--orange); background: rgba(227,100,23,.07); }
+
+    /* Cards */
+    .card-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+    .comp-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 24px; width: 280px;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .comp-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .comp-card h4 { margin-bottom: 6px; }
+    .comp-card p  { font-size: .88rem; }
+    .comp-card-meta {
+      font-family: var(--mono); font-size: .7rem; color: var(--text-lt);
+      margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
+    }
+    .comp-card-ghost {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius); padding: 24px; width: 280px;
+    }
+    .comp-card-ghost h4 { color: #fff; margin-bottom: 6px; }
+    .comp-card-ghost p  { font-size: .88rem; color: rgba(255,255,255,.6); }
+
+    /* Table */
+    .table-wrap { border-radius: var(--radius); overflow: hidden; border: 1.5px solid var(--border); }
+    .phase-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .phase-table th { background: var(--blue); color: #fff; padding: 12px 16px; text-align: left; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
+    .phase-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); }
+    .phase-table tr:last-child td { border-bottom: none; }
+    .phase-table tr:nth-child(even) td { background: var(--gray-lt); }
+    .phase-table .note-row td { font-family: var(--mono); font-size: .72rem; color: var(--text-lt); background: var(--gray-lt); }
+
+    /* ── VOICE & TONE ─────────────────────────────────── */
+    .vt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 52px; }
+    .vt-card { border-radius: var(--radius); padding: 26px; background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.1); }
+    .vt-card h4 { color: #fff; margin-bottom: 14px; }
+    .vt-list { list-style: none; }
+    .vt-list li { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.07); font-size: .9rem; color: rgba(255,255,255,.72); }
+    .vt-list li:last-child { border-bottom: none; }
+    .vt-do   { color: #34d399; flex-shrink: 0; display: flex; align-items: center; }
+    .vt-dont { color: #f87171; flex-shrink: 0; display: flex; align-items: center; }
+    .vt-do svg, .vt-dont svg { width: 16px; height: 16px; display: block; }
+    @media(max-width:680px) { .vt-grid { grid-template-columns: 1fr; } }
+
+    .words { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 52px; }
+    .word-pill {
+      padding: 8px 18px; border-radius: 24px; font-size: .88rem; font-weight: 600;
+      background: rgba(3,98,188,.12); color: #7ebfff;
+      border: 1.5px solid rgba(3,98,188,.25);
+    }
+
+    .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .ex-good { background: rgba(52,211,153,.07); border: 1.5px solid rgba(52,211,153,.3); border-radius: var(--radius); padding: 18px 20px; }
+    .ex-bad  { background: rgba(248, 113,113,.06); border: 1.5px solid rgba(248,113,113,.25); border-radius: var(--radius); padding: 18px 20px; }
+    .ex-lbl  { font-family: var(--mono); font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+    .ex-good .ex-lbl { color: #34d399; }
+    .ex-bad  .ex-lbl { color: #f87171; }
+    .ex-text { font-size: .92rem; color: rgba(255,255,255,.8); font-style: italic; line-height: 1.5; }
+    @media(max-width:600px) { .ex-grid { grid-template-columns: 1fr; } }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--navy); padding: 36px 0;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .footer-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-inner img { height: 24px; width: auto; }
+    .footer-txt { font-family: var(--mono); font-size: .68rem; color: rgba(255,255,255,.3); letter-spacing: .08em; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <img src="Unified-Logo-current.png" alt="UWC">
+        <div class="nav-divider"></div>
+        <span class="nav-label">Brand Guide</span>
+      </div>
+      <div class="nav-links">
+        <a href="#story">Brand Story</a>
+        <a href="#colors">Colors</a>
+        <a href="#typography">Typography</a>
+        <a href="#logo">Logo</a>
+        <a href="#components">Components</a>
+        <a href="#voice">Voice & Tone</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── COVER ── -->
+<section class="cover">
+  <div class="container cover-inner">
+    <img src="Unified-Logo-current.png" alt="Unified Wire & Cable" class="cover-logo fade-in">
+    <h1 class="fade-in" style="color:#fff">Brand Guide</h1>
+    <p class="cover-sub fade-in">Identity Standards &amp; Design System</p>
+    <div class="cover-meta fade-in">
+      <span class="cover-tag">Version 1.0</span>
+      <div class="cover-dot"></div>
+      <span class="cover-tag">2026</span>
+      <div class="cover-dot"></div>
+      <span class="cover-tag">Internal Use Only</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── 01 BRAND STORY ── -->
+<section class="section" id="story">
+  <div class="container">
+    <div class="story-grid">
+
+      <div class="fade-in">
+        <div class="sec-head" style="margin-bottom:0">
+          <span class="eyebrow">01 — Brand Story</span>
+          <h2>Built on precision.<br>Defined by what's next.</h2>
+          <p style="margin-bottom:14px">Unified Wire &amp; Cable has spent decades delivering the wire, cable, and connectivity solutions that power industrial, commercial, and specialty applications across North America.</p>
+          <p>In 2026, UWC is stepping forward — into a modern brand identity that reflects the quality, precision, and momentum that defines every product we manufacture. This guide ensures that identity is applied consistently and with purpose.</p>
+        </div>
+      </div>
+
+      <div class="pillars fade-in">
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <div>
+            <h4>Engineered Precision</h4>
+            <p>Every specification matters. We lead with technical authority and the confidence of manufacturing excellence.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <div>
+            <h4>Connected Forward</h4>
+            <p>We don't just supply cable — we connect industries to the infrastructure that moves them. Our brand reflects that forward-looking mission.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div>
+            <h4>Industrial Edge</h4>
+            <p>We operate where performance is non-negotiable. Our visual identity mirrors that: clean, bold, and built to perform at scale.</p>
+          </div>
+        </div>
+        <div class="pillar accent">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <div>
+            <h4>Trusted Partnership</h4>
+            <p>Decades of relationships, specs fulfilled on time, and products that perform in the field. Our brand earns trust before a word is spoken.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 02 COLORS ── -->
+<section class="section section-alt" id="colors">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">02 — Color Palette</span>
+      <h2>Brand Colors</h2>
+      <p>Our palette is drawn directly from the UWC mark — the structural blue of precision engineering and the copper-orange of raw material. Together they form a brand that is both trusted and dynamic.</p>
+    </div>
+
+    <!-- Primary -->
+    <div class="palette-group fade-in">
+      <div class="group-label">Primary</div>
+      <div class="palette-row">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#0362BC"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">UWC Blue</div>
+            <div class="swatch-hex">#0362BC</div>
+            <div class="swatch-vals">RGB 3 · 98 · 188<br>CMYK 98 · 48 · 0 · 26</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#024a90"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Blue Dark</div>
+            <div class="swatch-hex">#024a90</div>
+            <div class="swatch-vals">RGB 2 · 74 · 144<br>CMYK 99 · 49 · 0 · 44</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#7ebfff; border-top:1.5px solid #dce3ed"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Blue Tint</div>
+            <div class="swatch-hex">#7ebfff</div>
+            <div class="swatch-vals">RGB 126 · 191 · 255<br>UI highlights only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accent -->
+    <div class="palette-group fade-in">
+      <div class="group-label">Accent</div>
+      <div class="palette-row">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E36417"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">UWC Orange</div>
+            <div class="swatch-hex">#E36417</div>
+            <div class="swatch-vals">RGB 227 · 100 · 23<br>CMYK 0 · 56 · 90 · 11</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#b84f10"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Orange Dark</div>
+            <div class="swatch-hex">#b84f10</div>
+            <div class="swatch-vals">RGB 184 · 79 · 16<br>CMYK 0 · 57 · 91 · 28</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#ffb07a; border-top:1.5px solid #dce3ed"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Orange Tint</div>
+            <div class="swatch-hex">#ffb07a</div>
+            <div class="swatch-vals">RGB 255 · 176 · 122<br>UI highlights only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Foundation -->
+    <div class="palette-group fade-in">
+      <div class="group-label">Foundation</div>
+      <div class="palette-row">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#0A1628"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">UWC Navy</div>
+            <div class="swatch-hex">#0A1628</div>
+            <div class="swatch-vals">RGB 10 · 22 · 40<br>CMYK 75 · 45 · 0 · 84</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#0d1e38"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy Light</div>
+            <div class="swatch-hex">#0d1e38</div>
+            <div class="swatch-vals">RGB 13 · 30 · 56<br>CMYK 77 · 46 · 0 · 78</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neutrals -->
+    <div class="palette-group fade-in">
+      <div class="group-label">Neutrals</div>
+      <div class="palette-row">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#B9BDBD; border-top:1.5px solid #dce3ed"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">UWC Gray</div>
+            <div class="swatch-hex">#B9BDBD</div>
+            <div class="swatch-vals">RGB 185 · 189 · 189<br>CMYK 2 · 0 · 0 · 26</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#f0f2f4; border-top:1.5px solid #dce3ed"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Gray Light</div>
+            <div class="swatch-hex">#f0f2f4</div>
+            <div class="swatch-vals">RGB 240 · 242 · 244<br>Section backgrounds</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#1a2535"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Dark</div>
+            <div class="swatch-hex">#1a2535</div>
+            <div class="swatch-vals">RGB 26 · 37 · 53<br>Primary body text</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#4a5568"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Light</div>
+            <div class="swatch-hex">#4a5568</div>
+            <div class="swatch-vals">RGB 74 · 85 · 104<br>Secondary body text</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#ffffff; border-top:1.5px solid #dce3ed"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">White</div>
+            <div class="swatch-hex">#ffffff</div>
+            <div class="swatch-vals">RGB 255 · 255 · 255<br>Page backgrounds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage rules -->
+    <div class="fade-in">
+      <div class="group-label">Color Usage Rules</div>
+      <div class="color-usage">
+        <div class="cu-card">
+          <div class="cu-dot" style="background:linear-gradient(135deg,var(--blue),var(--blue-dk))"></div>
+          <h4>Blue = Digital / Website</h4>
+          <p>Use UWC Blue as the primary color for all digital communications, website UI, and web-scope work.</p>
+        </div>
+        <div class="cu-card">
+          <div class="cu-dot" style="background:linear-gradient(135deg,var(--orange),var(--orange-dk))"></div>
+          <h4>Orange = Print / Spec Sheets</h4>
+          <p>Use UWC Orange for print collateral, spec sheets, and all physical product communications.</p>
+        </div>
+        <div class="cu-card">
+          <div class="cu-dot" style="background:linear-gradient(90deg,var(--blue),var(--orange))"></div>
+          <h4>Gradient = Bundle / Featured</h4>
+          <p>Blue-to-orange gradient signals premium or all-encompassing scope. Use sparingly and with purpose.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 03 TYPOGRAPHY ── -->
+<section class="section" id="typography">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">03 — Typography</span>
+      <h2>Plus Jakarta Sans</h2>
+      <p>A geometric humanist sans-serif with a confident, precision-engineered character. Its wide weight range — from airy Light to commanding ExtraBold — gives UWC a single typeface capable of carrying every communication, from spec sheet labels to tradeshow headlines. Paired with DM Mono for all technical data and labels.</p>
+    </div>
+
+    <!-- Weights -->
+    <div class="fade-in" style="margin-bottom:52px">
+      <div class="sub-label">Weights &amp; Variants</div>
+      <div class="weight-grid">
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:300">Aa</div>
+          <div class="weight-meta">300<br>Light</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:400">Aa</div>
+          <div class="weight-meta">400<br>Regular</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:600">Aa</div>
+          <div class="weight-meta">600<br>SemiBold</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:700">Aa</div>
+          <div class="weight-meta">700<br>Bold</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:800">Aa</div>
+          <div class="weight-meta">800<br>ExtraBold</div>
+        </div>
+        <div class="weight-card" style="background:var(--navy)">
+          <div class="weight-sample" style="font-weight:800;color:#fff">Aa</div>
+          <div class="weight-meta" style="color:rgba(255,255,255,.4)">800<br>On Dark</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:800;background:linear-gradient(90deg,var(--blue),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Aa</div>
+          <div class="weight-meta">800<br>Gradient</div>
+        </div>
+        <div class="weight-card" style="background:var(--gray-lt)">
+          <div class="weight-sample" style="font-family:var(--mono);font-size:1.6rem;font-weight:400;color:var(--text-lt)">Aa</div>
+          <div class="weight-meta">DM Mono<br>Technical</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Type scale -->
+    <div class="fade-in" style="margin-bottom:52px">
+      <div class="sub-label">Type Scale</div>
+      <div class="type-box">
+        <div class="type-box-head">
+          <h4>Display Scale — Plus Jakarta Sans</h4>
+          <span class="type-box-meta">All headings use negative letter-spacing for optical tightness</span>
+        </div>
+        <div class="type-box-body">
+          <table class="scale-table">
+            <tr>
+              <td><span class="scale-label">H1</span></td>
+              <td><span style="font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;color:var(--text)">Unified Wire &amp; Cable</span></td>
+              <td>4rem · 800 · −0.03em</td>
+            </tr>
+            <tr>
+              <td><span class="scale-label">H2</span></td>
+              <td><span style="font-size:2.5rem;font-weight:800;line-height:1.15;letter-spacing:-.02em;color:var(--text)">Precision Manufacturing</span></td>
+              <td>2.5rem · 800 · −0.02em</td>
+            </tr>
+            <tr>
+              <td><span class="scale-label">H3</span></td>
+              <td><span style="font-size:1.3rem;font-weight:700;color:var(--text)">Product Specification Suite</span></td>
+              <td>1.3rem · 700</td>
+            </tr>
+            <tr>
+              <td><span class="scale-label">H4</span></td>
+              <td><span style="font-size:1rem;font-weight:700;color:var(--text)">Cable Series Overview</span></td>
+              <td>1rem · 700</td>
+            </tr>
+            <tr>
+              <td><span class="scale-label">Body</span></td>
+              <td><span style="font-size:1.05rem;font-weight:400;color:var(--text-lt);line-height:1.65">High-performance wire and cable solutions engineered for reliability across industrial applications.</span></td>
+              <td>1.05rem · 400</td>
+            </tr>
+            <tr>
+              <td><span class="scale-label">Small</span></td>
+              <td><span style="font-size:.88rem;font-weight:400;color:var(--text-lt)">Conductor diameter 0.062" · ASTM B-3 · UL Listed</span></td>
+              <td>0.88rem · 400</td>
+            </tr>
+            <tr>
+              <td><span class="scale-label">Label</span></td>
+              <td><span style="font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-lt)">Technical Specification</span></td>
+              <td>DM Mono · 0.70rem</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Character specimen -->
+    <div class="fade-in">
+      <div class="sub-label">Character Specimen</div>
+      <div class="type-box">
+        <div class="type-box-body" style="padding:36px">
+          <div style="font-size:2.2rem;font-weight:800;color:var(--text);letter-spacing:-.02em;line-height:1.35;margin-bottom:24px">
+            AaBbCcDdEeFfGg HhIiJjKkLlMmNn OoPpQqRrSsTtUu VvWwXxYyZz
+          </div>
+          <div style="font-size:1.4rem;font-weight:400;color:var(--text-lt);margin-bottom:20px">
+            0123456789 · $%&amp;@#()+=−/\,.:;!?
+          </div>
+          <div style="font-family:var(--mono);font-size:.88rem;color:var(--text-lt);letter-spacing:.05em;line-height:2">
+            PART NO. UWC-XLINK-4/0 · AWG 4/0 · 600V · XHHW-2 · UL 44 · CSA C22.2 · 90°C W/D
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 04 LOGO ── -->
+<section class="section section-alt" id="logo">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">04 — Logo Usage</span>
+      <h2>The UWC Mark</h2>
+      <p>The UWC monogram is the core of our identity. The metallic depth of the letterforms references our materials — structural steel-blue conductors and copper wire — unified under a single, unmistakable mark.</p>
+    </div>
+
+    <!-- Placement contexts -->
+    <div class="logo-grid fade-in">
+      <div class="logo-cell logo-cell-white">
+        <img src="Unified-Logo-current.png" alt="Logo on white">
+        <span class="logo-cell-lbl">On White</span>
+      </div>
+      <div class="logo-cell logo-cell-gray">
+        <img src="Unified-Logo-current.png" alt="Logo on light gray">
+        <span class="logo-cell-lbl">On Light Gray</span>
+      </div>
+      <div class="logo-cell logo-cell-navy">
+        <img src="Unified-Logo-current.png" alt="Logo on navy">
+        <span class="logo-cell-lbl">On Navy</span>
+      </div>
+    </div>
+
+    <hr class="rule fade-in">
+
+    <!-- Clear space -->
+    <div class="fade-in" style="margin-bottom:52px">
+      <div class="sub-label">Clear Space</div>
+      <p style="max-width:520px;margin-bottom:28px">Maintain a minimum clear zone around the UWC mark equal to the height of the "U" letterform on all four sides. This zone must remain free of text, graphics, and competing visual elements.</p>
+      <div style="display:flex;gap:48px;align-items:flex-start;flex-wrap:wrap">
+        <div class="clearspace-wrap">
+          <div class="clearspace-box">
+            <span class="cs-ann cs-top">1× U-height</span>
+            <span class="cs-ann cs-left">1× U-height</span>
+            <img src="Unified-Logo-current.png" alt="Clear space demo">
+          </div>
+          <p class="cs-note">Dashed border indicates protected clear zone</p>
+        </div>
+        <div style="max-width:280px;padding-top:8px">
+          <h4 style="margin-bottom:10px">Minimum Sizes</h4>
+          <p style="font-size:.9rem;margin-bottom:8px">Digital: <strong style="color:var(--text)">80px wide</strong> minimum</p>
+          <p style="font-size:.9rem">Print: <strong style="color:var(--text)">0.75 inch wide</strong> minimum</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule fade-in">
+
+    <!-- Don'ts -->
+    <div class="fade-in">
+      <div class="sub-label">Logo Don'ts</div>
+      <div class="dont-grid">
+        <div class="dont-card">
+          <div class="dont-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Don't stretch</div>
+          <p>Never distort the proportions of the mark. Scale uniformly and proportionally only.</p>
+        </div>
+        <div class="dont-card">
+          <div class="dont-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Don't recolor</div>
+          <p>Do not apply flat fills, tints, or custom color treatments. Use approved source files only.</p>
+        </div>
+        <div class="dont-card">
+          <div class="dont-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Don't use on busy backgrounds</div>
+          <p>The mark requires a clean, solid, or approved background to read clearly.</p>
+        </div>
+        <div class="dont-card">
+          <div class="dont-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Don't add effects</div>
+          <p>No additional drop shadows, glows, or overlays beyond what is built into the mark.</p>
+        </div>
+        <div class="dont-card">
+          <div class="dont-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Don't use low-res</div>
+          <p>Always use vector or high-resolution source files. Minimum 2× pixel density for screen use.</p>
+        </div>
+        <div class="dont-card">
+          <div class="dont-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Don't crowd</div>
+          <p>Never allow text, icons, or graphic elements to intrude into the clear space zone.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 05 COMPONENTS ── -->
+<section class="section" id="components">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">05 — UI Components</span>
+      <h2>Design System</h2>
+      <p>These components form the visual building blocks of all UWC digital communications. Consistent application builds recognition across every touchpoint.</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="comp-block fade-in">
+      <div class="sub-label">Buttons</div>
+      <div class="comp-row">
+        <a class="btn btn-primary" href="#">Primary Action</a>
+        <a class="btn btn-orange" href="#">Accent / Print</a>
+        <a class="btn btn-outline" href="#">Secondary</a>
+        <a class="btn btn-outline-org" href="#">Outline Accent</a>
+      </div>
+      <div class="dark-stage">
+        <div class="comp-row" style="margin-bottom:0">
+          <a class="btn btn-primary" href="#">Primary</a>
+          <a class="btn btn-ghost" href="#">Ghost</a>
+          <a class="btn btn-outline-wh" href="#">Outline White</a>
+        </div>
+      </div>
+      <div class="comp-row" style="margin-top:14px">
+        <a class="btn btn-primary btn-lg" href="#">Large</a>
+        <a class="btn btn-primary" href="#">Default</a>
+        <a class="btn btn-primary btn-sm" href="#">Small</a>
+      </div>
+    </div>
+
+    <!-- Badges & Tags -->
+    <div class="comp-block fade-in">
+      <div class="sub-label">Badges &amp; Tags</div>
+      <div class="comp-row">
+        <span class="badge badge-blue">Digital</span>
+        <span class="badge badge-orange">Print</span>
+        <span class="badge badge-navy">Featured</span>
+        <span class="badge badge-gray">Standard</span>
+      </div>
+      <div class="comp-row">
+        <span class="tag tag-blue">Website Scope</span>
+        <span class="tag tag-orange">Spec Sheet Scope</span>
+        <span class="tag tag-blue">UL Listed</span>
+        <span class="tag tag-orange">Made in USA</span>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="comp-block fade-in">
+      <div class="sub-label">Cards</div>
+      <div class="card-row">
+        <div class="comp-card">
+          <span class="badge badge-blue" style="margin-bottom:12px">Digital</span>
+          <h4>X-Link Insulated Wire</h4>
+          <p>Cross-linked polyethylene insulation rated for 90°C wet/dry environments.</p>
+          <div class="comp-card-meta">Part No. UWC-XLINK-4/0 &middot; 600V</div>
+        </div>
+        <div class="comp-card" style="border-color:var(--orange)">
+          <span class="badge badge-orange" style="margin-bottom:12px">Print</span>
+          <h4>Break Cable Series</h4>
+          <p>High-flex trailing cable engineered for continuous movement in heavy industrial use.</p>
+          <div class="comp-card-meta">Part No. UWC-BRK-12 &middot; 600V</div>
+        </div>
+      </div>
+      <div class="dark-stage">
+        <div class="card-row" style="margin-bottom:0">
+          <div class="comp-card-ghost">
+            <span class="badge badge-blue" style="margin-bottom:12px">Featured</span>
+            <h4>Ghost Card</h4>
+            <p>Used on dark/navy backgrounds for hero panels and featured callouts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="comp-block fade-in">
+      <div class="sub-label">Data Tables</div>
+      <div class="table-wrap">
+        <table class="phase-table">
+          <thead>
+            <tr>
+              <th>Part Number</th>
+              <th>Description</th>
+              <th>AWG</th>
+              <th>Voltage</th>
+              <th>Temp Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>UWC-XLINK-2/0</td><td>X-Link XHHW-2</td><td>2/0</td><td>600V</td><td>90°C W/D</td></tr>
+            <tr><td>UWC-XLINK-4/0</td><td>X-Link XHHW-2</td><td>4/0</td><td>600V</td><td>90°C W/D</td></tr>
+            <tr><td>UWC-BRK-12</td><td>Break Cable</td><td>12</td><td>600V</td><td>75°C W/D</td></tr>
+            <tr><td>UWC-TFF-14</td><td>TFFN / TFN Wire</td><td>14</td><td>600V</td><td>90°C Dry</td></tr>
+          </tbody>
+          <tfoot>
+            <tr class="note-row"><td colspan="5">Sample data only — refer to current product price lists for live specifications</td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 06 VOICE & TONE ── -->
+<section class="section section-dark" id="voice">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">06 — Voice &amp; Tone</span>
+      <h2 style="color:#fff">How UWC speaks.</h2>
+      <p>Authoritative but accessible. The confidence of a manufacturer who has shipped millions of feet of wire without a spec deviation — speaking plainly to the engineers, procurement managers, and contractors who count on us.</p>
+    </div>
+
+    <!-- Personality words -->
+    <div class="fade-in" style="margin-bottom:52px">
+      <div class="sub-label" style="color:rgba(255,255,255,.35)">Brand Personality</div>
+      <div class="words">
+        <span class="word-pill">Precise</span>
+        <span class="word-pill">Confident</span>
+        <span class="word-pill">Modern</span>
+        <span class="word-pill">Direct</span>
+        <span class="word-pill">Reliable</span>
+        <span class="word-pill">Industrial</span>
+        <span class="word-pill">Forward-looking</span>
+        <span class="word-pill">Technical</span>
+        <span class="word-pill">Trusted</span>
+        <span class="word-pill">Unambiguous</span>
+      </div>
+    </div>
+
+    <!-- We are / we are not -->
+    <div class="vt-grid fade-in">
+      <div class="vt-card">
+        <h4>We Are</h4>
+        <ul class="vt-list">
+          <li><span class="vt-do"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Clear and direct — we say exactly what the product does</li>
+          <li><span class="vt-do"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Technically credible — specs are precise, never approximate</li>
+          <li><span class="vt-do"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Confident without arrogance — our work speaks first</li>
+          <li><span class="vt-do"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Future-forward — we talk about where the industry is heading</li>
+          <li><span class="vt-do"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Respectful of our customer's expertise and time</li>
+        </ul>
+      </div>
+      <div class="vt-card">
+        <h4>We Are Not</h4>
+        <ul class="vt-list">
+          <li><span class="vt-dont"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> Corporate and stiff — no jargon for jargon's sake</li>
+          <li><span class="vt-dont"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> Casual or informal — we're not a lifestyle brand</li>
+          <li><span class="vt-dont"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> Vague — "quality products" alone is not enough</li>
+          <li><span class="vt-dont"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> Boastful — let performance and specs do the talking</li>
+          <li><span class="vt-dont"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> Outdated — avoid legacy industrial clichés</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Writing examples -->
+    <div class="fade-in">
+      <div class="sub-label" style="color:rgba(255,255,255,.35);margin-bottom:20px">Writing Examples</div>
+
+      <div class="ex-grid">
+        <div class="ex-good">
+          <div class="ex-lbl">Use this</div>
+          <div class="ex-text">"XHHW-2 rated to 90°C, wet or dry. Built for installations that can't afford a callback."</div>
+        </div>
+        <div class="ex-bad">
+          <div class="ex-lbl">Not this</div>
+          <div class="ex-text">"Our high-quality wire products offer superior performance for a variety of applications."</div>
+        </div>
+      </div>
+
+      <div class="ex-grid">
+        <div class="ex-good">
+          <div class="ex-lbl">Use this</div>
+          <div class="ex-text">"6,000 units. 12 SKUs. On the dock by May 1st."</div>
+        </div>
+        <div class="ex-bad">
+          <div class="ex-lbl">Not this</div>
+          <div class="ex-text">"We strive to meet customer delivery expectations through our dedicated fulfillment processes."</div>
+        </div>
+      </div>
+
+      <div class="ex-grid">
+        <div class="ex-good">
+          <div class="ex-lbl">Use this</div>
+          <div class="ex-text">"Unified Wire &amp; Cable. Precision-manufactured. Ready when the job starts."</div>
+        </div>
+        <div class="ex-bad">
+          <div class="ex-lbl">Not this</div>
+          <div class="ex-text">"Your trusted partner in wire and cable solutions since [year]."</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <img src="Unified-Logo-current.png" alt="UWC">
+      <span class="footer-txt">UWC Brand Guide v1.0 &middot; 2026</span>
+      <span class="footer-txt">Internal Use Only &middot; &copy; 2026 Unified Wire &amp; Cable</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
