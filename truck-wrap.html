@@ -184,11 +184,10 @@
 
     .concepts-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 28px;
     }
-    @media (max-width: 1200px) { .concepts-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px)  { .concepts-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
+    @media (max-width: 640px) { .concepts-grid { grid-template-columns: 1fr; } }
 
     .concept-card {
       background: #fff;
