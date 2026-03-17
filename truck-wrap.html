@@ -134,11 +134,30 @@
     .brief-inner {
       padding: 48px 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
       align-items: start;
     }
-    @media (max-width: 720px) { .brief-inner { grid-template-columns: 1fr; gap: 32px; } }
+    @media (max-width: 900px) { .brief-inner { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .brief-inner { grid-template-columns: 1fr; gap: 32px; } }
+    .reference-img-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+    }
+    .reference-img-wrap img { width: 100%; display: block; }
+    .reference-label {
+      background: var(--gray-lt);
+      border-top: 1px solid var(--border);
+      padding: 10px 14px;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--text-lt);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
     .brief-inner h2 {
       font-size: 1.35rem;
       font-weight: 800;
@@ -718,6 +737,14 @@
             <li><span class="spec-label">Imagery</span><span class="spec-val">AI-Generated Wire/Spool</span></li>
             <li><span class="spec-label">Format Needed</span><span class="spec-val">Print-Ready File (Vector)</span></li>
           </ul>
+        </div>
+        <div class="fade-in">
+          <h2>Current Competitor Wrap</h2>
+          <p>This is the existing Encore Wire branding on the truck — what we're replacing.</p>
+          <div class="reference-img-wrap" style="margin-top:16px;" onclick="openLightbox('images/encore-wire-truck-reference.png','Encore Wire — Current Truck Wrap (to be replaced)')">
+            <img src="images/encore-wire-truck-reference.png" alt="Encore Wire truck wrap — current branding to replace">
+            <div class="reference-label">Encore Wire — Tap to enlarge</div>
+          </div>
         </div>
       </div>
     </div>
