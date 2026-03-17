@@ -54,12 +54,30 @@
       transform: translateY(-1px);
     }
     a svg { width: 18px; height: 18px; display: block; }
+    .links { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .link-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: rgba(227,100,23,.15);
+      color: #E36417;
+      font-size: .95rem;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(227,100,23,.3);
+      transition: background .2s, transform .2s;
+    }
+    .link-secondary:hover { background: rgba(227,100,23,.25); transform: translateY(-1px); }
+    .link-secondary svg { width: 18px; height: 18px; display: block; }
   </style>
 </head>
 <body>
   <div class="inner">
     <img src="Unified-Logo-current.png" alt="Unified Wire & Cable">
     <p>Unified Wire &amp; Cable</p>
+    <div class="links">
     <a href="brand-guide.html">
       Brand Guide
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,6 +85,13 @@
         <polyline points="12 5 19 12 12 19"/>
       </svg>
     </a>
+    <a class="link-secondary" href="truck-wrap.html">
+      Truck Wrap Concepts
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="3" width="22" height="13" rx="2"/><path d="M16 21l-4-5-4 5"/>
+      </svg>
+    </a>
+    </div>
   </div>
 </body>
 </html>

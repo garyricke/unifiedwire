@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Truck Wrap Concepts — Unified Wire & Cable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #0362BC;
+      --blue-dk: #024a90;
+      --orange: #E36417;
+      --orange-dk: #b84f10;
+      --navy: #0A1628;
+      --navy2: #0d1e38;
+      --gray: #B9BDBD;
+      --gray-lt: #f0f2f4;
+      --text: #1a2535;
+      --text-lt: #4a5568;
+      --border: #dce3ed;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(3,98,188,.12);
+      --shadow-lg: 0 12px 48px rgba(3,98,188,.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--gray-lt);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(0,0,0,.3);
+    }
+    nav img { height: 36px; width: auto; }
+    nav .nav-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #0f2a50 100%);
+      padding: 72px 40px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(3,98,188,.18) 0%, transparent 70%);
+    }
+    .hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
+    .badge {
+      display: inline-block;
+      padding: 5px 16px;
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .badge-blue { background: rgba(3,98,188,.25); color: #7db8f0; border: 1px solid rgba(3,98,188,.4); }
+    .badge-orange { background: rgba(227,100,23,.2); color: #f0a46d; border: 1px solid rgba(227,100,23,.35); }
+    .badge-gray { background: rgba(255,255,255,.08); color: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.12); }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--blue) 0%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.65);
+      max-width: 580px;
+      margin: 0 auto 32px;
+    }
+    .context-strip {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .context-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.7);
+    }
+    .context-pill svg { width: 14px; height: 14px; opacity: .7; flex-shrink: 0; }
+
+    /* BRIEF BLOCK */
+    .brief-section {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .brief-inner {
+      padding: 48px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 720px) { .brief-inner { grid-template-columns: 1fr; gap: 32px; } }
+    .brief-inner h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .brief-inner p { color: var(--text-lt); font-size: .95rem; margin-bottom: 10px; }
+    .brief-inner p:last-child { margin-bottom: 0; }
+    blockquote {
+      border-left: 3px solid var(--blue);
+      padding: 12px 0 12px 18px;
+      margin-bottom: 16px;
+    }
+    blockquote p { font-style: italic; color: var(--text); margin-bottom: 4px; }
+    blockquote cite { font-size: .78rem; color: var(--text-lt); font-style: normal; font-weight: 700; }
+    .spec-list { list-style: none; }
+    .spec-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .88rem;
+    }
+    .spec-list li:last-child { border-bottom: none; }
+    .spec-list .spec-label { color: var(--text-lt); }
+    .spec-list .spec-val { font-weight: 700; color: var(--navy); }
+    .spec-list .spec-val.blue { color: var(--blue); }
+
+    /* CONCEPTS SECTION */
+    .concepts-section { padding: 64px 0 80px; }
+    .sec-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .sec-head h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .sec-head p { color: var(--text-lt); max-width: 520px; margin: 0 auto; }
+
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 960px) { .concepts-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; } }
+
+    .concept-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .concept-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .concept-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #111;
+    }
+    .concept-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .concept-card:hover .concept-img-wrap img { transform: scale(1.03); }
+    .zoom-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      opacity: 0;
+      transition: opacity .2s;
+      pointer-events: none;
+    }
+    .concept-card:hover .zoom-hint { opacity: 1; }
+    .concept-letter {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: .9rem;
+      color: #fff;
+    }
+    .letter-a { background: var(--blue); }
+    .letter-b { background: var(--orange); }
+    .letter-c { background: linear-gradient(135deg, var(--navy) 0%, #1a3a6e 100%); border: 1px solid rgba(255,255,255,.2); }
+
+    .concept-body { padding: 22px 22px 26px; flex: 1; display: flex; flex-direction: column; }
+    .concept-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .label-a { color: var(--blue); }
+    .label-b { color: var(--orange); }
+    .label-c { color: var(--navy); }
+    .concept-body h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .concept-body p {
+      font-size: .875rem;
+      color: var(--text-lt);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .pros-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pros-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: .8rem;
+      color: var(--text);
+    }
+    .pros-list li::before {
+      content: '✓';
+      font-weight: 800;
+      font-size: .8rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pros-a li::before { color: var(--blue); }
+    .pros-b li::before { color: var(--orange); }
+    .pros-c li::before { color: var(--navy); }
+
+    /* NOTE SECTION */
+    .note-section {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .note-inner {
+      padding: 48px 0;
+      max-width: 640px;
+    }
+    .note-block h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .note-block h3 svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .note-block p, .note-block li {
+      font-size: .88rem;
+      color: var(--text-lt);
+      line-height: 1.65;
+    }
+    .note-block ul { list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; }
+    .note-block ul li { display: flex; align-items: flex-start; gap: 8px; }
+    .note-block ul li::before { content: '→'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+      padding: 56px 40px;
+      text-align: center;
+    }
+    .cta-section h2 { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .cta-section p { color: rgba(255,255,255,.75); margin-bottom: 28px; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: #fff;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: .95rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform .2s, background .2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); background: #f0f6ff; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    footer img { height: 28px; width: auto; opacity: .7; }
+    footer p { font-size: .75rem; color: rgba(255,255,255,.35); }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.6);
+      cursor: default;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,.12);
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,.22); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.6);
+      color: rgba(255,255,255,.8);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* COMMENTS */
+    .comments-section { padding: 64px 0 72px; background: var(--gray-lt); }
+    .comments-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 800px) { .comments-grid { grid-template-columns: 1fr; } }
+
+    .comment-form-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+    .comment-form-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+    .form-field { margin-bottom: 14px; }
+    .form-field label {
+      display: block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+      margin-bottom: 6px;
+    }
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .9rem;
+      color: var(--text);
+      background: var(--gray-lt);
+      transition: border-color .15s, background .15s;
+      outline: none;
+      resize: vertical;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--blue);
+      background: #fff;
+    }
+    .form-field textarea { min-height: 100px; }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--blue);
+      color: #fff;
+      font-family: inherit;
+      font-size: .9rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+      margin-top: 4px;
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--blue-dk); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: .55; cursor: not-allowed; }
+    .form-status {
+      margin-top: 10px;
+      font-size: .82rem;
+      font-weight: 700;
+      text-align: center;
+      min-height: 20px;
+    }
+    .form-status.ok { color: #16a34a; }
+    .form-status.err { color: #dc2626; }
+
+    .setup-notice {
+      margin-top: 18px;
+      padding: 12px 14px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      font-size: .78rem;
+      color: #92400e;
+      line-height: 1.55;
+      display: none;
+    }
+    .setup-notice.show { display: block; }
+    .setup-notice strong { display: block; margin-bottom: 4px; }
+    .setup-notice a { color: var(--blue); }
+
+    .comments-feed h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .comment-count {
+      background: var(--blue);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .comment-list { display: flex; flex-direction: column; gap: 14px; }
+    .comment-item {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      animation: slideIn .3s ease;
+    }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .comment-name { font-size: .88rem; font-weight: 800; color: var(--navy); }
+    .comment-time { font-size: .75rem; color: var(--text-lt); margin-left: auto; }
+    .comment-text { font-size: .88rem; color: var(--text); line-height: 1.65; }
+    .comments-empty {
+      text-align: center;
+      padding: 40px 20px;
+      background: #fff;
+      border-radius: var(--radius);
+      color: var(--text-lt);
+      font-size: .88rem;
+    }
+    .comments-empty svg { width: 32px; height: 32px; opacity: .3; margin: 0 auto 10px; display: block; }
+    .comments-loading {
+      text-align: center;
+      padding: 32px;
+      color: var(--text-lt);
+      font-size: .85rem;
+    }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <img src="Unified-Logo-current.png" alt="Unified Wire & Cable">
+    <span class="nav-label">Truck Wrap Concepts</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="badge badge-orange">Priority Marketing Item</div>
+      <h1>13-Foot Box Truck<br><span>Rear Door Wrap Concepts</span></h1>
+      <p>Three design directions to replace a competitor's branding and put Unified Wire & Cable on the road in Ohio.</p>
+      <div class="context-strip">
+        <div class="context-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2"/><path d="M16 21l-4-5-4 5"/></svg>
+          13-ft Box Truck — Rear Door
+        </div>
+        <div class="context-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ohio Rep Group
+        </div>
+        <div class="context-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Replacing Encore Wire Branding
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRIEF -->
+  <div class="brief-section">
+    <div class="container">
+      <div class="brief-inner">
+        <div class="fade-in">
+          <h2>The Brief</h2>
+          <blockquote>
+            <p>"We need some product or product photos that we can share with a rep group out in Ohio for a wrap on a truck door…"</p>
+            <cite>— Les</cite>
+          </blockquote>
+          <blockquote>
+            <p>"They're looking to replace one of our competitors off of their truck, and so they would like us to put something together that can go literally on their 13-foot box truck."</p>
+            <cite>— Jason</cite>
+          </blockquote>
+          <p>This is a high-visibility field marketing asset. Every mile driven is a UWC impression — replacing a competitor's brand gives us immediate presence in that territory.</p>
+        </div>
+        <div class="fade-in">
+          <h2>Wrap Specs</h2>
+          <ul class="spec-list">
+            <li><span class="spec-label">Vehicle</span><span class="spec-val">13-ft Box Truck</span></li>
+            <li><span class="spec-label">Panel</span><span class="spec-val">Rear Roll-Up Door</span></li>
+            <li><span class="spec-label">Tagline</span><span class="spec-val blue">Your Source for Wire & Cable</span></li>
+            <li><span class="spec-label">Website</span><span class="spec-val">unifiedwire.com</span></li>
+            <li><span class="spec-label">Phone</span><span class="spec-val" style="color:var(--orange)">⚠ Replace placeholder</span></li>
+            <li><span class="spec-label">Origin Badge</span><span class="spec-val">Made in USA ✓</span></li>
+            <li><span class="spec-label">Imagery</span><span class="spec-val">AI-Generated Wire/Spool</span></li>
+            <li><span class="spec-label">Format Needed</span><span class="spec-val">Print-Ready File (Vector)</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPTS -->
+  <div class="concepts-section">
+    <div class="container">
+      <div class="sec-head fade-in">
+        <div class="badge badge-blue">Design Concepts</div>
+        <h2>Three Directions — Click to Enlarge</h2>
+        <p>Each concept uses UWC brand colors, the current logo, AI-generated wire imagery, and the Made in USA badge.</p>
+      </div>
+      <div class="concepts-grid">
+
+        <!-- CONCEPT A -->
+        <div class="concept-card fade-in" onclick="openLightbox('generated_imgs/generated-2026-03-17T20-38-30-720Z-lr4hl8.png','Concept A — Classic Formula')">
+          <div class="concept-img-wrap">
+            <span class="concept-letter letter-a">A</span>
+            <img src="generated_imgs/generated-2026-03-17T20-38-30-720Z-lr4hl8.png" alt="Concept A - Classic Formula" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-label label-a">Concept A</div>
+            <h3>Classic Formula</h3>
+            <p>Mirrors the proven Encore Wire layout — light gray background, wire spool on a pallet as the hero image, and a dark navy band at the bottom anchoring the tagline and contact details. Familiar structure that rep groups and distributors immediately recognize as professional and credible.</p>
+            <ul class="pros-list pros-a">
+              <li>Easiest for the Ohio rep group to visualize in context</li>
+              <li>Spool-on-pallet imagery = unmistakable wire industry identity</li>
+              <li>Clean, no-distraction hierarchy: logo → product → CTA</li>
+              <li>Lowest friction for print shop production</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CONCEPT B -->
+        <div class="concept-card fade-in" onclick="openLightbox('generated_imgs/generated-2026-03-17T20-39-18-399Z-oe8a4s.png','Concept B — Bold & Aggressive')">
+          <div class="concept-img-wrap">
+            <span class="concept-letter letter-b">B</span>
+            <img src="generated_imgs/generated-2026-03-17T20-39-18-399Z-oe8a4s.png" alt="Concept B - Bold and Aggressive" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-label label-b">Concept B</div>
+            <h3>Bold & Aggressive</h3>
+            <p>Dark navy background with a diagonal orange-to-blue energy streak and a burst of copper wire strands radiating from the center. This is a brand-first design — built to stop traffic, command attention at trade shows, and make competitors nervous. High-contrast, high-voltage energy.</p>
+            <ul class="pros-list pros-b">
+              <li>Maximum visibility at distance — dominates the road</li>
+              <li>Orange + navy + blue = full UWC brand color story</li>
+              <li>Wire burst imagery is distinctive, not generic</li>
+              <li>Strong tradeshow / event presence</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CONCEPT C -->
+        <div class="concept-card fade-in" onclick="openLightbox('generated_imgs/generated-2026-03-17T20-40-30-735Z-9s93l5.png','Concept C — Premium Copper')">
+          <div class="concept-img-wrap">
+            <span class="concept-letter letter-c">C</span>
+            <img src="generated_imgs/generated-2026-03-17T20-40-30-735Z-9s93l5.png" alt="Concept C - Premium Copper" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-label label-c">Concept C</div>
+            <h3>Premium Copper</h3>
+            <p>Full-bleed cinematic close-up of copper wire coils fills the entire panel. A semi-transparent navy band at top holds the logo and company name; a solid navy band at bottom anchors the tagline and contact. The product IS the design — warm, rich copper tones convey quality and craftsmanship without saying a word.</p>
+            <ul class="pros-list pros-c">
+              <li>Most premium / aspirational feel of the three</li>
+              <li>The copper texture communicates quality instantly</li>
+              <li>Minimal text = maximum visual impact at highway speed</li>
+              <li>Differentiates sharply from every competitor wrap in the market</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="note-section">
+    <div class="container">
+      <div class="note-inner">
+        <div class="note-block fade-in">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Before Going to Print
+          </h3>
+          <ul>
+            <li>Swap in UWC's real phone number — placeholder reads 1.800.000.0000</li>
+            <li>Confirm exact door dimensions with the wrap shop (width × height in inches)</li>
+            <li>Provide the vector logo file (.ai or .eps) for clean reproduction at full scale</li>
+            <li>Request a digital proof on a truck mockup before final print approval</li>
+            <li>These AI concepts are direction/mood boards — a designer will rebuild in vector for production</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMENTS -->
+  <div class="comments-section">
+    <div class="container">
+      <div class="sec-head fade-in" style="margin-bottom:40px;">
+        <div class="badge badge-blue">Team Feedback</div>
+        <h2>Leave a Comment</h2>
+        <p>Which concept do you prefer? Any changes? Drop a note — everyone on the team can see it.</p>
+      </div>
+      <div class="comments-grid">
+
+        <!-- FORM -->
+        <div class="comment-form-card fade-in">
+          <h3>Add your feedback</h3>
+          <div class="form-field">
+            <label for="comment-name">Your Name</label>
+            <input type="text" id="comment-name" placeholder="e.g. Les, Jason…" maxlength="60" autocomplete="off">
+          </div>
+          <div class="form-field">
+            <label for="comment-text">Comment</label>
+            <textarea id="comment-text" placeholder="Concept B is looking strong. Can we try the navy background with the spool instead of the wire burst?" maxlength="600"></textarea>
+          </div>
+          <button class="submit-btn" id="submit-btn" onclick="submitComment()">Post Comment</button>
+          <div class="form-status" id="form-status"></div>
+          <div class="setup-notice" id="setup-notice">
+            <strong>⚙ One-time setup needed</strong>
+            Comments need a free JSONBin.io account to store data.
+            See the setup instructions in the page source (<code>JSONBIN_KEY</code> and <code>JSONBIN_BIN_ID</code>).
+            Use a scoped <strong>Access Key</strong> (not Master Key) for safety. Takes about 2 minutes at
+            <a href="https://jsonbin.io" target="_blank">jsonbin.io</a>.
+          </div>
+        </div>
+
+        <!-- FEED -->
+        <div class="comments-feed fade-in">
+          <h3>
+            Comments
+            <span class="comment-count" id="comment-count">0</span>
+          </h3>
+          <div class="comment-list" id="comment-list">
+            <div class="comments-loading">Loading comments…</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Which Direction Fits Best?</h2>
+    <p>Share this page with the team — pick a concept, swap the phone number, and we're ready for production.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="Unified-Logo-current.png" alt="Unified Wire & Cable">
+    <p>Unified Wire & Cable — Truck Wrap Concepts — March 2026</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script>
+    // ─────────────────────────────────────────────
+    // COMMENTS — JSONBin.io setup (one-time, ~2 min)
+    // 1. Go to https://jsonbin.io and create a free account
+    // 2. Click "Create Bin", paste in:  []
+    //    and set it to Public. Copy the Bin ID from the URL.
+    // 3. Go to API Keys → Master Key and copy it.
+    // 4. Paste both values below and save.
+    // ─────────────────────────────────────────────
+    const JSONBIN_KEY    = '$2a$10$Wo7oVmtlbwnplwm6Khytz.RoIeMUG7UujCoHVJTGngI.EzHQeqbhW';   // ← paste Access Key here (NOT Master Key — scope to this bin only)
+    const JSONBIN_BIN_ID = '69b9bfb2b7ec241ddc7982d2';   // ← paste Bin ID here      e.g. '65f3a2b...'
+    // ─────────────────────────────────────────────
+
+    const API = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+    const HEADERS = { 'Content-Type': 'application/json', 'X-Access-Key': JSONBIN_KEY };
+
+    const configured = () => JSONBIN_KEY && JSONBIN_BIN_ID;
+
+    function timeAgo(iso) {
+      const diff = (Date.now() - new Date(iso)) / 1000;
+      if (diff < 60)   return 'just now';
+      if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+      if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+      return Math.floor(diff / 86400) + 'd ago';
+    }
+
+    function initials(name) {
+      return name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0, 2).join('');
+    }
+
+    function renderComments(comments) {
+      const list = document.getElementById('comment-list');
+      const count = document.getElementById('comment-count');
+      count.textContent = comments.length;
+      if (!comments.length) {
+        list.innerHTML = `<div class="comments-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          No comments yet — be the first to weigh in.
+        </div>`;
+        return;
+      }
+      list.innerHTML = [...comments].reverse().map(c => `
+        <div class="comment-item">
+          <div class="comment-meta">
+            <div class="comment-avatar">${initials(c.name)}</div>
+            <span class="comment-name">${escHtml(c.name)}</span>
+            <span class="comment-time">${timeAgo(c.ts)}</span>
+          </div>
+          <div class="comment-text">${escHtml(c.text)}</div>
+        </div>
+      `).join('');
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    async function loadComments() {
+      if (!configured()) {
+        document.getElementById('comment-list').innerHTML =
+          '<div class="comments-empty">Comments not yet configured. See setup instructions on the form.</div>';
+        document.getElementById('comment-count').textContent = '—';
+        document.getElementById('setup-notice').classList.add('show');
+        return;
+      }
+      try {
+        const res = await fetch(API + '/latest', { headers: HEADERS });
+        const data = await res.json();
+        renderComments(data.record || []);
+      } catch {
+        document.getElementById('comment-list').innerHTML =
+          '<div class="comments-empty">Could not load comments. Check your JSONBin credentials.</div>';
+      }
+    }
+
+    async function submitComment() {
+      const nameEl   = document.getElementById('comment-name');
+      const textEl   = document.getElementById('comment-text');
+      const btn      = document.getElementById('submit-btn');
+      const status   = document.getElementById('form-status');
+
+      const name = nameEl.value.trim();
+      const text = textEl.value.trim();
+
+      if (!name) { showStatus('Please enter your name.', 'err'); return; }
+      if (!text) { showStatus('Please write a comment.', 'err'); return; }
+
+      if (!configured()) {
+        document.getElementById('setup-notice').classList.add('show');
+        showStatus('JSONBin not configured yet — see setup instructions below.', 'err');
+        return;
+      }
+
+      btn.disabled = true;
+      showStatus('Posting…', '');
+
+      try {
+        // Read current comments
+        const getRes = await fetch(API + '/latest', { headers: HEADERS });
+        const getData = await getRes.json();
+        const comments = getData.record || [];
+
+        // Append new comment
+        comments.push({ name, text, ts: new Date().toISOString() });
+
+        // Write back
+        const putRes = await fetch(API, {
+          method: 'PUT',
+          headers: HEADERS,
+          body: JSON.stringify(comments)
+        });
+
+        if (!putRes.ok) throw new Error('Write failed');
+
+        nameEl.value = '';
+        textEl.value = '';
+        renderComments(comments);
+        showStatus('Comment posted!', 'ok');
+      } catch {
+        showStatus('Something went wrong. Try again.', 'err');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function showStatus(msg, type) {
+      const el = document.getElementById('form-status');
+      el.textContent = msg;
+      el.className = 'form-status' + (type ? ' ' + type : '');
+      if (type === 'ok') setTimeout(() => { el.textContent = ''; }, 3000);
+    }
+
+    // Lightbox
+    function openLightbox(src, caption) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').textContent = caption;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Load comments on page load + refresh every 45 seconds
+    loadComments();
+    setInterval(loadComments, 45000);
+
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
