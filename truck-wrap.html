@@ -184,10 +184,11 @@
 
     .concepts-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 28px;
     }
-    @media (max-width: 960px) { .concepts-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; } }
+    @media (max-width: 1200px) { .concepts-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .concepts-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
 
     .concept-card {
       background: #fff;
@@ -250,6 +251,7 @@
     .letter-a { background: var(--blue); }
     .letter-b { background: var(--orange); }
     .letter-c { background: linear-gradient(135deg, var(--navy) 0%, #1a3a6e 100%); border: 1px solid rgba(255,255,255,.2); }
+    .letter-d { background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%); }
 
     .concept-body { padding: 22px 22px 26px; flex: 1; display: flex; flex-direction: column; }
     .concept-label {
@@ -262,6 +264,7 @@
     .label-a { color: var(--blue); }
     .label-b { color: var(--orange); }
     .label-c { color: var(--navy); }
+    .label-d { color: #7c3aed; }
     .concept-body h3 {
       font-size: 1.1rem;
       font-weight: 800;
@@ -293,6 +296,7 @@
     .pros-a li::before { color: var(--blue); }
     .pros-b li::before { color: var(--orange); }
     .pros-c li::before { color: var(--navy); }
+    .pros-d li::before { color: #7c3aed; }
 
     /* NOTE SECTION */
     .note-section {
@@ -725,7 +729,7 @@
     <div class="container">
       <div class="sec-head fade-in">
         <div class="badge badge-blue">Design Concepts</div>
-        <h2>Three Directions — Click to Enlarge</h2>
+        <h2>Four Directions — Click to Enlarge</h2>
         <p>Each concept uses UWC brand colors, the current logo, AI-generated wire imagery, and the Made in USA badge.</p>
       </div>
       <div class="concepts-grid">
@@ -786,6 +790,26 @@
               <li>The copper texture communicates quality instantly</li>
               <li>Minimal text = maximum visual impact at highway speed</li>
               <li>Differentiates sharply from every competitor wrap in the market</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CONCEPT D -->
+        <div class="concept-card fade-in" onclick="openLightbox('generated_imgs/generated-2026-03-17T21-12-55-514Z-ktlpm3.png','Concept D — Glass Door')">
+          <div class="concept-img-wrap">
+            <span class="concept-letter letter-d">D</span>
+            <img src="generated_imgs/generated-2026-03-17T21-12-55-514Z-ktlpm3.png" alt="Concept D - Glass Door" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-label label-d">Concept D</div>
+            <h3>Glass Door</h3>
+            <p>A trompe l'oeil illusion — the rear door appears to be made of clear glass, revealing the trailer packed floor-to-ceiling with rows of wire spools receding into the distance. Warm amber lighting inside the trailer makes the copper and colored wire glow. Nobody else in the industry has a wrap like this.</p>
+            <ul class="pros-list pros-d">
+              <li>Stops traffic — people will do a double-take</li>
+              <li>Tells the whole story: UWC carries everything, in depth</li>
+              <li>Conversation starter at every jobsite and tradeshow</li>
+              <li>Most distinctive and sharable of all four concepts</li>
             </ul>
           </div>
         </div>
