@@ -593,6 +593,69 @@
       font-size: .85rem;
     }
 
+    /* CLIENT REVISION SECTION */
+    .revision-section {
+      background: #fff;
+      border-top: 3px solid var(--orange);
+      padding: 64px 0 72px;
+    }
+    .revision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 800px) { .revision-grid { grid-template-columns: 1fr; } }
+    .revision-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      cursor: zoom-in;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .revision-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(3,98,188,.22); }
+    .revision-img-wrap { position: relative; }
+    .revision-img-wrap img { width: 100%; display: block; }
+    .revision-notes { display: flex; flex-direction: column; gap: 24px; }
+    .revision-change {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .change-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      font-size: .85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .revision-change strong {
+      display: block;
+      font-size: .95rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .revision-change p {
+      font-size: .875rem;
+      color: var(--text-lt);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .revision-feedback {
+      background: var(--gray-lt);
+      border-radius: var(--radius);
+      padding: 20px;
+      border-left: 3px solid var(--orange);
+    }
+
     /* PASSWORD GATE */
     .gate {
       position: fixed;
@@ -840,6 +903,55 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT REVISION -->
+  <div class="revision-section">
+    <div class="container">
+      <div class="sec-head fade-in" style="margin-bottom:40px;">
+        <div class="badge badge-orange">Client Revision — March 18, 2026</div>
+        <h2>Concept D — Updated per Feedback</h2>
+        <p>Full wordmark instead of monogram. Rainbow of wire colors to show the complete product line.</p>
+      </div>
+      <div class="revision-grid fade-in">
+        <div class="revision-card" onclick="openLightbox('generated_imgs/generated-2026-03-18T16-08-40-165Z-o7edg3.png','Concept D — Client Revision (Full Wordmark + Colorful Wire)')">
+          <div class="revision-img-wrap">
+            <img src="generated_imgs/generated-2026-03-18T16-08-40-165Z-o7edg3.png" alt="Concept D Client Revision">
+            <span class="zoom-hint">Click to enlarge</span>
+          </div>
+        </div>
+        <div class="revision-notes">
+          <div class="revision-change">
+            <div class="change-icon">1</div>
+            <div>
+              <strong>Traditional full wordmark</strong>
+              <p>Replaced the UWC monogram with the complete "UNIFIED WIRE & CABLE" name in bold white — clean, authoritative, and unmistakable at highway distance.</p>
+            </div>
+          </div>
+          <div class="revision-change">
+            <div class="change-icon">2</div>
+            <div>
+              <strong>Full spectrum wire colors</strong>
+              <p>The trailer is now packed with the complete product line — green, red, blue, orange, yellow, white, black, purple, gray. Every color a contractor or distributor might need, all in one truck.</p>
+            </div>
+          </div>
+          <div class="revision-change">
+            <div class="change-icon">3</div>
+            <div>
+              <strong>Same glass door concept</strong>
+              <p>The trompe l'oeil illusion is preserved — the trailer appears open and fully stocked. The colorful spools make it even more eye-catching than the copper-only version.</p>
+            </div>
+          </div>
+          <div class="revision-feedback">
+            <div class="badge badge-gray" style="margin-bottom:10px; font-size:.7rem;">Original feedback</div>
+            <blockquote style="margin-bottom:0;">
+              <p>"D option with our traditional logo please… Maybe add some more colors to the wire rather than more copper or aluminum."</p>
+              <cite>— Client</cite>
+            </blockquote>
+          </div>
+        </div>
       </div>
     </div>
   </div>
