@@ -649,6 +649,31 @@
       line-height: 1.65;
       margin: 0;
     }
+    .revision-iter-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text-lt);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 18px;
+    }
+    .revision-iter-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .revision-iter-num {
+      background: var(--orange);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
     .revision-feedback {
       background: var(--gray-lt);
       border-radius: var(--radius);
@@ -910,15 +935,21 @@
   <!-- CLIENT REVISION -->
   <div class="revision-section">
     <div class="container">
-      <div class="sec-head fade-in" style="margin-bottom:40px;">
-        <div class="badge badge-orange">Client Revision — March 18, 2026</div>
-        <h2>Concept D — Updated per Feedback</h2>
-        <p>Full wordmark instead of monogram. Rainbow of wire colors to show the complete product line.</p>
+      <div class="sec-head fade-in" style="margin-bottom:48px;">
+        <div class="badge badge-orange">Client Revisions — March 18, 2026</div>
+        <h2>Concept D — Two Rounds of Feedback</h2>
+        <p>Starting from the glass door concept, refined to the client's exact requests.</p>
       </div>
-      <div class="revision-grid fade-in">
-        <div class="revision-card" onclick="openLightbox('generated_imgs/generated-2026-03-18T16-08-40-165Z-o7edg3.png','Concept D — Client Revision (Full Wordmark + Colorful Wire)')">
+
+      <!-- REVISION 1 -->
+      <div class="revision-iter-label fade-in">
+        <span class="revision-iter-num">Round 1</span>
+        Full wordmark + colorful wire
+      </div>
+      <div class="revision-grid fade-in" style="margin-bottom:56px;">
+        <div class="revision-card" onclick="openLightbox('generated_imgs/generated-2026-03-18T16-08-40-165Z-o7edg3.png','Concept D — Round 1 (Full Wordmark + Colorful Wire)')">
           <div class="revision-img-wrap">
-            <img src="generated_imgs/generated-2026-03-18T16-08-40-165Z-o7edg3.png" alt="Concept D Client Revision">
+            <img src="generated_imgs/generated-2026-03-18T16-08-40-165Z-o7edg3.png" alt="Concept D Round 1">
             <span class="zoom-hint">Click to enlarge</span>
           </div>
         </div>
@@ -926,26 +957,19 @@
           <div class="revision-change">
             <div class="change-icon">1</div>
             <div>
-              <strong>Traditional full wordmark</strong>
-              <p>Replaced the UWC monogram with the complete "UNIFIED WIRE & CABLE" name in bold white — clean, authoritative, and unmistakable at highway distance.</p>
+              <strong>Full wordmark</strong>
+              <p>Replaced the monogram with the complete "UNIFIED WIRE & CABLE" name in bold white — clean and unmistakable at highway distance.</p>
             </div>
           </div>
           <div class="revision-change">
             <div class="change-icon">2</div>
             <div>
               <strong>Full spectrum wire colors</strong>
-              <p>The trailer is now packed with the complete product line — green, red, blue, orange, yellow, white, black, purple, gray. Every color a contractor or distributor might need, all in one truck.</p>
-            </div>
-          </div>
-          <div class="revision-change">
-            <div class="change-icon">3</div>
-            <div>
-              <strong>Same glass door concept</strong>
-              <p>The trompe l'oeil illusion is preserved — the trailer appears open and fully stocked. The colorful spools make it even more eye-catching than the copper-only version.</p>
+              <p>Green, red, blue, orange, yellow, white, black, purple, gray — the entire product line visible at a glance.</p>
             </div>
           </div>
           <div class="revision-feedback">
-            <div class="badge badge-gray" style="margin-bottom:10px; font-size:.7rem;">Original feedback</div>
+            <div class="badge badge-gray" style="margin-bottom:10px; font-size:.7rem;">Client feedback</div>
             <blockquote style="margin-bottom:0;">
               <p>"D option with our traditional logo please… Maybe add some more colors to the wire rather than more copper or aluminum."</p>
               <cite>— Client</cite>
@@ -953,6 +977,44 @@
           </div>
         </div>
       </div>
+
+      <!-- REVISION 2 -->
+      <div class="revision-iter-label fade-in">
+        <span class="revision-iter-num">Round 2</span>
+        Actual UWC logo applied
+      </div>
+      <div class="revision-grid fade-in">
+        <div class="revision-card" onclick="openLightbox('generated_imgs/edited-2026-03-18T16-12-54-643Z-jo3akt.png','Concept D — Round 2 (UWC Logo + Colorful Wire)')">
+          <div class="revision-img-wrap">
+            <img src="generated_imgs/edited-2026-03-18T16-12-54-643Z-jo3akt.png" alt="Concept D Round 2 — with actual UWC logo">
+            <span class="zoom-hint">Click to enlarge</span>
+          </div>
+        </div>
+        <div class="revision-notes">
+          <div class="revision-change">
+            <div class="change-icon">1</div>
+            <div>
+              <strong>Real UWC logo placed</strong>
+              <p>The actual current logo — blue metallic U and W, silver diagonal slash, copper-bronze C — set into the navy band exactly as it would appear in production.</p>
+            </div>
+          </div>
+          <div class="revision-change">
+            <div class="change-icon">2</div>
+            <div>
+              <strong>All other elements preserved</strong>
+              <p>Glass door illusion, colorful wire spools, tagline, unifiedwire.com, and Made in USA badge all unchanged from Round 1.</p>
+            </div>
+          </div>
+          <div class="revision-feedback">
+            <div class="badge badge-gray" style="margin-bottom:10px; font-size:.7rem;">Client feedback</div>
+            <blockquote style="margin-bottom:0;">
+              <p>"Their current logo to be used."</p>
+              <cite>— Client</cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
