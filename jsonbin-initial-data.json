@@ -1,0 +1,69 @@
+{
+  "defaultRepKey": "uwc",
+  "reps": {
+    "jordan": {
+      "name": "J.R. Jordan Sales, Inc.",
+      "color": "#E36417",
+      "states": [
+        "Alabama",
+        "Georgia",
+        "North Carolina",
+        "South Carolina",
+        "Tennessee"
+      ],
+      "address": "2152 Kensington Court, Marietta, GA 30064",
+      "contacts": [
+        {
+          "name": "Jim Jordan",
+          "office": "770-427-3432",
+          "cell": "678-231-7481",
+          "email": "jrjordan1@msn.com"
+        }
+      ],
+      "website": {
+        "label": "www.jrjordansales.com",
+        "href": "http://www.jrjordansales.com"
+      }
+    },
+    "df": {
+      "name": "DF Sales",
+      "color": "#0362BC",
+      "states": [
+        "Indiana",
+        "Michigan",
+        "Ohio"
+      ],
+      "address": "2616N 400E, Albion, IN 46701",
+      "contacts": [
+        {
+          "name": "Deb Freeman",
+          "phone": "260-438-9101",
+          "email": "debrafreeman@frontier.com"
+        },
+        {
+          "name": "Jami Reeve",
+          "phone": "260-414-1454",
+          "email": "jamireeve@frontier.com"
+        },
+        {
+          "name": "Jaci Diehm",
+          "phone": "260-414-7263",
+          "email": "jdiehm@frontier.com"
+        }
+      ]
+    },
+    "uwc": {
+      "name": "Unified Wire and Cable, Inc.",
+      "color": "#3d5a80",
+      "states": [],
+      "address": "338 Wurlitzer Dr., DeKalb, IL 60115",
+      "contacts": [
+        {
+          "name": "Sales Team",
+          "phone": "815-748-4876",
+          "email": "uwcsales@unifiedwire.com"
+        }
+      ]
+    }
+  }
+}
