@@ -1128,6 +1128,8 @@ function openInfo() {
 function closeInfo() {
   document.getElementById('infoOverlay').classList.remove('open');
   document.body.style.overflow = '';
+  const vid = document.querySelector('#infoOverlay video');
+  if (vid) { vid.pause(); vid.currentTime = 0; }
 }
 
 // ── Gate ────────────────────────────────────────────────────────────────────────
