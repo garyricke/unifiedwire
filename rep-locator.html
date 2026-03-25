@@ -13,9 +13,11 @@
   --text: #1a2535; --text-lt: #4a5568;
   --border: #dce3ed; --radius: 12px;
   --shadow: 0 4px 24px rgba(3,98,188,.12);
-  --rep-jordan: #E36417;
+  --rep-hq: #3d5a80;
   --rep-df: #0362BC;
-  --rep-uwc: #3d5a80;
+  --rep-bobby: #16a34a;
+  --rep-jason: #7c3aed;
+  --rep-james: #0891b2;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: #fff; }
@@ -101,6 +103,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .contact-link-value { font-size: 13px; font-weight: 500; }
 .rep-website-btn { display: flex; align-items: center; gap: 10px; margin-top: 16px; padding: 13px 18px; background: var(--navy); color: #fff; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; min-height: 48px; transition: background 0.2s; }
 .rep-website-btn:hover { background: var(--navy2); }
+
+/* New-business & corp note callouts */
+.new-biz-banner { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 16px; }
+.new-biz-banner strong { color: var(--orange-dk); display: block; margin-bottom: 2px; }
+.new-biz-banner a { color: var(--orange-dk); text-decoration: none; font-weight: 600; }
+.corp-note { margin-top: 16px; background: var(--gray-lt); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text-lt); line-height: 1.6; border-left: 3px solid var(--border); }
+.corp-note a { color: var(--blue); text-decoration: none; font-weight: 600; }
 
 /* Mobile toggle */
 .map-fab { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--navy); color: #fff; border: none; border-radius: 28px; padding: 14px 28px; font-size: 15px; font-weight: 700; cursor: pointer; z-index: 200; box-shadow: 0 6px 24px rgba(0,0,0,0.35); min-height: 52px; gap: 8px; align-items: center; white-space: nowrap; }
@@ -482,37 +491,62 @@ const ADMIN_HASH = '924548003d4a39b331c15273ac92ea240e6f83937219ac7b070d7b1f6d02
 
 function defaultRepData() {
   return {
-    defaultRepKey: 'uwc',
+    defaultRepKey: 'hq',
     reps: {
-      jordan: {
-        name: 'J.R. Jordan Sales, Inc.',
-        address: '2152 Kensington Court\nMarietta, GA 30064',
+      hq: {
+        name: 'Unified Wire & Cable HQ',
+        address: '338 Wurlitzer Drive\nDeKalb, IL 60115',
         contacts: [
-          { name: 'Jim Jordan', office: '770-427-3432', cell: '678-231-7481', email: 'jrjordan1@msn.com' }
+          { name: 'Corporate Sales', phone: '815-748-4876', email: 'uwcsales@unifiedwire.com' }
         ],
-        website: { label: 'www.jrjordansales.com', href: 'http://www.jrjordansales.com' },
-        color: '#E36417',
-        states: ['Alabama','Georgia','North Carolina','South Carolina','Tennessee']
+        color: '#3d5a80',
+        states: ['Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New York','New Jersey','Pennsylvania','Delaware','Maryland','Virginia','West Virginia']
+      },
+      ohio: {
+        name: 'Ohio Territory',
+        address: '',
+        contacts: [
+          { name: 'Winar (contact info pending)' },
+          { name: 'Deb Freeman — DF Sales', phone: '260-438-9101', email: 'deborafreeman@frontier.com' }
+        ],
+        color: '#3d5a80',
+        states: ['Ohio']
       },
       df: {
         name: 'DF Sales',
         address: '2616N 400E\nAlbion, IN 46701',
         contacts: [
-          { name: 'Deb Freeman', phone: '260-438-9101', email: 'debrafreeman@frontier.com' },
-          { name: 'Jami Reeve', phone: '260-414-1454', email: 'jamireeve@frontier.com' },
-          { name: 'Jaci Diehm', phone: '260-414-7263', email: 'jdiehm@frontier.com' }
+          { name: 'Deb Freeman', phone: '260-438-9101', email: 'deborafreeman@frontier.com' }
         ],
         color: '#0362BC',
-        states: ['Indiana','Michigan','Ohio']
+        states: ['Indiana']
       },
-      uwc: {
-        name: 'Unified Wire and Cable, Inc.',
-        address: '338 Wurlitzer Dr.\nDeKalb, IL 60115',
+      bobby: {
+        name: 'MYA Inc.',
+        address: '',
         contacts: [
-          { name: 'Sales Team', phone: '815-748-4876', email: 'uwcsales@unifiedwire.com' }
+          { name: 'Bobby Griffith', phone: '334-324-9687', email: 'bobby@MYAinc.net' }
         ],
-        color: '#3d5a80',
-        states: []
+        color: '#16a34a',
+        states: ['Alabama','Florida','Mississippi','Arkansas']
+      },
+      jason: {
+        name: 'Premier Sales Group',
+        address: '',
+        contacts: [
+          { name: 'Jason Foley', phone: '847-826-6062', email: 'Jason.Foley@PremierSalesGrp.com' }
+        ],
+        color: '#7c3aed',
+        states: ['Illinois','Michigan','Wisconsin','Iowa','Minnesota','Missouri','Kansas','Colorado','Nebraska','South Dakota','North Dakota','Wyoming','Utah','Idaho','Montana','Nevada','Oregon','Washington','California']
+      },
+      james: {
+        name: 'S2Nunn Inc.',
+        address: '',
+        contacts: [
+          { name: 'James Nunn', phone: '256-962-4055', email: 'James@S2Nunn.com' }
+        ],
+        color: '#0891b2',
+        states: ['Georgia','North Carolina','South Carolina','Louisiana','Oklahoma','Texas','New Mexico','Arizona']
       }
     }
   };
@@ -541,7 +575,13 @@ async function loadFromBin() {
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    repData = hydrateRepData(data);
+    // Migration check: if bin has legacy data (jordan key or uwc instead of hq), use new defaults
+    if (data.reps && (data.reps.jordan || (!data.reps.hq && data.reps.uwc))) {
+      console.log('Legacy rep data in bin — using updated defaults. Open Admin and Save to Cloud to migrate.');
+      repData = hydrateRepData(defaultRepData());
+    } else {
+      repData = hydrateRepData(data);
+    }
   } catch(e) {
     console.warn('jsonbin.io load failed, using defaults:', e);
     repData = hydrateRepData(defaultRepData());
@@ -879,15 +919,27 @@ function showRep(stateName) {
     ? `<a class="rep-website-btn" href="${rep.website.href}" target="_blank" rel="noopener">${webIcon} ${rep.website.label}</a>`
     : '';
 
+  const NEW_BIZ_STATES = new Set(['Alabama','Arkansas','Mississippi','Florida']);
+  const newBizHTML = NEW_BIZ_STATES.has(stateName)
+    ? `<div class="new-biz-banner"><strong>New business inquiry?</strong>For companies not yet a current customer, please contact UWC Headquarters directly — <a href="tel:+18157484876">815-748-4876</a> or <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`
+    : '';
+  const addressHTML = rep.address ? `<div class="rep-address">${rep.address.replace(/\n/g,'<br>')}</div>` : '';
+  const repKey = Object.keys(repData.reps).find(k => repData.reps[k] === rep) || repData.defaultRepKey;
+  const corpNoteHTML = (repKey === repData.defaultRepKey)
+    ? ''
+    : `<div class="corp-note">If inactive or new customer, please contact Corporate Sales to be placed with a representative in your territory — <a href="tel:+18157484876">815-748-4876</a> &nbsp;·&nbsp; <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`;
+
   card.innerHTML = `
     <div class="rep-state-tag" style="background:${rep.color}">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg>
       ${stateName}
     </div>
+    ${newBizHTML}
     <div class="rep-firm-name">${rep.name}</div>
-    <div class="rep-address">${rep.address.replace(/\n/g,'<br>')}</div>
+    ${addressHTML}
     <div class="rep-contacts">${contactsHTML}</div>
     ${websiteHTML}
+    ${corpNoteHTML}
   `;
 
   card.classList.remove('show');
