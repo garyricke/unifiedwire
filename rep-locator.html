@@ -1145,8 +1145,7 @@ function buildMap() {
   });
 
   // Draw labels
-  const skip = ['Connecticut','Delaware','District of Columbia','Massachusetts',
-    'New Hampshire','New Jersey','Rhode Island','Vermont'];
+  const skip = ['Delaware','District of Columbia','Rhode Island'];
   Object.entries(STATE_LABELS).forEach(([name, pos]) => {
     if (!pos || skip.includes(name)) return;
     const abbr = STATE_ABBR[name];
