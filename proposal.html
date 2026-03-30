@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unified Wire & Cable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: #0A1628;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .inner {
+      text-align: center;
+      padding: 40px 24px;
+    }
+    img {
+      height: 72px;
+      width: auto;
+      display: block;
+      margin: 0 auto 40px;
+    }
+    p {
+      font-size: .8rem;
+      font-weight: 300;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 32px;
+    }
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: #0362BC;
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    a:hover {
+      background: #024a90;
+      transform: translateY(-1px);
+    }
+    a svg { width: 18px; height: 18px; display: block; }
+    .links { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .link-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: rgba(227,100,23,.15);
+      color: #E36417;
+      font-size: .95rem;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(227,100,23,.3);
+      transition: background .2s, transform .2s;
+    }
+    .link-secondary:hover { background: rgba(227,100,23,.25); transform: translateY(-1px); }
+    .link-secondary svg { width: 18px; height: 18px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="inner">
+    <img src="Unified-Logo-current.png" alt="Unified Wire & Cable">
+    <p>Unified Wire &amp; Cable</p>
+    <div class="links">
+    <a href="brand-guide.html">
+      Brand Guide
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+    <a class="link-secondary" href="truck-wrap.html">
+      Truck Wrap Concepts
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="3" width="22" height="13" rx="2"/><path d="M16 21l-4-5-4 5"/>
+      </svg>
+    </a>
+    </div>
+  </div>
+</body>
+</html>

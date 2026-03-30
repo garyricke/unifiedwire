@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+
+<mapSettings 
+
+mapWidth = "560"
+mapHeight = "350"
+responsive = "false"
+
+offColor = "222222"
+strokeColor = "24221f"
+offStrokeColor = "000000"
+abbreviationColor = "f2f2f2"
+
+useText = "true"
+useTextAtBottom = "true"
+useParameterInUrl = "false"
+textAreaWidth = "200"
+textAreaHeight = "150"
+textAreaPadding = "0"
+
+pinSize = "10"
+
+/>
+
+<defaultSideText>
+<![CDATA[]]>
+</defaultSideText>
+
+<stateData stateName="Alabama" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>ALABAMA</u></strong><br />J. R. Jordan Sales, Inc<br />
+2152 Kensington Court<br />
+Marietta, GA  30064<br />
+Contact: Jim Jordan<br />
+770-427-3432 (office)<br />
+678-231-7481 (cell)<br />
+Email: <a href="mailto:jrjordan1@msn.com">jrjordan1@msn.com</a><br />
+Website: <a href="http://www.jrjordansales.com" target="_blank">www.jrjordansales.com</a>]]>
+</stateData>
+
+<stateData stateName="Alaska" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>ALASKA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Arizona" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>ARIZONA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Arkansas" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>ARKANSAS</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="California" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>CALIFORNIA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Colorado" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>COLORADO</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Connecticut" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>CONNECTICUT</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Delaware" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>DELAWARE</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="District of Columbia" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>DISTRICT OF COLUMBIA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Florida" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>FLORIDA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Georgia" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>GEORGIA</u></strong><br />J. R. Jordan Sales, Inc<br />
+2152 Kensington Court<br />
+Marietta, GA  30064<br />
+Contact: Jim Jordan<br />
+770-427-3432 (office)<br />
+678-231-7481 (cell)<br />
+Email: <a href="mailto:jrjordan1@msn.com">jrjordan1@msn.com</a><br />
+Website: <a href="http://www.jrjordansales.com" target="_blank">www.jrjordansales.com</a>]]>
+</stateData>
+
+<stateData stateName="Hawaii" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>HAWAII</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Idaho" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>IDAHO</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Illinois" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>ILLINOIS</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Indiana" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>INDIANA</u></strong><br />DF Sales<br />
+2616N 400E<br />
+Albion, IN  46701<br />
+Contacts:<br />
+Deb Freeman, (260-438-9101), <a href="mailto:debrafreeman@frontier.com">debrafreeman@frontier.com</a><br />
+Jami Reeve, (260-414-1454), <a href="mailto:jamireeve@frontier.com">jamireeve@frontier.com</a><br />
+Jaci Diehm, (260-414-7263), <a href="mailto:jdiehm@frontier.com">jdiehm@frontier.com</a>]]>
+</stateData>
+
+<stateData stateName="Iowa" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>IOWA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Kansas" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>KANSAS</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Kentucky" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>KENTUCKY</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Louisiana" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>LOUISIANA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Maine" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MAINE</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Maryland" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MARYLAND</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Massachusetts" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MASSACHUSETTS</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Michigan" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MICHIGAN</u></strong><br />DF Sales<br />
+2616N 400E<br />
+Albion, IN  46701<br />
+Contacts:<br />
+Deb Freeman, (260-438-9101), <a href="mailto:debrafreeman@frontier.com">debrafreeman@frontier.com</a><br />
+Jami Reeve, (260-414-1454), <a href="mailto:jamireeve@frontier.com">jamireeve@frontier.com</a><br />
+Jaci Diehm, (260-414-7263), <a href="mailto:jdiehm@frontier.com">jdiehm@frontier.com</a>]]>
+</stateData>
+
+<stateData stateName="Minnesota" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MINNESOTA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Mississippi" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MISSISSIPPI</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Missouri" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MISSOURI</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Montana" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>MONTANA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Nebraska" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NEBRASKA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Nevada" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NEVADA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="New Hampshire" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NEW HAMPSHIRE</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="New Jersey" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NEW JERSEY</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="New Mexico" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NEW MEXICO</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="New York" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NEW YORK</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="North Carolina" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NORTH CAROLINA</u></strong><br />J. R. Jordan Sales, Inc<br />
+2152 Kensington Court<br />
+Marietta, GA  30064<br />
+Contact: Jim Jordan<br />
+770-427-3432 (office)<br />
+678-231-7481 (cell)<br />
+Email: <a href="mailto:jrjordan1@msn.com">jrjordan1@msn.com</a><br />
+Website: <a href="http://www.jrjordansales.com" target="_blank">www.jrjordansales.com</a>]]>
+</stateData>
+
+<stateData stateName="North Dakota" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>NORTH DAKOTA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Ohio" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>OHIO</u></strong><br />DF Sales<br />
+2616N 400E<br />
+Albion, IN  46701<br />
+Contacts:<br />
+Deb Freeman, (260-438-9101), <a href="mailto:debrafreeman@frontier.com">debrafreeman@frontier.com</a><br />
+Jami Reeve, (260-414-1454), <a href="mailto:jamireeve@frontier.com">jamireeve@frontier.com</a><br />
+Jaci Diehm, (260-414-7263), <a href="mailto:jdiehm@frontier.com">jdiehm@frontier.com</a>]]>
+</stateData>
+
+<stateData stateName="Oklahoma" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>OKLAHOMA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Oregon" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>OREGON</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Pennsylvania" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>PENNSYLVANIA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Rhode Island" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>RHODE ISLAND</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="South Carolina" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>SOUTH CAROLINA</u></strong><br />J. R. Jordan Sales, Inc<br />
+2152 Kensington Court<br />
+Marietta, GA  30064<br />
+Contact: Jim Jordan<br />
+770-427-3432 (office)<br />
+678-231-7481 (cell)<br />
+Email: <a href="mailto:jrjordan1@msn.com">jrjordan1@msn.com</a><br />
+Website: <a href="http://www.jrjordansales.com" target="_blank">www.jrjordansales.com</a>]]>
+</stateData>
+
+<stateData stateName="South Dakota" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>SOUTH DAKOTA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Tennessee" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>TENNESSEE</u></strong><br />J. R. Jordan Sales, Inc<br />
+2152 Kensington Court<br />
+Marietta, GA  30064<br />
+Contact: Jim Jordan<br />
+770-427-3432 (office)<br />
+678-231-7481 (cell)<br />
+Email: <a href="mailto:jrjordan1@msn.com">jrjordan1@msn.com</a><br />
+Website: <a href="http://www.jrjordansales.com" target="_blank">www.jrjordansales.com</a>]]>
+</stateData>
+
+<stateData stateName="Texas" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>TEXAS</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Utah" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>UTAH</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Vermont" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>VERMONT</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Virginia" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>VIRGINIA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Washington" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>WASHINGTON</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="West Virginia" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>WEST VIRGINIA</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Wisconsin" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>WISCONSIN</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+<stateData stateName="Wyoming" url = " " stateMode = "ON" initialStateColor= "CC9933" stateOverColor = "000000" stateSelectedColor = "993300">
+<![CDATA[<strong><u>WYOMING</u></strong><br />Unified Wire and Cable, Inc<br />
+338 Wurlitzer Dr.<br />
+DeKalb, IL  60115<br />
+Phone: 815-748-4876<br />
+Email: <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a>]]>
+</stateData>
+
+</data>
