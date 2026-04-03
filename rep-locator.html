@@ -562,14 +562,27 @@ const JSONBIN_KEY = '$2a$10$R1cylWk2DnScmcNByb85puFMEA.mHscaOdY4tke8wcJEZRxVMuqr
 
 let repData = null; // loaded async — map won't build until this is set
 
+const CACHE_KEY = 'uwc_repdata_cache';
+const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
 async function loadFromBin() {
   showMapLoading(true);
   if (JSONBIN_ID === 'YOUR_BIN_ID_HERE') {
-    // No bin configured — use defaults
     repData = hydrateRepData(defaultRepData());
     finishInit();
     return;
   }
+
+  // Serve from cache if fresh
+  try {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+    if (cached && (Date.now() - cached.ts) < CACHE_TTL) {
+      repData = hydrateRepData(cached.data);
+      finishInit();
+      return;
+    }
+  } catch(e) { /* ignore bad cache */ }
+
   try {
     const res = await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID + '?meta=false', {
       headers: { 'X-Master-Key': JSONBIN_KEY }
@@ -581,6 +594,7 @@ async function loadFromBin() {
       console.log('Legacy rep data in bin — using updated defaults. Open Admin and Save to Cloud to migrate.');
       repData = hydrateRepData(defaultRepData());
     } else {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
       repData = hydrateRepData(data);
     }
   } catch(e) {
@@ -602,6 +616,7 @@ async function saveToBin() {
     body: JSON.stringify(payload)
   });
   if (!res.ok) throw new Error('Save failed: HTTP ' + res.status);
+  localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: payload }));
 }
 
 function hydrateRepData(d) {
