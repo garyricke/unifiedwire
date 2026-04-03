@@ -880,8 +880,13 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" placeholder="Tell us about your project, product needs, or question&hellip;"></textarea>
             </div>
-            <button type="submit" class="form-submit">Send Message</button>
+            <button type="submit" class="form-submit" id="form-submit-btn">Send Message</button>
           </form>
+          <div id="form-success" style="display:none; padding: 28px 0; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 10px;">&#10003;</div>
+            <p style="font-weight: 700; font-size: 1rem; margin-bottom: 6px;">Message sent!</p>
+            <p style="font-size: .85rem; color: var(--text-lt);">We'll get back to you within one business day.</p>
+          </div>
         </div>
 
       </div>
@@ -902,6 +907,27 @@
   </footer>
 
   <script>
+    // Netlify form — AJAX submit to avoid redirect
+    const contactForm = document.querySelector('form[name="contact"]');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('form-submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        try {
+          const data = new URLSearchParams(new FormData(contactForm));
+          await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data });
+          contactForm.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } catch {
+          btn.disabled = false;
+          btn.textContent = 'Send Message';
+          alert('Something went wrong. Please try again or email us directly.');
+        }
+      });
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
