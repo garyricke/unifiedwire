@@ -443,7 +443,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 <!-- Bottom-right buttons -->
 <div class="bottom-btns">
   <button class="info-trigger" id="info-trigger-btn" onclick="openInfo()" title="How this tool works">i</button>
-  <button class="admin-trigger" onclick="openGate()">Admin</button>
+  <button class="admin-trigger" id="admin-trigger-btn" onclick="openGate()" style="display:none">Admin</button>
 </div>
 
 <!-- Password Gate -->
@@ -1191,6 +1191,12 @@ async function sha256hex(str) {
 if (!new URLSearchParams(window.location.search).has('info')) {
   const btn = document.getElementById('info-trigger-btn');
   if (btn) btn.style.display = 'none';
+}
+
+// ── Admin button visibility (only shown when ?admin is in the URL) ────────────
+if (new URLSearchParams(window.location.search).has('admin')) {
+  const btn = document.getElementById('admin-trigger-btn');
+  if (btn) btn.style.display = '';
 }
 
 // ── Info Modal ──────────────────────────────────────────────────────────────────
