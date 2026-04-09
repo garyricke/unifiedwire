@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>America 250 — Unified Wire & Cable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #011A39;
+    --navy-2:    #051f44;
+    --navy-3:    #072550;
+    --navy-card: #08244a;
+    --gold:      #C5962A;
+    --gold-lt:   #d9aa3e;
+    --gold-dim:  rgba(197,150,42,0.18);
+    --gold-rule: rgba(197,150,42,0.35);
+    --white:     #f5f0e8;
+    --white-dim: rgba(245,240,232,0.65);
+    --white-faint: rgba(245,240,232,0.1);
+    --red:       #8B1A1A;
+    --text:      #e8e0d0;
+    --radius:    4px;
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ───────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ─── PASSWORD GATE ────────────────────────────────────── */
+  #gate {
+    position: fixed;
+    inset: 0;
+    background: var(--navy);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+  }
+
+  #gate.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .gate-stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .gate-stars::before,
+  .gate-stars::after {
+    content: '★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
+    position: absolute;
+    font-size: 10px;
+    letter-spacing: 28px;
+    color: rgba(197,150,42,0.08);
+    white-space: nowrap;
+  }
+  .gate-stars::before { top: 18%; left: -20px; right: -20px; }
+  .gate-stars::after  { bottom: 18%; left: -20px; right: -20px; }
+
+  .gate-inner {
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    width: min(420px, 92vw);
+  }
+
+  .gate-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 24px 0;
+    opacity: 0.6;
+  }
+
+  .gate-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .gate-mark-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .gate-mark-star {
+    color: var(--gold);
+    font-size: 8px;
+    opacity: 0.7;
+  }
+
+  .gate-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 34px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+
+  .gate-subtitle {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+  }
+
+  .gate-form {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .gate-input-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  .gate-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(197,150,42,0.3);
+    color: var(--white);
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    padding: 14px 20px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    outline: none;
+    transition: border-color var(--transition), background var(--transition);
+    border-radius: var(--radius);
+  }
+
+  .gate-input::placeholder {
+    color: rgba(245,240,232,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  .gate-input:focus {
+    border-color: var(--gold);
+    background: rgba(197,150,42,0.06);
+  }
+
+  .gate-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: background var(--transition), transform 0.15s;
+    border-radius: var(--radius);
+  }
+
+  .gate-btn:hover { background: var(--gold-lt); }
+  .gate-btn:active { transform: scale(0.98); }
+
+  .gate-error {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #d4786a;
+    height: 18px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-style: italic;
+  }
+
+  .gate-error.show { opacity: 1; }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    15%      { transform: translateX(-8px); }
+    30%      { transform: translateX(8px); }
+    45%      { transform: translateX(-6px); }
+    60%      { transform: translateX(6px); }
+    75%      { transform: translateX(-3px); }
+    90%      { transform: translateX(3px); }
+  }
+  .shake { animation: shake 0.55s ease; }
+
+  /* ─── NAV ──────────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(1,26,57,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold-rule);
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--white);
+  }
+
+  .nav-stars {
+    font-size: 8px;
+    letter-spacing: 10px;
+    color: rgba(197,150,42,0.4);
+  }
+
+  /* ─── HERO ─────────────────────────────────────────────── */
+  .hero {
+    padding: 80px 48px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(197,150,42,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'EB Garamond', serif;
+    font-style: normal;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 62px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--white-dim);
+    max-width: 500px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* ─── HORIZONTAL RULE DIVIDER ──────────────────────────── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .divider-line { flex: 1; height: 1px; background: var(--gold-rule); }
+
+  .divider-star {
+    color: var(--gold);
+    font-size: 10px;
+    opacity: 0.7;
+    letter-spacing: 6px;
+  }
+
+  /* ─── LOGO SECTION ─────────────────────────────────────── */
+  .logo-section {
+    padding: 64px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .logo-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(197,150,42,0.2);
+    border-radius: 8px;
+    padding: 48px;
+    max-width: 860px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    position: relative;
+    box-shadow: 0 0 80px rgba(197,150,42,0.05), inset 0 1px 0 rgba(197,150,42,0.1);
+  }
+
+  .logo-card::before {
+    content: '★ ★ ★';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    letter-spacing: 12px;
+    color: rgba(197,150,42,0.25);
+    white-space: nowrap;
+  }
+
+  .logo-img-wrap {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 4px;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .logo-img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .logo-caption {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(197,150,42,0.55);
+    font-family: 'EB Garamond', serif;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: var(--radius);
+    transition: background var(--transition), transform 0.15s, box-shadow var(--transition);
+    box-shadow: 0 4px 20px rgba(197,150,42,0.25);
+  }
+
+  .btn-download:hover {
+    background: var(--gold-lt);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(197,150,42,0.35);
+  }
+
+  .btn-download:active { transform: translateY(0); }
+
+  .btn-download svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  /* ─── REQUEST SECTION ──────────────────────────────────── */
+  .request-section {
+    padding: 64px 48px 80px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .section-heading p {
+    font-size: 16px;
+    color: var(--white-dim);
+    font-style: italic;
+  }
+
+  .message-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(197,150,42,0.15);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 36px 40px 36px 44px;
+    position: relative;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+    margin-bottom: 36px;
+  }
+
+  .message-card::before {
+    content: '"';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .message-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(197,150,42,0.12);
+  }
+
+  .message-from-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .message-from-label {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .message-body {
+    font-size: 18px;
+    line-height: 1.78;
+    color: var(--text);
+  }
+
+  .message-body p { margin-bottom: 1em; }
+  .message-body p:last-child { margin-bottom: 0; }
+
+  .message-body .salutation {
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .highlight-text {
+    color: var(--gold-lt);
+    font-style: italic;
+  }
+
+  .action-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    border-radius: var(--radius);
+    transition: background var(--transition), transform 0.15s, box-shadow var(--transition);
+    box-shadow: 0 4px 20px rgba(197,150,42,0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-lt);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(197,150,42,0.35);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(197,150,42,0.45);
+    transition: border-color var(--transition), background var(--transition), transform 0.15s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: rgba(197,150,42,0.07);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary:active,
+  .btn-primary:active { transform: translateY(0); }
+
+  /* ─── FOOTER ───────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--gold-rule);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-stars {
+    font-size: 9px;
+    letter-spacing: 12px;
+    color: rgba(197,150,42,0.25);
+  }
+
+  /* ─── FADE-IN SCROLL ANIMATION ─────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    nav { padding: 0 24px; }
+    .hero { padding: 56px 24px 48px; }
+    .divider { padding: 0 24px; }
+    .logo-section { padding: 48px 24px; }
+    .logo-card { padding: 32px 24px; }
+    .request-section { padding: 48px 24px 64px; }
+    .message-card { padding: 28px 24px 28px 30px; }
+    .action-row { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-secondary { justify-content: center; }
+    footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── PASSWORD GATE ──────────────────────────────────────── -->
+<div id="gate">
+  <div class="gate-stars"></div>
+  <div class="gate-inner">
+    <div class="gate-mark">
+      <span class="gate-mark-star">★</span>
+      <span class="gate-mark-text">Unified Wire &amp; Cable</span>
+      <span class="gate-mark-star">★</span>
+    </div>
+    <div class="gate-rule"></div>
+    <h1 class="gate-title">America 250<br>Logo Assets</h1>
+    <p class="gate-subtitle">Restricted Access</p>
+
+    <form class="gate-form" onsubmit="checkPassword(event)">
+      <div class="gate-input-wrap">
+        <input
+          id="gate-input"
+          class="gate-input"
+          type="password"
+          placeholder="Enter passphrase"
+          autocomplete="current-password"
+          autofocus
+        >
+      </div>
+      <button type="submit" class="gate-btn">Enter</button>
+      <span id="gate-error" class="gate-error">Incorrect passphrase — please try again.</span>
+    </form>
+
+    <div class="gate-rule" style="margin-top:32px;margin-bottom:0;"></div>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+<div id="main-content" style="visibility:hidden;">
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-wordmark">
+      <div class="nav-logo-dot"></div>
+      <span class="nav-name">Unified Wire &amp; Cable</span>
+    </a>
+    <span class="nav-stars">★ ★ ★</span>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero fade-in">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">1776 &nbsp;·&nbsp; 2026</span>
+      <span class="eyebrow-line"></span>
+    </div>
+    <h1 class="hero-title">America <em>250</em></h1>
+    <p class="hero-sub">Official logo assets for America's 250th anniversary celebration.</p>
+  </header>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-star">★ ★ ★</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- LOGO SECTION -->
+  <section class="logo-section">
+    <div class="logo-card fade-in">
+      <div class="logo-img-wrap">
+        <img src="images/unified-america-250.svg" alt="Unified Wire & Cable — America 250 Logo" loading="eager">
+      </div>
+      <p class="logo-caption">Unified Wire &amp; Cable &nbsp;·&nbsp; America 250 &nbsp;·&nbsp; Est. 1776</p>
+    </div>
+
+    <a href="images/unified-america-250.svg" download="Unified-Wire-America-250.svg" class="btn-download fade-in">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Download Logo (SVG)
+    </a>
+  </section>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-star">★ ★ ★</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- REQUEST SECTION -->
+  <section class="request-section">
+    <div class="section-heading fade-in">
+      <h2>Logo Request</h2>
+      <p>From a client — forwarded for your attention</p>
+    </div>
+
+    <div class="message-card fade-in">
+      <div class="message-meta">
+        <div class="message-from-dot"></div>
+        <span class="message-from-label">Client Correspondence</span>
+      </div>
+      <div class="message-body">
+        <p class="salutation">Hey Gary / Jason,</p>
+        <p>Can't you all help us get the <span class="highlight-text">bottom left image in the first attachment with the <em>Est. 1776</em> included?</span> And in a format that we can send for swag printing?</p>
+        <p>We would also like to add the logo somewhere on our website landing page for the remainder of the year.</p>
+      </div>
+    </div>
+
+    <div class="action-row fade-in">
+      <a href="mailto:" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M1.5 4L8 9.5 14.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Reply via Email
+      </a>
+      <a href="images/unified-america-250.svg" download="Unified-Wire-America-250.svg" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 1v9M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Download Logo
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-left">Unified Wire &amp; Cable &copy; 2026</span>
+    <span class="footer-stars">★ ★ ★ ★ ★</span>
+    <span class="footer-left">America 250</span>
+  </footer>
+
+</div><!-- /main-content -->
+
+<script>
+  /* ── PASSWORD GATE ──────────────────────────────────────── */
+  const PASS     = 'copper';
+  const SESSION  = 'uwc_250_auth';
+  const gate     = document.getElementById('gate');
+  const main     = document.getElementById('main-content');
+  const errEl    = document.getElementById('gate-error');
+  const inputEl  = document.getElementById('gate-input');
+
+  function unlock() {
+    gate.classList.add('fade-out');
+    main.style.visibility = 'visible';
+    main.style.opacity = '0';
+    main.style.transition = 'opacity 0.6s ease';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        main.style.opacity = '1';
+        setTimeout(() => { main.style.transition = ''; }, 700);
+      });
+    });
+    setTimeout(() => { gate.style.display = 'none'; }, 800);
+    sessionStorage.setItem(SESSION, '1');
+    initScrollObserver();
+  }
+
+  function checkPassword(e) {
+    e.preventDefault();
+    const val = inputEl.value.trim().toLowerCase();
+    if (val === PASS) {
+      unlock();
+    } else {
+      errEl.classList.add('show');
+      inputEl.classList.add('shake');
+      inputEl.value = '';
+      inputEl.focus();
+      setTimeout(() => inputEl.classList.remove('shake'), 600);
+    }
+  }
+
+  /* Auto-unlock if already authenticated this session */
+  if (sessionStorage.getItem(SESSION) === '1') {
+    gate.style.display = 'none';
+    main.style.visibility = 'visible';
+    setTimeout(initScrollObserver, 100);
+  }
+
+  /* ── SCROLL FADE-IN ─────────────────────────────────────── */
+  function initScrollObserver() {
+    const els = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => obs.observe(el));
+  }
+</script>
+</body>
+</html>
