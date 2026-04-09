@@ -590,9 +590,130 @@
     .actions-row { flex-direction: column; align-items: stretch; }
     .btn { justify-content: center; }
   }
+
+  /* ── GATE ────────────────────────────────────────────────── */
+  #gate {
+    position: fixed;
+    inset: 0;
+    background: var(--navy);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+  }
+  #gate.fade-out { opacity: 0; visibility: hidden; }
+  .gate-inner {
+    text-align: center;
+    width: min(400px, 92vw);
+    padding: 48px 40px;
+  }
+  .gate-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .gate-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .gate-title span { color: var(--blue); }
+  .gate-sub {
+    font-size: 13px;
+    color: rgba(244,241,236,0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin-bottom: 36px;
+  }
+  .gate-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(244,241,236,0.12), transparent);
+    margin: 28px 0;
+  }
+  .gate-form { display: flex; flex-direction: column; gap: 10px; }
+  .gate-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(244,241,236,0.12);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.25em;
+    text-align: center;
+    padding: 14px 20px;
+    outline: none;
+    border-radius: 3px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .gate-input::placeholder { color: rgba(244,241,236,0.2); letter-spacing: 0.1em; }
+  .gate-input:focus { border-color: var(--blue); background: rgba(3,98,188,0.07); }
+  .gate-btn {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .gate-btn:hover { background: var(--blue-lt); }
+  .gate-btn:active { transform: scale(0.98); }
+  .gate-error {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: #d4786a;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    height: 16px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .gate-error.show { opacity: 1; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    15%      { transform: translateX(-8px); }
+    30%      { transform: translateX(8px); }
+    45%      { transform: translateX(-5px); }
+    60%      { transform: translateX(5px); }
+    80%      { transform: translateX(-3px); }
+  }
+  .shake { animation: shake 0.5s ease; }
 </style>
 </head>
 <body>
+
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-eyebrow">Unified Wire &amp; Cable</div>
+    <h1 class="gate-title">Banner<br><span>Concepts</span></h1>
+    <p class="gate-sub">Design Review · Restricted</p>
+    <div class="gate-rule"></div>
+    <form class="gate-form" onsubmit="checkPassword(event)">
+      <input id="gate-input" class="gate-input" type="password" placeholder="Enter passphrase" autocomplete="current-password" autofocus>
+      <button type="submit" class="gate-btn">Enter</button>
+      <span id="gate-error" class="gate-error">Incorrect passphrase — try again</span>
+    </form>
+  </div>
+</div>
+
+<div id="main-content" style="visibility:hidden;">
 
 <!-- NAV -->
 <nav>
@@ -723,6 +844,7 @@
 </div>
 
 <!-- LIGHTBOX -->
+</div><!-- /main-content -->
 <div id="lightbox" onclick="closeLightbox()">
   <button class="lb-close" onclick="closeLightbox()">Close &times;</button>
   <img id="lb-img" src="" alt="">
@@ -739,6 +861,46 @@
 </footer>
 
 <script>
+  /* ── PASSWORD GATE ───────────────────────────────────────── */
+  const PASS    = 'copper';
+  const SESSION = 'uwc_banner_auth';
+  const gate    = document.getElementById('gate');
+  const main    = document.getElementById('main-content');
+  const errEl   = document.getElementById('gate-error');
+  const inputEl = document.getElementById('gate-input');
+
+  function unlock() {
+    gate.classList.add('fade-out');
+    main.style.visibility = 'visible';
+    main.style.opacity = '0';
+    main.style.transition = 'opacity 0.6s ease';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      main.style.opacity = '1';
+      setTimeout(() => main.style.transition = '', 700);
+    }));
+    setTimeout(() => gate.style.display = 'none', 800);
+    sessionStorage.setItem(SESSION, '1');
+    initObserver();
+  }
+
+  function checkPassword(e) {
+    e.preventDefault();
+    if (inputEl.value.trim().toLowerCase() === PASS) {
+      unlock();
+    } else {
+      errEl.classList.add('show');
+      inputEl.classList.add('shake');
+      inputEl.value = '';
+      inputEl.focus();
+      setTimeout(() => inputEl.classList.remove('shake'), 550);
+    }
+  }
+
+  if (sessionStorage.getItem(SESSION) === '1') {
+    gate.style.display = 'none';
+    main.style.visibility = 'visible';
+  }
+
   /* ── LIGHTBOX ────────────────────────────────────────────── */
   const lb     = document.getElementById('lightbox');
   const lbImg  = document.getElementById('lb-img');
@@ -762,16 +924,19 @@
   lbImg.addEventListener('click', e => e.stopPropagation());
 
   /* ── SCROLL FADE-IN ──────────────────────────────────────── */
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  function initObserver() {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.concept-card, .actions-section').forEach(el => obs.observe(el));
+  }
 
-  document.querySelectorAll('.concept-card, .actions-section').forEach(el => observer.observe(el));
+  if (sessionStorage.getItem(SESSION) === '1') initObserver();
 </script>
 </body>
 </html>
