@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Unified Wire & Cable — Precision-Manufactured Wire & Cable</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
+  <link rel="stylesheet" href="assets/css/uwc.css">
+  <style>
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 120px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10,22,40,.82) 0%,
+        rgba(10,22,40,.60) 50%,
+        rgba(10,22,40,.72) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 760px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: .70rem; letter-spacing: .14em;
+      text-transform: uppercase; color: rgba(255,255,255,.5);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow span {
+      width: 32px; height: 1.5px; background: var(--orange); flex-shrink: 0;
+    }
+    .hero h1 {
+      color: #fff; margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,.7) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.15rem; color: rgba(255,255,255,.6);
+      max-width: 560px; margin-bottom: 40px; line-height: 1.65;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Pillars ──────────────────────────────────────────── */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .pillar {
+      background: var(--white);
+      padding: 32px 28px;
+    }
+    .pillar-icon {
+      width: 44px; height: 44px;
+      background: var(--blue-tint);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      color: var(--blue);
+    }
+    .pillar h4 { margin-bottom: 8px; }
+    .pillar p  { font-size: .92rem; }
+
+    /* Image-backed pillar variant */
+    .pillar-img {
+      position: relative; overflow: hidden;
+      background: transparent; /* remove .pillar's white bg so media shows */
+      background-size: cover;
+      background-position: center;
+    }
+    .pillar-img::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(10,22,40,.60) 0%,
+        rgba(10,22,40,.82) 100%
+      );
+      z-index: 1;
+    }
+    .pillar-img > * { position: relative; z-index: 2; }
+    .pillar-img .pillar-icon {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.22);
+      color: #fff;
+    }
+    .pillar-img h4 { color: #fff; }
+    .pillar-img p  { color: rgba(255,255,255,.72); }
+    /* Video pillar — z-index: 0, overlay at 1, content at 2 */
+    .pillar-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      z-index: 0;
+    }
+    @media (max-width: 760px) { .pillar-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .pillar-grid { grid-template-columns: 1fr; } }
+
+    /* ── Application / Market Cards ──────────────────────── */
+    .market-card {
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      background-color: var(--navy);
+      background-size: cover;
+      background-position: center;
+      display: flex; flex-direction: column;
+      transition: box-shadow .3s, transform .3s, border-color .3s;
+      text-decoration: none; color: #fff;
+      position: relative; overflow: hidden;
+      min-height: 300px;
+    }
+    .market-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,.5);
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.28);
+    }
+    .market-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,.95) 0%, rgba(10,22,40,.68) 45%, rgba(10,22,40,.28) 100%);
+      transition: opacity .3s; z-index: 0;
+    }
+    .market-card:hover::before { opacity: .82; }
+    .market-card > * { position: relative; z-index: 1; }
+    .market-card-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(255,255,255,.14); color: #fff;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; transition: background .2s, border-color .2s;
+    }
+    .market-card:hover .market-card-icon { background: var(--blue); border-color: var(--blue); }
+    .market-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.15rem; }
+    .market-card p  { color: rgba(255,255,255,.72); font-size: .9rem; flex: 1; margin-bottom: 16px; }
+    .market-card-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+    .market-card-tags .tag {
+      background: rgba(255,255,255,.1); color: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.2); font-size: .72rem;
+    }
+    .market-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .82rem; font-weight: 700; color: rgba(255,255,255,.85);
+      transition: gap .2s, color .2s;
+    }
+    .market-card:hover .market-card-link { gap: 10px; color: #fff; }
+
+    /* ── Skin Coat Teaser ─────────────────────────────────── */
+    .skin-coat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .skin-coat-visual {
+      background: var(--navy);
+      border-radius: 16px;
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .skin-coat-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 70%, rgba(3,98,188,.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 25%, rgba(227,100,23,.20) 0%, transparent 45%);
+    }
+    .skin-coat-placeholder {
+      position: relative; z-index: 1;
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.25); text-align: center;
+    }
+    .skin-coat-bullets { list-style: none; margin: 20px 0 28px; }
+    .skin-coat-bullets li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: .95rem; color: var(--text-lt);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skin-coat-bullets li:last-child { border-bottom: none; }
+    .skin-coat-check {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--blue-tint);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+      color: var(--blue);
+    }
+    @media (max-width: 760px) {
+      .skin-coat-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    /* ── Markets Strip ────────────────────────────────────── */
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .market-item {
+      background: rgba(255,255,255,.03);
+      padding: 28px 16px;
+      text-align: center;
+      transition: background .2s;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .market-item:hover { background: rgba(255,255,255,.07); }
+    .market-icon {
+      width: 44px; height: 44px;
+      background: rgba(3,98,188,.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #7ebfff;
+    }
+    .market-name {
+      font-size: .78rem; font-weight: 700;
+      color: rgba(255,255,255,.7); line-height: 1.3;
+    }
+    @media (max-width: 860px) { .market-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 480px) { .market-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ── CTA Banner ───────────────────────────────────────── */
+    .cta-banner {
+      background:
+        radial-gradient(ellipse at 10% 50%, rgba(3,98,188,.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 50%, rgba(227,100,23,.15) 0%, transparent 50%),
+        var(--navy2);
+      border-radius: 20px;
+      padding: 64px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-banner h2 { color: #fff; }
+    .cta-banner p  { color: rgba(255,255,255,.55); margin-top: 8px; }
+    .cta-actions   { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .cta-banner { flex-direction: column; padding: 44px 32px; }
+      .cta-actions { flex-direction: column; width: 100%; }
+      .cta-actions .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="uwc-gate"></div>
+
+<!-- Navigation -->
+<header id="site-nav"></header>
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto/f_auto/v1776461808/unified-home-hero-v0_d26a22.mov" type="video/mp4">
+  </video>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span></span>
+        American Wire Manufacturer · DeKalb, Illinois
+      </div>
+      <h1>Precision-manufactured<br>wire &amp; cable.<br><em>Ready when the job starts.</em></h1>
+      <p class="hero-sub">
+        From copper fabrication to extrusion — all under one roof in DeKalb, Illinois.
+        Serving appliance, automotive, marine, RV, electronics, and military markets since 1977.
+      </p>
+      <div class="hero-actions">
+        <a href="products.html" class="btn btn-primary btn-lg">Browse Products</a>
+        <a href="contact.html" class="btn btn-ghost btn-lg">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar" style="background:rgba(10,22,40,.95); border-color:rgba(255,255,255,.07);">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-dot"></div>ISO 9001:2015 Certified</div>
+    <div class="trust-item"><div class="trust-dot"></div>UL Listed — 100+ AWM Styles</div>
+    <div class="trust-item"><div class="trust-dot"></div>CSA Approved</div>
+    <div class="trust-item"><div class="trust-dot orange"></div>RoHS3 Compliant</div>
+    <div class="trust-item"><div class="trust-dot orange"></div>Made in DeKalb, IL</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     WHY UNIFIED WIRE
+══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-blue">Why Unified Wire</span>
+      <h2 style="margin-top:12px;">Built different. Proven over 50 years.</h2>
+      <p>Six reasons why OEMs and distributors across the U.S. rely on Unified Wire &amp; Cable.</p>
+    </div>
+    <div class="pillar-grid fade-in">
+      <div class="pillar pillar-img" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/pillar-experience')">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h4>50+ Years of Experience</h4>
+        <p>Founded in 1977, we bring decades of diverse market expertise to every order — practical solutions at competitive pricing.</p>
+      </div>
+      <div class="pillar pillar-img" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/pillar-manufacturing')">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h4>Manufacturing Capacity</h4>
+        <p>75,000 sq ft facility with 7 extrusion lines and industry-leading technology — built to meet your needs regardless of order size.</p>
+      </div>
+      <div class="pillar pillar-img" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/pillar-flexibility')">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <h4>Production Flexibility</h4>
+        <p>Vertically integrated from copper fabrication to extrusion. Flexible scheduling and faster response times — no intermediaries slowing you down.</p>
+      </div>
+      <div class="pillar pillar-img" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/pillar-inventory')">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+          </svg>
+        </div>
+        <h4>Inventory Depth</h4>
+        <p>Sizable finished goods ready for immediate shipment. When emergencies happen, we can fulfill from stock — quickly.</p>
+      </div>
+      <div class="pillar pillar-img" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/pillar-pricing')">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+          </svg>
+        </div>
+        <h4>Competitive Pricing</h4>
+        <p>Right material, right price, right time — every time. Our Skin Coat process reduces scrap and machine downtime, enabling lower minimums and better pricing.</p>
+      </div>
+      <div class="pillar pillar-img">
+        <video class="pillar-video" autoplay muted loop playsinline preload="auto"
+          src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto/f_auto/v1776464089/pillars-people_po8anv.mp4">
+        </video>
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h4>Real People, Real Solutions</h4>
+        <p>Our team averages over a decade of tenure. Qualified sales reps and experienced engineers — not a call center — provide practical guidance on every order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     APPLICATIONS
+══════════════════════════════════════════════════════════ -->
+<section class="section-alt">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-gray">Shop by Application</span>
+      <h2 style="margin-top:12px;">Select your application</h2>
+      <p>Choose a project type to see pre-filtered, code-compliant product recommendations.</p>
+    </div>
+    <div class="grid-3 fade-in" style="margin-bottom:24px;">
+
+      <a href="products.html?app=commercial" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-commercial')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Commercial Construction</h3>
+        <p>Office, retail, and mixed-use projects. NEC 2023 compliant.</p>
+        <div class="market-card-tags">
+          <span class="tag">THHN/THWN-2</span>
+          <span class="tag">NM-B</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="products.html?app=industrial" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-industrial')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M6 20V10l6-6 6 6v10"/><rect x="9" y="14" width="6" height="6"/></svg>
+        </div>
+        <h3>Industrial &amp; Manufacturing</h3>
+        <p>Harsh environments, heavy machinery, and plant wiring.</p>
+        <div class="market-card-tags">
+          <span class="tag">THHN/THWN-2</span>
+          <span class="tag">XHHW-2</span>
+          <span class="tag">SOOW</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="products.html?app=ev" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-ev')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>EV Charging Infrastructure</h3>
+        <p>Level 2 &amp; DCFC charger circuits. High-ampacity feeders.</p>
+        <div class="market-card-tags">
+          <span class="tag">THHN/THWN-2</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="products.html?app=solar" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-solar')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+        </div>
+        <h3>Solar / PV Systems</h3>
+        <p>Sunlight-resistant, direct-burial, and array wiring.</p>
+        <div class="market-card-tags">
+          <span class="tag">USE-2</span>
+          <span class="tag">XHHW-2</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="products.html?app=residential" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-residential')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Residential Wiring</h3>
+        <p>New construction, renovation, and service upgrades.</p>
+        <div class="market-card-tags">
+          <span class="tag">NM-B</span>
+          <span class="tag">USE-2</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="products.html?app=datacenter" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-datacenter')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <h3>Data Center &amp; Mission Critical</h3>
+        <p>High-density feeders, 24/7 uptime requirements.</p>
+        <div class="market-card-tags">
+          <span class="tag">THHN/THWN-2</span>
+          <span class="tag">XHHW-2</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+    </div>
+    <div class="text-center fade-in">
+      <a href="products.html" class="btn btn-primary">Browse All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SKIN COAT TECHNOLOGY TEASER
+══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="skin-coat-grid">
+      <div class="skin-coat-visual fade-in">
+        <div class="skin-coat-placeholder">
+          [ Facility / Process Photo ]<br>
+          <span style="font-size:.6rem; opacity:.6;">Placeholder — replace with production image</span>
+        </div>
+      </div>
+      <div class="fade-in">
+        <span class="badge badge-orange">Proprietary Technology</span>
+        <h2 style="margin-top:12px;">Skin Coat Technology</h2>
+        <p style="margin-top:12px;">A state-of-the-art co-extrusion process that applies a precision outer color skin — 0.004" to 0.010" thick — fused to the inner compound in a single pass.</p>
+        <ul class="skin-coat-bullets">
+          <li>
+            <span class="skin-coat-check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Color is fused in the melt — it won't peel, scrape off, or separate
+          </li>
+          <li>
+            <span class="skin-coat-check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Meets all UL, CSA, and SAE standards — same electrical and physical properties as conventional PVC
+          </li>
+          <li>
+            <span class="skin-coat-check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Enables lower minimums and better pricing through reduced scrap and machine downtime
+          </li>
+        </ul>
+        <a href="skin-coat-technology.html" class="btn btn-outline">Learn About Skin Coat Technology</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MARKETS WE SERVE
+══════════════════════════════════════════════════════════ -->
+<section class="section-dark">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);">Industries</span>
+      <h2 style="margin-top:12px;">Markets we serve</h2>
+      <p>Specialized wire and cable solutions for seven core industries — built to your application's exact specification.</p>
+    </div>
+    <div class="market-grid fade-in">
+      <a href="markets/appliance.html" class="market-item">
+        <div class="market-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
+          </svg>
+        </div>
+        <div class="market-name">Appliance</div>
+      </a>
+      <a href="markets/automotive.html" class="market-item">
+        <div class="market-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v9a2 2 0 01-2 2h-2"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
+          </svg>
+        </div>
+        <div class="market-name">Automotive</div>
+      </a>
+      <a href="markets/marine.html" class="market-item">
+        <div class="market-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20a2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1"/><path d="M4 18L3 8l5 4 4-7 4 7 5-4-1 10"/>
+          </svg>
+        </div>
+        <div class="market-name">Marine</div>
+      </a>
+      <a href="markets/rv.html" class="market-item">
+        <div class="market-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v4h-7"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>
+          </svg>
+        </div>
+        <div class="market-name">Recreational Vehicle</div>
+      </a>
+      <a href="markets/electronics-oem.html" class="market-item">
+        <div class="market-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="market-name">Electronics &amp; OEM</div>
+      </a>
+      <a href="markets/military.html" class="market-item">
+        <div class="market-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="market-name">Military</div>
+      </a>
+      <a href="markets/distribution.html" class="market-item">
+        <div class="market-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="market-name">Distribution</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     BY THE NUMBERS
+══════════════════════════════════════════════════════════ -->
+<section class="section-alt">
+  <div class="container">
+    <div class="stats-strip fade-in">
+      <div class="stat-item">
+        <div class="stat-number">1977</div>
+        <div class="stat-label">Year Founded</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">75K</div>
+        <div class="stat-label">Square Feet</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Extrusion Lines</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">UL AWM Styles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50</div>
+        <div class="stat-label">Years &amp; Counting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner fade-in">
+      <div>
+        <h2>Need a quote or have a custom spec?</h2>
+        <p>Our team responds fast. Real people, practical solutions — no automated runaround.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-primary btn-lg">Contact Sales</a>
+        <a href="find-a-rep.html" class="btn btn-outline-wh btn-lg">Find Your Rep</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="site-footer"></footer>
+
+<script>
+  window._uwcDepth = '';
+  window._uwcPage  = 'Home';
+</script>
+<script src="assets/js/uwc.js"></script>
+<script src="assets/js/password.js"></script>
+</body>
+</html>

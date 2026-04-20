@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Compliance Center — Unified Wire & Cable</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
+  <link rel="stylesheet" href="../assets/css/uwc.css">
+  <style>
+    .page-hero {
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(3,98,188,.22) 0%, transparent 55%),
+        var(--navy);
+      color: #fff; padding: 72px 0 64px;
+    }
+    .page-hero h1 { color: #fff; font-size: clamp(1.9rem,4vw,3rem); margin-top: 12px; }
+    .page-hero p  { color: rgba(255,255,255,.6); max-width: 600px; margin-top: 12px; font-size: 1.05rem; }
+
+    /* Doc Library */
+    .doc-section { margin-bottom: 56px; }
+    .doc-section-title {
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--text-lt);
+      padding-bottom: 12px; margin-bottom: 0;
+      border-bottom: 2px solid var(--border);
+    }
+    .doc-table { width: 100%; border-collapse: collapse; margin-top: 0; }
+    .doc-table td { padding: 16px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .doc-table tr:last-child td { border-bottom: none; }
+    .doc-table tr:hover td { background: var(--gray-lt); }
+    .doc-name { font-weight: 700; color: var(--text); font-size: .95rem; }
+    .doc-scope { font-size: .85rem; color: var(--text-lt); margin-top: 3px; }
+    .doc-updated {
+      font-family: var(--mono); font-size: .72rem; color: var(--text-lt);
+      white-space: nowrap; letter-spacing: .04em;
+    }
+    .doc-dl-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px; border-radius: 7px;
+      font-size: .82rem; font-weight: 700;
+      background: var(--blue-tint); color: var(--blue);
+      border: 1.5px solid var(--blue); transition: all .2s;
+      white-space: nowrap; cursor: pointer;
+    }
+    .doc-dl-btn:hover { background: var(--blue); color: #fff; }
+    .doc-dl-btn.placeholder {
+      background: var(--gray-lt); color: var(--text-lt);
+      border-color: var(--border); cursor: default; opacity: .7;
+    }
+    .doc-placeholder-note {
+      font-size: .75rem; color: var(--text-lt); font-family: var(--mono);
+      margin-top: 4px; letter-spacing: .03em;
+    }
+
+    /* UL Styles */
+    .ul-style-grid {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .ul-chip {
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .06em;
+      padding: 5px 10px; border-radius: 6px;
+      background: var(--gray-lt); color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* Approvals Summary Table */
+    .approvals-table { width: 100%; border-collapse: collapse; }
+    .approvals-table th {
+      text-align: left; padding: 10px 14px;
+      font-family: var(--mono); font-size: .70rem; letter-spacing: .10em;
+      text-transform: uppercase; color: var(--text-lt);
+      background: var(--gray-lt); border-bottom: 2px solid var(--border);
+    }
+    .approvals-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: .92rem; }
+    .approvals-table tr:last-child td { border-bottom: none; }
+    .check-yes { color: var(--blue); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .doc-table td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="uwc-gate"></div>
+<header id="site-nav"></header>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <span class="badge badge-blue">Compliance Center</span>
+    <h1>Regulatory &amp; Compliance Documents</h1>
+    <p>All compliance documentation — downloadable without a form or phone call. Updated certificates organized by regulation and product family.</p>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns: 1fr 280px; gap: 64px; align-items: start;">
+
+      <!-- Doc Library -->
+      <div>
+
+        <!-- Quality Management -->
+        <div class="doc-section fade-in">
+          <div class="doc-section-title">Quality Management</div>
+          <table class="doc-table">
+            <tr>
+              <td>
+                <div class="doc-name">ISO 9001:2015 Certificate</div>
+                <div class="doc-scope">Covers all manufacturing operations — DeKalb, IL facility</div>
+                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+              </td>
+              <td class="doc-updated">Last Updated<br>2024</td>
+              <td><span class="doc-dl-btn placeholder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </span></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Environmental / Restricted Substances -->
+        <div class="doc-section fade-in">
+          <div class="doc-section-title">Environmental &amp; Restricted Substances</div>
+          <table class="doc-table">
+            <tr>
+              <td>
+                <div class="doc-name">RoHS3 Compliance Declaration</div>
+                <div class="doc-scope">EU Directive 2011/65/EU as amended — all standard product families</div>
+                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+              </td>
+              <td class="doc-updated">Last Updated<br>2024</td>
+              <td><span class="doc-dl-btn placeholder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="doc-name">REACH SVHC Declaration</div>
+                <div class="doc-scope">EU REACH Regulation (EC) No 1907/2006 — substances of very high concern</div>
+                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+              </td>
+              <td class="doc-updated">Last Updated<br>2024</td>
+              <td><span class="doc-dl-btn placeholder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="doc-name">California Proposition 65 Compliance</div>
+                <div class="doc-scope">OEHHA Safe Drinking Water and Toxic Enforcement Act of 1986</div>
+                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+              </td>
+              <td class="doc-updated">Last Updated<br>2024</td>
+              <td><span class="doc-dl-btn placeholder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="doc-name">TSCA Compliance Statement</div>
+                <div class="doc-scope">Toxic Substances Control Act — U.S. EPA</div>
+                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+              </td>
+              <td class="doc-updated">Last Updated<br>2024</td>
+              <td><span class="doc-dl-btn placeholder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </span></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Supply Chain -->
+        <div class="doc-section fade-in">
+          <div class="doc-section-title">Supply Chain &amp; Sourcing</div>
+          <table class="doc-table">
+            <tr>
+              <td>
+                <div class="doc-name">Conflict Minerals Statement (6.31)</div>
+                <div class="doc-scope">Dodd-Frank Section 1502 — 3TG minerals disclosure</div>
+                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+              </td>
+              <td class="doc-updated">Last Updated<br>2024</td>
+              <td><span class="doc-dl-btn placeholder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </span></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- UL Approvals -->
+        <div class="doc-section fade-in">
+          <div class="doc-section-title">UL AWM Approved Styles — Full List</div>
+          <p style="padding: 16px 0 20px; font-size:.9rem;">Unified Wire &amp; Cable holds UL Listing for 100+ Appliance Wiring Material (AWM) styles. All listed styles are available in both bare copper and tinned copper conductors unless noted.</p>
+          <div class="ul-style-grid">
+            1007, 1011, 1013, 1015, 1017, 1019, 1020, 1021, 1022, 1023, 1024, 1026, 1027, 1028, 1030, 1032, 1039, 1041, 1043, 1045, 1047, 1049, 1051, 1053, 1054, 1055, 1056, 1057, 1058, 1059, 1060, 1061, 1095, 1099, 1120, 1122, 1128, 1129, 1137, 1141, 1143, 1151, 1152, 1158, 1159, 1160, 1161, 1162, 1164, 1188, 1190, 1191, 1195, 1196, 1207, 1208, 1220, 1230, 1231, 1232, 1233, 1235, 1237, 1239, 1270, 1271, 1272, 1273, 1275, 1276, 1278, 1279, 1280, 1283, 1284, 1306, 1307, 1308, 1310, 1311, 1312, 1314, 1316, 1322, 1323, 1329, 1335, 1336, 1337, 1338, 1339, 1340, 1342, 1343, 1344, 1345, 1346, 1383, 1384, 1389, 1390, 1391, 1392, 1396, 1400, 1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410, 1411, 1412, 1413, 1414, 1416, 1444, 1447, 1452, 1453, 1479, 1483, 1497, 1498, 1499, 1500, 1509, 1568, 1569, 1576, 1581, 1582, 1605, 1647, 1650, 1662, 1672, 1680, 1683, 1692, 1729, 1825, 1950, 10070
+          </div>
+          <p style="margin-top:16px; font-size:.82rem; color:var(--text-lt);">Need to verify a specific style? <a href="../contact.html" style="color:var(--blue); font-weight:700;">Contact our sales team</a> for confirmation and documentation.</p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div style="position:sticky; top:88px;">
+        <div class="card fade-in" style="margin-bottom:20px;">
+          <h4 style="margin-bottom:8px;">Approvals Summary</h4>
+          <table class="approvals-table">
+            <thead><tr><th>Standard</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>ISO 9001:2015</td><td class="check-yes">✓ Certified</td></tr>
+              <tr><td>UL (AWM)</td><td class="check-yes">✓ Listed</td></tr>
+              <tr><td>CSA</td><td class="check-yes">✓ Approved</td></tr>
+              <tr><td>SAE J1128</td><td class="check-yes">✓ Approved</td></tr>
+              <tr><td>SAE J1127</td><td class="check-yes">✓ Approved</td></tr>
+              <tr><td>RoHS3</td><td class="check-yes">✓ Compliant</td></tr>
+              <tr><td>REACH SVHC</td><td class="check-yes">✓ Compliant</td></tr>
+              <tr><td>Conflict Minerals</td><td class="check-yes">✓ Disclosed</td></tr>
+              <tr><td>TSCA</td><td class="check-yes">✓ Compliant</td></tr>
+              <tr><td>Prop 65</td><td class="check-yes">✓ Compliant</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card fade-in">
+          <h4 style="margin-bottom:8px;">Need a specific document?</h4>
+          <p style="font-size:.88rem; margin-bottom:16px;">Our customer service team can provide product-specific compliance documentation, certificates of conformance, and SDS sheets.</p>
+          <a href="../contact.html" class="btn btn-primary" style="width:100%; justify-content:center;">Contact Customer Service</a>
+          <p style="margin-top:10px; font-size:.8rem; text-align:center; color:var(--text-lt);">tina.fant@unifiedwire.com<br>815-748-4876</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<script>window._uwcDepth='../'; window._uwcPage='Compliance Center';</script>
+<script src="../assets/js/uwc.js"></script>
+<script src="../assets/js/password.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Markets & Industries — Unified Wire & Cable</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
+  <link rel="stylesheet" href="../assets/css/uwc.css">
+  <style>
+    .page-hero {
+      background:
+        radial-gradient(ellipse at 20% 75%, rgba(3,98,188,.24) 0%, transparent 55%),
+        var(--navy);
+      color:#fff; padding:80px 0 72px;
+    }
+    .page-hero h1 { color:#fff; font-size:clamp(2rem,4vw,3.2rem); margin-top:12px; }
+    .page-hero p  { color:rgba(255,255,255,.6); max-width:580px; margin-top:14px; font-size:1.05rem; }
+
+    .market-card {
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      background-color: var(--navy);
+      background-size: cover;
+      background-position: center;
+      display: flex; flex-direction: column;
+      transition: box-shadow .3s, transform .3s, border-color .3s;
+      text-decoration: none; color: #fff;
+      position: relative; overflow: hidden;
+      min-height: 340px;
+    }
+    .market-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,.5);
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.28);
+    }
+    .market-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,22,40,.95) 0%,
+        rgba(10,22,40,.68) 45%,
+        rgba(10,22,40,.28) 100%
+      );
+      transition: opacity .3s;
+      z-index: 0;
+    }
+    .market-card:hover::before { opacity: .82; }
+    .market-card > * { position: relative; z-index: 1; }
+    .market-card-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(255,255,255,.14); color: #fff;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; transition: background .2s, border-color .2s;
+    }
+    .market-card:hover .market-card-icon {
+      background: var(--blue); border-color: var(--blue);
+    }
+    .market-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.15rem; }
+    .market-card p  { color: rgba(255,255,255,.72); font-size: .9rem; flex: 1; margin-bottom: 16px; }
+    .market-card-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+    .market-card-tags .tag {
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.2);
+      font-size: .72rem;
+    }
+    .market-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .82rem; font-weight: 700; color: rgba(255,255,255,.85);
+      transition: gap .2s, color .2s;
+    }
+    .market-card:hover .market-card-link { gap: 10px; color: #fff; }
+  </style>
+</head>
+<body>
+<div id="uwc-gate"></div>
+<header id="site-nav"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="badge badge-blue">Markets &amp; Industries</span>
+    <h1>Wire &amp; cable for your industry</h1>
+    <p>Unified Wire &amp; Cable serves seven core markets with products built to the exact specifications and compliance requirements of each application.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-3 fade-in" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+
+      <a href="appliance.html" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-appliance')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <h3>Appliance</h3>
+        <p>High-temperature wire for appliance OEMs — refrigerators, ovens, dishwashers, HVAC, and more. UL/CSA listed, RoHS compliant.</p>
+        <div class="market-card-tags">
+          <span class="tag">105°C–125°C</span>
+          <span class="tag">UL/CSA</span>
+          <span class="tag">RoHS3</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="automotive.html" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-automotive')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v9a2 2 0 01-2 2h-2"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        </div>
+        <h3>Automotive</h3>
+        <p>SAE-rated primary wire, XLPE constructions, and harness-ready solutions. Skin Coat technology enables lower minimums and custom color.</p>
+        <div class="market-card-tags">
+          <span class="tag">SAE J1128</span>
+          <span class="tag">SXL / GXL / TXL</span>
+          <span class="tag">GPT</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="marine.html" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-marine')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1"/><path d="M4 18L3 8l5 4 4-7 4 7 5-4-1 10"/></svg>
+        </div>
+        <h3>Marine</h3>
+        <p>UL Listed boat cable and marine-rated wire. Tinned copper conductors resist corrosion in wet environments. BC-5W3 listed.</p>
+        <div class="market-card-tags">
+          <span class="tag">UL BC-5W3</span>
+          <span class="tag">Tinned Copper</span>
+          <span class="tag">SAE J378C</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="rv.html" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-rv')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v4h-7"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+        </div>
+        <h3>Recreational Vehicle</h3>
+        <p>Primary wire, parallel bonded, and brake cable for RV manufacturers. Rated for trailer lighting, brake controllers, and chassis wiring.</p>
+        <div class="market-card-tags">
+          <span class="tag">SAE J1128</span>
+          <span class="tag">80°C–105°C</span>
+          <span class="tag">Trailer Lighting</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="electronics-oem.html" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-electronics-oem')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Electronics &amp; OEM</h3>
+        <p>100+ UL AWM approved styles for electronics manufacturers and OEMs. Self-serve compliance documentation makes supplier audits easy.</p>
+        <div class="market-card-tags">
+          <span class="tag">100+ UL Styles</span>
+          <span class="tag">300V–600V</span>
+          <span class="tag">AWM</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="military.html" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-military')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Military</h3>
+        <p>MIL-W-16878E and MIL-W-76B hook-up wire rated from -55°C to 105°C, up to 3000V. Exact spec conformance, documented.</p>
+        <div class="market-card-tags">
+          <span class="tag">MIL-W-16878E</span>
+          <span class="tag">MIL-W-76B</span>
+          <span class="tag">-55°C to 105°C</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="distribution.html" class="market-card" style="background-image:url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-distribution')">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Wire Distribution</h3>
+        <p>A manufacturing partner built for distributor relationships. Emergency stock fulfillment, broad UL portfolio, lower minimums, and fast response.</p>
+        <div class="market-card-tags">
+          <span class="tag">Emergency Stock</span>
+          <span class="tag">Low Minimums</span>
+          <span class="tag">Broad Portfolio</span>
+        </div>
+        <span class="market-card-link">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="container">
+    <div style="max-width:600px; margin:0 auto; text-align:center;" class="fade-in">
+      <h2>Don't see your application?</h2>
+      <p style="margin-top:12px;">We regularly produce custom wire constructions beyond our standard catalog. Talk to our team about your specific gauge, insulation, rating, and application requirements.</p>
+      <div style="display:flex; gap:14px; justify-content:center; margin-top:32px; flex-wrap:wrap;">
+        <a href="../contact.html" class="btn btn-primary btn-lg">Contact Sales</a>
+        <a href="../products.html" class="btn btn-outline-wh btn-lg">Browse All Products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<script>window._uwcDepth='../'; window._uwcPage='Markets';</script>
+<script src="../assets/js/uwc.js"></script>
+<script src="../assets/js/password.js"></script>
+</body>
+</html>

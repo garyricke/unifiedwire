@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Engineering Tools — Unified Wire & Cable</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
+  <link rel="stylesheet" href="../assets/css/uwc.css">
+  <style>
+    .page-hero { background: radial-gradient(ellipse at 20% 80%, rgba(3,98,188,.22) 0%, transparent 55%), var(--navy); color:#fff; padding:80px 0 64px; }
+    .page-hero h1 { color:#fff; font-size:clamp(2rem,4vw,3rem); margin-top:12px; }
+    .page-hero p  { color:rgba(255,255,255,.6); max-width:580px; margin-top:12px; }
+
+    .tool-card { border:1.5px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:48px; }
+    .tool-head { background:var(--navy); padding:24px 32px; display:flex; align-items:center; gap:16px; }
+    .tool-head-icon { width:44px; height:44px; border-radius:10px; background:rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; }
+    .tool-head h3 { color:#fff; margin:0; }
+    .tool-head p  { color:rgba(255,255,255,.5); font-size:.85rem; margin:2px 0 0; }
+    .tool-body { padding:32px; }
+
+    /* Form */
+    .form-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
+    .form-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+    .field label { display:block; font-family:var(--mono); font-size:.70rem; letter-spacing:.10em; text-transform:uppercase; color:var(--text-lt); margin-bottom:6px; font-weight:600; }
+    .field select, .field input[type="number"] {
+      width:100%; padding:11px 14px;
+      border:1.5px solid var(--border); border-radius:8px;
+      font-family:var(--font); font-size:.92rem; color:var(--text);
+      background:var(--white); outline:none; transition:border-color .2s;
+    }
+    .field select:focus, .field input:focus { border-color:var(--blue); }
+    .calc-btn { padding:13px 28px; background:var(--blue); border:none; border-radius:8px; color:#fff; font-family:var(--font); font-size:.95rem; font-weight:700; cursor:pointer; transition:background .2s; }
+    .calc-btn:hover { background:var(--blue-dk); }
+
+    /* Results */
+    .result-box { border:1.5px solid var(--border); border-radius:var(--radius); padding:24px; margin-top:20px; display:none; }
+    .result-box.visible { display:block; }
+    .result-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); }
+    .result-row:last-child { border-bottom:none; }
+    .result-label { font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-lt); }
+    .result-val { font-weight:800; font-size:1.1rem; }
+    .result-val.pass { color:#059669; }
+    .result-val.fail { color:#dc2626; }
+    .result-val.warn { color:var(--orange); }
+    .result-note { font-size:.82rem; color:var(--text-lt); margin-top:12px; padding:10px 14px; background:var(--gray-lt); border-radius:6px; }
+
+    /* Converter */
+    .converter-grid { display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:center; margin-bottom:20px; }
+    .converter-arrow { text-align:center; color:var(--blue); font-size:1.4rem; padding-top:20px; }
+    .conv-result { background:var(--gray-lt); border:1.5px solid var(--border); border-radius:8px; padding:11px 14px; font-size:.95rem; font-weight:700; color:var(--text); min-height:44px; display:flex; align-items:center; }
+
+    @media(max-width:640px) {
+      .form-grid { grid-template-columns:1fr; }
+      .form-grid-2 { grid-template-columns:1fr; }
+      .converter-grid { grid-template-columns:1fr; }
+      .converter-arrow { transform:rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+<div id="uwc-gate"></div>
+<header id="site-nav"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="badge badge-blue">Engineering Toolbox</span>
+    <h1>Engineering calculators</h1>
+    <p>Practical tools for electrical engineers and procurement teams. Results include recommended UWC products that meet the calculated requirements.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:820px;">
+
+    <!-- Voltage Drop Calculator -->
+    <div class="tool-card fade-in">
+      <div class="tool-head">
+        <div class="tool-head-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div>
+          <h3>Voltage Drop Calculator</h3>
+          <p>Calculate voltage drop for a given wire run — checks against NEC 3% recommendation</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="form-grid">
+          <div class="field">
+            <label for="vd-gauge">Wire Gauge (AWG)</label>
+            <select id="vd-gauge">
+              <option value="14">14 AWG</option>
+              <option value="12">12 AWG</option>
+              <option value="10">10 AWG</option>
+              <option value="8">8 AWG</option>
+              <option value="6">6 AWG</option>
+              <option value="4">4 AWG</option>
+              <option value="2">2 AWG</option>
+              <option value="1">1 AWG</option>
+              <option value="0">1/0 AWG</option>
+              <option value="00">2/0 AWG</option>
+              <option value="000">3/0 AWG</option>
+              <option value="0000">4/0 AWG</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="vd-material">Conductor Material</label>
+            <select id="vd-material">
+              <option value="copper">Copper</option>
+              <option value="aluminum">Aluminum</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="vd-length">One-Way Length (ft)</label>
+            <input type="number" id="vd-length" placeholder="e.g. 100" min="1" max="10000">
+          </div>
+          <div class="field">
+            <label for="vd-current">Current (Amps)</label>
+            <input type="number" id="vd-current" placeholder="e.g. 20" min="0.1" max="400" step="0.1">
+          </div>
+          <div class="field">
+            <label for="vd-voltage">System Voltage (V)</label>
+            <select id="vd-voltage">
+              <option value="120">120V</option>
+              <option value="208">208V</option>
+              <option value="240">240V</option>
+              <option value="277">277V</option>
+              <option value="480">480V</option>
+              <option value="600">600V</option>
+              <option value="12">12V DC</option>
+              <option value="24">24V DC</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="vd-circuit">Circuit Type</label>
+            <select id="vd-circuit">
+              <option value="single">Single Phase / DC</option>
+              <option value="three">Three Phase</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcVoltageDrop()">Calculate Voltage Drop</button>
+
+        <div class="result-box" id="vd-result">
+          <div class="result-row">
+            <span class="result-label">Voltage Drop</span>
+            <span class="result-val" id="vd-drop">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">% Voltage Drop</span>
+            <span class="result-val" id="vd-pct">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">NEC 3% Recommendation</span>
+            <span class="result-val" id="vd-nec">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Voltage at Load</span>
+            <span class="result-val" id="vd-load">—</span>
+          </div>
+          <p class="result-note" id="vd-note"></p>
+          <div style="margin-top:16px;">
+            <a href="../products.html" class="btn btn-outline btn-sm">Browse matching wire in Spec Navigator →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wire Unit Converter -->
+    <div class="tool-card fade-in">
+      <div class="tool-head">
+        <div class="tool-head-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+        </div>
+        <div>
+          <h3>Wire Unit Converter</h3>
+          <p>Convert between AWG, mm², feet, meters, and weight units</p>
+        </div>
+      </div>
+      <div class="tool-body">
+
+        <!-- AWG ↔ mm² -->
+        <h4 style="margin-bottom:14px;">AWG ↔ mm²</h4>
+        <div class="converter-grid">
+          <div class="field">
+            <label for="awg-in">AWG</label>
+            <select id="awg-in" onchange="convertAwg()">
+              <option value="">Select AWG</option>
+              <option value="30">30 AWG</option><option value="28">28 AWG</option>
+              <option value="26">26 AWG</option><option value="24">24 AWG</option>
+              <option value="22">22 AWG</option><option value="20">20 AWG</option>
+              <option value="18">18 AWG</option><option value="16">16 AWG</option>
+              <option value="14">14 AWG</option><option value="12">12 AWG</option>
+              <option value="10">10 AWG</option><option value="8">8 AWG</option>
+              <option value="6">6 AWG</option><option value="4">4 AWG</option>
+              <option value="2">2 AWG</option><option value="1">1 AWG</option>
+              <option value="0">1/0 AWG</option><option value="00">2/0 AWG</option>
+              <option value="000">3/0 AWG</option><option value="0000">4/0 AWG</option>
+            </select>
+          </div>
+          <div class="converter-arrow">⇌</div>
+          <div class="field">
+            <label>mm²</label>
+            <div class="conv-result" id="mm2-out">—</div>
+          </div>
+        </div>
+
+        <!-- ft ↔ m -->
+        <h4 style="margin-top:24px;margin-bottom:14px;">Feet ↔ Meters</h4>
+        <div class="converter-grid">
+          <div class="field">
+            <label for="ft-in">Feet</label>
+            <input type="number" id="ft-in" placeholder="e.g. 1000" oninput="convertFt()">
+          </div>
+          <div class="converter-arrow">⇌</div>
+          <div class="field">
+            <label>Meters</label>
+            <div class="conv-result" id="m-out">—</div>
+          </div>
+        </div>
+
+        <!-- lbs/1000ft ↔ kg/km -->
+        <h4 style="margin-top:24px;margin-bottom:14px;">lbs / 1000 ft ↔ kg / km</h4>
+        <div class="converter-grid">
+          <div class="field">
+            <label for="lbs-in">lbs / 1000 ft</label>
+            <input type="number" id="lbs-in" placeholder="e.g. 35" step="0.1" oninput="convertLbs()">
+          </div>
+          <div class="converter-arrow">⇌</div>
+          <div class="field">
+            <label>kg / km</label>
+            <div class="conv-result" id="kgkm-out">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fade-in" style="text-align:center; padding:36px;">
+      <h3 style="margin-bottom:8px;">More tools coming</h3>
+      <p>Conduit fill calculator, ampacity reference tables, and competitor cross-reference tool are planned. Have a tool request? Let us know.</p>
+      <a href="../contact.html" class="btn btn-outline" style="margin-top:20px;">Submit a Tool Request</a>
+    </div>
+
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+
+<script>
+// AWG → mm² lookup table
+const AWG_MM2 = {
+  '30':0.0507,'28':0.0804,'26':0.128,'24':0.205,'22':0.324,'20':0.519,
+  '18':0.823,'16':1.31,'14':2.08,'12':3.31,'10':5.26,'8':8.36,
+  '6':13.3,'4':21.1,'2':33.6,'1':42.4,'0':53.5,'00':67.4,'000':85.0,'0000':107.2
+};
+// AWG resistance (ohm/1000ft, copper, 20°C)
+const AWG_OHM = {
+  '14':2.525,'12':1.588,'10':0.9989,'8':0.6282,'6':0.3951,'4':0.2485,
+  '2':0.1563,'1':0.1240,'0':0.09827,'00':0.07793,'000':0.06180,'0000':0.04901
+};
+// Al resistance is ~1.64x copper
+const AL_FACTOR = 1.64;
+
+function convertAwg(){
+  var v=document.getElementById('awg-in').value;
+  document.getElementById('mm2-out').textContent = v && AWG_MM2[v] ? AWG_MM2[v]+' mm²' : '—';
+}
+function convertFt(){
+  var v=parseFloat(document.getElementById('ft-in').value);
+  document.getElementById('m-out').textContent = isNaN(v) ? '—' : (v*0.3048).toFixed(2)+' m';
+}
+function convertLbs(){
+  var v=parseFloat(document.getElementById('lbs-in').value);
+  document.getElementById('kgkm-out').textContent = isNaN(v) ? '—' : (v*1.48816).toFixed(2)+' kg/km';
+}
+
+function calcVoltageDrop(){
+  var gauge   = document.getElementById('vd-gauge').value;
+  var mat     = document.getElementById('vd-material').value;
+  var length  = parseFloat(document.getElementById('vd-length').value);
+  var current = parseFloat(document.getElementById('vd-current').value);
+  var voltage = parseFloat(document.getElementById('vd-voltage').value);
+  var circuit = document.getElementById('vd-circuit').value;
+
+  if(isNaN(length)||isNaN(current)||!AWG_OHM[gauge]){
+    alert('Please fill in all fields.'); return;
+  }
+
+  var r_per_kft = AWG_OHM[gauge] * (mat==='aluminum' ? AL_FACTOR : 1);
+  var r_total = (r_per_kft / 1000) * length * 2; // round trip
+  var factor = circuit==='three' ? Math.sqrt(3) : 1;
+  var vdrop = factor * current * r_total;
+  var pct = (vdrop / voltage) * 100;
+  var vload = voltage - vdrop;
+
+  var result = document.getElementById('vd-result');
+  result.classList.add('visible');
+  document.getElementById('vd-drop').textContent = vdrop.toFixed(2)+' V';
+  document.getElementById('vd-pct').textContent  = pct.toFixed(2)+'%';
+  document.getElementById('vd-load').textContent = vload.toFixed(2)+' V';
+
+  var necEl = document.getElementById('vd-nec');
+  if(pct <= 3){
+    necEl.textContent='✓ Passes NEC 3% Recommendation';
+    necEl.className='result-val pass';
+  } else if(pct <= 5){
+    necEl.textContent='⚠ Exceeds NEC 3% — consider upsizing wire';
+    necEl.className='result-val warn';
+  } else {
+    necEl.textContent='✗ Exceeds NEC 5% — upsize wire gauge';
+    necEl.className='result-val fail';
+  }
+
+  var note = pct>3
+    ? 'To reduce voltage drop, consider increasing the wire gauge by one or two sizes. Use the Spec Navigator to browse larger gauges in the same insulation type.'
+    : 'Your wire size is within NEC recommendations for this run. Browse matching products in the Spec Navigator.';
+  document.getElementById('vd-note').textContent=note;
+}
+</script>
+
+<script>window._uwcDepth='../'; window._uwcPage='Engineering Tools';</script>
+<script src="../assets/js/uwc.js"></script>
+<script src="../assets/js/password.js"></script>
+</body>
+</html>

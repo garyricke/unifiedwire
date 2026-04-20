@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Skin Coat Technology — Unified Wire & Cable</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
+  <link rel="stylesheet" href="assets/css/uwc.css">
+  <style>
+    .page-hero {
+      background:
+        radial-gradient(ellipse at 15% 75%, rgba(227,100,23,.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(3,98,188,.18) 0%, transparent 50%),
+        var(--navy);
+      color: #fff; padding: 80px 0 72px;
+    }
+    .page-hero h1 { color: #fff; font-size: clamp(2rem,4vw,3.2rem); margin-top: 12px; }
+    .page-hero p  { color: rgba(255,255,255,.6); max-width: 640px; margin-top: 14px; font-size: 1.1rem; }
+
+    /* Process Diagram */
+    .process-block {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .process-step {
+      background: var(--white);
+      padding: 32px 28px;
+      position: relative;
+    }
+    .process-step::after {
+      content: '→';
+      position: absolute; right: -14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem; color: var(--border);
+      z-index: 2;
+    }
+    .process-step:last-child::after { display: none; }
+    .step-num {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--text-lt); margin-bottom: 14px;
+    }
+    .step-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .step-icon.blue   { background: var(--blue-tint); color: var(--blue); }
+    .step-icon.orange { background: rgba(227,100,23,.10); color: var(--orange); }
+    .step-icon.green  { background: rgba(16,185,129,.10); color: #059669; }
+    .process-step h4  { margin-bottom: 8px; }
+    .process-step p   { font-size: .875rem; }
+
+    @media (max-width: 640px) {
+      .process-block { grid-template-columns: 1fr; }
+      .process-step::after { content: '↓'; right: 50%; bottom: -14px; top: auto; transform: translateX(50%); }
+    }
+
+    /* Benefits Grid */
+    .benefit-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      background: var(--white);
+    }
+    .benefit-num {
+      font-family: var(--mono); font-size: 2rem; font-weight: 700;
+      color: var(--orange); opacity: .35; line-height: 1;
+      margin-bottom: 12px;
+    }
+    .benefit-card h4 { margin-bottom: 8px; }
+
+    /* Spec Callout */
+    .spec-callout {
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 40px 48px;
+      color: #fff;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+    .spec-val {
+      font-family: var(--mono); font-size: 1.6rem; font-weight: 700;
+      color: var(--orange); margin-bottom: 6px;
+    }
+    .spec-desc { font-size: .82rem; color: rgba(255,255,255,.45); }
+    @media (max-width: 640px) {
+      .spec-callout { grid-template-columns: repeat(2, 1fr); padding: 28px 24px; }
+    }
+
+    /* Visual placeholder */
+    .img-placeholder {
+      background: var(--gray-lt);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 16/9;
+      flex-direction: column; gap: 10px;
+      color: var(--text-lt);
+    }
+    .img-placeholder span { font-family: var(--mono); font-size: .72rem; letter-spacing: .10em; text-transform: uppercase; }
+
+    /* Standards row */
+    .standards-row {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;
+    }
+    .std-badge {
+      padding: 7px 16px; border-radius: 8px;
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .06em;
+      font-weight: 600;
+      background: var(--gray-lt); color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<div id="uwc-gate"></div>
+<header id="site-nav"></header>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <span class="badge badge-orange">Proprietary Process</span>
+    <h1>Skin Coat Technology</h1>
+    <p>A precision co-extrusion process that permanently fuses a colored outer skin onto the wire in a single pass — enabling custom color, lower minimums, and better pricing without sacrificing performance.</p>
+  </div>
+</section>
+
+<!-- Process Overview -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-gray">How It Works</span>
+      <h2 style="margin-top:12px;">Three extruders. One pass. One fused product.</h2>
+      <p>Unlike conventional single-extruder wire production, Skin Coat uses a main extruder and two co-extruders operating simultaneously.</p>
+    </div>
+    <div class="process-block fade-in">
+      <div class="process-step">
+        <div class="step-num">Step 01</div>
+        <div class="step-icon blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h4>Main Extruder</h4>
+        <p>Applies the inner layer of natural (un-pigmented) compound over the copper conductor — forming the core insulation.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">Step 02</div>
+        <div class="step-icon orange">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+        </div>
+        <h4>Co-Extruders Apply Skin</h4>
+        <p>Two smaller co-extruders alternately apply the colored outer skin — 0.004" to 0.010" thick depending on wire gauge and type.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">Step 03</div>
+        <div class="step-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4>Fused in the Melt</h4>
+        <p>Both layers are applied simultaneously while material is in a molten state under pressure — fusing into one distinct, inseparable form.</p>
+      </div>
+    </div>
+
+    <!-- Spec Callout -->
+    <div class="spec-callout fade-in" style="margin-top:32px;">
+      <div>
+        <div class="spec-val">0.004"</div>
+        <div class="spec-desc">Minimum skin thickness</div>
+      </div>
+      <div>
+        <div class="spec-val">0.010"</div>
+        <div class="spec-desc">Maximum skin thickness</div>
+      </div>
+      <div>
+        <div class="spec-val">3</div>
+        <div class="spec-desc">Extruders operating simultaneously</div>
+      </div>
+      <div>
+        <div class="spec-val">1</div>
+        <div class="spec-desc">Pass — no secondary operations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why It Matters -->
+<section class="section-alt">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-gray">Performance</span>
+      <h2 style="margin-top:12px;">Same wire. Better color. Real savings.</h2>
+      <p>Skin Coat wire meets every standard of conventional PVC insulated wire — and adds manufacturing advantages that translate directly to customer pricing.</p>
+    </div>
+    <div class="grid-2 fade-in" style="align-items:center; gap:56px;">
+      <div>
+        <div class="img-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Facility / Process Photo — Placeholder</span>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:20px;">What makes it different</h3>
+        <ul style="list-style:none;">
+          <li style="display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--border); align-items:flex-start;">
+            <span style="width:22px; height:22px; border-radius:50%; background:var(--blue-tint); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; color:var(--blue);">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <div><strong>Color won't peel, scrape off, or separate.</strong> The skin is fused at a molecular level in the melt — not painted or coated afterward.</div>
+          </li>
+          <li style="display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--border); align-items:flex-start;">
+            <span style="width:22px; height:22px; border-radius:50%; background:var(--blue-tint); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; color:var(--blue);">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <div><strong>Identical electrical and physical properties</strong> to conventionally produced PVC insulated wire — no trade-offs.</div>
+          </li>
+          <li style="display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--border); align-items:flex-start;">
+            <span style="width:22px; height:22px; border-radius:50%; background:var(--blue-tint); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; color:var(--blue);">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <div><strong>Reduced scrap rates and machine downtime</strong> compared to conventional color extrusion — savings passed to the customer.</div>
+          </li>
+          <li style="display:flex; gap:14px; padding:14px 0; align-items:flex-start;">
+            <span style="width:22px; height:22px; border-radius:50%; background:var(--blue-tint); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; color:var(--blue);">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <div><strong>Lower minimum order quantities</strong> — custom colors are practical for smaller runs that would be uneconomical conventionally.</div>
+          </li>
+        </ul>
+        <div class="standards-row">
+          <span class="std-badge">UL Compliant</span>
+          <span class="std-badge">CSA Approved</span>
+          <span class="std-badge">SAE Approved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Business Benefits -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge badge-orange">Business Benefits</span>
+      <h2 style="margin-top:12px;">Why it matters for your bottom line</h2>
+    </div>
+    <div class="grid-3 fade-in">
+      <div class="benefit-card">
+        <div class="benefit-num">01</div>
+        <h4>Lower Minimums</h4>
+        <p>Color changeovers are faster and generate less scrap than conventional methods. This makes smaller custom-color runs practical and cost-effective.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">02</div>
+        <h4>Better Pricing</h4>
+        <p>Reduced scrap rates and less machine downtime mean lower production costs — savings that we pass directly to our customers.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">03</div>
+        <h4>Custom Color Without Tooling Cost</h4>
+        <p>Achieve OEM-specific color coding requirements — including multi-color combinations — without the tooling investment of conventional extrusion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Applications -->
+<section class="section-dark">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <span class="badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);">Applications</span>
+      <h2 style="margin-top:12px;">Where Skin Coat technology is used</h2>
+    </div>
+    <div class="grid-3 fade-in">
+      <div class="card-ghost">
+        <h4 style="color:#fff; margin-bottom:8px;">Automotive Wire Harness</h4>
+        <p style="font-size:.9rem;">OEM color coding is critical in harness assemblies. Skin Coat delivers precise, durable color identification at lower minimums — ideal for GPT, SXL, and GXL constructions.</p>
+      </div>
+      <div class="card-ghost">
+        <h4 style="color:#fff; margin-bottom:8px;">Appliance Manufacturing</h4>
+        <p style="font-size:.9rem;">Internal wiring color standards in appliance OEM production. Skin Coat ensures color consistency across long production runs without adding cost or lead time.</p>
+      </div>
+      <div class="card-ghost">
+        <h4 style="color:#fff; margin-bottom:8px;">Electronics &amp; OEM</h4>
+        <p style="font-size:.9rem;">Custom color combinations for multi-conductor harnesses, control panels, and OEM assemblies requiring specific insulation color per spec or standard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div style="max-width:600px; margin:0 auto; text-align:center;" class="fade-in">
+      <h2>Ready to discuss a custom color spec?</h2>
+      <p style="margin-top:12px;">Our engineering and sales team can quote any Skin Coat construction — standard colors or custom combinations. Provide your gauge, insulation type, and color requirements to get started.</p>
+      <div style="display:flex; gap:14px; justify-content:center; margin-top:32px; flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg">Request a Custom Quote</a>
+        <a href="products.html" class="btn btn-outline btn-lg">Browse All Products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<script>window._uwcDepth=''; window._uwcPage='Skin Coat Technology';</script>
+<script src="assets/js/uwc.js"></script>
+<script src="assets/js/password.js"></script>
+</body>
+</html>
