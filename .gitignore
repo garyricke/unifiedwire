@@ -2,3 +2,11 @@
 .claude/
 *.DS_Store
 Thumbs.db
+
+# Archived non-final banner background versions (kept locally, not in repo)
+assets/banners-22apr2026/openai/*-v[0-9]*.png
+assets/banners-22apr2026/openai/*-v[0-9]*.jpg
+assets/banners-22apr2026/openai/bg-usa-diptych-serious.*
+
+# Nano-banana exploration superseded by openai/ versions
+assets/banners-22apr2026/generated/

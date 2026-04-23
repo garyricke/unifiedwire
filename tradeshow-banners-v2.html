@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tradeshow Banners v2 — Unified Wire &amp; Cable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #0A1628;
+    --navy-2:      #0d1e38;
+    --navy-3:      #112040;
+    --navy-card:   #0f1f3a;
+    --blue:        #0362BC;
+    --blue-lt:     #1a75d2;
+    --blue-dk:     #024a90;
+    --orange:      #E36417;
+    --orange-lt:   #f07830;
+    --orange-dk:   #b84f10;
+    --gold:        #c8941e;
+    --cream:       #f4f1ec;
+    --cream-dim:   rgba(244,241,236,0.55);
+    --cream-mid:   rgba(244,241,236,0.28);
+    --cream-faint: rgba(244,241,236,0.08);
+    --border:      rgba(244,241,236,0.08);
+    --border-mid:  rgba(244,241,236,0.14);
+    --red-usa:     #B3272D;
+    --blue-usa:    #0A3161;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(244,241,236,0.055) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    height: 60px;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-pip { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+  .nav-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cream);
+  }
+  .nav-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 0.1em; color: var(--cream-dim);
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid var(--border-mid);
+    border-radius: 2px;
+  }
+
+  /* ── SPECS BAR ───────────────────────────────────────────── */
+  .specs-bar {
+    position: relative; z-index: 1;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 48px;
+    display: flex; align-items: center; gap: 20px;
+    background: rgba(15,31,58,0.6);
+    flex-wrap: wrap;
+  }
+  .specs-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--cream-dim);
+  }
+  .specs-divider { width: 1px; height: 14px; background: var(--border-mid); }
+  .badge-print {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 3px 9px 2px;
+    border-radius: 2px;
+  }
+
+  /* ── PAGE HEADER ─────────────────────────────────────────── */
+  .page-header {
+    position: relative; z-index: 1;
+    padding: 72px 48px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .header-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .header-eyebrow::after {
+    content: ''; flex: 1; max-width: 48px; height: 1px;
+    background: var(--orange); opacity: 0.5;
+  }
+  .page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 800; line-height: 0.92;
+    text-transform: uppercase;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .page-title span { color: var(--blue); }
+  .page-sub {
+    font-size: 16px; font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.6; max-width: 540px;
+  }
+
+  /* ── TOOLBAR ─────────────────────────────────────────────── */
+  .toolbar {
+    position: relative; z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px 32px;
+    display: flex; gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .toggle-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--cream-dim);
+    background: transparent;
+    border: 1px solid var(--border-mid);
+    padding: 8px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .toggle-btn:hover { color: var(--cream); border-color: var(--cream-mid); }
+  .toggle-btn.active {
+    color: var(--navy); background: var(--orange);
+    border-color: var(--orange);
+  }
+  .toolbar-hint {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--cream-dim);
+    margin-left: 8px;
+  }
+
+  /* ── BANNER SECTIONS (3 x 2 layout) ──────────────────────── */
+  .concepts-wrap {
+    position: relative; z-index: 1;
+    padding: 0 0 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .banner-section {
+    padding: 0 48px;
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .banner-section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-head {
+    display: flex; align-items: baseline;
+    gap: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-mid);
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--orange);
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px; font-weight: 800;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .section-title span { color: var(--blue-lt); }
+  .banner-section.mv .section-title span { color: var(--orange-lt); }
+  .banner-section.usa .section-title span { color: #d64b50; }
+
+  .section-ask {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+    padding: 18px 22px 20px;
+    margin-bottom: 40px;
+  }
+  .ask-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .ask-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+  }
+  .ask-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 300;
+    line-height: 1.5;
+    color: var(--cream-dim);
+  }
+  .ask-list li strong {
+    color: var(--cream);
+    font-weight: 500;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .concepts-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    max-width: 820px;
+  }
+  .concept-card {
+    position: relative;
+    cursor: pointer;
+  }
+  .card-inner {
+    position: relative; z-index: 1;
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  .concept-card:hover .card-inner {
+    border-color: var(--border-mid);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: translateY(-4px);
+  }
+  .card-chip {
+    position: absolute;
+    top: 14px; left: 14px; z-index: 10;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 3px 9px 2px;
+    border-radius: 2px; color: #fff;
+  }
+  .banner-section.dc .card-chip { background: var(--blue); }
+  .banner-section.mv .card-chip { background: var(--orange); }
+  .banner-section.usa .card-chip { background: var(--red-usa); }
+  .concept-b .card-chip { background: var(--navy-3); border: 1px solid var(--border-mid); }
+  .banner-section.dc .concept-b .card-chip { background: var(--blue-dk); }
+  .banner-section.mv .concept-b .card-chip { background: var(--orange-dk); }
+  .banner-section.usa .concept-b .card-chip { background: var(--blue-usa); }
+
+  .card-approach {
+    position: absolute;
+    top: 14px; right: 52px;
+    z-index: 10;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    background: rgba(0,0,0,0.42);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 3px 9px 2px;
+    border-radius: 2px;
+  }
+
+  .card-expand-hint {
+    position: absolute; top: 14px; right: 14px; z-index: 10;
+    width: 28px; height: 28px;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .card-expand-hint svg { width: 14px; height: 14px; }
+  .concept-card:hover .card-expand-hint { opacity: 1; }
+
+  .card-meta {
+    padding: 18px 20px 22px;
+    border-top: 1px solid var(--border);
+  }
+  .card-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 8px; line-height: 1;
+  }
+  .card-desc {
+    font-size: 13px; font-weight: 300;
+    line-height: 1.55; color: var(--cream-dim);
+  }
+
+  /* ── BANNER MOCKUP (renders at 33:81 ratio) ──────────────── */
+  .banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 33 / 81;
+    overflow: hidden;
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    /* CSS var makes all interior spacing scale with banner width */
+    --bw: 100cqw;
+    container-type: inline-size;
+  }
+
+  /* universal safety margin guides */
+  .banner::before, .banner::after {
+    content: '';
+    position: absolute;
+    left: 3.03%;  /* 1" side */
+    right: 3.03%;
+    height: 0;
+    border-top: 1px dashed rgba(255,225,120,0.0);
+    z-index: 30;
+    pointer-events: none;
+    transition: border-color 0.2s;
+  }
+  .banner::before { top: 1.235%; }   /* 1" top */
+  .banner::after  { bottom: 3.704%; } /* 3" bottom */
+  body.show-guides .banner::before,
+  body.show-guides .banner::after {
+    border-top-color: rgba(255,225,120,0.75);
+  }
+  body.show-guides .banner {
+    outline: 1px solid rgba(255,225,120,0.35);
+    outline-offset: -1px;
+  }
+
+  .banner-bg {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .banner-overlay {
+    position: absolute; inset: 0;
+    z-index: 1;
+  }
+
+  .banner-content {
+    position: relative; z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 4.5% 5% 5.5%;
+  }
+
+  /* ── BANNER HEADER (shared) ──────────────────────────────── */
+  .b-header {
+    padding-bottom: 4%;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+    margin-bottom: 5%;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 2%;
+    text-align: center;
+  }
+  .b-logo { width: 68%; height: auto; display: block; }
+  .b-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.8cqw; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.82);
+  }
+  .b-contact {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.4cqw; font-weight: 300;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── BANNER FOOTER (shared) ──────────────────────────────── */
+  .b-footer {
+    margin-top: auto;
+    padding-top: 4%;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1.5%;
+    text-align: center;
+  }
+  .b-url {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.8cqw; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #fff;
+  }
+  .b-location {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.2cqw; font-weight: 300;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── BANNER 1 — DATA CENTER ──────────────────────────────── */
+  .b-data-a .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-data-center-a.jpg');
+  }
+  .b-data-b .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-data-center-b.jpg');
+  }
+  .b-data .banner-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(10,22,40,0.92) 0%,
+        rgba(10,22,40,0.78) 10%,
+        rgba(10,22,40,0.45) 22%,
+        rgba(10,22,40,0.45) 62%,
+        rgba(10,22,40,0.88) 82%,
+        rgba(10,22,40,0.96) 100%);
+  }
+
+  /* ── BANNER 2 — MEDIUM VOLTAGE ───────────────────────────── */
+  .b-mv-a .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-medium-voltage-a.jpg');
+  }
+  .b-mv-b .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-medium-voltage-b.jpg');
+  }
+  .b-mv .banner-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(10,22,40,0.92) 0%,
+        rgba(10,22,40,0.78) 10%,
+        rgba(10,22,40,0.45) 22%,
+        rgba(10,22,40,0.50) 62%,
+        rgba(10,22,40,0.88) 82%,
+        rgba(10,22,40,0.96) 100%);
+  }
+
+  /* category eyebrow + title */
+  .b-cat {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.3cqw; font-weight: 600;
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2%;
+  }
+  .b-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; line-height: 0.88;
+    font-size: 11cqw; text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+  .b-data .b-title-accent { color: var(--blue-lt); }
+  .b-mv .b-title-accent { color: var(--orange-lt); }
+
+  .b-tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.6cqw; font-weight: 300;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.75);
+    margin-top: 3%;
+    font-style: italic;
+  }
+
+  /* spec list */
+  .b-spec-block { margin-top: 6%; }
+  .b-spec-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.2cqw; font-weight: 600;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 3%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .b-spec-list { list-style: none; }
+  .b-spec-list li {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.2cqw; font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.25;
+    color: #fff;
+    padding: 1.2% 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .b-spec-list li:last-child { border-bottom: none; }
+  .b-spec-range {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.2cqw; font-weight: 300;
+    letter-spacing: 0.03em;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.6%;
+    text-transform: none;
+  }
+  .b-data .b-spec-accent { color: var(--blue-lt); font-weight: 700; }
+  .b-mv .b-spec-accent { color: var(--orange-lt); font-weight: 700; }
+
+  .b-thhn-card {
+    margin-top: 4%;
+    padding: 4% 4% 3.5%;
+    background: rgba(3,98,188,0.12);
+    border-left: 2px solid var(--blue-lt);
+    border-radius: 2px;
+  }
+  .b-thhn-card .b-thhn-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 4cqw; font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--blue-lt);
+    margin-bottom: 1.5%;
+  }
+  .b-thhn-card .b-thhn-apps {
+    list-style: none;
+  }
+  .b-thhn-card .b-thhn-apps li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.4cqw; font-weight: 300;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.35;
+    padding: 0.6% 0 0.6% 3.5%;
+    position: relative;
+  }
+  .b-thhn-card .b-thhn-apps li::before {
+    content: '';
+    position: absolute; left: 0; top: 0.8em;
+    width: 8px; height: 1px;
+    background: var(--blue-lt);
+  }
+
+  /* medium voltage kV group styling */
+  .b-kv-group { margin-bottom: 3.5%; }
+  .b-kv-group:last-child { margin-bottom: 0; }
+  .b-kv-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 5cqw; font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--orange-lt);
+    display: inline-block;
+    padding: 0.5% 2.5%;
+    border: 1px solid var(--orange-lt);
+    border-radius: 2px;
+    margin-bottom: 2.5%;
+  }
+  .b-kv-items { list-style: none; }
+  .b-kv-items li {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.7cqw; font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    color: rgba(255,255,255,0.9);
+    padding: 0.8% 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .b-kv-items li:last-child { border-bottom: none; }
+
+  /* ── BANNER 3 — USA / BRANDING ───────────────────────────── */
+  .b-usa-a .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-usa-a.jpg');
+  }
+  .b-usa-b .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-usa-b.jpg');
+  }
+  .b-usa .banner-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(10,22,40,0.88) 0%,
+        rgba(10,22,40,0.70) 12%,
+        rgba(10,22,40,0.42) 28%,
+        rgba(10,22,40,0.48) 62%,
+        rgba(10,22,40,0.86) 82%,
+        rgba(10,22,40,0.96) 100%);
+  }
+
+  .b-usa .banner-content {
+    padding: 5% 5% 6%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .b-usa-flag-logo {
+    width: 62%;
+    height: auto;
+    display: block;
+    margin: 2% auto 0;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.45));
+  }
+
+  .b-usa-rule {
+    width: 48%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent);
+    margin: 5% auto 5%;
+  }
+
+  .b-usa-tag-wrap {
+    margin: auto 0 6%;
+  }
+
+  .b-usa-america-ribbon {
+    width: 62%;
+    display: block;
+    margin: 0 auto 4%;
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,0.5));
+  }
+  .b-usa-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9cqw; font-weight: 800;
+    letter-spacing: 0.02em; line-height: 0.88;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .b-usa-tagline .red   { color: #D01C1F; }
+  .b-usa-tagline .blue  { color: #0257AF; }
+  .b-usa-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.6cqw; font-weight: 300;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 3.5%;
+    line-height: 1.4;
+  }
+
+  .b-usa .b-footer {
+    margin-top: 0;
+    border-top-color: rgba(255,255,255,0.2);
+  }
+
+  /* ── LIGHTBOX ────────────────────────────────────────────── */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 900;
+    background: rgba(5,12,24,0.97);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.35s, visibility 0.35s;
+    backdrop-filter: blur(6px);
+    cursor: zoom-out;
+    padding: 24px;
+  }
+  #lightbox.open { opacity: 1; visibility: visible; }
+  .lb-close {
+    position: fixed; top: 24px; right: 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--cream-dim);
+    background: none;
+    border: 1px solid var(--border-mid);
+    padding: 6px 14px;
+    cursor: pointer; border-radius: 3px;
+    transition: color 0.2s, border-color 0.2s;
+    z-index: 10;
+  }
+  .lb-close:hover { color: var(--cream); border-color: var(--cream-dim); }
+  #lightbox .lb-banner {
+    height: 92vh;
+    aspect-ratio: 33 / 81;
+    cursor: default;
+    transform: scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+    border-radius: 4px;
+  }
+  #lightbox.open .lb-banner { transform: scale(1); }
+  .lb-caption {
+    position: fixed; bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--cream-dim);
+    white-space: nowrap;
+  }
+
+  /* ── SECTION DIVIDER ─────────────────────────────────────── */
+  .section-divider {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 48px;
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 64px;
+  }
+  .div-line { flex: 1; height: 1px; background: var(--border); }
+  .div-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(244,241,236,0.28);
+    white-space: nowrap;
+  }
+
+  /* ── NOTES SECTION ───────────────────────────────────────── */
+  .notes-section {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+  .notes-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .note-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 22px;
+  }
+  .note-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .note-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 300;
+    line-height: 1.55;
+    color: var(--cream-dim);
+  }
+  .note-text strong {
+    color: var(--cream); font-weight: 500;
+  }
+
+  /* ── ACTIONS ─────────────────────────────────────────────── */
+  .actions-section {
+    position: relative; z-index: 1;
+    padding: 0 48px 100px;
+    max-width: 1100px; margin: 0 auto;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 28px;
+    text-align: center;
+  }
+  .actions-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--cream); line-height: 1;
+  }
+  .actions-heading span { color: var(--blue); }
+  .actions-sub {
+    font-size: 15px; font-weight: 300;
+    color: var(--cream-dim);
+    margin-top: -10px;
+  }
+  .actions-row {
+    display: flex; gap: 14px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 3px;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    cursor: pointer; border: none;
+  }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    box-shadow: 0 4px 20px rgba(3,98,188,0.35);
+  }
+  .btn-primary:hover {
+    background: var(--blue-lt); transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(3,98,188,0.45);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--cream);
+    border: 1px solid var(--border-mid);
+  }
+  .btn-secondary:hover {
+    border-color: rgba(244,241,236,0.35);
+    background: var(--cream-faint);
+    transform: translateY(-2px);
+  }
+  .btn:active { transform: translateY(0) !important; }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .footer-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244,241,236,0.25);
+  }
+  .footer-pip {
+    width: 5px; height: 5px;
+    background: var(--orange);
+    border-radius: 50%; opacity: 0.4;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .concepts-grid { grid-template-columns: 1fr 1fr; max-width: 720px; margin: 0 auto; }
+    .notes-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    .concepts-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .notes-grid { grid-template-columns: 1fr; }
+    .card-ghost-num { display: none; }
+    nav, .specs-bar, .toolbar { padding-left: 24px; padding-right: 24px; }
+    .page-header { padding: 48px 24px 32px; }
+    .concepts-wrap { padding: 0 24px 60px; }
+    .section-divider, .actions-section, .notes-section { padding-left: 24px; padding-right: 24px; }
+    footer { padding: 20px 24px; flex-direction: column; text-align: center; }
+    #lightbox .lb-banner { height: auto; width: 100%; max-height: 92vh; }
+  }
+
+  /* ── GATE ────────────────────────────────────────────────── */
+  #gate {
+    position: fixed; inset: 0;
+    background: var(--navy);
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+  }
+  #gate.fade-out { opacity: 0; visibility: hidden; }
+  .gate-inner {
+    text-align: center;
+    width: min(400px, 92vw);
+    padding: 48px 40px;
+  }
+  .gate-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .gate-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px; font-weight: 800;
+    text-transform: uppercase;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .gate-title span { color: var(--blue); }
+  .gate-sub {
+    font-size: 13px;
+    color: rgba(244,241,236,0.4);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin-bottom: 36px;
+  }
+  .gate-rule {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(244,241,236,0.12), transparent);
+    margin: 28px 0;
+  }
+  .gate-form { display: flex; flex-direction: column; gap: 10px; }
+  .gate-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(244,241,236,0.12);
+    color: var(--cream);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; letter-spacing: 0.25em;
+    text-align: center;
+    padding: 14px 20px;
+    outline: none; border-radius: 3px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .gate-input::placeholder { color: rgba(244,241,236,0.2); letter-spacing: 0.1em; }
+  .gate-input:focus { border-color: var(--blue); background: rgba(3,98,188,0.07); }
+  .gate-btn {
+    background: var(--blue); color: #fff; border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 14px; cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .gate-btn:hover { background: var(--blue-lt); }
+  .gate-btn:active { transform: scale(0.98); }
+  .gate-error {
+    font-size: 12px; letter-spacing: 0.1em;
+    color: #d4786a;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    height: 16px; opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .gate-error.show { opacity: 1; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    15%      { transform: translateX(-8px); }
+    30%      { transform: translateX(8px); }
+    45%      { transform: translateX(-5px); }
+    60%      { transform: translateX(5px); }
+    80%      { transform: translateX(-3px); }
+  }
+  .shake { animation: shake 0.5s ease; }
+</style>
+</head>
+<body>
+
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-eyebrow">Unified Wire &amp; Cable</div>
+    <h1 class="gate-title">Banners<br><span>v2</span></h1>
+    <p class="gate-sub">Design Review · Restricted</p>
+    <div class="gate-rule"></div>
+    <form class="gate-form" onsubmit="checkPassword(event)">
+      <input id="gate-input" class="gate-input" type="password" placeholder="Enter passphrase" autocomplete="current-password" autofocus>
+      <button type="submit" class="gate-btn">Enter</button>
+      <span id="gate-error" class="gate-error">Incorrect passphrase — try again</span>
+    </form>
+  </div>
+</div>
+
+<div id="main-content" style="visibility:hidden;">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-pip"></div>
+    <span class="nav-name">Unified Wire &amp; Cable</span>
+  </a>
+  <span class="nav-tag">Banners v2</span>
+</nav>
+
+<!-- SPECS BAR -->
+<div class="specs-bar">
+  <span class="specs-text">33&Prime; &times; 81&Prime;</span>
+  <div class="specs-divider"></div>
+  <span class="specs-text">Retractable · Portrait</span>
+  <div class="specs-divider"></div>
+  <span class="specs-text">1&Prime; Top / 3&Prime; Bottom Safety</span>
+  <div class="specs-divider"></div>
+  <span class="specs-text">3 Banners · 6 Concepts</span>
+  <div class="specs-divider"></div>
+  <span class="badge-print">Print Ready</span>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="header-eyebrow">Tradeshow Assets · May 2026</div>
+  <h1 class="page-title">Banner<br><span>Concepts v2</span></h1>
+  <p class="page-sub">Three banner requests, two concept directions each. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. The client ask is shown above each pair — click any concept to review at full size.</p>
+</header>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <button id="guides-toggle" class="toggle-btn" onclick="toggleGuides()">Show Safety Margins</button>
+  <span class="toolbar-hint">Toggle dashed guides at 1&Prime; top / 3&Prime; bottom</span>
+</div>
+
+<!-- CONCEPTS -->
+<div class="concepts-wrap">
+
+  <!-- ═══════════ BANNER 01 — DATA CENTER ═══════════ -->
+  <section class="banner-section dc">
+    <div class="section-head">
+      <span class="section-num">Banner 01</span>
+      <h2 class="section-title">Data <span>Center</span></h2>
+    </div>
+    <div class="section-ask">
+      <div class="ask-label">Client Ask</div>
+      <ul class="ask-list">
+        <li><strong>Header</strong>New UWC logo</li>
+        <li><strong>Footer</strong>Same style as current banners</li>
+        <li><strong>Background</strong>Data center imagery — modern, high-tech feel</li>
+        <li><strong>Overlay</strong>Wire specs: UL SIS / XHHW, UL 3173, RHH RHW USE, UL 3195, UL 3196, XHHW 1000 MCM–14 AWG · THHN (indoor transformer secondary, indoor motor power, standard power wiring for motor controllers)</li>
+      </ul>
+    </div>
+
+    <div class="concepts-pair">
+
+      <!-- ─── 01A — Photographic ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox(0)">
+        <div class="card-inner">
+          <span class="card-chip">Concept 01A</span>
+          <span class="card-approach">Photographic</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-data b-data-a" id="banner-01a">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Built for the Grid of Tomorrow</div>
+              <div class="b-title">Data<br><span class="b-title-accent">Center</span></div>
+              <div class="b-tagline">High-density, high-reliability copper for mission-critical infrastructure.</div>
+              <div class="b-spec-block">
+                <div class="b-spec-head">Wire Specifications</div>
+                <ul class="b-spec-list">
+                  <li><span class="b-spec-accent">UL SIS</span> / XHHW</li>
+                  <li><span class="b-spec-accent">UL 3173</span></li>
+                  <li>RHH · RHW · USE</li>
+                  <li><span class="b-spec-accent">UL 3195</span></li>
+                  <li><span class="b-spec-accent">UL 3196</span></li>
+                  <li>XHHW <span class="b-spec-range">1000 MCM – 14 AWG</span></li>
+                </ul>
+                <div class="b-thhn-card">
+                  <div class="b-thhn-label">THHN Applications</div>
+                  <ul class="b-thhn-apps">
+                    <li>Indoor transformer secondary wiring</li>
+                    <li>Indoor motor power wiring</li>
+                    <li>Standard power wiring for motor controllers</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 01 · Concept A</div>
+          <div class="card-title">Photographic</div>
+          <p class="card-desc">Moody server-aisle photograph with blue and copper accents. Spec list kept prominent with THHN applications called out in a dedicated card.</p>
+        </div>
+      </div>
+
+      <!-- ─── 01B — Graphic ─── -->
+      <div class="concept-card concept-b" onclick="openLightbox(1)">
+        <div class="card-inner">
+          <span class="card-chip">Concept 01B</span>
+          <span class="card-approach">Graphic / Tech</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-data b-data-b" id="banner-01b">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Purpose-Built for the Digital Economy</div>
+              <div class="b-title">Data<br><span class="b-title-accent">Center</span></div>
+              <div class="b-tagline">Engineered wire for AI data halls, hyperscale campuses, and edge infrastructure.</div>
+              <div class="b-spec-block">
+                <div class="b-spec-head">Wire Specifications</div>
+                <ul class="b-spec-list">
+                  <li><span class="b-spec-accent">UL SIS</span> / XHHW</li>
+                  <li><span class="b-spec-accent">UL 3173</span></li>
+                  <li>RHH · RHW · USE</li>
+                  <li><span class="b-spec-accent">UL 3195</span></li>
+                  <li><span class="b-spec-accent">UL 3196</span></li>
+                  <li>XHHW <span class="b-spec-range">1000 MCM – 14 AWG</span></li>
+                </ul>
+                <div class="b-thhn-card">
+                  <div class="b-thhn-label">THHN Applications</div>
+                  <ul class="b-thhn-apps">
+                    <li>Indoor transformer secondary wiring</li>
+                    <li>Indoor motor power wiring</li>
+                    <li>Standard power wiring for motor controllers</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 01 · Concept B</div>
+          <div class="card-title">Graphic / Tech</div>
+          <p class="card-desc">Abstract circuit-and-fiber visualization in brand blue and copper. More "brand asset" than "photograph" — bolder and more graphic than Concept A.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ BANNER 02 — MEDIUM VOLTAGE ═══════════ -->
+  <section class="banner-section mv">
+    <div class="section-head">
+      <span class="section-num">Banner 02</span>
+      <h2 class="section-title">Medium <span>Voltage</span></h2>
+    </div>
+    <div class="section-ask">
+      <div class="ask-label">Client Ask</div>
+      <ul class="ask-list">
+        <li><strong>Header</strong>New UWC logo</li>
+        <li><strong>Footer</strong>Same style as current banners</li>
+        <li><strong>Background</strong>Medium voltage imagery — substations, large cables, infrastructure</li>
+        <li><strong>Overlay</strong>AL/Cu URD 25kV &amp; 15kV TRXLPE · 1/0 EPR &amp; TR-XLPE at 15/25kV · 4/0 25kV · 750 MCM–1/0 at 15/35kV · Full Neutral / LLDPE jackets</li>
+      </ul>
+    </div>
+
+    <div class="concepts-pair">
+
+      <!-- ─── 02A — Infrastructure ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox(2)">
+        <div class="card-inner">
+          <span class="card-chip">Concept 02A</span>
+          <span class="card-approach">Infrastructure</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-mv b-mv-a" id="banner-02a">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Utility-Grade Power Distribution</div>
+              <div class="b-title">Medium<br><span class="b-title-accent">Voltage</span></div>
+              <div class="b-tagline">Aluminum and copper URD cable engineered for substations, grid, and heavy distribution.</div>
+              <div class="b-spec-block">
+                <div class="b-spec-head">Voltage Class Line-up</div>
+                <div class="b-kv-group">
+                  <span class="b-kv-label">35 kV</span>
+                  <ul class="b-kv-items"><li>750 MCM – 1/0</li></ul>
+                </div>
+                <div class="b-kv-group">
+                  <span class="b-kv-label">25 kV</span>
+                  <ul class="b-kv-items">
+                    <li>AL / Cu URD · 100% TRXLPE · Full Neutral</li>
+                    <li>1/0 AL / EPR / Full Neutral / LLDPE</li>
+                    <li>1/0 AL / TR-XLPE / LLDPE</li>
+                    <li>4/0 AL / TR-XLPE / LLDPE</li>
+                  </ul>
+                </div>
+                <div class="b-kv-group">
+                  <span class="b-kv-label">15 kV</span>
+                  <ul class="b-kv-items">
+                    <li>AL / Cu URD · 133% TRXLPE · Full Neutral</li>
+                    <li>1/0 AL / EPR / Full Neutral / LLDPE</li>
+                    <li>1/0 AL / TR-XLPE / LLDPE</li>
+                    <li>750 MCM – 1/0</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 02 · Concept A</div>
+          <div class="card-title">Infrastructure</div>
+          <p class="card-desc">Substation at dusk with copper-toned cabling. Product line organized by voltage class — 35kV / 25kV / 15kV — for scanning from across the booth.</p>
+        </div>
+      </div>
+
+      <!-- ─── 02B — Product Hero ─── -->
+      <div class="concept-card concept-b" onclick="openLightbox(3)">
+        <div class="card-inner">
+          <span class="card-chip">Concept 02B</span>
+          <span class="card-approach">Product Hero</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-mv b-mv-b" id="banner-02b">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Aluminum &amp; Copper URD, Engineered In-House</div>
+              <div class="b-title">Medium<br><span class="b-title-accent">Voltage</span></div>
+              <div class="b-tagline">TRXLPE and EPR insulation. Full neutral. LLDPE jacket. Ready for the grid.</div>
+              <div class="b-spec-block">
+                <div class="b-spec-head">Voltage Class Line-up</div>
+                <div class="b-kv-group">
+                  <span class="b-kv-label">35 kV</span>
+                  <ul class="b-kv-items"><li>750 MCM – 1/0</li></ul>
+                </div>
+                <div class="b-kv-group">
+                  <span class="b-kv-label">25 kV</span>
+                  <ul class="b-kv-items">
+                    <li>AL / Cu URD · 100% TRXLPE · Full Neutral</li>
+                    <li>1/0 AL / EPR / Full Neutral / LLDPE</li>
+                    <li>1/0 AL / TR-XLPE / LLDPE</li>
+                    <li>4/0 AL / TR-XLPE / LLDPE</li>
+                  </ul>
+                </div>
+                <div class="b-kv-group">
+                  <span class="b-kv-label">15 kV</span>
+                  <ul class="b-kv-items">
+                    <li>AL / Cu URD · 133% TRXLPE · Full Neutral</li>
+                    <li>1/0 AL / EPR / Full Neutral / LLDPE</li>
+                    <li>1/0 AL / TR-XLPE / LLDPE</li>
+                    <li>750 MCM – 1/0</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 02 · Concept B</div>
+          <div class="card-title">Product Hero</div>
+          <p class="card-desc">Macro cable cross-section as the background hero — aluminum conductor, TRXLPE layers, copper neutral. Product is the star, with specs overlaid.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ BANNER 03 — USA / BRANDING ═══════════ -->
+  <section class="banner-section usa">
+    <div class="section-head">
+      <span class="section-num">Banner 03</span>
+      <h2 class="section-title">USA · <span>Branding</span></h2>
+    </div>
+    <div class="section-ask">
+      <div class="ask-label">Client Ask</div>
+      <ul class="ask-list">
+        <li><strong>Header</strong>UWC logo in American flag format (no patch styling)</li>
+        <li><strong>Center</strong>America 250 logo</li>
+        <li><strong>Bottom</strong>"Proudly Made in the USA" (or stronger creative)</li>
+        <li><strong>Background</strong>Faint imagery representing American wire manufacturing</li>
+      </ul>
+    </div>
+
+    <div class="concepts-pair">
+
+      <!-- ─── 03A — Flag & Factory ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox(4)">
+        <div class="card-inner">
+          <span class="card-chip">Concept 03A</span>
+          <span class="card-approach">Flag &amp; Factory</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-usa b-usa-a" id="banner-03a">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <img class="b-usa-flag-logo" src="assets/banners-22apr2026/uwc-flag-logo.png" alt="UWC flag logo">
+              <div class="b-usa-rule"></div>
+              <div class="b-usa-tag-wrap">
+                <div class="b-usa-tagline">
+                  <span class="red">Proudly Made</span><br>
+                  <span class="blue">in the USA</span>
+                </div>
+                <div class="b-usa-sub">Engineered &amp; Manufactured in DeKalb, Illinois</div>
+              </div>
+              <img class="b-usa-america-ribbon" src="assets/banners-22apr2026/america-250-ribbon.png" alt="America 250">
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">Since 1978</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 03 · Concept A</div>
+          <div class="card-title">Flag &amp; Factory</div>
+          <p class="card-desc">Flag draped across the top of a dim factory floor with wire spools. UWC flag lockup, America 250 hero, "Proudly Made in the USA" statement.</p>
+        </div>
+      </div>
+
+      <!-- ─── 03B — Inside the Mill ─── -->
+      <div class="concept-card concept-b" onclick="openLightbox(5)">
+        <div class="card-inner">
+          <span class="card-chip">Concept 03B</span>
+          <span class="card-approach">Patriot &amp; Craftsman</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-usa b-usa-b" id="banner-03b">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <img class="b-usa-flag-logo" src="assets/banners-22apr2026/uwc-flag-logo.png" alt="UWC flag logo">
+              <div class="b-usa-rule"></div>
+              <div class="b-usa-tag-wrap">
+                <div class="b-usa-tagline">
+                  <span class="red">American Wire.</span><br>
+                  <span class="blue">American Made.</span>
+                </div>
+                <div class="b-usa-sub">Drawn, Insulated, &amp; Jacketed in DeKalb, Illinois</div>
+              </div>
+              <img class="b-usa-america-ribbon" src="assets/banners-22apr2026/america-250-ribbon.png" alt="America 250">
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">Since 1978</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 03 · Concept B</div>
+          <div class="card-title">Patriot &amp; Craftsman</div>
+          <p class="card-desc">Diptych portrait: the same man on both halves — a modern UWC wire-mill worker on the left, a 1776 American patriot on the right. 250 years of American craft in a single image. Tagline: "American Wire. American Made."</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- NOTES -->
+<div class="notes-section">
+  <div class="notes-title">Design Notes</div>
+  <div class="notes-grid">
+    <div class="note-card">
+      <div class="note-eyebrow">Print Specs</div>
+      <p class="note-text">Each banner is built at the exact <strong>33&Prime; × 81&Prime;</strong> aspect ratio with <strong>1&Prime; top</strong> and <strong>3&Prime; bottom</strong> safety margins honored. Use the toolbar toggle above to overlay the margin guides.</p>
+    </div>
+    <div class="note-card">
+      <div class="note-eyebrow">Typography</div>
+      <p class="note-text">All banner text is live HTML — nothing is rasterized. Typography scales with container width so the layout holds up at print resolution. Headings use <strong>Barlow Condensed</strong>; tagline and body use <strong>DM Sans</strong>.</p>
+    </div>
+    <div class="note-card">
+      <div class="note-eyebrow">Next Step</div>
+      <p class="note-text">Once a direction is approved, we'll export each banner as a print-ready <strong>PDF at 150 DPI</strong> (4950 × 12150 px) with backgrounds at full resolution and safety-margin guides hidden.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="section-divider">
+  <div class="div-line"></div>
+  <span class="div-label">Next Steps</span>
+  <div class="div-line"></div>
+</div>
+
+<!-- ACTIONS -->
+<div class="actions-section">
+  <h2 class="actions-heading">Ready to<br><span>Print Ready?</span></h2>
+  <p class="actions-sub">Approve a direction and we'll hand off print files to your printer of choice.</p>
+  <div class="actions-row">
+    <a href="mailto:gary.ricke@orbisdesign.com?subject=UWC%20Banners%20v2%20%E2%80%94%20Approved%20Direction" class="btn btn-primary">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Approve a Direction
+    </a>
+    <a href="mailto:gary.ricke@orbisdesign.com?subject=UWC%20Banners%20v2%20%E2%80%94%20Edits" class="btn btn-secondary">
+      <svg viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 4L8 9.5 14.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Request Edits
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+</div><!-- /main-content -->
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">Close &times;</button>
+  <div id="lb-stage"></div>
+  <div class="lb-caption" id="lb-caption"></div>
+</div>
+
+<footer>
+  <span class="footer-text">Unified Wire &amp; Cable</span>
+  <div class="footer-pip"></div>
+  <span class="footer-text">Tradeshow Banners · v2</span>
+  <div class="footer-pip"></div>
+  <span class="footer-text">April 2026</span>
+</footer>
+
+<script>
+  /* ── PASSWORD GATE ───────────────────────────────────────── */
+  const PASS    = 'copper';
+  const SESSION = 'uwc_banners_v2_auth';
+  const gate    = document.getElementById('gate');
+  const main    = document.getElementById('main-content');
+  const errEl   = document.getElementById('gate-error');
+  const inputEl = document.getElementById('gate-input');
+
+  function unlock() {
+    gate.classList.add('fade-out');
+    main.style.visibility = 'visible';
+    main.style.opacity = '0';
+    main.style.transition = 'opacity 0.6s ease';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      main.style.opacity = '1';
+      setTimeout(() => main.style.transition = '', 700);
+    }));
+    setTimeout(() => gate.style.display = 'none', 800);
+    sessionStorage.setItem(SESSION, '1');
+    initObserver();
+  }
+
+  function checkPassword(e) {
+    e.preventDefault();
+    if (inputEl.value.trim().toLowerCase() === PASS) {
+      unlock();
+    } else {
+      errEl.classList.add('show');
+      inputEl.classList.add('shake');
+      inputEl.value = '';
+      inputEl.focus();
+      setTimeout(() => inputEl.classList.remove('shake'), 550);
+    }
+  }
+
+  if (sessionStorage.getItem(SESSION) === '1') {
+    gate.style.display = 'none';
+    main.style.visibility = 'visible';
+    window.addEventListener('DOMContentLoaded', () => initObserver());
+  }
+
+  /* ── SAFETY MARGIN TOGGLE ────────────────────────────────── */
+  function toggleGuides() {
+    const btn = document.getElementById('guides-toggle');
+    document.body.classList.toggle('show-guides');
+    const on = document.body.classList.contains('show-guides');
+    btn.classList.toggle('active', on);
+    btn.textContent = on ? 'Hide Safety Margins' : 'Show Safety Margins';
+  }
+
+  /* ── LIGHTBOX ────────────────────────────────────────────── */
+  const lb     = document.getElementById('lightbox');
+  const lbStg  = document.getElementById('lb-stage');
+  const lbCap  = document.getElementById('lb-caption');
+
+  const bannerIds = [
+    'banner-01a', 'banner-01b',
+    'banner-02a', 'banner-02b',
+    'banner-03a', 'banner-03b'
+  ];
+  const captions = [
+    'Concept 01A — Data Center · Photographic',
+    'Concept 01B — Data Center · Graphic / Tech',
+    'Concept 02A — Medium Voltage · Infrastructure',
+    'Concept 02B — Medium Voltage · Product Hero',
+    'Concept 03A — USA · Flag & Factory',
+    'Concept 03B — USA · Inside the Mill'
+  ];
+
+  function openLightbox(idx) {
+    const source = document.getElementById(bannerIds[idx]);
+    if (!source) return;
+    const clone = source.cloneNode(true);
+    clone.classList.add('lb-banner');
+    clone.removeAttribute('id');
+    lbStg.innerHTML = '';
+    lbStg.appendChild(clone);
+    lbCap.textContent = captions[idx];
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+  });
+
+  /* ── SCROLL REVEAL ───────────────────────────────────────── */
+  function initObserver() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('visible');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.banner-section').forEach(el => io.observe(el));
+  }
+</script>
+</body>
+</html>
