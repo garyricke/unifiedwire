@@ -117,38 +117,128 @@
     }
     @media (max-width: 640px) { .vi-steps { grid-template-columns: repeat(2, 1fr); } }
 
-    /* People */
+    /* People — image-forward card */
     .people-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
     .person-card {
-      border: 1.5px solid var(--border); border-radius: var(--radius);
-      padding: 24px; background: var(--white);
-    }
-    .person-photo {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: var(--gray-lt); border: 2px dashed var(--border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-lt); margin-bottom: 14px;
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius);
       overflow: hidden;
+      background: var(--ink, #0A1628);
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      isolation: isolate;
+      transition: transform .35s ease, box-shadow .35s ease;
     }
-    .person-photo.has-image {
-      border: 2px solid var(--border);
-      background: none;
+    .person-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 60px -24px rgba(10,22,40,.45);
     }
-    .person-photo img {
+    .person-card-img {
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      display: block;
+      z-index: 0;
+      transition: transform .6s ease;
     }
-    .person-name  { font-size:1rem; font-weight:700; margin-bottom:2px; }
-    .person-title { font-family:var(--mono); font-size:.70rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-lt); margin-bottom:4px; }
-    .person-tenure { font-size:.82rem; color:var(--blue); font-weight:600; margin-bottom:12px; }
-    .person-quote {
-      font-size:.875rem; color:var(--text-lt); font-style:italic;
-      border-left: 3px solid var(--border); padding-left:12px; line-height:1.55;
+    .person-card:hover .person-card-img { transform: scale(1.04); }
+    .person-card-initial {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font);
+      font-size: clamp(5rem, 12vw, 9rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: rgba(255,255,255,.18);
+      background: linear-gradient(135deg, #1a2f4a 0%, #0a1628 50%, #102540 100%);
+      z-index: 0;
     }
+    .person-card-gradient {
+      position: absolute; inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(10,22,40,0) 0%,
+        rgba(10,22,40,0) 38%,
+        rgba(10,22,40,.55) 62%,
+        rgba(10,22,40,.92) 100%
+      );
+    }
+    .person-card-inner {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      z-index: 2;
+      padding: 22px 22px 20px;
+    }
+    .person-card-title {
+      font-family: var(--mono); font-size: .62rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 6px;
+    }
+    .person-card-name {
+      font-family: var(--font);
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .person-card-tenure {
+      font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: 12px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .person-card-tenure::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 3px rgba(3,98,188,.35);
+    }
+    .person-card-quote {
+      font-size: .88rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,.82);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+    .person-card-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px;
+      font-family: var(--mono); font-size: .62rem;
+      font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.3);
+      padding-bottom: 3px;
+      transition: border-color .2s, color .2s;
+    }
+    .person-card:hover .person-card-cta {
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .person-card-cta svg { transition: transform .2s; }
+    .person-card:hover .person-card-cta svg { transform: translateX(3px); }
+
+    .person-card-placeholder {
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--gray-lt);
+      aspect-ratio: 4 / 5;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; padding: 24px; text-align: center;
+      color: var(--text-lt);
+    }
+
     @media (max-width: 760px) { .people-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .people-grid { grid-template-columns: 1fr; } }
 
@@ -331,60 +421,72 @@
       <p>Our production staff averages more than a decade of tenure. The institutional knowledge that comes with that kind of continuity isn't something you can purchase — it accumulates. We hear it from our customers: when you call Unified Wire, you reach someone who knows the product, knows the history, and can solve the problem.</p>
     </div>
     <div class="people-grid fade-in">
+      <a href="tim-foley.html" class="person-card">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/v1776693528/tim-foley-profile-square_jboy8f.jpg" alt="Tim Foley">
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">VP Sales</div>
+          <div class="person-card-name">Tim Foley</div>
+          <div class="person-card-tenure">25 years · Son of founder</div>
+          <p class="person-card-quote">"My father thought, why not get more integrated. That idea became this company."</p>
+          <span class="person-card-cta">
+            Read his story
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="daniela.html" class="person-card">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/daniela-profile-square" alt="Daniela">
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Quality Team · QMS Lead, in training</div>
+          <div class="person-card-name">Daniela</div>
+          <div class="person-card-tenure">5 years · Industrial Engineer</div>
+          <p class="person-card-quote">"I'm kind of like that bridge in between. The most difficult part — and the most rewarding."</p>
+          <span class="person-card-cta">
+            Read her story
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
       <div class="person-card">
-        <div class="person-photo has-image">
-          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_160,h_160,c_fill,g_face/v1776693528/tim-foley-profile-square_jboy8f.jpg" alt="Tim Foley">
+        <div class="person-card-initial" aria-hidden="true">J</div>
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Production Manager</div>
+          <div class="person-card-name">Jorge Hernandez</div>
+          <div class="person-card-tenure">33 years · 2nd employee</div>
+          <p class="person-card-quote">"Relationships are the key to everything."</p>
         </div>
-        <div class="person-name">Tim Foley</div>
-        <div class="person-title">VP Sales</div>
-        <div class="person-tenure">25 years · Son of founder</div>
-        <div class="person-quote">"My father thought, why not get more integrated. That idea became this company."</div>
-        <a href="tim-foley.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.8rem;font-weight:700;color:var(--blue);text-decoration:none;">
-          Read his story
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
+
       <div class="person-card">
-        <div class="person-photo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="person-card-initial" aria-hidden="true">S</div>
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Wire Mill Supervisor</div>
+          <div class="person-card-name">Salvador Lopez</div>
+          <div class="person-card-tenure">14 years · Promoted from within</div>
+          <p class="person-card-quote">"Every day is learning more. Every day is a different job."</p>
         </div>
-        <div class="person-name">Jorge Hernandez</div>
-        <div class="person-title">Production Manager</div>
-        <div class="person-tenure">33 years · 2nd employee</div>
-        <div class="person-quote">"Relationships are the key to everything."</div>
       </div>
+
       <div class="person-card">
-        <div class="person-photo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="person-card-initial" aria-hidden="true">E</div>
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Plant Engineer</div>
+          <div class="person-card-name">Ebba</div>
+          <div class="person-card-tenure">M.S. Energy Systems Engineering</div>
+          <p class="person-card-quote">"Everyone teaches from the roots. You need to understand root causes."</p>
         </div>
-        <div class="person-name">Daniela</div>
-        <div class="person-title">Quality Manager</div>
-        <div class="person-tenure">5 years · Industrial Engineer</div>
-        <div class="person-quote">"I'm kind of like that bridge in between. It's the most difficult part, but also the most rewarding."</div>
       </div>
-      <div class="person-card">
-        <div class="person-photo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <div class="person-name">Salvador Lopez</div>
-        <div class="person-title">Wire Mill Supervisor</div>
-        <div class="person-tenure">14 years · Promoted from within</div>
-        <div class="person-quote">"Every day is learning more. Every day is a different job."</div>
-      </div>
-      <div class="person-card">
-        <div class="person-photo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <div class="person-name">Ebba</div>
-        <div class="person-title">Plant Engineer</div>
-        <div class="person-tenure">M.S. Energy Systems Engineering</div>
-        <div class="person-quote">"Everyone teaches from the roots. You need to understand root causes."</div>
-      </div>
-      <div class="person-card" style="background:var(--gray-lt); border-style:dashed; display:flex; align-items:center; justify-content:center; text-align:center; min-height:200px;">
-        <div>
-          <p style="font-size:.88rem; color:var(--text-lt);">Additional team members to be added</p>
-          <a href="careers.html" class="btn btn-outline btn-sm" style="margin-top:14px;">View Open Positions</a>
-        </div>
+
+      <div class="person-card-placeholder">
+        <p style="font-size:.88rem; color:var(--text-lt); margin:0;">Additional team members to be added</p>
+        <a href="careers.html" class="btn btn-outline btn-sm">View Open Positions</a>
       </div>
     </div>
   </div>
