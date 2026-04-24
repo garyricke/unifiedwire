@@ -727,6 +727,91 @@
       .dn-meeting-cell:nth-child(2) { border-right: none; }
     }
 
+    /* ── Lab video gallery (top of page, portrait pair) */
+    .dn-lab-gallery {
+      background: var(--gray-lt);
+      padding: 72px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .dn-lab-gallery-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .dn-lab-gallery-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+    .dn-lab-gallery-label {
+      font-family: var(--mono); font-size: .62rem;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .dn-lab-gallery-label::before,
+    .dn-lab-gallery-label::after {
+      content: '';
+      flex: 0 0 36px; height: 1px;
+      background: var(--steel); opacity: .4;
+    }
+    .dn-lab-gallery-head h2 {
+      font-family: var(--font);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .dn-lab-gallery-head h2 em { font-style: italic; color: var(--steel); }
+    .dn-lab-gallery-head p {
+      font-size: 1rem; color: var(--text-lt); line-height: 1.6;
+    }
+    .dn-lab-gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 720px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+    .dn-gallery-item {
+      margin: 0;
+      width: 100%;
+      max-width: 300px;
+    }
+    .dn-gallery-caption {
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--steel);
+      text-align: center;
+    }
+    .dn-gallery-caption span {
+      display: block;
+      margin-top: 5px;
+      font-family: var(--font);
+      font-size: .82rem;
+      font-weight: 300;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--text-lt);
+      font-style: italic;
+    }
+    @media (max-width: 640px) {
+      .dn-lab-gallery { padding: 56px 0 64px; }
+      .dn-lab-gallery-inner { padding: 0 24px; }
+      .dn-lab-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        max-width: 340px;
+      }
+    }
+
     /* ── Lab videos (portrait 9:16, float right) ─────── */
     .dn-lab-video {
       float: right;
@@ -1044,6 +1129,58 @@
   </div>
 </section>
 
+<!-- ── LAB VIDEO GALLERY ─────────────────────────────── -->
+<section class="dn-lab-gallery" id="in-the-lab" aria-label="In the lab">
+  <div class="dn-lab-gallery-inner">
+    <div class="dn-lab-gallery-head dn-fade">
+      <div class="dn-lab-gallery-label">Inside the Lab</div>
+      <h2>Two tests a day. <em>Every day.</em></h2>
+      <p>Before any drum leaves DeKalb, Daniela's team runs it through the same rigid battery of checks. These are two of them.</p>
+    </div>
+    <div class="dn-lab-gallery-grid">
+      <figure class="dn-gallery-item dn-fade">
+        <div class="dn-lab-video-frame" data-video-id="flame">
+          <span class="dn-lab-video-label">Flame Test · Daily</span>
+          <video
+            id="dn-flame-video"
+            src="https://player.vimeo.com/progressive_redirect/playback/1186223330/rendition/720p/file.mp4%20%28720p%29.mp4?loc=external&amp;log_user=0&amp;signature=ebb637fc68cb4a52fa57e9ad692080ba741a574a859fa42742113a2bcb28a70e"
+            playsinline preload="metadata"></video>
+          <button type="button" class="dn-lab-video-overlay" aria-label="Play flame test video">
+            <span class="dn-lab-play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <span class="dn-lab-video-hint">Click to watch &amp; listen</span>
+          </button>
+        </div>
+        <figcaption class="dn-gallery-caption">
+          <strong>Flame · 15 in / 15 off · ×5</strong>
+          <span>Must self-extinguish. The flag cannot burn.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="dn-gallery-item dn-fade">
+        <div class="dn-lab-video-frame" data-video-id="oven">
+          <span class="dn-lab-video-label">Oven Elongation · 7-Day</span>
+          <video
+            id="dn-oven-video"
+            src="https://player.vimeo.com/progressive_redirect/playback/1186223507/rendition/720p/file.mp4%20%28720p%29.mp4?loc=external&amp;log_user=0&amp;signature=0e881c5058dfd98fe07749ab1b24b6090718c33caaa662e8412c504182978a37"
+            playsinline preload="metadata"></video>
+          <button type="button" class="dn-lab-video-overlay" aria-label="Play oven elongation video">
+            <span class="dn-lab-play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <span class="dn-lab-video-hint">Click to watch &amp; listen</span>
+          </button>
+        </div>
+        <figcaption class="dn-gallery-caption">
+          <strong>Oven Elongation · 7 days</strong>
+          <span>Before vs. after. Numbers have to match.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- ── CHAPTER NAV ───────────────────────────────────── -->
 <nav class="dn-chapter-nav" aria-label="Chapter navigation">
   <div class="dn-chapter-dot active" data-target="ch1" data-label="The Bridge"></div>
@@ -1284,29 +1421,8 @@
       </div>
     </div>
 
-    <!-- Flame test video -->
     <h3 class="dn-fade">The Flame Test</h3>
-    <p class="dn-fade">"This one's my favorite," Daniela says. And when she shows you why, you understand.</p>
-
-    <figure class="dn-lab-video dn-fade">
-      <div class="dn-lab-video-frame" data-video-id="flame">
-        <span class="dn-lab-video-label">Flame Test · Daily</span>
-        <video
-          id="dn-flame-video"
-          src="https://player.vimeo.com/progressive_redirect/playback/1186223330/rendition/720p/file.mp4%20%28720p%29.mp4?loc=external&amp;log_user=0&amp;signature=ebb637fc68cb4a52fa57e9ad692080ba741a574a859fa42742113a2bcb28a70e"
-          playsinline preload="metadata"></video>
-        <button type="button" class="dn-lab-video-overlay" aria-label="Play flame test video">
-          <span class="dn-lab-play">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-          <span class="dn-lab-video-hint">Click to watch &amp; listen</span>
-        </button>
-      </div>
-      <figcaption class="dn-lab-caption">
-        <strong>15 in / 15 off · ×5 cycles</strong>
-        <span>The flag at the top cannot burn. Must self-extinguish before 60 seconds.</span>
-      </figcaption>
-    </figure>
+    <p class="dn-fade">"This one's my favorite," Daniela says. And when she shows you <a href="#in-the-lab" style="color:var(--steel);text-decoration:underline;text-underline-offset:3px;">the video up top</a>, you understand.</p>
 
     <p class="dn-fade">A specimen is clamped vertically. A three-inch blue flame is applied from below for fifteen seconds, then removed for fifteen. The wire has to self-extinguish — and it has to do it before sixty seconds. Five cycles. If the flame ever reaches the paper flag taped near the top of the sample, or if burning continues past the limit on the second pass, the run fails.</p>
 
@@ -1317,36 +1433,13 @@
       <cite>— Daniela, on the flame test</cite>
     </div>
 
-    <!-- Oven elongation test video -->
-    <div class="dn-lab-clear"></div>
     <h3 class="dn-fade">Seven Days in the Oven</h3>
     <p class="dn-fade">The flame test lives and dies in sixty seconds. The oven elongation test takes a week.</p>
-
-    <figure class="dn-lab-video is-left dn-fade">
-      <div class="dn-lab-video-frame" data-video-id="oven">
-        <span class="dn-lab-video-label">Oven Elongation · 7-Day</span>
-        <video
-          id="dn-oven-video"
-          src="https://player.vimeo.com/progressive_redirect/playback/1186223507/rendition/720p/file.mp4%20%28720p%29.mp4?loc=external&amp;log_user=0&amp;signature=0e881c5058dfd98fe07749ab1b24b6090718c33caaa662e8412c504182978a37"
-          playsinline preload="metadata"></video>
-        <button type="button" class="dn-lab-video-overlay" aria-label="Play oven elongation video">
-          <span class="dn-lab-play">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-          <span class="dn-lab-video-hint">Click to watch &amp; listen</span>
-        </button>
-      </div>
-      <figcaption class="dn-lab-caption">
-        <strong>Before vs. After · 6" samples</strong>
-        <span>Both must elongate to similar values. Divergence = polymer breakdown.</span>
-      </figcaption>
-    </figure>
 
     <p class="dn-fade">Two six-inch samples are cut from the same run. One goes into the oven at a temperature dictated by the applicable standard. For seven days. The other stays outside the oven as a control. At the end of the week, both samples are pulled, clamped into the elongation rig, and stretched until they snap.</p>
 
     <p class="dn-fade">The numbers have to match — within tolerance. If the aged sample elongates meaningfully less than the unaged one, it means the polymer has broken down under sustained heat. That batch doesn't ship.</p>
 
-    <div class="dn-lab-clear"></div>
     <h3 class="dn-fade">What's Next</h3>
     <p class="dn-fade">Unified is moving into medium voltage — 15kV to 69kV. That means new materials, new tests, and new compliance documents Daniela will have to write from scratch. It also means a whole new chapter of the QMS she is being trained to run.</p>
 
