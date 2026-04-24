@@ -28,6 +28,14 @@
     --border-mid:  rgba(244,241,236,0.14);
     --red-usa:     #B3272D;
     --blue-usa:    #0A3161;
+    --green-apps:  #2a8c5a;
+    --green-apps-lt:#46b880;
+    --copper:      #b26929;
+    --copper-lt:   #e69144;
+    --teal:        #0a7d7d;
+    --teal-lt:     #2ec2c2;
+    --cyan:        #6fcfff;
+    --cyan-dk:     #2a8fc7;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -220,6 +228,9 @@
   .section-title span { color: var(--blue-lt); }
   .banner-section.mv .section-title span { color: var(--orange-lt); }
   .banner-section.usa .section-title span { color: #d64b50; }
+  .banner-section.apps .section-title span { color: var(--green-apps-lt); }
+  .banner-section.sc .section-title span { color: var(--copper-lt); }
+  .banner-section.mc .section-title span { color: var(--teal-lt); }
 
   .section-ask {
     background: rgba(255,255,255,0.025);
@@ -264,6 +275,11 @@
     gap: 28px;
     max-width: 820px;
   }
+  .concepts-single {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 396px;
+  }
   .concept-card {
     position: relative;
     cursor: pointer;
@@ -293,8 +309,13 @@
   .banner-section.dc .card-chip { background: var(--blue); }
   .banner-section.mv .card-chip { background: var(--orange); }
   .banner-section.usa .card-chip { background: var(--red-usa); }
+  .banner-section.apps .card-chip { background: var(--green-apps); }
+  .banner-section.sc .card-chip { background: var(--copper); }
+  .banner-section.mc .card-chip { background: var(--teal); }
   .concept-b .card-chip { background: var(--navy-3); border: 1px solid var(--border-mid); }
   .banner-section.dc .concept-b .card-chip { background: var(--blue-dk); }
+  .banner-section.dc .concept-c .card-chip { background: var(--blue-lt); }
+  .banner-section.dc .concept-d .card-chip { background: var(--cyan-dk); }
   .banner-section.mv .concept-b .card-chip { background: var(--orange-dk); }
   .banner-section.usa .concept-b .card-chip { background: var(--blue-usa); }
 
@@ -465,6 +486,13 @@
         rgba(10,22,40,0.96) 100%);
   }
 
+  .b-data-c .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-data-center-c.jpg');
+  }
+  .b-data-d .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-data-center-d.jpg');
+  }
+
   /* ── BANNER 2 — MEDIUM VOLTAGE ───────────────────────────── */
   .b-mv-a .banner-bg {
     background-image: url('assets/banners-22apr2026/openai/bg-medium-voltage-a.jpg');
@@ -603,6 +631,187 @@
   }
   .b-kv-items li:last-child { border-bottom: none; }
 
+  /* ── BANNER 4 — APPLICATIONS / MARKETS ───────────────────── */
+  .b-apps-a .banner-bg {
+    background-color: var(--navy);
+    background-image:
+      radial-gradient(ellipse at 20% 15%, rgba(42,140,90,0.18), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(3,98,188,0.22), transparent 60%);
+  }
+  .b-apps .banner-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(10,22,40,0.92) 0%,
+        rgba(10,22,40,0.60) 10%,
+        rgba(10,22,40,0.10) 22%,
+        rgba(10,22,40,0.10) 70%,
+        rgba(10,22,40,0.85) 88%,
+        rgba(10,22,40,0.96) 100%);
+  }
+  .b-apps .b-title-accent { color: var(--green-apps-lt); }
+
+  .b-apps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.2cqw;
+    margin-top: 3%;
+  }
+  .b-apps-tile {
+    position: relative;
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #060f1e;
+  }
+  .b-apps-tile-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .b-apps-tile::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(10,22,40,0) 45%,
+      rgba(10,22,40,0.55) 70%,
+      rgba(10,22,40,0.94) 100%);
+  }
+  .b-apps-tile-label {
+    position: absolute;
+    left: 7%; right: 7%; bottom: 7%;
+    z-index: 2;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.4cqw;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 0.95;
+  }
+  .b-apps-tile-sub {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.8cqw;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2.5%;
+  }
+
+  /* ── BANNER 5 — SINGLE CONDUCTOR ─────────────────────────── */
+  .b-sc-a .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-single-conductor-a.jpg');
+  }
+  .b-sc .banner-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(10,22,40,0.92) 0%,
+        rgba(10,22,40,0.70) 8%,
+        rgba(10,22,40,0.30) 22%,
+        rgba(10,22,40,0.55) 55%,
+        rgba(10,22,40,0.90) 85%,
+        rgba(10,22,40,0.97) 100%);
+  }
+  .b-sc .b-title-accent { color: var(--copper-lt); }
+
+  .b-sc-pairs {
+    list-style: none;
+    margin-top: 5%;
+  }
+  .b-sc-pair {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    column-gap: 8%;
+    padding: 1.5% 0;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .b-sc-pair:last-child { border-bottom: none; }
+  .b-sc-ul {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.7cqw;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .b-sc-type {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.1cqw;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--copper-lt);
+    text-align: right;
+  }
+
+  /* ── BANNER 6 — MULTI-CONDUCTOR ──────────────────────────── */
+  .b-mc-a .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-multi-conductor-a.jpg');
+  }
+  .b-mc .banner-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(10,22,40,0.92) 0%,
+        rgba(10,22,40,0.70) 8%,
+        rgba(10,22,40,0.30) 22%,
+        rgba(10,22,40,0.55) 55%,
+        rgba(10,22,40,0.90) 85%,
+        rgba(10,22,40,0.97) 100%);
+  }
+  .b-mc .b-title-accent { color: var(--teal-lt); }
+
+  .b-mc-twocol {
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 6%;
+  }
+  .b-mc-col { list-style: none; }
+  .b-mc-col li {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.4cqw;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #fff;
+    padding: 1.6% 0;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .b-mc-col li:last-child { border-bottom: none; }
+
+  .b-mc-families {
+    margin-top: 5.5%;
+    padding-top: 4%;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.8%;
+  }
+  .b-mc-family {
+    padding: 3.5% 3.5% 3%;
+    background: rgba(46,194,194,0.08);
+    border-left: 2px solid var(--teal-lt);
+    border-radius: 2px;
+  }
+  .b-mc-family-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.7cqw;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal-lt);
+    margin-bottom: 2%;
+    line-height: 1;
+  }
+  .b-mc-family-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.9cqw;
+    font-weight: 300;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.78);
+  }
+
   /* ── BANNER 3 — USA / BRANDING ───────────────────────────── */
   .b-usa-a .banner-bg {
     background-image: url('assets/banners-22apr2026/openai/bg-usa-a.jpg');
@@ -647,7 +856,7 @@
   }
 
   .b-usa-america-ribbon {
-    width: 62%;
+    width: 52%;
     display: block;
     margin: 0 auto 4%;
     filter: drop-shadow(0 4px 14px rgba(0,0,0,0.5));
@@ -997,7 +1206,7 @@
   <div class="specs-divider"></div>
   <span class="specs-text">1&Prime; Top / 3&Prime; Bottom Safety</span>
   <div class="specs-divider"></div>
-  <span class="specs-text">3 Banners · 6 Concepts</span>
+  <span class="specs-text">6 Banners · 11 Concepts</span>
   <div class="specs-divider"></div>
   <span class="badge-print">Print Ready</span>
 </div>
@@ -1006,7 +1215,7 @@
 <header class="page-header">
   <div class="header-eyebrow">Tradeshow Assets · May 2026</div>
   <h1 class="page-title">Banner<br><span>Concepts v2</span></h1>
-  <p class="page-sub">Three banner requests, two concept directions each. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. The client ask is shown above each pair — click any concept to review at full size.</p>
+  <p class="page-sub">Six banners for the show — Data Center now has four photo directions to choose from (Server Aisle, Graphic/Tech, Cable Tray, Facility Exterior). Medium Voltage has an A/B pair; USA, Market Grid, Single Conductor, and Multi-Conductor are each a single direction. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. Click any concept to review at full size.</p>
 </header>
 
 <!-- TOOLBAR -->
@@ -1037,7 +1246,7 @@
     <div class="concepts-pair">
 
       <!-- ─── 01A — Photographic ─── -->
-      <div class="concept-card concept-a" onclick="openLightbox(0)">
+      <div class="concept-card concept-a" onclick="openLightbox('banner-01a')">
         <div class="card-inner">
           <span class="card-chip">Concept 01A</span>
           <span class="card-approach">Photographic</span>
@@ -1050,7 +1259,6 @@
             <div class="banner-content">
               <div class="b-header">
                 <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
-                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
                 <div class="b-contact">DeKalb, Illinois</div>
               </div>
               <div class="b-cat">Built for the Grid of Tomorrow</div>
@@ -1090,7 +1298,7 @@
       </div>
 
       <!-- ─── 01B — Graphic ─── -->
-      <div class="concept-card concept-b" onclick="openLightbox(1)">
+      <div class="concept-card concept-b" onclick="openLightbox('banner-01b')">
         <div class="card-inner">
           <span class="card-chip">Concept 01B</span>
           <span class="card-approach">Graphic / Tech</span>
@@ -1103,7 +1311,6 @@
             <div class="banner-content">
               <div class="b-header">
                 <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
-                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
                 <div class="b-contact">DeKalb, Illinois</div>
               </div>
               <div class="b-cat">Purpose-Built for the Digital Economy</div>
@@ -1142,6 +1349,110 @@
         </div>
       </div>
 
+      <!-- ─── 01C — Cable Tray ─── -->
+      <div class="concept-card concept-c" onclick="openLightbox('banner-01c')">
+        <div class="card-inner">
+          <span class="card-chip">Concept 01C</span>
+          <span class="card-approach">Cable Tray</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-data b-data-c" id="banner-01c">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Product In Context</div>
+              <div class="b-title">Data<br><span class="b-title-accent">Center</span></div>
+              <div class="b-tagline">The copper that powers the cloud — colored, classified, and ready for overhead.</div>
+              <div class="b-spec-block">
+                <div class="b-spec-head">Wire Specifications</div>
+                <ul class="b-spec-list">
+                  <li><span class="b-spec-accent">UL SIS</span> / XHHW</li>
+                  <li><span class="b-spec-accent">UL 3173</span></li>
+                  <li>RHH · RHW · USE</li>
+                  <li><span class="b-spec-accent">UL 3195</span></li>
+                  <li><span class="b-spec-accent">UL 3196</span></li>
+                  <li>XHHW <span class="b-spec-range">1000 MCM – 14 AWG</span></li>
+                </ul>
+                <div class="b-thhn-card">
+                  <div class="b-thhn-label">THHN Applications</div>
+                  <ul class="b-thhn-apps">
+                    <li>Indoor transformer secondary wiring</li>
+                    <li>Indoor motor power wiring</li>
+                    <li>Standard power wiring for motor controllers</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 01 · Concept C</div>
+          <div class="card-title">Cable Tray</div>
+          <p class="card-desc">Ultra-detailed cable tray of neatly routed colored conductors — blue, red, yellow, green, white — heading into a dark server room. Product-in-context angle: the wire UWC actually makes, shown doing its job.</p>
+        </div>
+      </div>
+
+      <!-- ─── 01D — Facility Exterior ─── -->
+      <div class="concept-card concept-d" onclick="openLightbox('banner-01d')">
+        <div class="card-inner">
+          <span class="card-chip">Concept 01D</span>
+          <span class="card-approach">Facility Exterior</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-data b-data-d" id="banner-01d">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Built at Hyperscale</div>
+              <div class="b-title">Data<br><span class="b-title-accent">Center</span></div>
+              <div class="b-tagline">Copper for the campuses that run the internet — supplied, stocked, and ready to quote.</div>
+              <div class="b-spec-block">
+                <div class="b-spec-head">Wire Specifications</div>
+                <ul class="b-spec-list">
+                  <li><span class="b-spec-accent">UL SIS</span> / XHHW</li>
+                  <li><span class="b-spec-accent">UL 3173</span></li>
+                  <li>RHH · RHW · USE</li>
+                  <li><span class="b-spec-accent">UL 3195</span></li>
+                  <li><span class="b-spec-accent">UL 3196</span></li>
+                  <li>XHHW <span class="b-spec-range">1000 MCM – 14 AWG</span></li>
+                </ul>
+                <div class="b-thhn-card">
+                  <div class="b-thhn-label">THHN Applications</div>
+                  <ul class="b-thhn-apps">
+                    <li>Indoor transformer secondary wiring</li>
+                    <li>Indoor motor power wiring</li>
+                    <li>Standard power wiring for motor controllers</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 01 · Concept D</div>
+          <div class="card-title">Facility Exterior</div>
+          <p class="card-desc">Dramatic architectural exterior of a modern hyperscale data center at dusk, rooftop cooling units silhouetted against a deep navy sky. Scale-of-the-customer angle — shows the kind of facility UWC copper helps build.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1164,7 +1475,7 @@
     <div class="concepts-pair">
 
       <!-- ─── 02A — Infrastructure ─── -->
-      <div class="concept-card concept-a" onclick="openLightbox(2)">
+      <div class="concept-card concept-a" onclick="openLightbox('banner-02a')">
         <div class="card-inner">
           <span class="card-chip">Concept 02A</span>
           <span class="card-approach">Infrastructure</span>
@@ -1177,7 +1488,6 @@
             <div class="banner-content">
               <div class="b-header">
                 <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
-                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
                 <div class="b-contact">DeKalb, Illinois</div>
               </div>
               <div class="b-cat">Utility-Grade Power Distribution</div>
@@ -1223,7 +1533,7 @@
       </div>
 
       <!-- ─── 02B — Product Hero ─── -->
-      <div class="concept-card concept-b" onclick="openLightbox(3)">
+      <div class="concept-card concept-b" onclick="openLightbox('banner-02b')">
         <div class="card-inner">
           <span class="card-chip">Concept 02B</span>
           <span class="card-approach">Product Hero</span>
@@ -1236,7 +1546,6 @@
             <div class="banner-content">
               <div class="b-header">
                 <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
-                <div class="b-name">Unified Wire &amp; Cable, Inc.</div>
                 <div class="b-contact">DeKalb, Illinois</div>
               </div>
               <div class="b-cat">Aluminum &amp; Copper URD, Engineered In-House</div>
@@ -1284,10 +1593,92 @@
     </div>
   </section>
 
-  <!-- ═══════════ BANNER 03 — USA / BRANDING ═══════════ -->
-  <section class="banner-section usa">
+  <!-- ═══════════ BANNER 03 — APPLICATIONS / MARKETS ═══════════ -->
+  <section class="banner-section apps">
     <div class="section-head">
       <span class="section-num">Banner 03</span>
+      <h2 class="section-title">Applications &amp; <span>Markets</span></h2>
+    </div>
+    <div class="section-ask">
+      <div class="ask-label">Client Ask</div>
+      <ul class="ask-list">
+        <li><strong>Header</strong>New UWC logo</li>
+        <li><strong>Footer</strong>Same style as current banners</li>
+        <li><strong>Overlay</strong>Six application markets shown in a photographic grid</li>
+        <li><strong>Markets</strong>Commercial · Industrial · Residential · Solar/EV · Data Centers · Marine</li>
+      </ul>
+    </div>
+
+    <div class="concepts-pair concepts-single">
+
+      <!-- ─── 03A — Market Grid ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox('banner-03')">
+        <div class="card-inner">
+          <span class="card-chip">Concept 03</span>
+          <span class="card-approach">Market Grid</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-apps b-apps-a" id="banner-03">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Applications We Power</div>
+              <div class="b-title">Built for<br><span class="b-title-accent">Every Market</span></div>
+              <div class="b-tagline">From homes to hyperscale — copper engineered for the sectors that keep America running.</div>
+
+              <div class="b-apps-grid">
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-distribution" alt="Commercial">
+                  <div class="b-apps-tile-label">Commercial<span class="b-apps-tile-sub">Office · Retail · Warehouse</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-military" alt="Industrial">
+                  <div class="b-apps-tile-label">Industrial<span class="b-apps-tile-sub">Plant · Motor · Controls</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-appliance" alt="Residential">
+                  <div class="b-apps-tile-label">Residential<span class="b-apps-tile-sub">Home · Appliance · HVAC</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-automotive" alt="Solar and EV">
+                  <div class="b-apps-tile-label">Solar / EV<span class="b-apps-tile-sub">PV · Charging · Storage</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="assets/banners-22apr2026/openai/bg-data-center-a.jpg" alt="Data Centers">
+                  <div class="b-apps-tile-label">Data Centers<span class="b-apps-tile-sub">Hyperscale · AI · Edge</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-marine" alt="Marine">
+                  <div class="b-apps-tile-label">Marine<span class="b-apps-tile-sub">Shipboard · Dock · Offshore</span></div>
+                </div>
+              </div>
+
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 03 · Single Concept</div>
+          <div class="card-title">Market Grid</div>
+          <p class="card-desc">Six application markets shown in a photographic grid — Commercial, Industrial, Residential, Solar/EV, Data Centers, Marine. Recreated from v1 as live HTML with the shared UWC header &amp; footer.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ BANNER 04 — USA / BRANDING ═══════════ -->
+  <section class="banner-section usa">
+    <div class="section-head">
+      <span class="section-num">Banner 04</span>
       <h2 class="section-title">USA · <span>Branding</span></h2>
     </div>
     <div class="section-ask">
@@ -1302,15 +1693,15 @@
 
     <div class="concepts-pair">
 
-      <!-- ─── 03A — Flag & Factory ─── -->
-      <div class="concept-card concept-a" onclick="openLightbox(4)">
+      <!-- ─── 04A — Flag & Factory ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox('banner-04a')">
         <div class="card-inner">
-          <span class="card-chip">Concept 03A</span>
+          <span class="card-chip">Concept 04A</span>
           <span class="card-approach">Flag &amp; Factory</span>
           <div class="card-expand-hint">
             <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="banner b-usa b-usa-a" id="banner-03a">
+          <div class="banner b-usa b-usa-a" id="banner-04a">
             <div class="banner-bg"></div>
             <div class="banner-overlay"></div>
             <div class="banner-content">
@@ -1332,21 +1723,21 @@
           </div>
         </div>
         <div class="card-meta">
-          <div class="card-num">Banner 03 · Concept A</div>
+          <div class="card-num">Banner 04 · Concept A</div>
           <div class="card-title">Flag &amp; Factory</div>
           <p class="card-desc">Flag draped across the top of a dim factory floor with wire spools. UWC flag lockup, America 250 hero, "Proudly Made in the USA" statement.</p>
         </div>
       </div>
 
-      <!-- ─── 03B — Inside the Mill ─── -->
-      <div class="concept-card concept-b" onclick="openLightbox(5)">
+      <!-- ─── 04B — Inside the Mill ─── -->
+      <div class="concept-card concept-b" onclick="openLightbox('banner-04b')">
         <div class="card-inner">
-          <span class="card-chip">Concept 03B</span>
+          <span class="card-chip">Concept 04B</span>
           <span class="card-approach">Patriot &amp; Craftsman</span>
           <div class="card-expand-hint">
             <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="banner b-usa b-usa-b" id="banner-03b">
+          <div class="banner b-usa b-usa-b" id="banner-04b">
             <div class="banner-bg"></div>
             <div class="banner-overlay"></div>
             <div class="banner-content">
@@ -1368,9 +1759,174 @@
           </div>
         </div>
         <div class="card-meta">
-          <div class="card-num">Banner 03 · Concept B</div>
+          <div class="card-num">Banner 04 · Concept B</div>
           <div class="card-title">Patriot &amp; Craftsman</div>
           <p class="card-desc">Diptych portrait: the same man on both halves — a modern UWC wire-mill worker on the left, a 1776 American patriot on the right. 250 years of American craft in a single image. Tagline: "American Wire. American Made."</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ BANNER 05 — SINGLE CONDUCTOR ═══════════ -->
+  <section class="banner-section sc">
+    <div class="section-head">
+      <span class="section-num">Banner 05</span>
+      <h2 class="section-title">Single Conductor <span>Products</span></h2>
+    </div>
+    <div class="section-ask">
+      <div class="ask-label">Client Ask</div>
+      <ul class="ask-list">
+        <li><strong>Header</strong>New UWC logo</li>
+        <li><strong>Footer</strong>Same style as current banners</li>
+        <li><strong>Carry Over</strong>Product list from existing "Single Conductor Products" banner only — wording + UL/type pairs</li>
+        <li><strong>Creative</strong>Warm copper-glow navy background, typographic spec list, paired UL code + type designation</li>
+      </ul>
+    </div>
+
+    <div class="concepts-pair concepts-single">
+
+      <!-- ─── 05 — Single Concept ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox('banner-05')">
+        <div class="card-inner">
+          <span class="card-chip">Concept 05</span>
+          <span class="card-approach">Spec Typographic</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-sc b-sc-a" id="banner-05">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Built One Strand at a Time</div>
+              <div class="b-title">Single<br><span class="b-title-accent">Conductor</span></div>
+              <div class="b-tagline">Every UL rating we run — paired with the trade designation, ready to quote.</div>
+
+              <ul class="b-sc-pairs">
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1007</span><span class="b-sc-type">GPT · GPTM</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1015</span><span class="b-sc-type">GXL · SXL · TXL</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1028</span><span class="b-sc-type">TFFN</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1283</span><span class="b-sc-type">TFN</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1284</span><span class="b-sc-type">THHN</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1056</span><span class="b-sc-type">TWP</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1061</span><span class="b-sc-type">Type B</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1569</span><span class="b-sc-type">Type C</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3173 / SIS</span><span class="b-sc-type">XHHW</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3195</span><span class="b-sc-type">RHH</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3196</span><span class="b-sc-type">RHW</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3321</span><span class="b-sc-type">USE</span></li>
+              </ul>
+
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 05 · Single Concept</div>
+          <div class="card-title">Spec Typographic</div>
+          <p class="card-desc">Modernized redesign of the legacy "Single Conductor Products" banner. Copper glow at the base echoes the original's copper arc. UL rating and trade designation sit as paired spec rows — scannable from across the booth.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ BANNER 06 — MULTI-CONDUCTOR ═══════════ -->
+  <section class="banner-section mc">
+    <div class="section-head">
+      <span class="section-num">Banner 06</span>
+      <h2 class="section-title">Multi-Conductor <span>Products</span></h2>
+    </div>
+    <div class="section-ask">
+      <div class="ask-label">Client Ask</div>
+      <ul class="ask-list">
+        <li><strong>Header</strong>New UWC logo</li>
+        <li><strong>Footer</strong>Same style as current banners</li>
+        <li><strong>Carry Over</strong>Product list + cable family callouts from existing "Multi-Conductor Products" banner</li>
+        <li><strong>Creative</strong>Teal-accent navy background, two-column product list, callout cards for Communication / Boat / Brake / Bonded families</li>
+      </ul>
+    </div>
+
+    <div class="concepts-pair concepts-single">
+
+      <!-- ─── 06 — Single Concept ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox('banner-06')">
+        <div class="card-inner">
+          <span class="card-chip">Concept 06</span>
+          <span class="card-approach">Two-Column + Family Cards</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-mc b-mc-a" id="banner-06">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Engineered in Parallel</div>
+              <div class="b-title">Multi-<br><span class="b-title-accent">Conductor</span></div>
+              <div class="b-tagline">Cords, portable cable, communication, and bonded constructions — built on-line in DeKalb.</div>
+
+              <div class="b-mc-twocol">
+                <ul class="b-mc-col">
+                  <li>SVT</li>
+                  <li>SVTO</li>
+                  <li>SJT</li>
+                  <li>SJTO</li>
+                  <li>SJTOW</li>
+                  <li>SJTW</li>
+                  <li>UL 2129</li>
+                </ul>
+                <ul class="b-mc-col">
+                  <li>UL 2483</li>
+                  <li>UL 2517</li>
+                  <li>UL 10002</li>
+                  <li>UL 20882</li>
+                  <li>SPT-1</li>
+                  <li>SPT-2</li>
+                  <li>UL 2464</li>
+                </ul>
+              </div>
+
+              <div class="b-mc-families">
+                <div class="b-mc-family">
+                  <div class="b-mc-family-name">Communication</div>
+                  <div class="b-mc-family-desc">CM &amp; CMX cable</div>
+                </div>
+                <div class="b-mc-family">
+                  <div class="b-mc-family-name">Boat Cables</div>
+                  <div class="b-mc-family-desc">BC-5W2 · single thru four conductors</div>
+                </div>
+                <div class="b-mc-family">
+                  <div class="b-mc-family-name">Brake Cables</div>
+                  <div class="b-mc-family-desc">XLP &amp; PVC primaries · PVC jacket</div>
+                </div>
+                <div class="b-mc-family">
+                  <div class="b-mc-family-name">Bonded Wire</div>
+                  <div class="b-mc-family-desc">Parallel constructions up to five conductors</div>
+                </div>
+              </div>
+
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 06 · Single Concept</div>
+          <div class="card-title">Two-Column + Family Cards</div>
+          <p class="card-desc">Modernized redesign of the legacy "Multi-Conductor Products" banner. All 14 UL / trade codes in a clean two-column list, with the four cable-family descriptions called out as their own teal-accent cards at the bottom.</p>
         </div>
       </div>
 
@@ -1495,29 +2051,29 @@
   const lbStg  = document.getElementById('lb-stage');
   const lbCap  = document.getElementById('lb-caption');
 
-  const bannerIds = [
-    'banner-01a', 'banner-01b',
-    'banner-02a', 'banner-02b',
-    'banner-03a', 'banner-03b'
-  ];
-  const captions = [
-    'Concept 01A — Data Center · Photographic',
-    'Concept 01B — Data Center · Graphic / Tech',
-    'Concept 02A — Medium Voltage · Infrastructure',
-    'Concept 02B — Medium Voltage · Product Hero',
-    'Concept 03A — USA · Flag & Factory',
-    'Concept 03B — USA · Inside the Mill'
-  ];
+  const captions = {
+    'banner-01a': 'Concept 01A — Data Center · Photographic',
+    'banner-01b': 'Concept 01B — Data Center · Graphic / Tech',
+    'banner-01c': 'Concept 01C — Data Center · Cable Tray',
+    'banner-01d': 'Concept 01D — Data Center · Facility Exterior',
+    'banner-02a': 'Concept 02A — Medium Voltage · Infrastructure',
+    'banner-02b': 'Concept 02B — Medium Voltage · Product Hero',
+    'banner-03':  'Concept 03 — Applications · Market Grid',
+    'banner-04a': 'Concept 04A — USA · Flag & Factory',
+    'banner-04b': 'Concept 04B — USA · Inside the Mill',
+    'banner-05':  'Concept 05 — Single Conductor · Spec Typographic',
+    'banner-06':  'Concept 06 — Multi-Conductor · Two-Column + Family Cards'
+  };
 
-  function openLightbox(idx) {
-    const source = document.getElementById(bannerIds[idx]);
+  function openLightbox(bannerId) {
+    const source = document.getElementById(bannerId);
     if (!source) return;
     const clone = source.cloneNode(true);
     clone.classList.add('lb-banner');
     clone.removeAttribute('id');
     lbStg.innerHTML = '';
     lbStg.appendChild(clone);
-    lbCap.textContent = captions[idx];
+    lbCap.textContent = captions[bannerId] || '';
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
