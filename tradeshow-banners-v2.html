@@ -659,10 +659,14 @@
   }
   .b-apps-tile {
     position: relative;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 6 / 5;
     overflow: hidden;
     border-radius: 2px;
     background: #060f1e;
+  }
+  .b-apps-feature {
+    grid-column: 1 / -1;
+    aspect-ratio: 25 / 9;
   }
   .b-apps-tile-img {
     position: absolute; inset: 0;
@@ -1677,7 +1681,7 @@
         <li><strong>Header</strong>New UWC logo</li>
         <li><strong>Footer</strong>Same style as current banners</li>
         <li><strong>Overlay</strong>Six application markets shown in a photographic grid</li>
-        <li><strong>Markets</strong>Appliance · Automotive · Marine · Recreational Vehicle · Electronics &amp; OEM · Military (matches the website's market list)</li>
+        <li><strong>Categories</strong>Automotive/Marine · Building Wire/Lighting · Appliance/Hook-Up · Power Distribution · Switchgear/Data Center · Specialty &amp; Custom · Medium Voltage (client-supplied list)</li>
       </ul>
     </div>
 
@@ -1701,32 +1705,36 @@
               </div>
               <div class="b-cat">Applications We Power</div>
               <div class="b-title">Built for<br><span class="b-title-accent">Every Market</span></div>
-              <div class="b-tagline">Six industries we know inside-out — UL, SAE, and MIL specs honored across every spool.</div>
+              <div class="b-tagline">Seven product categories. One source. From hook-up wire to medium voltage URD — built in DeKalb.</div>
 
               <div class="b-apps-grid">
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-appliance" alt="Appliance">
-                  <div class="b-apps-tile-label">Appliance<span class="b-apps-tile-sub">UL/CSA · RoHS · 105–125&deg;C</span></div>
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-automotive" alt="Automotive and Marine">
+                  <div class="b-apps-tile-label">Automotive / Marine<span class="b-apps-tile-sub">SAE · UL BC-5W3 · Tinned</span></div>
                 </div>
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-automotive" alt="Automotive">
-                  <div class="b-apps-tile-label">Automotive<span class="b-apps-tile-sub">SAE · XLPE · Skin Coat</span></div>
+                  <img class="b-apps-tile-img" src="assets/banners-22apr2026/openai/bg-cat-building-wire.jpg" alt="Building Wire and Lighting">
+                  <div class="b-apps-tile-label">Building Wire / Lighting<span class="b-apps-tile-sub">THHN · XHHW · Fixture Wire</span></div>
                 </div>
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-marine" alt="Marine">
-                  <div class="b-apps-tile-label">Marine<span class="b-apps-tile-sub">UL BC-5W3 · Tinned Copper</span></div>
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-appliance" alt="Appliance Wiring and Hook-Up">
+                  <div class="b-apps-tile-label">Appliance / Hook-Up<span class="b-apps-tile-sub">UL/CSA · RoHS · 105–125&deg;C</span></div>
                 </div>
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-rv" alt="Recreational Vehicle">
-                  <div class="b-apps-tile-label">Recreational Vehicle<span class="b-apps-tile-sub">Primary · Bonded · Brake</span></div>
+                  <img class="b-apps-tile-img" src="assets/banners-22apr2026/openai/bg-cat-power-distribution.jpg" alt="Power Distribution and Battery Cables">
+                  <div class="b-apps-tile-label">Power Distribution<span class="b-apps-tile-sub">DLO · Welding · Battery</span></div>
                 </div>
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-electronics-oem" alt="Electronics &amp; OEM">
-                  <div class="b-apps-tile-label">Electronics &amp; OEM<span class="b-apps-tile-sub">100+ UL AWM Styles</span></div>
+                  <img class="b-apps-tile-img" src="assets/banners-22apr2026/openai/bg-data-center-a.jpg" alt="Switchgear and Data Center">
+                  <div class="b-apps-tile-label">Switchgear / Data Center<span class="b-apps-tile-sub">Utilities · Hyperscale</span></div>
                 </div>
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-military" alt="Military">
-                  <div class="b-apps-tile-label">Military<span class="b-apps-tile-sub">MIL-W-16878E · MIL-W-76B</span></div>
+                  <img class="b-apps-tile-img" src="assets/banners-22apr2026/openai/bg-multi-conductor-a.jpg" alt="Specialty and Custom Cables">
+                  <div class="b-apps-tile-label">Specialty &amp; Custom<span class="b-apps-tile-sub">Bonded · Coiled · Multi-Conductor</span></div>
+                </div>
+                <div class="b-apps-tile b-apps-feature">
+                  <img class="b-apps-tile-img" src="assets/banners-22apr2026/openai/bg-medium-voltage-a.jpg" alt="Medium Voltage">
+                  <div class="b-apps-tile-label">Medium Voltage<span class="b-apps-tile-sub">15kV · 25kV · 35kV · URD · TR-XLPE</span></div>
                 </div>
               </div>
 
