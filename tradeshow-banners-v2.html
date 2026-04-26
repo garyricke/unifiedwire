@@ -369,6 +369,38 @@
     line-height: 1.55; color: var(--cream-dim);
   }
 
+  .card-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+    padding: 7px 12px;
+    background: rgba(244,241,236,0.04);
+    border: 1px solid var(--border-mid);
+    border-radius: 3px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .card-pdf:hover {
+    background: rgba(244,241,236,0.10);
+    border-color: var(--cream-dim);
+    color: var(--cream);
+  }
+  .card-pdf svg { width: 12px; height: 12px; flex-shrink: 0; }
+  .card-pdf-size {
+    margin-left: auto;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(244,241,236,0.4);
+    font-weight: 400;
+  }
+
   /* ── BANNER MOCKUP (renders at 33:81 ratio) ──────────────── */
   .banner {
     position: relative;
@@ -1182,7 +1214,8 @@
   body.print-mode::before { display: none !important; }
   body.print-mode #gate,
   body.print-mode #lightbox,
-  body.print-mode > nav,
+  body.print-mode nav,
+  body.print-mode footer,
   body.print-mode .specs-bar,
   body.print-mode .page-header,
   body.print-mode .toolbar,
@@ -1194,8 +1227,7 @@
   body.print-mode .card-expand-hint,
   body.print-mode .section-divider,
   body.print-mode .notes-section,
-  body.print-mode .actions-section,
-  body.print-mode > footer { display: none !important; }
+  body.print-mode .actions-section { display: none !important; }
   body.print-mode #main-content {
     visibility: visible !important;
     opacity: 1 !important;
@@ -2250,6 +2282,56 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.banner-section').forEach(el => io.observe(el));
   }
+
+  /* ── INJECT DOWNLOAD LINKS PER CARD ──────────────────────── */
+  const PDF_FILES = {
+    'banner-01a': '01a-data-center-server-aisle',
+    'banner-01b': '01b-data-center-graphic-tech',
+    'banner-01c': '01c-data-center-cable-tray',
+    'banner-01d': '01d-data-center-facility-exterior',
+    'banner-02a': '02a-medium-voltage-infrastructure',
+    'banner-02b': '02b-medium-voltage-product-hero',
+    'banner-03':  '03-applications-market-grid',
+    'banner-04a': '04a-usa-flag-and-factory',
+    'banner-04b': '04b-usa-patriot-craftsman',
+    'banner-05a': '05a-single-conductor-red-jacket',
+    'banner-05b': '05b-single-conductor-yellow-jacket',
+    'banner-06':  '06-multi-conductor'
+  };
+  const DOWNLOAD_ICON = '<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v8m0 0l3-3m-3 3l-3-3M2.5 13.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function injectPdfLinks() {
+    document.querySelectorAll('.concept-card').forEach(card => {
+      const banner = card.querySelector('.banner');
+      if (!banner) return;
+      const file = PDF_FILES[banner.id];
+      if (!file) return;
+      const meta = card.querySelector('.card-meta');
+      if (!meta || meta.querySelector('.card-pdf')) return;
+      const a = document.createElement('a');
+      a.className = 'card-pdf';
+      a.href = `assets/banners-22apr2026/print/${file}.pdf`;
+      a.setAttribute('download', '');
+      a.innerHTML = `${DOWNLOAD_ICON} <span>Download Print PDF</span>`;
+      a.addEventListener('click', e => e.stopPropagation());
+      meta.appendChild(a);
+
+      // Fetch file size and append it to the link.
+      fetch(a.href, { method: 'HEAD' })
+        .then(r => r.ok ? Number(r.headers.get('content-length')) : null)
+        .then(bytes => {
+          if (!bytes) return;
+          const mb = bytes / (1024 * 1024);
+          const label = mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
+          const span = document.createElement('span');
+          span.className = 'card-pdf-size';
+          span.textContent = label;
+          a.appendChild(span);
+        })
+        .catch(() => {});
+    });
+  }
+  injectPdfLinks();
 </script>
 </body>
 </html>

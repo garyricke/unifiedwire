@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = resolve(__dirname, '..');
 const HTML_PATH = resolve(PROJECT_ROOT, 'tradeshow-banners-v2.html');
-const EXPORTS_DIR = resolve(__dirname, 'exports');
+const EXPORTS_DIR = resolve(PROJECT_ROOT, 'assets/banners-22apr2026/print');
 
 // 33" × 81" at 96 CSS DPI = 3168 × 7776 layout px.
 // deviceScaleFactor 150/96 = 1.5625 → 4950 × 12150 raster px (150 DPI).

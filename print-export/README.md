@@ -26,7 +26,8 @@ npx playwright install chromium
 npm run export
 ```
 
-Output PDFs land in `print-export/exports/` with descriptive filenames, e.g.
+Output PDFs land in `assets/banners-22apr2026/print/` (a web-served path, so
+the review page can link to them directly) with descriptive filenames, e.g.
 `01a-data-center-server-aisle.pdf`, `05b-single-conductor-yellow-jacket.pdf`.
 
 ## Export only approved concepts
