@@ -311,6 +311,7 @@
   .banner-section.usa .card-chip { background: var(--red-usa); }
   .banner-section.apps .card-chip { background: var(--green-apps); }
   .banner-section.sc .card-chip { background: var(--copper); }
+  .banner-section.sc .concept-b .card-chip { background: #b08018; }
   .banner-section.mc .card-chip { background: var(--teal); }
   .concept-b .card-chip { background: var(--navy-3); border: 1px solid var(--border-mid); }
   .banner-section.dc .concept-b .card-chip { background: var(--blue-dk); }
@@ -658,7 +659,7 @@
   }
   .b-apps-tile {
     position: relative;
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 2px;
     background: #060f1e;
@@ -702,7 +703,10 @@
 
   /* ── BANNER 5 — SINGLE CONDUCTOR ─────────────────────────── */
   .b-sc-a .banner-bg {
-    background-image: url('assets/banners-22apr2026/openai/bg-single-conductor-a.jpg');
+    background-image: url('assets/banners-22apr2026/openai/bg-single-conductor-a-red.jpg');
+  }
+  .b-sc-b .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-single-conductor-a-yellow.jpg');
   }
   .b-sc .banner-overlay {
     background:
@@ -1168,6 +1172,74 @@
     80%      { transform: translateX(-3px); }
   }
   .shake { animation: shake 0.5s ease; }
+
+  /* ── PRINT MODE (?print=banner-XX) ───────────────────────── */
+  body.print-mode { background: #fff !important; }
+  body.print-mode::before { display: none !important; }
+  body.print-mode #gate,
+  body.print-mode #lightbox,
+  body.print-mode > nav,
+  body.print-mode .specs-bar,
+  body.print-mode .page-header,
+  body.print-mode .toolbar,
+  body.print-mode .section-head,
+  body.print-mode .section-ask,
+  body.print-mode .card-meta,
+  body.print-mode .card-chip,
+  body.print-mode .card-approach,
+  body.print-mode .card-expand-hint,
+  body.print-mode .section-divider,
+  body.print-mode .notes-section,
+  body.print-mode .actions-section,
+  body.print-mode > footer { display: none !important; }
+  body.print-mode #main-content {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  body.print-mode .concepts-wrap {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+  body.print-mode .banner-section {
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  body.print-mode .concepts-pair,
+  body.print-mode .concepts-pair.concepts-single {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    gap: 0 !important;
+  }
+  body.print-mode .concept-card:not(.print-target) { display: none !important; }
+  body.print-mode .concept-card.print-target {
+    cursor: default !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.print-mode .concept-card.print-target .card-inner {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: none !important;
+    transform: none !important;
+  }
+  body.print-mode .concept-card.print-target .banner {
+    width: 33in !important;
+    height: 81in !important;
+    aspect-ratio: auto !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+  body.print-mode #lb-stage { display: none !important; }
+  @page { size: 33in 81in; margin: 0; }
 </style>
 </head>
 <body>
@@ -1206,7 +1278,7 @@
   <div class="specs-divider"></div>
   <span class="specs-text">1&Prime; Top / 3&Prime; Bottom Safety</span>
   <div class="specs-divider"></div>
-  <span class="specs-text">6 Banners · 11 Concepts</span>
+  <span class="specs-text">6 Banners · 12 Concepts</span>
   <div class="specs-divider"></div>
   <span class="badge-print">Print Ready</span>
 </div>
@@ -1215,7 +1287,7 @@
 <header class="page-header">
   <div class="header-eyebrow">Tradeshow Assets · May 2026</div>
   <h1 class="page-title">Banner<br><span>Concepts v2</span></h1>
-  <p class="page-sub">Six banners for the show — Data Center now has four photo directions to choose from (Server Aisle, Graphic/Tech, Cable Tray, Facility Exterior). Medium Voltage has an A/B pair; USA, Market Grid, Single Conductor, and Multi-Conductor are each a single direction. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. Click any concept to review at full size.</p>
+  <p class="page-sub">Six banners for the show — Data Center has four photo directions, Medium Voltage has an A/B pair, Single Conductor has a Red/Yellow A/B pair, and USA has two patriotic directions. Market Grid and Multi-Conductor are each a single locked-in direction. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. Click any concept to review at full size.</p>
 </header>
 
 <!-- TOOLBAR -->
@@ -1605,7 +1677,7 @@
         <li><strong>Header</strong>New UWC logo</li>
         <li><strong>Footer</strong>Same style as current banners</li>
         <li><strong>Overlay</strong>Six application markets shown in a photographic grid</li>
-        <li><strong>Markets</strong>Commercial · Industrial · Residential · Solar/EV · Data Centers · Marine</li>
+        <li><strong>Markets</strong>Appliance · Automotive · Marine · Recreational Vehicle · Electronics &amp; OEM · Military (matches the website's market list)</li>
       </ul>
     </div>
 
@@ -1629,32 +1701,32 @@
               </div>
               <div class="b-cat">Applications We Power</div>
               <div class="b-title">Built for<br><span class="b-title-accent">Every Market</span></div>
-              <div class="b-tagline">From homes to hyperscale — copper engineered for the sectors that keep America running.</div>
+              <div class="b-tagline">Six industries we know inside-out — UL, SAE, and MIL specs honored across every spool.</div>
 
               <div class="b-apps-grid">
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-distribution" alt="Commercial">
-                  <div class="b-apps-tile-label">Commercial<span class="b-apps-tile-sub">Office · Retail · Warehouse</span></div>
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-appliance" alt="Appliance">
+                  <div class="b-apps-tile-label">Appliance<span class="b-apps-tile-sub">UL/CSA · RoHS · 105–125&deg;C</span></div>
                 </div>
                 <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-military" alt="Industrial">
-                  <div class="b-apps-tile-label">Industrial<span class="b-apps-tile-sub">Plant · Motor · Controls</span></div>
-                </div>
-                <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-appliance" alt="Residential">
-                  <div class="b-apps-tile-label">Residential<span class="b-apps-tile-sub">Home · Appliance · HVAC</span></div>
-                </div>
-                <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-automotive" alt="Solar and EV">
-                  <div class="b-apps-tile-label">Solar / EV<span class="b-apps-tile-sub">PV · Charging · Storage</span></div>
-                </div>
-                <div class="b-apps-tile">
-                  <img class="b-apps-tile-img" src="assets/banners-22apr2026/openai/bg-data-center-a.jpg" alt="Data Centers">
-                  <div class="b-apps-tile-label">Data Centers<span class="b-apps-tile-sub">Hyperscale · AI · Edge</span></div>
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-automotive" alt="Automotive">
+                  <div class="b-apps-tile-label">Automotive<span class="b-apps-tile-sub">SAE · XLPE · Skin Coat</span></div>
                 </div>
                 <div class="b-apps-tile">
                   <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-marine" alt="Marine">
-                  <div class="b-apps-tile-label">Marine<span class="b-apps-tile-sub">Shipboard · Dock · Offshore</span></div>
+                  <div class="b-apps-tile-label">Marine<span class="b-apps-tile-sub">UL BC-5W3 · Tinned Copper</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-rv" alt="Recreational Vehicle">
+                  <div class="b-apps-tile-label">Recreational Vehicle<span class="b-apps-tile-sub">Primary · Bonded · Brake</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-electronics-oem" alt="Electronics &amp; OEM">
+                  <div class="b-apps-tile-label">Electronics &amp; OEM<span class="b-apps-tile-sub">100+ UL AWM Styles</span></div>
+                </div>
+                <div class="b-apps-tile">
+                  <img class="b-apps-tile-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/market-military" alt="Military">
+                  <div class="b-apps-tile-label">Military<span class="b-apps-tile-sub">MIL-W-16878E · MIL-W-76B</span></div>
                 </div>
               </div>
 
@@ -1784,17 +1856,17 @@
       </ul>
     </div>
 
-    <div class="concepts-pair concepts-single">
+    <div class="concepts-pair">
 
-      <!-- ─── 05 — Single Concept ─── -->
-      <div class="concept-card concept-a" onclick="openLightbox('banner-05')">
+      <!-- ─── 05A — Red Jacket ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox('banner-05a')">
         <div class="card-inner">
-          <span class="card-chip">Concept 05</span>
-          <span class="card-approach">Spec Typographic</span>
+          <span class="card-chip">Concept 05A</span>
+          <span class="card-approach">Red Jacket</span>
           <div class="card-expand-hint">
             <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="banner b-sc b-sc-a" id="banner-05">
+          <div class="banner b-sc b-sc-a" id="banner-05a">
             <div class="banner-bg"></div>
             <div class="banner-overlay"></div>
             <div class="banner-content">
@@ -1829,9 +1901,58 @@
           </div>
         </div>
         <div class="card-meta">
-          <div class="card-num">Banner 05 · Single Concept</div>
-          <div class="card-title">Spec Typographic</div>
-          <p class="card-desc">Modernized redesign of the legacy "Single Conductor Products" banner. Copper glow at the base echoes the original's copper arc. UL rating and trade designation sit as paired spec rows — scannable from across the booth.</p>
+          <div class="card-num">Banner 05 · Concept A</div>
+          <div class="card-title">Red Jacket</div>
+          <p class="card-desc">Glossy red PVC-jacketed conductor coiled against deep navy — high-contrast and product-forward. UL rating and trade designation sit as paired spec rows, scannable from across the booth.</p>
+        </div>
+      </div>
+
+      <!-- ─── 05B — Yellow Jacket ─── -->
+      <div class="concept-card concept-b" onclick="openLightbox('banner-05b')">
+        <div class="card-inner">
+          <span class="card-chip">Concept 05B</span>
+          <span class="card-approach">Yellow Jacket</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-sc b-sc-b" id="banner-05b">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-header">
+                <img class="b-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                <div class="b-contact">DeKalb, Illinois</div>
+              </div>
+              <div class="b-cat">Built One Strand at a Time</div>
+              <div class="b-title">Single<br><span class="b-title-accent">Conductor</span></div>
+              <div class="b-tagline">Every UL rating we run — paired with the trade designation, ready to quote.</div>
+
+              <ul class="b-sc-pairs">
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1007</span><span class="b-sc-type">GPT · GPTM</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1015</span><span class="b-sc-type">GXL · SXL · TXL</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1028</span><span class="b-sc-type">TFFN</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1283</span><span class="b-sc-type">TFN</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1284</span><span class="b-sc-type">THHN</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1056</span><span class="b-sc-type">TWP</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1061</span><span class="b-sc-type">Type B</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 1569</span><span class="b-sc-type">Type C</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3173 / SIS</span><span class="b-sc-type">XHHW</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3195</span><span class="b-sc-type">RHH</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3196</span><span class="b-sc-type">RHW</span></li>
+                <li class="b-sc-pair"><span class="b-sc-ul">UL 3321</span><span class="b-sc-type">USE</span></li>
+              </ul>
+
+              <div class="b-footer">
+                <div class="b-url">unifiedwireandcable.com</div>
+                <div class="b-location">DeKalb, Illinois</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 05 · Concept B</div>
+          <div class="card-title">Yellow Jacket</div>
+          <p class="card-desc">Same composition as Concept A with a glossy yellow PVC-jacket coil instead of red. Reads warmer and more visible from a distance — pairs naturally with the navy backdrop.</p>
         </div>
       </div>
 
@@ -1996,6 +2117,27 @@
 </footer>
 
 <script>
+  /* ── PRINT MODE — runs first, before password gate ──────── */
+  (function activatePrintModeFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const printId = params.get('print');
+    if (!printId) return;
+    document.body.classList.add('print-mode');
+    const banner = document.getElementById(printId);
+    if (banner) {
+      const card = banner.closest('.concept-card');
+      if (card) card.classList.add('print-target');
+    }
+    // Skip password gate
+    const g = document.getElementById('gate');
+    if (g) g.style.display = 'none';
+    const m = document.getElementById('main-content');
+    if (m) {
+      m.style.visibility = 'visible';
+      m.style.opacity = '1';
+    }
+  })();
+
   /* ── PASSWORD GATE ───────────────────────────────────────── */
   const PASS    = 'copper';
   const SESSION = 'uwc_banners_v2_auth';
@@ -2061,7 +2203,8 @@
     'banner-03':  'Concept 03 — Applications · Market Grid',
     'banner-04a': 'Concept 04A — USA · Flag & Factory',
     'banner-04b': 'Concept 04B — USA · Inside the Mill',
-    'banner-05':  'Concept 05 — Single Conductor · Spec Typographic',
+    'banner-05a': 'Concept 05A — Single Conductor · Red Jacket',
+    'banner-05b': 'Concept 05B — Single Conductor · Yellow Jacket',
     'banner-06':  'Concept 06 — Multi-Conductor · Two-Column + Family Cards'
   };
 
