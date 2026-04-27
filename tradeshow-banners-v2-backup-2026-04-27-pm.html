@@ -320,7 +320,6 @@
   .banner-section.dc .concept-d .card-chip { background: var(--cyan-dk); }
   .banner-section.mv .concept-b .card-chip { background: var(--orange-dk); }
   .banner-section.usa .concept-b .card-chip { background: var(--blue-usa); }
-  .banner-section.usa .concept-c .card-chip { background: #5A1518; }
 
   .card-approach {
     position: absolute;
@@ -864,13 +863,6 @@
   .b-usa-b .banner-bg {
     background-image: url('assets/banners-22apr2026/openai/bg-usa-b.jpg');
   }
-  .b-usa-c .banner-bg {
-    background-image: url('assets/banners-22apr2026/openai/bg-usa-c-modern-worker.jpg');
-    background-size: auto 110%;
-    background-position: 50% 100%;
-    background-repeat: no-repeat;
-    background-color: var(--navy);
-  }
   .b-usa .banner-overlay {
     background:
       linear-gradient(180deg,
@@ -1336,7 +1328,7 @@
   <div class="specs-divider"></div>
   <span class="specs-text">1&Prime; Top / 3&Prime; Bottom Safety</span>
   <div class="specs-divider"></div>
-  <span class="specs-text">6 Banners · 13 Concepts</span>
+  <span class="specs-text">6 Banners · 12 Concepts</span>
   <div class="specs-divider"></div>
   <span class="badge-print">Print Ready</span>
 </div>
@@ -1345,7 +1337,7 @@
 <header class="page-header">
   <div class="header-eyebrow">Tradeshow Assets · May 2026</div>
   <h1 class="page-title">Banner<br><span>Concepts v2</span></h1>
-  <p class="page-sub">Six banners for the show — Data Center has four photo directions, Medium Voltage has an A/B pair, Single Conductor has a Red/Yellow A/B pair, and USA has three patriotic directions (Flag &amp; Factory, Patriot &amp; Craftsman diptych, and a new Hard-Hat American single-portrait). Market Grid and Multi-Conductor are each a single locked-in direction. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. Click any concept to review at full size.</p>
+  <p class="page-sub">Six banners for the show — Data Center has four photo directions, Medium Voltage has an A/B pair, Single Conductor has a Red/Yellow A/B pair, and USA has two patriotic directions. Market Grid and Multi-Conductor are each a single locked-in direction. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. Click any concept to review at full size.</p>
 </header>
 
 <!-- TOOLBAR -->
@@ -1894,43 +1886,6 @@
         </div>
       </div>
 
-      <!-- ─── 04C — Hard-Hat American ─── -->
-      <div class="concept-card concept-c" onclick="openLightbox('banner-04c')">
-        <div class="card-inner">
-          <span class="card-chip">Concept 04C</span>
-          <span class="card-approach">Hard-Hat American</span>
-          <div class="card-expand-hint">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="banner b-usa b-usa-c" id="banner-04c">
-            <div class="banner-bg"></div>
-            <div class="banner-overlay"></div>
-            <div class="banner-content">
-              <img class="b-usa-flag-logo" src="assets/banners-22apr2026/uwc-usa-26-2026.svg" alt="UWC USA 1976 / 2026">
-              <div class="b-usa-company">Unified Wire &amp; Cable</div>
-              <div class="b-usa-rule"></div>
-              <div class="b-usa-tag-wrap">
-                <div class="b-usa-tagline">
-                  <span class="red">American Workers.</span><br>
-                  <span class="blue">American Wire.</span>
-                </div>
-                <div class="b-usa-sub">Built by Hand in DeKalb, Illinois</div>
-              </div>
-              <img class="b-usa-america-ribbon" src="assets/banners-22apr2026/america-250-ribbon.png" alt="America 250">
-              <div class="b-footer">
-                <div class="b-url">unifiedwireandcable.com</div>
-                <div class="b-location">Since 1977</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-meta">
-          <div class="card-num">Banner 04 · Concept C</div>
-          <div class="card-title">Hard-Hat American</div>
-          <p class="card-desc">Full single-subject portrait of the modern UWC factory worker — hard hat, work vest, copper spools and overhead industrial lighting behind him. Right chest carries the UWC company logo; left chest carries an American flag patch. No diptych split — straight, confident American manufacturing.</p>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -2275,7 +2230,6 @@
     'banner-03':  'Concept 03 — Applications · Market Grid',
     'banner-04a': 'Concept 04A — USA · Flag & Factory',
     'banner-04b': 'Concept 04B — USA · Inside the Mill',
-    'banner-04c': 'Concept 04C — USA · Hard-Hat American',
     'banner-05a': 'Concept 05A — Single Conductor · Red Jacket',
     'banner-05b': 'Concept 05B — Single Conductor · Yellow Jacket',
     'banner-06':  'Concept 06 — Multi-Conductor · Two-Column List'
@@ -2327,7 +2281,6 @@
     'banner-03':  '03-applications-market-grid',
     'banner-04a': '04a-usa-flag-and-factory',
     'banner-04b': '04b-usa-patriot-craftsman',
-    'banner-04c': '04c-usa-hard-hat-american',
     'banner-05a': '05a-single-conductor-red-jacket',
     'banner-05b': '05b-single-conductor-yellow-jacket',
     'banner-06':  '06-multi-conductor'
@@ -2365,9 +2318,7 @@
         .catch(() => {});
     });
   }
-  if (!document.body.classList.contains('print-mode')) {
-    injectPdfLinks();
-  }
+  injectPdfLinks();
 </script>
 </body>
 </html>

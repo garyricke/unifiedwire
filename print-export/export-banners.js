@@ -24,6 +24,7 @@ const ALL_BANNERS = [
   { id: 'banner-03',  file: '03-applications-market-grid' },
   { id: 'banner-04a', file: '04a-usa-flag-and-factory' },
   { id: 'banner-04b', file: '04b-usa-patriot-craftsman' },
+  { id: 'banner-04c', file: '04c-usa-hard-hat-american' },
   { id: 'banner-05a', file: '05a-single-conductor-red-jacket' },
   { id: 'banner-05b', file: '05b-single-conductor-yellow-jacket' },
   { id: 'banner-06',  file: '06-multi-conductor' }
@@ -69,10 +70,19 @@ async function main() {
     const page = await context.newPage();
     const url = `${fileUrl}?print=${banner.id}`;
     console.log(`→ ${banner.id}`);
-    await page.goto(url, { waitUntil: 'networkidle' });
+    await page.goto(url, { waitUntil: 'load' });
 
     // Wait for web fonts (Barlow Condensed, DM Sans) to finish loading.
     await page.evaluate(() => document.fonts.ready);
+
+    // Wait for all <img> elements to fully decode.
+    await page.evaluate(() => Promise.all(
+      Array.from(document.images).map(img =>
+        img.complete && img.naturalWidth > 0
+          ? Promise.resolve()
+          : new Promise(r => { img.onload = img.onerror = r; })
+      )
+    ));
 
     const targetExists = await page.evaluate(() =>
       !!document.querySelector('.concept-card.print-target')

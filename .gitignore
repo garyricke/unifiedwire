@@ -8,5 +8,15 @@ assets/banners-22apr2026/openai/*-v[0-9]*.png
 assets/banners-22apr2026/openai/*-v[0-9]*.jpg
 assets/banners-22apr2026/openai/bg-usa-diptych-serious.*
 
+# Raw .jpeg outputs from openai-images (we rename to .jpg when promoting to live)
+assets/banners-22apr2026/openai/*.jpeg
+
+# 04C modern-worker iteration backups (only the live .jpg + user's
+# top-add-a expansion reference are kept in the repo)
+assets/banners-22apr2026/openai/bg-usa-c-modern-worker-pre-*.jpg
+assets/banners-22apr2026/openai/bg-usa-c-modern-worker-*-padded*.jpg
+assets/banners-22apr2026/openai/bg-usa-c-modern-worker-*-live.jpg
+assets/banners-22apr2026/openai/bg-usa-c-modern-worker-symmetric-pad.jpg
+
 # Nano-banana exploration superseded by openai/ versions
 assets/banners-22apr2026/generated/
