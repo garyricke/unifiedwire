@@ -14,6 +14,8 @@ const LAYOUT_WIDTH = 3168;
 const LAYOUT_HEIGHT = 7776;
 const DPI_SCALE = 150 / 96;
 
+// Default page dimensions are 33in x 81in (the retractable banner format).
+// Banners with non-default trim sizes pass `width` / `height` overrides.
 const ALL_BANNERS = [
   { id: 'banner-01a', file: '01a-data-center-server-aisle' },
   { id: 'banner-01b', file: '01b-data-center-graphic-tech' },
@@ -27,7 +29,8 @@ const ALL_BANNERS = [
   { id: 'banner-04c', file: '04c-usa-hard-hat-american' },
   { id: 'banner-05a', file: '05a-single-conductor-red-jacket' },
   { id: 'banner-05b', file: '05b-single-conductor-yellow-jacket' },
-  { id: 'banner-06',  file: '06-multi-conductor' }
+  { id: 'banner-06',  file: '06-multi-conductor' },
+  { id: 'banner-07',  file: '07-10ft-popup-display', width: '144.88in', height: '90.55in' }
 ];
 
 function pickTargets(args) {
@@ -97,8 +100,8 @@ async function main() {
     const pdfPath = resolve(EXPORTS_DIR, `${banner.file}.pdf`);
     await page.pdf({
       path: pdfPath,
-      width: '33in',
-      height: '81in',
+      width:  banner.width  || '33in',
+      height: banner.height || '81in',
       printBackground: true,
       pageRanges: '1',
       margin: { top: 0, right: 0, bottom: 0, left: 0 }

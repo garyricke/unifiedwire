@@ -791,6 +791,148 @@
     text-align: right;
   }
 
+  /* ── BANNER 7 — 10FT POP-UP DISPLAY ──────────────────────── */
+  .b-popup {
+    aspect-ratio: 144.88 / 90.55;
+    --popup-side-pct: 8.456%;     /* 12.25/144.88 = side wrap zone width */
+    --popup-safe-x: 12%;          /* horizontal safe-zone margin from each edge */
+    --popup-safe-y: 6%;           /* vertical safe-zone margin from each edge */
+  }
+  .b-popup-a .banner-bg {
+    background-image: url('assets/banners-22apr2026/openai/bg-popup-flag-waving.jpg');
+    background-position: center;
+  }
+  .b-popup .banner-overlay {
+    background: rgba(0, 0, 0, 0.55);
+  }
+  .b-popup .banner-content {
+    padding: 0;
+    display: block;
+    position: relative;
+  }
+
+  /* Side wrap zones — vertical URL on each side */
+  .b-popup-side {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: var(--popup-side-pct);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background: rgba(10,22,40,0.18);
+  }
+  .b-popup-side-left { left: 0; }
+  .b-popup-side-right { right: 0; }
+  .b-popup-side-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2cqw;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+    white-space: nowrap;
+  }
+  .b-popup-side-left  .b-popup-side-text { transform: rotate(-90deg); transform-origin: center; }
+  .b-popup-side-right .b-popup-side-text { transform: rotate( 90deg); transform-origin: center; }
+
+  /* Main centered content stays inside safe zone */
+  .b-popup-main {
+    position: absolute;
+    left: var(--popup-safe-x);
+    right: var(--popup-safe-x);
+    top: var(--popup-safe-y);
+    bottom: var(--popup-safe-y);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+  .b-popup-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1%;
+  }
+  .b-popup-logo {
+    width: 36%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,0.45));
+  }
+  .b-popup-company {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3cqw;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-top: 1.5%;
+  }
+  .b-popup-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.7cqw;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.45;
+  }
+
+  .b-popup-tagline-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.2cqw;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1%;
+  }
+  .b-popup-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 7.2cqw;
+    font-weight: 800;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 0.96;
+  }
+  .b-popup-tagline .accent { color: var(--orange-lt); }
+
+  .b-popup-certs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6%;
+    padding-top: 2%;
+    border-top: 1px solid rgba(255,255,255,0.22);
+    width: 78%;
+  }
+  .b-popup-certs-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.6cqw;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+  }
+  .b-popup-certs-list {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.2cqw;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  /* Wider review-page card for landscape banners */
+  .concepts-single-wide {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 820px;
+  }
+
   /* ── BANNER 6 — MULTI-CONDUCTOR ──────────────────────────── */
   .b-mc-a .banner-bg {
     background-image: url('assets/banners-22apr2026/openai/bg-multi-conductor-a.jpg');
@@ -1296,8 +1438,11 @@
     margin: 0 !important;
     display: block !important;
   }
+  body.print-mode .concept-card.print-target .banner.b-popup {
+    width: 144.88in !important;
+    height: 90.55in !important;
+  }
   body.print-mode #lb-stage { display: none !important; }
-  @page { size: 33in 81in; margin: 0; }
 </style>
 </head>
 <body>
@@ -1336,7 +1481,7 @@
   <div class="specs-divider"></div>
   <span class="specs-text">1&Prime; Top / 3&Prime; Bottom Safety</span>
   <div class="specs-divider"></div>
-  <span class="specs-text">6 Banners · 13 Concepts</span>
+  <span class="specs-text">7 Banners · 14 Concepts</span>
   <div class="specs-divider"></div>
   <span class="badge-print">Print Ready</span>
 </div>
@@ -1345,7 +1490,7 @@
 <header class="page-header">
   <div class="header-eyebrow">Tradeshow Assets · May 2026</div>
   <h1 class="page-title">Banner<br><span>Concepts v2</span></h1>
-  <p class="page-sub">Six banners for the show — Data Center has four photo directions, Medium Voltage has an A/B pair, Single Conductor has a Red/Yellow A/B pair, and USA has three patriotic directions (Flag &amp; Factory, Patriot &amp; Craftsman diptych, and a new Hard-Hat American single-portrait). Market Grid and Multi-Conductor are each a single locked-in direction. All sized at 33&Prime; &times; 81&Prime; with 1&Prime; top and 3&Prime; bottom safety margins. Click any concept to review at full size.</p>
+  <p class="page-sub">Six 33&Prime; &times; 81&Prime; retractable banners (Data Center · Medium Voltage · Market Grid · USA · Single Conductor · Multi-Conductor) plus a new 10ft Perfect-Pop pop-up display. Data Center has four photo directions, Medium Voltage and Single Conductor each have A/B pairs, USA has three patriotic directions, and Market Grid · Multi-Conductor · Pop-Up are single locked-in concepts. Click any banner to review at full size.</p>
 </header>
 
 <!-- TOOLBAR -->
@@ -2126,6 +2271,69 @@
     </div>
   </section>
 
+  <!-- ═══════════ BANNER 07 — 10FT POP-UP DISPLAY ═══════════ -->
+  <section class="banner-section popup">
+    <div class="section-head">
+      <span class="section-num">Banner 07</span>
+      <h2 class="section-title">10ft Pop-Up <span>Display</span></h2>
+    </div>
+    <div class="section-ask">
+      <div class="ask-label">Client Ask</div>
+      <ul class="ask-list">
+        <li><strong>Format</strong>10ft Perfect-Pop Straight (XP-43ST-G) · 144.88&Prime; &times; 90.55&Prime; including 12.25&Prime; side wrap zones</li>
+        <li><strong>Background</strong>Warehouse + draped American flag (reusing the 04A bg-usa-a artwork, repositioned for landscape)</li>
+        <li><strong>Center copy</strong>Standard UWC logo · company name + DeKalb address + phone · "Manufacturer of Lead Wire &amp; Multiconductor Cable" tagline · certifications row</li>
+        <li><strong>Side panels</strong>unifiedwireandcable.com running vertically up each 12.25&Prime; wrap zone (replaces the bottom URL on the legacy version)</li>
+      </ul>
+    </div>
+
+    <div class="concepts-pair concepts-single-wide">
+
+      <!-- ─── 07 — 10ft Pop-Up ─── -->
+      <div class="concept-card concept-a" onclick="openLightbox('banner-07')">
+        <div class="card-inner">
+          <span class="card-chip">Concept 07</span>
+          <span class="card-approach">10ft Pop-Up</span>
+          <div class="card-expand-hint">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 2h4v4M6 14H2v-4M14 2l-5 5M2 14l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="banner b-popup b-popup-a" id="banner-07">
+            <div class="banner-bg"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <div class="b-popup-side b-popup-side-left">
+                <span class="b-popup-side-text">unifiedwireandcable.com</span>
+              </div>
+              <div class="b-popup-side b-popup-side-right">
+                <span class="b-popup-side-text">unifiedwireandcable.com</span>
+              </div>
+              <div class="b-popup-main">
+                <div class="b-popup-header">
+                  <img class="b-popup-logo" src="assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+                  <div class="b-popup-meta">338 Wurlitzer Dr · DeKalb, IL 60115 · (815) 748-4876</div>
+                </div>
+                <div>
+                  <div class="b-popup-tagline-eyebrow">Manufacturer of</div>
+                  <div class="b-popup-tagline">Lead Wire &amp; <span class="accent">Multiconductor Cable</span></div>
+                </div>
+                <div class="b-popup-certs">
+                  <div class="b-popup-certs-label">Certifications</div>
+                  <div class="b-popup-certs-list">ISO 9001:2015 &middot; RoHS &middot; REACH &middot; UL &middot; CSA</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">Banner 07 · Single Concept</div>
+          <div class="card-title">10ft Pop-Up Display</div>
+          <p class="card-desc">10ft Perfect-Pop straight pop-up at <strong>144.88&Prime; &times; 90.55&Prime;</strong> including 12.25&Prime; side wrap zones each side. Background is the warehouse-with-draped-flag artwork from the 04A direction, repositioned to land the flag at the top of the landscape format. Standard UWC logo and DeKalb contact line at the top, "Manufacturer of Lead Wire &amp; Multiconductor Cable" as the marquee statement, and the cert lockup (ISO 9001:2015 · RoHS · REACH · UL · CSA) along the bottom. The site URL runs vertically up each side wrap zone instead of along the bottom.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </div>
 
 <!-- NOTES -->
@@ -2200,6 +2408,14 @@
       const card = banner.closest('.concept-card');
       if (card) card.classList.add('print-target');
     }
+    // Inject the @page size to match the banner's print dimensions.
+    const PAGE_SIZES = {
+      'banner-07': '144.88in 90.55in'
+    };
+    const pageSize = PAGE_SIZES[printId] || '33in 81in';
+    const style = document.createElement('style');
+    style.textContent = `@page { size: ${pageSize}; margin: 0; }`;
+    document.head.appendChild(style);
     // Skip password gate
     const g = document.getElementById('gate');
     if (g) g.style.display = 'none';
@@ -2278,7 +2494,8 @@
     'banner-04c': 'Concept 04C — USA · Hard-Hat American',
     'banner-05a': 'Concept 05A — Single Conductor · Red Jacket',
     'banner-05b': 'Concept 05B — Single Conductor · Yellow Jacket',
-    'banner-06':  'Concept 06 — Multi-Conductor · Two-Column List'
+    'banner-06':  'Concept 06 — Multi-Conductor · Two-Column List',
+    'banner-07':  'Concept 07 — 10ft Pop-Up Display'
   };
 
   function openLightbox(bannerId) {
@@ -2330,7 +2547,8 @@
     'banner-04c': '04c-usa-hard-hat-american',
     'banner-05a': '05a-single-conductor-red-jacket',
     'banner-05b': '05b-single-conductor-yellow-jacket',
-    'banner-06':  '06-multi-conductor'
+    'banner-06':  '06-multi-conductor',
+    'banner-07':  '07-10ft-popup-display'
   };
   const DOWNLOAD_ICON = '<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v8m0 0l3-3m-3 3l-3-3M2.5 13.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
