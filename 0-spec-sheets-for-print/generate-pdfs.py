@@ -24,13 +24,13 @@ INDEX = ROOT / "index.html"
 SHEETS = [
     ("spec-sheet-01-corporate.html",         "01-Corporate-Capabilities"),
     ("spec-sheet-02-automotive-marine.html", "02-Automotive-Marine"),
-    ("spec-sheet-04-building-lighting.html", "04-Building-Lighting"),
-    ("spec-sheet-05-hookup.html",            "05-Hookup-Wire"),
-    ("spec-sheet-06-power-battery.html",     "06-Power-Battery"),
-    ("spec-sheet-07-specialty-cords.html",   "07-Specialty-Cords"),
-    ("spec-sheet-08-custom-oem.html",        "08-Custom-OEM"),
-    ("spec-sheet-09-medium-voltage.html",    "09-Medium-Voltage"),
-    ("spec-sheet-10-data-center.html",       "10-Data-Center"),
+    ("spec-sheet-03-building-lighting.html", "03-Building-Lighting"),
+    ("spec-sheet-04-hookup.html",            "04-Hookup-Wire"),
+    ("spec-sheet-05-power-battery.html",     "05-Power-Battery"),
+    ("spec-sheet-06-specialty-cords.html",   "06-Specialty-Cords"),
+    ("spec-sheet-07-custom-oem.html",        "07-Custom-OEM"),
+    ("spec-sheet-08-medium-voltage.html",    "08-Medium-Voltage"),
+    ("spec-sheet-09-data-center.html",       "09-Data-Center"),
 ]
 
 

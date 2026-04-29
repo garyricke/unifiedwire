@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UWC Spec Sheet — 05 Power &amp; Battery</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* Sheet 06 — Power & Battery: portrait-hero layout. */
+  .page-front { display: flex; flex-direction: column; }
+  .page-front .title-block {
+    order: 0;
+    padding: 14pt 28pt 8pt;
+    flex: 0 0 auto;
+  }
+  .page-front .sheet-title { font-size: 28pt; margin-bottom: 4pt; }
+  .page-front .sheet-subtitle { font-size: 10.5pt; }
+  .page-front .sheet-number { margin-bottom: 4pt; }
+  .page-front .hero-wrap {
+    flex: 1 1 auto;
+    height: auto;
+  }
+  .page-front .hero-wrap .hero-img {
+    object-position: center 65%;
+  }
+  .page-front .hero-wrap::after {
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0) 70%,
+      rgba(0,0,0,.18) 100%);
+  }
+  .page-front { padding-bottom: 46pt; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 1 — FRONT
+════════════════════════════════════════════════════ -->
+<div class="page page-front">
+
+  <div class="front-header">
+    <img class="uwc-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+    <div class="cat-label">
+      <span class="cat-num">05</span>
+      <span class="cat-sep">|</span>
+      <span class="cat-name">Power &amp; Battery</span>
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="sheet-number">05 | Power &amp; Battery</div>
+    <div class="sheet-title">Power &amp;<br>Battery</div>
+    <div class="sheet-subtitle">Heavy-Gauge Cables for Industrial Equipment &amp; Power Distribution</div>
+  </div>
+
+  <div class="hero-wrap">
+    <img class="hero-img" src="images/front-05-power-battery.png" alt="Industrial battery room and x-ray view of forklift power cable routing">
+
+    <svg class="callout-svg" viewBox="0 0 612 614" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Battery Bank Connections: bottom-left of x-ray (battery pack) -->
+      <line x1="92" y1="565" x2="240" y2="555" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="240" cy="555" r="4" fill="#E36417"/>
+      <!-- Power Distribution: middle of forklift x-ray (controller) -->
+      <line x1="92" y1="475" x2="290" y2="490" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="290" cy="490" r="4" fill="#E36417"/>
+      <!-- Equipment Feeders: orange cable runs across x-ray middle -->
+      <line x1="425" y1="455" x2="370" y2="475" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="370" cy="475" r="4" fill="#E36417"/>
+      <!-- Service Cables: drive motor area -->
+      <line x1="425" y1="540" x2="395" y2="510" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="395" cy="510" r="4" fill="#E36417"/>
+    </svg>
+
+    <!-- callout labels -->
+    <div class="callout-label" style="top:555pt;left:8pt">Battery Bank</div>
+    <div class="callout-label" style="top:465pt;left:8pt">Power Distribution</div>
+    <div class="callout-label" style="top:445pt;left:430pt">Equipment Feeders</div>
+    <div class="callout-label" style="top:530pt;left:430pt">Service Cables</div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="tagline">We Bring the Power</span>
+    <img class="bottom-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+  </div>
+
+</div><!-- /page-front -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 2 — BACK
+════════════════════════════════════════════════════ -->
+<div class="page page-back">
+
+  <div class="back-header">
+    <div class="back-header-left">
+      <img class="back-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+      <span class="back-title">Power &amp; Battery Specifications</span>
+    </div>
+  </div>
+
+  <div class="product-strip">
+    <div class="product-cell">
+      <img src="images/wire-sgt.png" alt="SGT standard battery cable">
+      <div class="product-cell-label">SGT</div>
+      <div class="product-cell-sub">Standard Battery · 60V · 105°C</div>
+    </div>
+    <div class="product-cell">
+      <img src="images/wire-sgx.png" alt="SGX cross-linked battery cable">
+      <div class="product-cell-label">SGX</div>
+      <div class="product-cell-sub">Cross-Linked · 60V · 125°C</div>
+    </div>
+    <div class="product-cell">
+      <img src="images/wire-dlo.png" alt="DLO diesel locomotive power cable">
+      <div class="product-cell-label">DLO</div>
+      <div class="product-cell-sub">Industrial Power · 2kV · 90°C</div>
+    </div>
+  </div>
+
+  <div class="back-content">
+
+    <!-- Section 1 — SGT -->
+    <div class="spec-section">
+      <div class="spec-sec-header">SGT · Standard Battery Cable</div>
+      <div class="spec-sec-sub">PVC-insulated stranded copper for general battery, starter, and DC power applications</div>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Size (AWG / MCM)</th>
+            <th>Insulation</th>
+            <th>Voltage Rating</th>
+            <th>Temp Rating</th>
+            <th>Approvals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>6 – 4</td><td>PVC</td><td>60V DC</td><td>105°C</td><td>SAE J1127</td></tr>
+          <tr><td>2 – 1</td><td>PVC</td><td>60V DC</td><td>105°C</td><td>SAE J1127</td></tr>
+          <tr><td>1/0 – 2/0</td><td>PVC</td><td>60V DC</td><td>105°C</td><td>SAE J1127</td></tr>
+          <tr><td>3/0 – 4/0</td><td>PVC</td><td>60V DC</td><td>105°C</td><td>SAE J1127</td></tr>
+          <tr><td>250 – 500 MCM</td><td>PVC</td><td>60V DC</td><td>105°C</td><td class="placeholder">Contact sales rep</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 2 — SGX -->
+    <div class="spec-section spec-section--orange">
+      <div class="spec-sec-header">SGX · Cross-Linked Battery Cable</div>
+      <div class="spec-sec-sub">Cross-linked polyethylene (XLPE) insulation for higher temperature, abrasion resistance, and longer service life</div>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Size (AWG / MCM)</th>
+            <th>Insulation</th>
+            <th>Voltage Rating</th>
+            <th>Temp Rating</th>
+            <th>Approvals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>6 – 4</td><td>XLPE</td><td>60V DC</td><td>125°C</td><td>SAE J1127</td></tr>
+          <tr><td>2 – 1</td><td>XLPE</td><td>60V DC</td><td>125°C</td><td>SAE J1127, Ford ES ESAC-188931-A</td></tr>
+          <tr><td>1/0 – 2/0</td><td>XLPE</td><td>60V DC</td><td>125°C</td><td>SAE J1127, Ford ES ESAC-188931-A</td></tr>
+          <tr><td>3/0 – 4/0</td><td>XLPE</td><td>60V DC</td><td>125°C</td><td>SAE J1127, Chrysler MS-3417</td></tr>
+          <tr><td>250 – 500 MCM</td><td>XLPE</td><td>60V DC</td><td>125°C</td><td class="placeholder">Contact sales rep</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 3 — DLO -->
+    <div class="spec-section spec-section--navy">
+      <div class="spec-sec-header">DLO · Diesel Locomotive &amp; Industrial Power</div>
+      <div class="spec-sec-sub">EPDM-insulated, CPE-jacketed Class I fine-stranded copper for portable power, locomotives, mining, and heavy industrial feeders</div>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Size (AWG / MCM)</th>
+            <th>Insulation / Jacket</th>
+            <th>Voltage Rating</th>
+            <th>Temp Rating</th>
+            <th>Approvals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>4 – 2</td><td>EPDM / CPE</td><td>2 kV</td><td>90°C</td><td>ICEA S-75-381, RoHS</td></tr>
+          <tr><td>1 – 1/0</td><td>EPDM / CPE</td><td>2 kV</td><td>90°C</td><td>ICEA S-75-381, MSHA, RoHS</td></tr>
+          <tr><td>2/0 – 4/0</td><td>EPDM / CPE</td><td>2 kV</td><td>90°C</td><td>ICEA S-75-381, MSHA, RoHS</td></tr>
+          <tr><td>250 – 500 MCM</td><td>EPDM / CPE</td><td>2 kV</td><td>90°C</td><td>ICEA S-75-381, MSHA</td></tr>
+          <tr><td>600 – 1000 MCM</td><td>EPDM / CPE</td><td>2 kV</td><td>90°C</td><td class="placeholder">Contact sales rep</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /back-content -->
+
+  <div class="cert-row">
+    <div class="cert-made-usa">
+      <img class="flag-img" src="images/marks/usa-flag.svg" alt="USA flag">
+      <div>MADE IN USA</div>
+    </div>
+    <img class="cert-mark" src="images/marks/cert-ul.svg" alt="UL Listed">
+    <img class="cert-mark" src="images/marks/cert-ISO_9001-2015.svg" alt="ISO 9001:2015">
+    <img class="cert-mark" src="images/marks/cert-compliant-reach.svg" alt="REACH Compliant">
+    <img class="cert-mark" src="images/marks/cert-compliant-rc-RoHS.svg" alt="RC RoHS Compliant">
+  </div>
+
+  <div class="back-footer">
+    <div class="back-footer-left">
+      <img class="footer-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+      <div class="footer-info">
+        <span>www.unifiedwire.com</span>
+        <span>Sales: 1-800-555-0199</span>
+        <span>Email: sales@unifiedwire.com</span>
+      </div>
+    </div>
+    <div class="footer-disclaimer">All specified parameters are nominal and subject to variation</div>
+  </div>
+
+</div><!-- /page-back -->
+
+</body>
+</html>
