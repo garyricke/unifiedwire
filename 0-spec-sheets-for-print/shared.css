@@ -1,0 +1,498 @@
+/* ── Print Setup ─────────────────────────────────── */
+@page { size: 8.5in 11in; margin: 0; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:      #0362BC;
+  --blue-dk:   #024a90;
+  --blue-tint: #7ebfff;
+  --orange:    #E36417;
+  --orange-dk: #b84f10;
+  --orange-tint: #ffb07a;
+  --navy:      #0A1628;
+  --navy-lt:   #0d1e38;
+  --gray:      #B9BDBD;
+  --gray-lt:   #f0f2f4;
+  --border:    #dce3ed;
+  --text:      #1a2535;
+  --text-lt:   #4a5568;
+}
+
+body {
+  background: #6b7280;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media print {
+  body { background: none; padding: 0; gap: 0; }
+}
+
+/* ── Page Shell ──────────────────────────────────── */
+.page {
+  width: 8.5in;
+  height: 11in;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(0,0,0,.35);
+  flex-shrink: 0;
+}
+
+@media print {
+  .page { box-shadow: none; page-break-after: always; }
+  .page:last-child { page-break-after: avoid; }
+}
+
+/* ════════════════════════════════════════════════════
+   FRONT PAGE
+═══════════════════════════════════════════════════ */
+
+/* ── Front Header ────────────────────────────────── */
+.front-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28pt;
+  height: 52pt;
+  background: #fff;
+  border-bottom: 2pt solid var(--border);
+}
+
+.front-header .uwc-logo {
+  height: 28pt;
+  width: auto;
+}
+
+.cat-label {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-lt);
+}
+
+.cat-label .cat-num { color: var(--orange); font-size: 9pt; }
+.cat-label .cat-sep { color: var(--border); }
+.cat-label .cat-name { color: var(--text); }
+
+/* ── Hero Wrap ───────────────────────────────────── */
+.hero-wrap {
+  position: relative;
+  width: 8.5in;
+  height: 5.85in;
+  overflow: hidden;
+}
+
+.hero-wrap .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* dark gradient at bottom of hero for callout legibility */
+.hero-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.08) 0%,
+    rgba(0,0,0,.0) 40%,
+    rgba(0,0,0,.42) 100%
+  );
+  pointer-events: none;
+}
+
+.callout-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.callout-label {
+  position: absolute;
+  z-index: 3;
+  background: rgba(255,255,255,.92);
+  border: 1pt solid rgba(255,255,255,.6);
+  border-radius: 3pt;
+  padding: 3pt 7pt;
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  letter-spacing: .03em;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Title Block ─────────────────────────────────── */
+.title-block {
+  padding: 18pt 28pt 14pt;
+  background: #fff;
+  flex: 1;
+}
+
+.sheet-number {
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 6pt;
+}
+
+.sheet-title {
+  font-size: 32pt;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  line-height: 1.0;
+  color: var(--text);
+  text-transform: uppercase;
+  margin-bottom: 7pt;
+}
+
+.sheet-subtitle {
+  font-size: 11pt;
+  color: var(--text-lt);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ── Bottom Bar ──────────────────────────────────── */
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 46pt;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28pt;
+}
+
+.bottom-bar .tagline {
+  font-size: 13pt;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.bottom-bar .bottom-logo {
+  height: 22pt;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: .85;
+}
+
+/* ════════════════════════════════════════════════════
+   BACK PAGE
+═══════════════════════════════════════════════════ */
+
+/* ── Back Header ─────────────────────────────────── */
+.back-header {
+  background: var(--navy);
+  height: 50pt;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24pt;
+}
+
+.back-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12pt;
+}
+
+.back-header .back-logo {
+  height: 22pt;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.back-title {
+  font-size: 9pt;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.9);
+}
+
+/* ── Cert Badges ─────────────────────────────────── */
+.cert-row {
+  position: absolute;
+  bottom: 36pt;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10pt;
+  padding: 5pt 24pt;
+  background: #fff;
+  border-top: 1pt solid var(--border);
+  z-index: 2;
+}
+
+.cert-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 34pt;
+  height: 34pt;
+  border-radius: 4pt;
+  font-size: 6pt;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.cert-made-usa {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  width: auto;
+  height: 28pt;
+  margin-top: 4pt;
+  white-space: nowrap;
+  font-size: 4.5pt;
+  letter-spacing: .05em;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.cert-made-usa .flag-img {
+  width: 32pt;
+  height: 18pt;
+  display: block;
+  margin-bottom: 2pt;
+  object-fit: contain;
+}
+
+.cert-made-usa .flag {
+  font-size: 16pt;
+  line-height: 1;
+  margin-bottom: 1pt;
+}
+
+/* Image-based certification marks (UL, ISO, REACH, RoHS) */
+.cert-mark {
+  width: 28pt;
+  height: 28pt;
+  object-fit: contain;
+  display: block;
+}
+
+.cert-ul {
+  background: #000;
+  color: #fff;
+  font-size: 9pt;
+  font-weight: 900;
+  letter-spacing: .05em;
+  border-radius: 50%;
+}
+
+.cert-iso {
+  background: var(--blue);
+  color: #fff;
+}
+
+.cert-reach {
+  background: #2d7d2e;
+  color: #fff;
+}
+
+.cert-rco {
+  background: #1a6b1a;
+  color: #fff;
+  border-radius: 50%;
+}
+
+/* ── Back Content ────────────────────────────────── */
+.back-content {
+  padding: 12pt 24pt 60pt; /* bottom padding clears absolute cert-row */
+  display: flex;
+  flex-direction: column;
+  gap: 10pt;
+}
+
+/* ── Spec Section (themed via CSS vars) ──────────── */
+.spec-section {
+  --section-color: var(--blue);
+  --section-color-dk: var(--blue-dk);
+  --section-tint: #e8f1fa;       /* very light blue */
+}
+
+.spec-section--orange {
+  --section-color: var(--orange);
+  --section-color-dk: var(--orange-dk);
+  --section-tint: #fdf0e6;       /* very light peach */
+}
+
+.spec-section--navy {
+  --section-color: var(--navy);
+  --section-color-dk: var(--navy);
+  --section-tint: #e8ecf2;       /* light cool gray */
+}
+
+.spec-sec-header {
+  display: inline-block;
+  background: var(--section-color);
+  color: #fff;
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5pt 26pt 5pt 12pt;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 14pt) 100%, 0 100%);
+}
+
+.spec-sec-sub {
+  font-size: 7pt;
+  color: var(--text);
+  padding: 4pt 10pt 4pt;
+  background: var(--section-tint);
+  border-top: 1.5pt solid var(--section-color);
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7.5pt;
+}
+
+.spec-table th {
+  background: var(--section-color-dk);
+  color: #fff;
+  padding: 5pt 8pt;
+  text-align: left;
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.spec-table td {
+  padding: 4pt 8pt;
+  border-bottom: .5pt solid var(--border);
+  color: var(--text);
+}
+
+.spec-table tr:nth-child(even) td { background: var(--section-tint); }
+.spec-table tr:last-child td { border-bottom: none; }
+
+.spec-table td.placeholder { color: #bbb; font-style: italic; }
+
+/* ── Product Strip (3-up below back-header) ──────── */
+.product-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fff;
+  border-bottom: 1pt solid var(--border);
+}
+
+.product-cell {
+  display: flex;
+  flex-direction: column;
+  border-right: 1pt solid var(--border);
+  overflow: hidden;
+  padding-bottom: 10pt;
+}
+
+.product-cell:last-child { border-right: none; }
+
+.product-cell img {
+  width: 100%;
+  height: 140pt;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  margin-bottom: 6pt;
+}
+
+.product-cell-label {
+  font-size: 8.5pt;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 12pt;
+}
+
+.product-cell-sub {
+  font-size: 6.5pt;
+  color: var(--text-lt);
+  letter-spacing: .04em;
+  margin-top: 2pt;
+  text-align: center;
+  padding: 0 12pt;
+}
+
+/* ── Back Footer ─────────────────────────────────── */
+.back-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--navy);
+  padding: 9pt 24pt;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16pt;
+}
+
+.back-footer .footer-logo {
+  height: 18pt;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: .85;
+}
+
+.footer-info {
+  display: flex;
+  gap: 14pt;
+}
+
+.footer-info span {
+  font-size: 6.5pt;
+  color: rgba(255,255,255,.75);
+  font-weight: 500;
+}
+
+.footer-info a {
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+}
+
+.footer-disclaimer {
+  font-size: 5.5pt;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: right;
+}

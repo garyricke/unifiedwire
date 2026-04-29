@@ -20,3 +20,11 @@ assets/banners-22apr2026/openai/bg-usa-c-modern-worker-symmetric-pad.jpg
 
 # Nano-banana exploration superseded by openai/ versions
 assets/banners-22apr2026/generated/
+
+# Raw nano-banana / openai exploration outputs (kept locally only;
+# final assets get copied into project image folders)
+generated_imgs/
+
+# Third-party reference materials used during spec-sheet planning
+# (IEWC catalogs, internal source docs) — not for redistribution
+0-spec-sheets-for-print/plan/

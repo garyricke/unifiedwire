@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UWC Spec Sheet Suite — Print &amp; Digital</title>
+<style>
+  /* ── Brand tokens (mirrored from shared.css for self-contained landing) ── */
+  :root {
+    --blue:      #0362BC;
+    --blue-dk:   #024a90;
+    --blue-tint: #e8f1fa;
+    --orange:    #E36417;
+    --orange-dk: #b84f10;
+    --orange-tint: #fdf0e6;
+    --navy:      #0A1628;
+    --navy-lt:   #0d1e38;
+    --gray:      #B9BDBD;
+    --gray-lt:   #f0f2f4;
+    --gray-vlt:  #f7f9fb;
+    --border:    #dce3ed;
+    --text:      #1a2535;
+    --text-lt:   #4a5568;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--gray-lt);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.45;
+  }
+
+  /* ── Page shell ──────────────────────────────── */
+  .landing-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 28px 64px;
+  }
+
+  /* ── Hero header ─────────────────────────────── */
+  .landing-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-lt) 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 40px 44px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 32px rgba(10,22,40,.18);
+  }
+  .landing-header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -.01em;
+    margin-bottom: 8px;
+  }
+  .landing-header h1 .accent { color: var(--orange); }
+  .landing-header p {
+    font-size: 15px;
+    color: rgba(255,255,255,.78);
+    max-width: 720px;
+  }
+  .landing-header .header-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: right;
+    font-size: 11pt;
+    letter-spacing: .04em;
+  }
+  .landing-header .header-meta .label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+  }
+  .landing-header .header-meta .value {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  /* ── Section wrapper ─────────────────────────── */
+  section.panel {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(10,22,40,.06);
+  }
+  section.panel h2 {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  section.panel h2 + .section-headline {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 18px;
+    letter-spacing: -.005em;
+  }
+
+  /* ── Print Requirements ─────────────────────── */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .spec-card {
+    background: var(--gray-vlt);
+    border-left: 3px solid var(--blue);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .spec-card.spec-orange { border-left-color: var(--orange); }
+  .spec-card.spec-navy   { border-left-color: var(--navy); }
+
+  .spec-card .spec-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-bottom: 4px;
+  }
+  .spec-card .spec-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .spec-card .spec-detail {
+    font-size: 12.5px;
+    color: var(--text-lt);
+    line-height: 1.4;
+  }
+
+  .specs-totals {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    text-align: center;
+  }
+  .specs-totals .total-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .specs-totals .total-num.placeholder {
+    color: #bbb;
+    font-style: italic;
+    font-size: 22px;
+  }
+  .specs-totals .total-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+  }
+
+  /* ── How-to-PDF ─────────────────────────────── */
+  .howto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    counter-reset: step;
+  }
+  .howto-step {
+    counter-increment: step;
+    padding: 16px 18px 18px;
+    background: var(--blue-tint);
+    border-radius: 6px;
+    position: relative;
+  }
+  .howto-step::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--blue);
+    opacity: .35;
+    letter-spacing: -.02em;
+    line-height: 1;
+  }
+  .howto-step strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -.005em;
+  }
+  .howto-step span {
+    font-size: 12.5px;
+    color: var(--text-lt);
+    line-height: 1.45;
+  }
+  .howto-step kbd {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  /* ── Spec sheet thumbnail grid ─────────────── */
+  .sheets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
+  }
+  .sheet-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(10,22,40,.08);
+    transition: transform .18s ease, box-shadow .18s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .sheet-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(10,22,40,.16);
+  }
+
+  .sheet-thumb-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .sheet-thumb {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: var(--gray-lt);
+    position: relative;
+  }
+  .sheet-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .sheet-num-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .15em;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  .sheet-card-meta {
+    padding: 14px 16px 14px;
+    border-top: 3px solid var(--blue);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .sheet-card.theme-orange .sheet-card-meta { border-top-color: var(--orange); }
+  .sheet-card.theme-navy .sheet-card-meta   { border-top-color: var(--navy); }
+
+  .sheet-card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -.005em;
+  }
+  .sheet-card-products {
+    font-size: 11.5px;
+    color: var(--text-lt);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .sheet-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .sheet-card-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .action-view {
+    background: var(--gray-vlt);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .action-view:hover {
+    background: var(--blue-tint);
+    color: var(--blue-dk);
+  }
+  .action-pdf {
+    background: var(--orange);
+    color: #fff;
+  }
+  .action-pdf:hover {
+    background: var(--orange-dk);
+  }
+  .action-icon {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  /* ── Footer ─────────────────────────────────── */
+  .landing-footer {
+    text-align: center;
+    color: var(--text-lt);
+    font-size: 12px;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Responsive ─────────────────────────────── */
+  @media (max-width: 720px) {
+    .landing-header {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    .landing-header .header-meta { text-align: left; }
+    .specs-totals { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="landing-wrap">
+
+  <!-- ── Header ─────────────────────────────── -->
+  <header class="landing-header">
+    <div>
+      <h1>UWC Spec Sheet <span class="accent">Suite</span></h1>
+      <p>Ten-sheet print &amp; digital reference suite for trade shows, sales, and customer accounts. Click any sheet to open the full version, then print to PDF for distribution or hand to your printer.</p>
+    </div>
+    <div class="header-meta">
+      <div>
+        <div class="label">Sheets</div>
+        <div class="value">10</div>
+      </div>
+      <div>
+        <div class="label">Format</div>
+        <div class="value">8.5″ × 11″</div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ── Print Requirements ─────────────────── -->
+  <section class="panel">
+    <h2>Print Requirements</h2>
+    <div class="section-headline">Specifications for the print run</div>
+
+    <div class="specs-grid">
+
+      <div class="spec-card">
+        <div class="spec-label">Paper Stock</div>
+        <div class="spec-value">100 lb Gloss Cover</div>
+        <div class="spec-detail">Heavyweight cardstock — gloss preferred for color saturation; matte acceptable. 80 lb cover is the lightest acceptable.</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-label">Trim Size</div>
+        <div class="spec-value">8.5″ × 11″ Letter</div>
+        <div class="spec-detail">US Letter, portrait orientation. Single sheet, double-sided (front + back).</div>
+      </div>
+
+      <div class="spec-card spec-orange">
+        <div class="spec-label">Color &amp; Sides</div>
+        <div class="spec-value">4/4 Full Color</div>
+        <div class="spec-detail">CMYK process, full color both sides. No spot colors required.</div>
+      </div>
+
+      <div class="spec-card spec-orange">
+        <div class="spec-label">Bleed</div>
+        <div class="spec-value">0.125″ All Sides</div>
+        <div class="spec-detail">Standard 1/8″ bleed if extending backgrounds to the trim edge. Current files have white margins — confirm with printer.</div>
+      </div>
+
+      <div class="spec-card spec-navy">
+        <div class="spec-label">Finishing</div>
+        <div class="spec-value">Aqueous Coating</div>
+        <div class="spec-detail">Aqueous gloss recommended for durability and a clean tradeshow feel. UV coating optional for higher gloss.</div>
+      </div>
+
+      <div class="spec-card spec-navy">
+        <div class="spec-label">Delivery Format</div>
+        <div class="spec-value">Print-Ready PDF</div>
+        <div class="spec-detail">High-resolution PDF/X-1a, embedded fonts, 300 dpi raster, CMYK. One PDF per sheet (10 PDFs total).</div>
+      </div>
+
+    </div>
+
+    <div class="specs-totals">
+      <div>
+        <div class="total-num">10</div>
+        <div class="total-label">Spec Sheets</div>
+      </div>
+      <div>
+        <div class="total-num">600</div>
+        <div class="total-label">Per Sheet · Suggested</div>
+      </div>
+      <div>
+        <div class="total-num">6,000</div>
+        <div class="total-label">Total Run</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Download & Deliver ─────────────────── -->
+  <section class="panel">
+    <h2>Download &amp; Deliver</h2>
+    <div class="section-headline">Print-ready PDFs are pre-built — just click and send to the printer</div>
+
+    <div class="howto-grid">
+      <div class="howto-step">
+        <strong>Click the PDF button</strong>
+        <span>Each sheet card below has a <em>PDF</em> button. Clicking it downloads the latest print-ready PDF — front + back, 8.5″ × 11″, no headers or footers.</span>
+      </div>
+      <div class="howto-step">
+        <strong>Filename includes a version</strong>
+        <span>Each PDF is timestamped <code>YYYYMMDD-HHMM</code> (e.g. <code>UWC-04-Building-Lighting-20260429-1430.pdf</code>) so the printer always knows which build they have.</span>
+      </div>
+      <div class="howto-step">
+        <strong>Need a fresh build?</strong>
+        <span>Edit any HTML, then run <code>python3 generate-pdfs.py</code> from this folder. Every sheet regenerates with a new timestamp and the buttons below auto-update.</span>
+      </div>
+      <div class="howto-step">
+        <strong>Manual re-print fallback</strong>
+        <span>You can also open any sheet via <em>View</em>, press <kbd>⌘ P</kbd> / <kbd>Ctrl P</kbd>, choose <em>Save as PDF</em>, and set Paper: <em>US Letter</em>, Margins: <em>None</em>, Scale: <em>100%</em>, Background graphics: <em>On</em>.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Spec Sheet Thumbnails ─────────────────── -->
+  <section class="panel">
+    <h2>Spec Sheets</h2>
+    <div class="section-headline">10 sheets · click to open the print-ready version</div>
+
+    <div class="sheets-grid">
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-01-corporate.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-01-corporate-new.png" alt="Sheet 01 Corporate Capabilities">
+            <div class="sheet-num-badge">01</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Corporate Capabilities</div>
+          <div class="sheet-card-products">Made in USA · Vertically Integrated · ISO 9001:2015</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-01-corporate.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-01-Corporate-Capabilities-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-02-automotive-marine.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-02-automotive-marine.png" alt="Sheet 02 Automotive &amp; Marine">
+            <div class="sheet-num-badge">02</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Automotive &amp; Marine</div>
+          <div class="sheet-card-products">GXL · SGT/SGX · Tinned Marine</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-02-automotive-marine.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-02-Automotive-Marine-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-orange">
+        <a class="sheet-thumb-link" href="spec-sheet-04-building-lighting.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-04-building-lighting.png" alt="Sheet 04 Building &amp; Lighting">
+            <div class="sheet-num-badge">04</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Building &amp; Lighting</div>
+          <div class="sheet-card-products">THHN/THWN-2 · TFN/TFFN · XHHW-2</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-04-building-lighting.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-04-Building-Lighting-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-05-hookup.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-05-hookup-new.png" alt="Sheet 05 Hook-Up Wire">
+            <div class="sheet-num-badge">05</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Hook-Up Wire</div>
+          <div class="sheet-card-products">MTW/UL 1015 · UL 1007/1569 · UL 1061</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-05-hookup.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-05-Hookup-Wire-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-orange">
+        <a class="sheet-thumb-link" href="spec-sheet-06-power-battery.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-06-power-battery.png" alt="Sheet 06 Power &amp; Battery">
+            <div class="sheet-num-badge">06</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Power &amp; Battery</div>
+          <div class="sheet-card-products">SGT · SGX · DLO</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-06-power-battery.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-06-Power-Battery-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-07-specialty-cords.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-07-specialty-cords-v2.png" alt="Sheet 07 Specialty Cords">
+            <div class="sheet-num-badge">07</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Specialty Cords</div>
+          <div class="sheet-card-products">SOOW/STOW · SJT/SJTOOW · SPT-1/SPT-2</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-07-specialty-cords.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-07-Specialty-Cords-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-navy">
+        <a class="sheet-thumb-link" href="spec-sheet-08-custom-oem.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-08-custom-oem-v2.png" alt="Sheet 08 Custom OEM">
+            <div class="sheet-num-badge">08</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Custom OEM</div>
+          <div class="sheet-card-products">Hoistway · Mil-Spec · Custom Multi-Conductor</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-08-custom-oem.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-08-Custom-OEM-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-orange">
+        <a class="sheet-thumb-link" href="spec-sheet-09-medium-voltage.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-09-medium-voltage-new.png" alt="Sheet 09 Medium Voltage">
+            <div class="sheet-num-badge">09</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Medium Voltage</div>
+          <div class="sheet-card-products">15kV URD · 25kV URD · MV-90/105</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-09-medium-voltage.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-09-Medium-Voltage-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-navy">
+        <a class="sheet-thumb-link" href="spec-sheet-10-data-center.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/front-10-data-center-new.png" alt="Sheet 10 Data Center">
+            <div class="sheet-num-badge">10</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Data Center</div>
+          <div class="sheet-card-products">THHN-2/XHHW-2 Feeders · MTW · DLO</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-10-data-center.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="pdfs/UWC-10-Data-Center-20260429-1428.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <footer class="landing-footer">
+    Unified Wire &amp; Cable &middot; DeKalb, Illinois &middot; Spec Sheet Suite v1.0
+  </footer>
+
+</div>
+
+</body>
+</html>
