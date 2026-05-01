@@ -219,9 +219,10 @@ body {
   font-weight: 900;
   letter-spacing: -.01em;
   line-height: 1.0;
-  color: var(--text);
+  color: #fff;
   text-transform: uppercase;
   margin-bottom: 7pt;
+  text-shadow: 0 2pt 6pt rgba(10,22,40,.50);
 }
 
 .sheet-subtitle {
