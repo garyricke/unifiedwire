@@ -708,6 +708,7 @@ body {
   font-size: 7pt;
   color: var(--text);
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .footer-info a {
