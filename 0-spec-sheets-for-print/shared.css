@@ -64,37 +64,21 @@ body {
   border-bottom: 2pt solid var(--border);
 }
 
-/* When the hero spans the whole page, the header is a transparent
-   container; the logo and cat-name each get their own small frosted-
-   glass pill so they read against any hero photo. */
+/* When the hero spans the whole page, the header is a full-width
+   frosted-glass band — 20% white tint + blurred hero clone behind so
+   the logo and cat-name read against any photo. */
 .page-front.hero-overlay .front-header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 5;
-  background: transparent;
-  border-bottom: none;
-  isolation: auto;
-}
-.page-front.hero-overlay .front-header .front-header-blur-bg {
-  display: none;
-}
-
-/* Frosted-glass pills around the logo (left) and cat-label (right) */
-.page-front.hero-overlay .uwc-logo,
-.page-front.hero-overlay .cat-label {
-  background: rgba(10, 22, 40, 0.40);
+  background: rgba(255, 255, 255, 0.20);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1pt solid rgba(255, 255, 255, 0.20);
-  border-radius: 6pt;
-  padding: 5pt 12pt;
-  box-shadow: 0 2pt 10pt rgba(10, 22, 40, .18);
-}
-.page-front.hero-overlay .uwc-logo {
-  /* image gets its bg painted around it via padding */
-  box-sizing: content-box;
+  border-bottom: none;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .front-header .uwc-logo {
