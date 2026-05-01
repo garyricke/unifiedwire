@@ -61,6 +61,7 @@
     z-index: 3;
   }
   .corp-pillar {
+    position: relative;
     background: rgba(255,255,255,.40);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -69,12 +70,21 @@
     border-radius: 4pt;
     padding: 10pt 12pt 11pt;
     box-shadow: 0 4pt 16pt rgba(0,0,0,.18);
+    overflow: hidden;
+    isolation: isolate;
   }
-  /* Print PDFs drop backdrop-filter; bump opacity so pillars stay legible. */
-  @media print {
-    .corp-pillar {
-      background: rgba(255,255,255,.78);
-    }
+  /* Cloned blurred bottom-strip image behind each pillar — matches the
+     backdrop-filter look in printed PDFs. Each pillar's offset within the
+     strip is set inline so the visible window aligns with reality. */
+  .corp-pillar > .pillar-blur-bg {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    object-fit: cover;
+    filter: blur(14px);
+    /* Bottom strip is 1/3 of hero-wrap (746pt) = 248.67pt tall */
+    width: 8.5in;
+    height: 248.67pt;
   }
   .corp-pillar.corp-pillar--orange { border-left-color: var(--orange); }
   .corp-pillar.corp-pillar--navy   { border-left-color: var(--navy); }
@@ -115,6 +125,21 @@
   .corp-front .title-glass {
     top: 64pt;
     left: 18pt;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* Cloned-and-blurred top-strip image fills the panel — the visible portion
+     matches what's actually behind it, simulating backdrop-filter for print.
+     Top strip is 1/3 of hero-wrap (746pt) = 248.67pt tall. */
+  .corp-front .title-glass .title-glass-blur-bg {
+    top: -64pt;
+    left: -18pt;
+    width: 8.5in;
+    height: 248.67pt;
+  }
+  /* Front-header overlays the top strip on corp; clone is sized to that strip */
+  .corp-front .front-header .front-header-blur-bg {
+    height: 248.67pt;
   }
 
   /* ── BACK ──────────────────────────────────────── */
@@ -295,6 +320,7 @@
 <div class="page page-front corp-front hero-overlay">
 
   <div class="front-header">
+    <img class="front-header-blur-bg" src="corp-cap/corp-capabil-13-openai-clean.png" alt="" aria-hidden="true">
     <img class="uwc-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
     <div class="cat-label">
       <span class="cat-num">01</span>
@@ -318,6 +344,7 @@
       <div class="corp-pillars">
 
         <div class="corp-pillar">
+          <img class="pillar-blur-bg" src="corp-cap/corp-capabil-15-openai-clean.png" alt="" aria-hidden="true" style="bottom:-14pt; left:-14pt;">
           <div class="corp-pillar-mark corp-pillar-mark--flag">
             <img src="images/marks/usa-flag.svg" alt="USA flag">
           </div>
@@ -327,6 +354,7 @@
         </div>
 
         <div class="corp-pillar corp-pillar--orange">
+          <img class="pillar-blur-bg" src="corp-cap/corp-capabil-15-openai-clean.png" alt="" aria-hidden="true" style="bottom:-14pt; left:-212pt;">
           <div class="corp-pillar-mark">
             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="32" cy="32" r="22" fill="none" stroke="#E36417" stroke-width="3.5"/>
@@ -345,6 +373,7 @@
         </div>
 
         <div class="corp-pillar corp-pillar--navy">
+          <img class="pillar-blur-bg" src="corp-cap/corp-capabil-15-openai-clean.png" alt="" aria-hidden="true" style="bottom:-14pt; left:-410pt;">
           <div class="corp-pillar-mark">
             <img src="images/marks/cert-ISO_9001-2015.svg" alt="ISO 9001:2015 Certified">
           </div>
@@ -358,6 +387,7 @@
 
     <!-- Frosted-glass title overlay near the top -->
     <div class="title-glass">
+      <img class="title-glass-blur-bg" src="corp-cap/corp-capabil-13-openai-clean.png" alt="" aria-hidden="true">
       <div class="sheet-number">01 | Corporate Capabilities</div>
       <div class="sheet-title">Corporate<br>Capabilities</div>
       <div class="sheet-subtitle">American-Made &middot; Fully Integrated &middot; Quality Assured</div>

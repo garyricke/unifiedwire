@@ -725,17 +725,45 @@ body {
 }
 
 /* ════════════════════════════════════════════════════
-   PRINT-ONLY OVERRIDES
-   Chrome's print-to-PDF renderer drops `backdrop-filter: blur()` on
-   absolutely-positioned glass panels. Without the blur, low-opacity white
-   panels read poorly over busy hero photos. Bump opacity for print so the
-   PDF matches the readability of the on-screen blurred version.
+   GLASS PANEL BLUR (PDF-COMPATIBLE)
+   `backdrop-filter: blur()` doesn't render in Chrome's print-to-PDF, so
+   we instead inject a clone of the hero image inside each glass panel
+   (with `filter: blur()` applied directly), then clip it via the panel's
+   `overflow: hidden`. The result simulates the frosted look in the PDF
+   while the on-screen view still benefits from the live backdrop-filter.
 ═══════════════════════════════════════════════════ */
-@media print {
-  .page-front.hero-overlay .front-header {
-    background: rgba(255, 255, 255, 0.45);
-  }
-  .title-glass {
-    background: rgba(255, 255, 255, 0.70);
-  }
+.title-glass-blur-bg,
+.front-header-blur-bg {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  object-fit: cover;
+  filter: blur(14px);
+}
+
+/* Title-glass on standard sheets (full-page hero, image fills hero-wrap) */
+.page-front.hero-overlay .title-glass {
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-front.hero-overlay .title-glass .title-glass-blur-bg {
+  /* Hero spans hero-wrap (8.5in × calc(100% - 46pt)).
+     Title-glass is at top:70pt left:24pt; pull the clone back so the
+     visible window matches the actual hero pixels behind. */
+  top: -70pt;
+  left: -24pt;
+  width: 8.5in;
+  height: calc(11in - 46pt);
+}
+
+/* Front-header on standard sheets — blurred hero clone behind 20% white */
+.page-front.hero-overlay .front-header {
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-front.hero-overlay .front-header .front-header-blur-bg {
+  top: 0;
+  left: 0;
+  width: 8.5in;
+  height: calc(11in - 46pt);
 }
