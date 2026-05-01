@@ -226,9 +226,10 @@ body {
 
 .sheet-subtitle {
   font-size: 11pt;
-  color: var(--text-lt);
-  font-weight: 400;
+  color: #fff;
+  font-weight: 600;
   line-height: 1.4;
+  text-shadow: 0 1pt 4pt rgba(10,22,40,.45);
 }
 
 /* ── Bottom Bar ──────────────────────────────────── */
