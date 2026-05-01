@@ -345,6 +345,86 @@
     line-height: 1;
   }
 
+  /* ── QR Target Pages ────────────────────────── */
+  .qr-targets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .qr-target {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--blue);
+    border-radius: 6px;
+    padding: 14px 14px 12px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
+    align-items: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .qr-target:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(10,22,40,.10);
+  }
+  .qr-target.qr-target--copper { border-top-color: #b07a4a; }
+  .qr-target.qr-target--orange { border-top-color: var(--orange); }
+  .qr-target-img {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: #fff;
+    object-fit: contain;
+  }
+  .qr-target-meta {
+    min-width: 0;
+  }
+  .qr-target-name {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -.005em;
+    margin-bottom: 3px;
+  }
+  .qr-target-tag {
+    font-size: 11px;
+    color: var(--text-lt);
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .qr-target-links {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .qr-target-links a {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+    transition: background-color .15s ease;
+  }
+  .qr-target-link-page {
+    background: var(--blue-tint);
+    color: var(--blue-dk);
+  }
+  .qr-target-link-page:hover { background: var(--blue); color: #fff; }
+  .qr-target-link-url {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+    color: var(--text-lt);
+    background: var(--gray-vlt);
+    border: 1px solid var(--border);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .qr-target-link-url:hover { background: #fff; color: var(--blue-dk); }
+
   /* ── Footer ─────────────────────────────────── */
   .landing-footer {
     text-align: center;
@@ -619,6 +699,138 @@
           </div>
         </div>
       </article>
+
+    </div>
+  </section>
+
+
+  <!-- ── QR Target Pages (the URLs the print QR codes point at) ── -->
+  <section class="panel">
+    <h2>QR Target Pages</h2>
+    <div class="section-headline">11 detailed product pages on unifiedwire.com — what the print QR codes resolve to</div>
+
+    <div class="qr-targets-grid">
+
+      <a class="qr-target" href="../site/spec-sheet-gpt.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-gpt.png" alt="QR for GPT spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">GPT &mdash; Bare Copper</div>
+          <div class="qr-target-tag">SAE J1128 &middot; 8&ndash;20 AWG</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-gpt</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../site/spec-sheet-gxl.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-gxl.png" alt="QR for GXL spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">GXL &mdash; XLPE Auto</div>
+          <div class="qr-target-tag">SAE J1128 &middot; 8&ndash;18 AWG</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-gxl</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../site/spec-sheet-gptm.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-gptm.png" alt="QR for GPTM spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">GPTM &mdash; Marine Tinned</div>
+          <div class="qr-target-tag">SAE J378 / J1128 &middot; 8&ndash;20 AWG</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-gptm</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../site/spec-sheet-1007.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-1007.png" alt="QR for UL 1007 spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">UL 1007 &mdash; Bare / Tinned Copper</div>
+          <div class="qr-target-tag">300 V &middot; 80&deg;C &middot; CSA TR-64</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-1007</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../site/spec-sheet-1015.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-1015.png" alt="QR for UL 1015 spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">UL 1015 &mdash; Bare / Tinned Copper, 600 V</div>
+          <div class="qr-target-tag">600 V &middot; MTW Multi-Rated &middot; 105&deg;C</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-1015</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--orange" href="../site/spec-sheet-thhn-mtw-thwn-2.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-thhn-mtw-thwn-2.png" alt="QR for THHN/MTW/THWN-2 spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">THHN / MTW / THWN-2 / T90 &mdash; Bare Copper</div>
+          <div class="qr-target-tag">UL 83 &middot; UL 1063 &middot; UL 1581</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-thhn-mtw-thwn-2</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--orange" href="../site/spec-sheet-xhhw-sis.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-xhhw-sis.png" alt="QR for XHHW-2 / UL SIS spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">XHHW-2 / UL SIS &mdash; Copper</div>
+          <div class="qr-target-tag">UL 44 &middot; UL 854 &middot; 600 V</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-xhhw-sis</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../site/spec-sheet-sjtoow.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-sjtoow.png" alt="QR for SJTOOW spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">SJTOOW &mdash; Bare Copper</div>
+          <div class="qr-target-tag">UL 62 &middot; CSA C22.2 No. 49 &middot; NEC 400</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-sjtoow</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--copper" href="../site/spec-sheet-mv-15kv-cu.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-mv-15kv-cu.png" alt="QR for CU 15kV MV spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">CU 15kV MV Power</div>
+          <div class="qr-target-tag">SS-220 EPR &middot; PVC Jacket &middot; Copper</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-mv-15kv-cu</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--copper" href="../site/spec-sheet-mv-15kv-al.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-mv-15kv-al.png" alt="QR for AL 15kV MV spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">AL 15kV MV Power</div>
+          <div class="qr-target-tag">SS-220 EPR &middot; PVC Jacket &middot; Aluminum</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-mv-15kv-al</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--copper" href="../site/spec-sheet-mv-35kv-al.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-mv-35kv-al.png" alt="QR for AL 35kV MV spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">AL 35kV MV Power</div>
+          <div class="qr-target-tag">SS-420 EPR &middot; PVC Jacket &middot; Aluminum</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-mv-35kv-al</span>
+          </div>
+        </div>
+      </a>
 
     </div>
   </section>
