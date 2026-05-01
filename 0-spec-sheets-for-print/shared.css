@@ -523,14 +523,10 @@ body {
 ═══════════════════════════════════════════════════ */
 
 .qr-back-content {
-  padding: 16pt 0 90pt 24pt;     /* flush to right edge so product photos bleed */
+  padding: 16pt 24pt 90pt;
   display: flex;
   flex-direction: column;
   gap: 14pt;
-}
-/* The intro headline keeps its own gutter so it stays centered to the page */
-.qr-back-content .qr-back-intro {
-  padding-right: 24pt;
 }
 
 .qr-back-intro {
