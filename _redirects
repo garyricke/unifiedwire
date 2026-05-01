@@ -1,0 +1,16 @@
+# Spec sheet detail pages — pretty URLs
+# QR codes printed on the spec sheets point to unifiedwire.com/spec-sheet-{slug}
+# Rewrite (200) keeps the visible URL clean while serving the file at /site/.
+/spec-sheet-1007                /site/spec-sheet-1007.html               200
+/spec-sheet-1015                /site/spec-sheet-1015.html               200
+/spec-sheet-gpt                 /site/spec-sheet-gpt.html                200
+/spec-sheet-gptm                /site/spec-sheet-gptm.html               200
+/spec-sheet-gxl                 /site/spec-sheet-gxl.html                200
+/spec-sheet-mv-15kv-al          /site/spec-sheet-mv-15kv-al.html         200
+/spec-sheet-mv-15kv-cu          /site/spec-sheet-mv-15kv-cu.html         200
+/spec-sheet-mv-25kv-al          /site/spec-sheet-mv-25kv-al.html         200
+/spec-sheet-mv-35kv-al          /site/spec-sheet-mv-35kv-al.html         200
+/spec-sheet-sjtoow              /site/spec-sheet-sjtoow.html             200
+/spec-sheet-tfn-tffn            /site/spec-sheet-tfn-tffn.html           200
+/spec-sheet-thhn-mtw-thwn-2     /site/spec-sheet-thhn-mtw-thwn-2.html    200
+/spec-sheet-xhhw-sis            /site/spec-sheet-xhhw-sis.html           200
