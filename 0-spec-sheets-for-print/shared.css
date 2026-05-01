@@ -103,12 +103,6 @@ body {
 .cat-label .cat-name {
   color: #fff;
   background: transparent;
-  /* Multi-layer subtle stroke instead of a soft shadow — renders cleanly
-     in Chrome's print engine without the rectangular halo artifact. */
-  text-shadow:
-    0 0 1pt rgba(10,22,40,.85),
-    0 0 1pt rgba(10,22,40,.85),
-    0 0 1pt rgba(10,22,40,.85);
 }
 
 /* ── Hero Wrap ───────────────────────────────────── */
