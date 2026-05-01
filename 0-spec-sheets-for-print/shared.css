@@ -255,10 +255,8 @@ body {
 }
 
 .bottom-bar .bottom-logo {
-  height: 22pt;
+  height: 26pt;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: .85;
 }
 
 /* ════════════════════════════════════════════════════
@@ -267,7 +265,8 @@ body {
 
 /* ── Back Header ─────────────────────────────────── */
 .back-header {
-  background: var(--blue);
+  background: #fff;
+  border-bottom: 3pt solid var(--blue);
   height: 50pt;
   display: flex;
   align-items: center;
@@ -282,9 +281,8 @@ body {
 }
 
 .back-header .back-logo {
-  height: 22pt;
+  height: 28pt;
   width: auto;
-  filter: brightness(0) invert(1);
 }
 
 .back-title {
@@ -292,7 +290,7 @@ body {
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.9);
+  color: var(--blue-dk);
 }
 
 /* ── Cert Badges ─────────────────────────────────── */
@@ -680,7 +678,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--blue);
+  background: #fff;
+  border-top: 2pt solid var(--blue);
   padding: 9pt 24pt;
   display: flex;
   align-items: center;
@@ -694,10 +693,8 @@ body {
 }
 
 .back-footer .footer-logo {
-  height: 18pt;
+  height: 22pt;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: .85;
 }
 
 .footer-info {
@@ -706,19 +703,19 @@ body {
 }
 
 .footer-info span {
-  font-size: 6.5pt;
-  color: rgba(255,255,255,.75);
-  font-weight: 500;
+  font-size: 7pt;
+  color: var(--text);
+  font-weight: 600;
 }
 
 .footer-info a {
-  color: rgba(255,255,255,.75);
+  color: var(--text);
   text-decoration: none;
 }
 
 .footer-disclaimer {
   font-size: 5.5pt;
-  color: rgba(255,255,255,.45);
+  color: var(--text-lt);
   letter-spacing: .06em;
   text-transform: uppercase;
   text-align: right;

@@ -24,11 +24,13 @@ SLUGS = [
     "spec-sheet-gptm",
     "spec-sheet-1007",
     "spec-sheet-1015",
+    "spec-sheet-tfn-tffn",
     "spec-sheet-thhn-mtw-thwn-2",
     "spec-sheet-xhhw-sis",
     "spec-sheet-sjtoow",
     "spec-sheet-mv-15kv-cu",
     "spec-sheet-mv-15kv-al",
+    "spec-sheet-mv-25kv-al",
     "spec-sheet-mv-35kv-al",
 ]
 
