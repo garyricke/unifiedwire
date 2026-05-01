@@ -723,3 +723,19 @@ body {
   text-transform: uppercase;
   text-align: right;
 }
+
+/* ════════════════════════════════════════════════════
+   PRINT-ONLY OVERRIDES
+   Chrome's print-to-PDF renderer drops `backdrop-filter: blur()` on
+   absolutely-positioned glass panels. Without the blur, low-opacity white
+   panels read poorly over busy hero photos. Bump opacity for print so the
+   PDF matches the readability of the on-screen blurred version.
+═══════════════════════════════════════════════════ */
+@media print {
+  .page-front.hero-overlay .front-header {
+    background: rgba(255, 255, 255, 0.45);
+  }
+  .title-glass {
+    background: rgba(255, 255, 255, 0.70);
+  }
+}

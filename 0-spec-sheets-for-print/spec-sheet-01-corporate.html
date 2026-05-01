@@ -70,6 +70,12 @@
     padding: 10pt 12pt 11pt;
     box-shadow: 0 4pt 16pt rgba(0,0,0,.18);
   }
+  /* Print PDFs drop backdrop-filter; bump opacity so pillars stay legible. */
+  @media print {
+    .corp-pillar {
+      background: rgba(255,255,255,.78);
+    }
+  }
   .corp-pillar.corp-pillar--orange { border-left-color: var(--orange); }
   .corp-pillar.corp-pillar--navy   { border-left-color: var(--navy); }
   .corp-pillar-mark {
