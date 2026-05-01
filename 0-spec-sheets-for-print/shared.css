@@ -577,7 +577,12 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 2pt 8pt rgba(10,22,40,.06);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.qr-card-photo {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .qr-card.qr-card--orange { border-top-color: var(--orange); }
 .qr-card.qr-card--navy   { border-top-color: var(--navy); }
