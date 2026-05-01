@@ -96,7 +96,7 @@ body {
 
 .cat-label .cat-num { color: var(--orange); font-size: 9pt; }
 .cat-label .cat-sep { color: var(--border); }
-.cat-label .cat-name { color: var(--text); }
+.cat-label .cat-name { color: #fff; text-shadow: 0 1pt 4pt rgba(10,22,40,.45); }
 
 /* ── Hero Wrap ───────────────────────────────────── */
 .hero-wrap {
