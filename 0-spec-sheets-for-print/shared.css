@@ -95,11 +95,21 @@ body {
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--text-lt);
+  background: transparent;
 }
 
 .cat-label .cat-num { color: var(--orange); font-size: 9pt; }
 .cat-label .cat-sep { color: var(--border); }
-.cat-label .cat-name { color: #fff; text-shadow: 0 1pt 4pt rgba(10,22,40,.45); }
+.cat-label .cat-name {
+  color: #fff;
+  background: transparent;
+  /* Multi-layer subtle stroke instead of a soft shadow — renders cleanly
+     in Chrome's print engine without the rectangular halo artifact. */
+  text-shadow:
+    0 0 1pt rgba(10,22,40,.85),
+    0 0 1pt rgba(10,22,40,.85),
+    0 0 1pt rgba(10,22,40,.85);
+}
 
 /* ── Hero Wrap ───────────────────────────────────── */
 .hero-wrap {
