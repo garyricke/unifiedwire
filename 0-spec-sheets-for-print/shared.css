@@ -64,18 +64,21 @@ body {
   border-bottom: 2pt solid var(--border);
 }
 
-/* When the hero spans the whole page, overlay the header on top of it
-   at 20% white so the image breathes through. */
+/* When the hero spans the whole page, the header is a transparent
+   container — logo + cat-name float directly over the hero photo
+   with their own white color + text-shadow for legibility. */
 .page-front.hero-overlay .front-header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 5;
-  background: rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: transparent;
   border-bottom: none;
+  isolation: auto;
+}
+.page-front.hero-overlay .front-header .front-header-blur-bg {
+  display: none;
 }
 
 .front-header .uwc-logo {
