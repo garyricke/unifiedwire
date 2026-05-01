@@ -4,39 +4,13 @@
 <meta charset="UTF-8">
 <title>UWC Spec Sheet — 04 Hook-Up Wire</title>
 <link rel="stylesheet" href="shared.css">
-<style>
-  /* Sheet 05 — Hook-Up Wire: portrait-hero layout matching the new design concept. */
-  .page-front { display: flex; flex-direction: column; }
-  .page-front .title-block {
-    order: 0;
-    padding: 14pt 28pt 8pt;
-    flex: 0 0 auto;
-  }
-  .page-front .sheet-title { font-size: 28pt; margin-bottom: 4pt; }
-  .page-front .sheet-subtitle { font-size: 10.5pt; }
-  .page-front .sheet-number { margin-bottom: 4pt; }
-  .page-front .hero-wrap {
-    flex: 1 1 auto;
-    height: auto;
-  }
-  .page-front .hero-wrap .hero-img {
-    object-position: center 65%;
-  }
-  .page-front .hero-wrap::after {
-    background: linear-gradient(to bottom,
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,0) 70%,
-      rgba(0,0,0,.18) 100%);
-  }
-  .page-front { padding-bottom: 46pt; }
-</style>
 </head>
 <body>
 
 <!-- ═══════════════════════════════════════════════════
      PAGE 1 — FRONT
 ════════════════════════════════════════════════════ -->
-<div class="page page-front">
+<div class="page page-front hero-overlay">
 
   <div class="front-header">
     <img class="uwc-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
@@ -47,35 +21,14 @@
     </div>
   </div>
 
-  <div class="title-block">
-    <div class="sheet-number">04 | Hook-Up Wire</div>
-    <div class="sheet-title">Hook-Up<br>Wire</div>
-    <div class="sheet-subtitle">UL-Listed Wire for Panels, Appliances &amp; Electronics</div>
-  </div>
-
   <div class="hero-wrap">
-    <img class="hero-img" src="images/front-04-hookup.png" alt="Industrial control-panel assembly and x-ray view of internal hook-up wiring">
+    <img class="hero-img" src="images/front-04-hookup.png" alt="Industrial control-panel assembly with x-ray view of internal hook-up wiring">
 
-    <svg class="callout-svg" viewBox="0 0 612 614" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Terminal Blocks: top of x-ray cabinet -->
-      <line x1="425" y1="395" x2="380" y2="410" stroke="#1a2535" stroke-width="1" opacity=".75"/>
-      <circle cx="380" cy="410" r="4" fill="#E36417"/>
-      <!-- DIN-Rail Connections: middle of x-ray -->
-      <line x1="425" y1="465" x2="370" y2="475" stroke="#1a2535" stroke-width="1" opacity=".75"/>
-      <circle cx="370" cy="475" r="4" fill="#E36417"/>
-      <!-- Wire Bundles: vertical duct, left side of x-ray -->
-      <line x1="92" y1="475" x2="225" y2="465" stroke="#1a2535" stroke-width="1" opacity=".75"/>
-      <circle cx="225" cy="465" r="4" fill="#E36417"/>
-      <!-- Component Leads: bottom of x-ray -->
-      <line x1="92" y1="565" x2="265" y2="555" stroke="#1a2535" stroke-width="1" opacity=".75"/>
-      <circle cx="265" cy="555" r="4" fill="#E36417"/>
-    </svg>
-
-    <!-- callout labels -->
-    <div class="callout-label" style="top:385pt;left:430pt">Terminal Blocks</div>
-    <div class="callout-label" style="top:455pt;left:430pt">DIN-Rail Connections</div>
-    <div class="callout-label" style="top:465pt;left:8pt">Wire Bundles</div>
-    <div class="callout-label" style="top:555pt;left:8pt">Component Leads</div>
+    <div class="title-glass">
+      <div class="sheet-number">04 | Hook-Up Wire</div>
+      <div class="sheet-title">Hook-Up<br>Wire</div>
+      <div class="sheet-subtitle">UL-Listed Wire for Panels, Appliances &amp; Electronics &mdash; including MTW &amp; UL 1569</div>
+    </div>
   </div>
 
   <div class="bottom-bar">
@@ -87,109 +40,60 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     PAGE 2 — BACK
+     PAGE 2 — BACK · BIG PRODUCT IMAGES + QR CODES
 ════════════════════════════════════════════════════ -->
 <div class="page page-back">
 
   <div class="back-header">
     <div class="back-header-left">
       <img class="back-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
-      <span class="back-title">Hook-Up Wire Specifications</span>
+      <span class="back-title">Hook-Up Wire</span>
     </div>
   </div>
 
-  <div class="product-strip">
-    <div class="product-cell">
-      <img src="images/wire-mtw-1015.png" alt="MTW / UL 1015 machine-tool wire">
-      <div class="product-cell-label">MTW · UL 1015</div>
-      <div class="product-cell-sub">10–20 AWG · Multi-Rated</div>
+  <div class="qr-back-content">
+
+    <div class="qr-back-intro">
+      <div class="qr-back-eyebrow">Detailed Specifications</div>
+      <div class="qr-back-headline">Scan or visit a product page for full data sheets</div>
+      <div class="qr-back-sub">Construction details, conductor counts, insulation thicknesses, and approvals for every gauge.</div>
     </div>
-    <div class="product-cell">
-      <img src="images/wire-ul1007-1569.png" alt="UL 1007 / UL 1569 hook-up wire">
-      <div class="product-cell-label">UL 1007 / 1569</div>
-      <div class="product-cell-sub">16–26 AWG · General Purpose</div>
+
+    <div class="qr-card-grid qr-cols-2">
+
+      <div class="qr-card">
+        <div class="qr-card-photo">
+          <img src="images/wire-ul1007-1569.png" alt="UL 1007 hook-up wire — bare or tinned copper">
+        </div>
+        <div class="qr-card-meta">
+          <div class="qr-card-name">UL 1007 &mdash; Bare / Tinned Copper</div>
+          <div class="qr-card-tag">300 V &middot; 80&deg;C &middot; MTW &amp; 1569 also available</div>
+        </div>
+        <div class="qr-card-cta">
+          <img class="qr-img" src="qr-codes/qr-spec-sheet-1007.png" alt="QR code linking to UL 1007 spec sheet">
+          <div class="qr-scan-label">Scan for full specs</div>
+          <div class="qr-url">unifiedwire.com/spec-sheet-1007</div>
+        </div>
+      </div>
+
+      <div class="qr-card">
+        <div class="qr-card-photo">
+          <img src="images/wire-mtw-1015.png" alt="UL 1015 hook-up wire — bare or tinned copper, 600V">
+        </div>
+        <div class="qr-card-meta">
+          <div class="qr-card-name">UL 1015 &mdash; Bare / Tinned Copper, 600 V</div>
+          <div class="qr-card-tag">600 V &middot; MTW Multi-Rated &middot; 105&deg;C</div>
+        </div>
+        <div class="qr-card-cta">
+          <img class="qr-img" src="qr-codes/qr-spec-sheet-1015.png" alt="QR code linking to UL 1015 spec sheet">
+          <div class="qr-scan-label">Scan for full specs</div>
+          <div class="qr-url">unifiedwire.com/spec-sheet-1015</div>
+        </div>
+      </div>
+
     </div>
-    <div class="product-cell">
-      <img src="images/wire-ul1061.png" alt="UL 1061 appliance hook-up wire">
-      <div class="product-cell-label">UL 1061</div>
-      <div class="product-cell-sub">16–24 AWG · Appliance &amp; Electronics</div>
-    </div>
+
   </div>
-
-  <div class="back-content">
-
-    <!-- Section 1 — MTW / UL 1015 -->
-    <div class="spec-section">
-      <div class="spec-sec-header">Machine Tool · MTW / UL 1015 / UL 1230</div>
-      <div class="spec-sec-sub">Multi-rated PVC-insulated stranded copper for industrial control panels, machine tools, and equipment wiring</div>
-      <table class="spec-table">
-        <thead>
-          <tr>
-            <th>Size (AWG)</th>
-            <th>Conductor</th>
-            <th>Voltage Rating</th>
-            <th>Temp Rating</th>
-            <th>Approvals</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>20 – 18</td><td>Stranded Copper</td><td>600V</td><td>105°C Dry · 90°C Wet</td><td>UL 1015, UL 1230, MTW</td></tr>
-          <tr><td>16 – 14</td><td>Stranded Copper</td><td>600V</td><td>105°C Dry · 90°C Wet</td><td>UL 1015, UL 1230, MTW</td></tr>
-          <tr><td>12</td><td>Stranded Copper</td><td>600V</td><td>105°C Dry · 90°C Wet</td><td>UL 1015, UL 1230, MTW, NFPA 79</td></tr>
-          <tr><td>10</td><td>Stranded Copper</td><td>600V</td><td>105°C Dry · 90°C Wet</td><td>UL 1015, UL 1230, MTW, NFPA 79</td></tr>
-          <tr><td>8</td><td>Stranded Copper</td><td>600V</td><td>105°C Dry · 90°C Wet</td><td class="placeholder">Contact sales rep</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Section 2 — UL 1007 / UL 1569 -->
-    <div class="spec-section spec-section--orange">
-      <div class="spec-sec-header">General Purpose · UL 1007 / UL 1569 / UL 1028</div>
-      <div class="spec-sec-sub">PVC-insulated hook-up wire for internal wiring of electronic equipment, panels, and instrument leads</div>
-      <table class="spec-table">
-        <thead>
-          <tr>
-            <th>Size (AWG)</th>
-            <th>Style</th>
-            <th>Voltage Rating</th>
-            <th>Temp Rating</th>
-            <th>Approvals</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>26 – 22</td><td>UL 1007</td><td>300V</td><td>80°C</td><td>UL 1007, CSA TR-64</td></tr>
-          <tr><td>22 – 16</td><td>UL 1569</td><td>600V</td><td>105°C</td><td>UL 1569, CSA TR-64</td></tr>
-          <tr><td>22 – 10</td><td>UL 1028</td><td>600V</td><td>105°C</td><td>UL 1028, CSA TR-64</td></tr>
-          <tr><td>14 – 12</td><td>UL 1569 (Heavy)</td><td>600V</td><td>105°C</td><td>UL 1569, CSA TR-64</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Section 3 — UL 1061 -->
-    <div class="spec-section spec-section--navy">
-      <div class="spec-sec-header">Appliance &amp; Electronics · UL 1061</div>
-      <div class="spec-sec-sub">SR-PVC-insulated tinned or bare copper for appliance internal wiring, electronic assemblies, and equipment leads</div>
-      <table class="spec-table">
-        <thead>
-          <tr>
-            <th>Size (AWG)</th>
-            <th>Conductor</th>
-            <th>Voltage Rating</th>
-            <th>Temp Rating</th>
-            <th>Approvals</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>24</td><td>Stranded Tinned Copper</td><td>300V</td><td>80°C</td><td>UL 1061</td></tr>
-          <tr><td>22</td><td>Stranded Tinned Copper</td><td>300V</td><td>80°C</td><td>UL 1061</td></tr>
-          <tr><td>20</td><td>Stranded Bare Copper</td><td>300V</td><td>80°C</td><td>UL 1061</td></tr>
-          <tr><td>18</td><td>Stranded Bare Copper</td><td>300V</td><td>80°C</td><td>UL 1061</td></tr>
-          <tr><td>16</td><td>Stranded Bare Copper</td><td>300V</td><td>80°C</td><td>UL 1061</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div><!-- /back-content -->
 
   <div class="cert-row">
     <div class="cert-made-usa">

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UWC Spec Sheet — 02 Automotive &amp; Marine Solutions</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* Sheet 02 — Automotive & Marine: portrait-hero layout matching the new design concept.
+     Title sits above the hero so the stacked factory→x-ray image can run nearly full-page. */
+  .page-front { display: flex; flex-direction: column; }
+  .page-front .title-block {
+    order: 0;
+    padding: 14pt 28pt 8pt;
+    flex: 0 0 auto;
+  }
+  .page-front .sheet-title { font-size: 28pt; margin-bottom: 4pt; }
+  .page-front .sheet-subtitle { font-size: 10.5pt; }
+  .page-front .sheet-number { margin-bottom: 4pt; }
+  .page-front .hero-wrap {
+    flex: 1 1 auto;
+    height: auto;
+  }
+  .page-front .hero-wrap .hero-img {
+    object-position: center 65%;
+  }
+  .page-front .hero-wrap::after {
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0) 70%,
+      rgba(0,0,0,.18) 100%);
+  }
+  /* leave room for the absolute bottom-bar */
+  .page-front { padding-bottom: 46pt; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 1 — FRONT
+════════════════════════════════════════════════════ -->
+<div class="page page-front">
+
+  <div class="front-header">
+    <img class="uwc-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+    <div class="cat-label">
+      <span class="cat-num">02</span>
+      <span class="cat-sep">|</span>
+      <span class="cat-name">Automotive &amp; Marine</span>
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="sheet-number">02 | Automotive &amp; Marine Solutions</div>
+    <div class="sheet-title">Automotive &amp;<br>Marine Solutions</div>
+    <div class="sheet-subtitle">Wire, Cable &amp; Wire Management for Road and Sea</div>
+  </div>
+
+  <div class="hero-wrap">
+    <img class="hero-img" src="images/front-02-automotive-marine.png" alt="Automotive assembly line and x-ray view of car and boat wiring">
+
+    <svg class="callout-svg" viewBox="0 0 612 614" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grounding Systems: lower-left of car -->
+      <line x1="92" y1="546" x2="135" y2="525" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="135" cy="525" r="4" fill="#E36417"/>
+      <!-- Battery Connections: car battery area -->
+      <line x1="265" y1="478" x2="240" y2="498" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="240" cy="498" r="4" fill="#E36417"/>
+      <!-- Tinned Copper: boat hull cable run -->
+      <line x1="510" y1="558" x2="475" y2="540" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="475" cy="540" r="4" fill="#E36417"/>
+      <!-- Corrosion Resistance: boat shore-power / battery area -->
+      <line x1="450" y1="445" x2="430" y2="475" stroke="#1a2535" stroke-width="1" opacity=".75"/>
+      <circle cx="430" cy="475" r="4" fill="#E36417"/>
+    </svg>
+
+    <!-- callout labels -->
+    <div class="callout-label" style="top:540pt;left:8pt">Grounding Systems</div>
+    <div class="callout-label" style="top:471pt;left:268pt">Battery Connections</div>
+    <div class="callout-label" style="top:552pt;left:512pt">Tinned Copper</div>
+    <div class="callout-label" style="top:438pt;left:454pt">Corrosion Resistance</div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="tagline">We Bring the Power</span>
+    <img class="bottom-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+  </div>
+
+</div><!-- /page-front -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 2 — BACK
+════════════════════════════════════════════════════ -->
+<div class="page page-back">
+
+  <div class="back-header">
+    <div class="back-header-left">
+      <img class="back-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+      <span class="back-title">Automotive / Marine Specifications</span>
+    </div>
+  </div>
+
+  <div class="product-strip">
+    <div class="product-cell">
+      <img src="images/wire-auto-primary.png" alt="Automotive primary wire">
+      <div class="product-cell-label">Automotive Primary</div>
+      <div class="product-cell-sub">GXL · SXL · TXL · GPT</div>
+    </div>
+    <div class="product-cell">
+      <img src="images/wire-auto-battery.png" alt="Battery cable">
+      <div class="product-cell-label">Battery &amp; Power</div>
+      <div class="product-cell-sub">SGT · SGX · SGR</div>
+    </div>
+    <div class="product-cell">
+      <img src="images/wire-marine.png" alt="Marine tinned copper wire">
+      <div class="product-cell-label">Marine Tinned</div>
+      <div class="product-cell-sub">UL 1426 · BC-5W2 · ABYC</div>
+    </div>
+  </div>
+
+  <div class="back-content">
+
+    <!-- Section 1 — Automotive Primary Wire -->
+    <div class="spec-section">
+      <div class="spec-sec-header">Automotive · Primary Wire &amp; Multi-Conductor</div>
+      <div class="spec-sec-sub">GXL, SXL, TXL, GPT — SAE J1128-compliant constructions for OEM and aftermarket vehicle wiring</div>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Size (AWG)</th>
+            <th>Insulation</th>
+            <th>Voltage Rating</th>
+            <th>Temp Rating</th>
+            <th>Approvals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>20</td><td>XLPE (GXL)</td><td>60V DC</td><td>105°C / 125°C</td><td>SAE J1128</td></tr>
+          <tr><td>18</td><td>XLPE (GXL)</td><td>60V DC</td><td>105°C / 125°C</td><td>SAE J1128</td></tr>
+          <tr><td>16</td><td>XLPE (SXL)</td><td>60V DC</td><td>105°C / 125°C</td><td>Ford WSS-M1L133-A</td></tr>
+          <tr><td>14</td><td>XLPE (TXL)</td><td>60V DC</td><td>125°C</td><td>Chrysler MS-5928</td></tr>
+          <tr><td>12</td><td>PVC (GPT)</td><td>60V DC</td><td>80°C</td><td class="placeholder">Contact sales rep</td></tr>
+          <tr><td>10</td><td>PVC (GPT)</td><td>60V DC</td><td>80°C</td><td class="placeholder">Contact sales rep</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 2 — Automotive Battery & Power -->
+    <div class="spec-section spec-section--orange">
+      <div class="spec-sec-header">Automotive · Battery &amp; Power Cable</div>
+      <div class="spec-sec-sub">SGT, SGX, SGR — Heavy-gauge battery cables for vehicles, equipment, and power distribution</div>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Size (AWG)</th>
+            <th>Insulation</th>
+            <th>Voltage Rating</th>
+            <th>Temp Rating</th>
+            <th>Approvals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2</td><td>PVC (SGT)</td><td>60V DC</td><td>105°C</td><td>SAE J1127</td></tr>
+          <tr><td>2</td><td>XLPE (SGX)</td><td>60V DC</td><td>125°C</td><td>Ford ES ESAC-188931-A</td></tr>
+          <tr><td>2</td><td>XLPE (SGR)</td><td>60V DC</td><td>105°C</td><td>Ford ES ESAC-188931-A</td></tr>
+          <tr><td>1/0</td><td>XLPE</td><td>60V DC</td><td>125°C</td><td>Chrysler MS-3417</td></tr>
+          <tr><td>2/0</td><td>PVC</td><td>60V DC</td><td>105°C</td><td class="placeholder">Contact sales rep</td></tr>
+          <tr><td>4/0</td><td>PVC</td><td>60V DC</td><td>105°C</td><td class="placeholder">Contact sales rep</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 3 — Marine Wire & Cable -->
+    <div class="spec-section spec-section--navy">
+      <div class="spec-sec-header">Marine · Tinned Copper Wire &amp; Cable</div>
+      <div class="spec-sec-sub">Tinned copper constructions engineered for corrosion resistance in wet, saltwater, and harsh marine environments</div>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Construction</th>
+            <th>Voltage Rating</th>
+            <th>Temp Rating</th>
+            <th>Approvals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>UL 1015 / 1230</td><td>PVC, Tinned Copper</td><td>600V</td><td>105°C / 60°C Oil</td><td>UL 1426, BC-5W2, Coast Guard</td></tr>
+          <tr><td>UL 1028 / 1283 / 1284</td><td>PVC, Tinned Copper</td><td>600V</td><td>105°C</td><td>UL 1426, BC-5W2, Coast Guard</td></tr>
+          <tr><td>GPTM Multi-Conductor</td><td>PVC / PVC, Tinned Copper</td><td>600V</td><td>105°C Dry / 75°C Wet</td><td>UL 1426, BC-5W2, ABYC</td></tr>
+          <tr><td>SGX Marine Battery</td><td>PVC, Tinned Copper</td><td>600V</td><td>105°C</td><td>UL 1426, BC-5W2, Coast Guard</td></tr>
+          <tr><td>SGTM Battery Cable</td><td>PVC, Tinned Copper</td><td>60V</td><td>105°C Dry / 75°C Wet</td><td>SAE J1127 / J378, UL 1426, ABYC</td></tr>
+          <tr><td>STO Shore-Power Cord</td><td>PVC / PVC Jacket</td><td>600V</td><td>60°C / 105°C</td><td class="placeholder">Contact sales rep</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /back-content -->
+
+  <div class="cert-row">
+    <div class="cert-made-usa">
+      <img class="flag-img" src="images/marks/usa-flag.svg" alt="USA flag">
+      <div>MADE IN USA</div>
+    </div>
+    <img class="cert-mark" src="images/marks/cert-ul.svg" alt="UL Listed">
+    <img class="cert-mark" src="images/marks/cert-ISO_9001-2015.svg" alt="ISO 9001:2015">
+    <img class="cert-mark" src="images/marks/cert-compliant-reach.svg" alt="REACH Compliant">
+    <img class="cert-mark" src="images/marks/cert-compliant-rc-RoHS.svg" alt="RC RoHS Compliant">
+  </div>
+
+  <div class="back-footer">
+    <div class="back-footer-left">
+      <img class="footer-logo" src="../assets/banners-22apr2026/UWCLogoWithNameOnly.png" alt="UWC">
+      <div class="footer-info">
+        <span>www.unifiedwire.com</span>
+        <span>Sales: 1-800-555-0199</span>
+        <span>Email: sales@unifiedwire.com</span>
+      </div>
+    </div>
+    <div class="footer-disclaimer">All specified parameters are nominal and subject to variation</div>
+  </div>
+
+</div><!-- /page-back -->
+
+</body>
+</html>
