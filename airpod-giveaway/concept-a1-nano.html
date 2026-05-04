@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UWC × EWPTE — Concept A1 (Nano Banana)</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .page-a {
+    background: #0a1628;
+  }
+  .a-hero {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .a-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,22,40,.78) 0%, rgba(10,22,40,.05) 38%, rgba(10,22,40,0) 60%, rgba(10,22,40,.85) 100%);
+    z-index: 1;
+  }
+  .a-headline-block {
+    position: absolute;
+    top: 1.6in;
+    left: 0.6in;
+    right: 0.6in;
+    z-index: 2;
+    color: #fff;
+  }
+  .a-eyebrow {
+    font-size: 10pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 14pt;
+  }
+  .a-headline {
+    font-family: 'Inter', sans-serif;
+    font-size: 64pt;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: #fff;
+    text-shadow: 0 4px 24px rgba(0,0,0,.45);
+  }
+  .a-headline .swap {
+    color: var(--orange);
+  }
+  .a-headline .strike {
+    text-decoration: line-through;
+    text-decoration-color: var(--orange);
+    text-decoration-thickness: 6pt;
+    color: rgba(255,255,255,.55);
+  }
+  .a-sub {
+    font-size: 14pt;
+    font-weight: 400;
+    color: rgba(255,255,255,.85);
+    margin-top: 16pt;
+    max-width: 5in;
+    line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0,0,0,.4);
+  }
+</style>
+</head>
+<body>
+<div class="page page-a">
+
+  <img class="a-hero" src="images/concept-a-nano-wire-spool.png" alt="">
+  <div class="a-overlay"></div>
+
+  <div class="brand-bar">
+    <img class="logo" src="../assets/banners-22apr2026/unified-logo-redraw-with-white-text.png" alt="Unified Wire &amp; Cable">
+    <span class="event-tag">EWPTE 2026 &middot; Booth Giveaway</span>
+  </div>
+
+  <div class="a-headline-block">
+    <div class="a-eyebrow">From Cathode to Wire &amp; Cable</div>
+    <div class="a-headline">
+      We sell&nbsp;<span class="strike">wire</span>.<br>
+      We're giving<br>
+      away <span class="swap">wireless</span>.
+    </div>
+    <div class="a-sub">The irony is not lost on us. Stop by, scan your badge, win AirPods.</div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="cta-block">
+      <div class="cta-eyebrow">Scan Your Badge to Enter</div>
+      <div class="cta-line-1">AirPods on us.</div>
+      <div class="cta-line-2">Two days only &middot; Wednesday &amp; Thursday</div>
+    </div>
+    <div class="dates-stamp">
+      <span class="lbl">Drawing</span>
+      <span class="days">WED &amp; THU</span>
+      <span class="show">EWPTE 2026 &middot; Milwaukee</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

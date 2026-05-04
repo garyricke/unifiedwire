@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UWC × EWPTE — Concept D1 (Nano Banana)</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .page-d { background: #2a1f15; }
+  .d-hero {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .d-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(28,18,8,.78) 0%, rgba(28,18,8,.15) 22%, rgba(28,18,8,.0) 50%, rgba(28,18,8,.55) 78%, rgba(28,18,8,.95) 100%);
+    z-index: 1;
+  }
+  .d-folio-top {
+    position: absolute;
+    top: 0.5in;
+    left: 0.6in;
+    right: 0.6in;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3;
+    color: #f5e6d3;
+    font-family: 'Playfair Display', serif;
+  }
+  .d-folio-top .left {
+    font-size: 10pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .d-folio-top .right {
+    font-size: 9pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,230,211,.7);
+  }
+  .d-rule-top {
+    position: absolute;
+    top: 0.85in;
+    left: 0.6in;
+    right: 0.6in;
+    height: 1px;
+    background: rgba(245,230,211,.4);
+    z-index: 3;
+  }
+  .d-headline-block {
+    position: absolute;
+    bottom: 2.0in;
+    left: 0.6in;
+    right: 0.6in;
+    z-index: 3;
+  }
+  .d-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 56pt;
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-shadow: 0 4px 24px rgba(0,0,0,.7);
+  }
+  .d-headline em {
+    font-style: italic;
+    color: #ffb877;
+    font-weight: 700;
+  }
+  .d-deck {
+    margin-top: 14pt;
+    font-size: 13pt;
+    line-height: 1.45;
+    color: rgba(255,255,255,.92);
+    max-width: 5.8in;
+    text-shadow: 0 2px 12px rgba(0,0,0,.7);
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+  .d-uwc-mark {
+    position: absolute;
+    bottom: 0.55in;
+    left: 0.6in;
+    z-index: 3;
+  }
+  .d-uwc-mark img {
+    height: 0.4in;
+    width: auto;
+  }
+  .d-cta {
+    position: absolute;
+    bottom: 0.55in;
+    right: 0.6in;
+    z-index: 3;
+    text-align: right;
+    color: #fff;
+  }
+  .d-cta .lbl {
+    font-size: 8.5pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ffb877;
+    margin-bottom: 4pt;
+  }
+  .d-cta .lead {
+    font-size: 14pt;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .d-cta .when {
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.7);
+    margin-top: 4pt;
+  }
+</style>
+</head>
+<body>
+<div class="page page-d">
+
+  <img class="d-hero" src="images/concept-d-nano-vintage-worker.png" alt="">
+  <div class="d-overlay"></div>
+
+  <div class="d-folio-top">
+    <span class="left">Unified Wire &amp; Cable</span>
+    <span class="right">Est. 1965 &middot; Made in U.S.A.</span>
+  </div>
+  <div class="d-rule-top"></div>
+
+  <div class="d-headline-block">
+    <div class="d-headline">Wireless.<br>It took us <em>60 years</em><br>to admit it.</div>
+    <div class="d-deck">Six decades drawing copper into wire that runs America. This week, we're handing out the kind of audio cable our founders never saw coming. Scan your badge to enter the AirPods drawing — Wednesday and Thursday only.</div>
+  </div>
+
+  <div class="d-uwc-mark">
+    <img src="../assets/banners-22apr2026/unified-logo-redraw-with-white-text.png" alt="Unified Wire &amp; Cable">
+  </div>
+
+  <div class="d-cta">
+    <div class="lbl">Scan to Enter</div>
+    <div class="lead">Win AirPods.</div>
+    <div class="when">Wed &amp; Thu &middot; EWPTE 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

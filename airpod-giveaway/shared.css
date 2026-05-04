@@ -1,0 +1,207 @@
+/* ============================================================
+   UWC EWPTE 2026 — AirPod Giveaway Print Sheets
+   8.5" × 11" portrait, single page, laminated handout
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+
+:root {
+  --blue: #0362BC;
+  --blue-dk: #024a90;
+  --orange: #E36417;
+  --orange-dk: #b84f10;
+  --navy: #0A1628;
+  --navy2: #0d1e38;
+  --gray-lt: #f0f2f4;
+  --text: #1a2535;
+  --text-lt: #4a5568;
+  --border: #dce3ed;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  color: var(--text);
+  background: #6c7480;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@page {
+  size: 8.5in 11in;
+  margin: 0;
+}
+
+.page {
+  width: 8.5in;
+  height: 11in;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  margin: 0 auto;
+  page-break-after: always;
+}
+
+@media screen {
+  .page { box-shadow: 0 4px 24px rgba(0,0,0,.18); }
+}
+
+/* ---- shared building blocks ---- */
+.bg-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.bg-tint-navy {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,.7) 0%, rgba(10,22,40,.15) 32%, rgba(10,22,40,.10) 65%, rgba(10,22,40,.85) 100%);
+  z-index: 1;
+}
+
+.bg-tint-warm {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,.55) 0%, rgba(10,22,40,0) 35%, rgba(10,22,40,0) 65%, rgba(10,22,40,.78) 100%);
+  z-index: 1;
+}
+
+.layer { position: relative; z-index: 2; }
+
+.brand-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45in 0.6in;
+  z-index: 3;
+}
+
+.brand-bar img.logo {
+  height: 0.46in;
+  width: auto;
+  display: block;
+}
+
+.brand-bar .event-tag {
+  font-size: 9.5pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.85;
+}
+
+.brand-bar.dark .event-tag { color: var(--navy); opacity: 0.6; }
+
+.footer-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.55in 0.6in 0.5in;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.4in;
+  z-index: 3;
+}
+
+.cta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4pt;
+}
+
+.cta-eyebrow {
+  font-size: 9pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.cta-line-1 {
+  font-size: 26pt;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.cta-line-2 {
+  font-size: 12pt;
+  font-weight: 500;
+  color: rgba(255,255,255,.85);
+  margin-top: 4pt;
+}
+
+.cta-block.dark .cta-line-1 { color: var(--navy); }
+.cta-block.dark .cta-line-2 { color: var(--text-lt); }
+
+.dates-stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2pt;
+}
+
+.dates-stamp .lbl {
+  font-size: 8.5pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255,255,255,.7);
+}
+.dates-stamp.dark .lbl { color: var(--text-lt); }
+
+.dates-stamp .days {
+  font-size: 17pt;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+  color: #fff;
+  line-height: 1;
+}
+.dates-stamp.dark .days { color: var(--navy); }
+
+.dates-stamp .show {
+  font-size: 8pt;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(255,255,255,.6);
+  margin-top: 2pt;
+}
+.dates-stamp.dark .show { color: var(--text-lt); }
+
+/* common layout helpers */
+.headline-stack {
+  position: absolute;
+  z-index: 2;
+}
+
+.eyebrow {
+  font-size: 10pt;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.shadow-text { text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+
+.kicker-orange {
+  display: inline-block;
+  background: var(--orange);
+  color: #fff;
+  font-size: 9.5pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 5pt 11pt 4pt;
+  border-radius: 3pt;
+}
