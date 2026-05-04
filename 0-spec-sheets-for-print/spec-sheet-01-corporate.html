@@ -36,18 +36,7 @@
   /* Subtle separators between strips */
   .corp-strip + .corp-strip { border-top: 1.5pt solid #fff; }
 
-  /* Bottom strip gets a darkening overlay so the pillar tiles read */
-  .corp-strip-bottom::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(10,22,40,.30) 0%,
-      rgba(10,22,40,.55) 60%,
-      rgba(10,22,40,.78) 100%
-    );
-  }
+  /* Bottom strip — no darkening overlay */
 
   /* Pillar tiles overlaid on the bottom strip */
   .corp-pillars {
@@ -110,14 +99,14 @@
   .corp-pillar-headline {
     font-size: 9.5pt;
     font-weight: 800;
-    color: var(--text);
+    color: #fff;
     line-height: 1.15;
     letter-spacing: -.005em;
   }
   .corp-pillar-body {
     font-size: 7pt;
     line-height: 1.35;
-    color: var(--text-lt);
+    color: #fff;
     margin-top: 3pt;
   }
 
