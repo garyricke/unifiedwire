@@ -134,19 +134,7 @@ body {
   display: block;
 }
 
-/* dark gradient at bottom of hero for callout legibility */
-.hero-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.08) 0%,
-    rgba(0,0,0,.0) 40%,
-    rgba(0,0,0,.42) 100%
-  );
-  pointer-events: none;
-}
+/* Bottom-of-hero darkening removed — printed too dark in PDF */
 
 /* ── Frosted-Glass Title Overlay ─────────────────── */
 /* Sits over the hero image so more of the photo is visible.
