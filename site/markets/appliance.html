@@ -8,158 +8,136 @@
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
   <link rel="stylesheet" href="../assets/css/uwc.css">
   <style>
-    .page-hero {
+    .mk-hero {
       background:
-        linear-gradient(to bottom, rgba(10,22,40,.62) 0%, rgba(10,22,40,.88) 100%),
-        url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_1600,c_fill,g_auto/uwc/market-appliance') center/cover no-repeat;
-      color:#fff; padding:100px 0 80px; min-height:380px;
+        linear-gradient(to bottom, rgba(10,22,40,.45) 0%, rgba(10,22,40,.78) 100%),
+        url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_1800,c_fill,g_auto/uwc/market-appliance') center/cover no-repeat;
     }
-    .page-hero h1 { color:#fff; font-size:clamp(2rem,4vw,3rem); margin-top:12px; }
-    .page-hero p  { color:rgba(255,255,255,.6); max-width:600px; margin-top:12px; font-size:1.05rem; }
-    .breadcrumb { font-family:var(--mono); font-size:.70rem; letter-spacing:.08em; color:rgba(255,255,255,.35); margin-bottom:16px; }
-    .breadcrumb a { color:rgba(255,255,255,.35); } .breadcrumb a:hover { color:rgba(255,255,255,.7); }
-
-    .prod-spec-card { border:1.5px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-    .prod-spec-head { padding:20px 24px; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:space-between; }
-    .prod-spec-head h4 { color:#fff; margin:0; }
-    .prod-spec-body { padding:0; }
-    .spec-row { display:grid; grid-template-columns:180px 1fr; border-bottom:1px solid var(--border); }
-    .spec-row:last-child { border-bottom:none; }
-    .spec-key { padding:11px 16px; font-family:var(--mono); font-size:.75rem; letter-spacing:.06em; background:var(--gray-lt); color:var(--text-lt); text-transform:uppercase; border-right:1px solid var(--border); }
-    .spec-val { padding:11px 16px; font-size:.9rem; color:var(--text); }
-
-    .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .why-item { padding:20px; border:1.5px solid var(--border); border-radius:10px; }
-    .why-item h4 { font-size:.95rem; margin-bottom:6px; }
-    .why-item p  { font-size:.85rem; }
-    @media(max-width:640px){ .why-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
 <div id="uwc-gate"></div>
 <header id="site-nav"></header>
 
-<section class="page-hero">
-  <div class="container">
-    <div class="breadcrumb"><a href="index.html">Markets</a> / Appliance</div>
-    <span class="badge badge-blue">Market</span>
-    <h1>Wire &amp; Cable for Appliance Manufacturers</h1>
-    <p>High-temperature insulation, RoHS-compliant materials, and reliable delivery for appliance OEMs — dishwashers, ovens, refrigerators, HVAC, and more.</p>
-    <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
-      <a href="../products.html" class="btn btn-primary">Browse Spec Navigator</a>
-      <a href="../contact.html" class="btn btn-ghost">Request a Quote</a>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:56px;align-items:start;">
-      <div>
-        <div class="sec-head fade-in" style="text-align:left;margin-bottom:40px;max-width:none;">
-          <span class="badge badge-gray">Featured Products</span>
-          <h2 style="margin-top:12px;">Recommended for appliance applications</h2>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:20px;" class="fade-in">
-
-          <div class="prod-spec-card">
-            <div class="prod-spec-head">
-              <h4>UL 3173 / X-Link XLPE Wire</h4>
-              <span class="badge" style="background:var(--orange);color:#fff;">Top Pick</span>
-            </div>
-            <div class="prod-spec-body">
-              <div class="spec-row"><div class="spec-key">Temp Rating</div><div class="spec-val">125°C</div></div>
-              <div class="spec-row"><div class="spec-key">Voltage</div><div class="spec-val">600V</div></div>
-              <div class="spec-row"><div class="spec-key">Insulation</div><div class="spec-val">XLPE (Crosslinked Polyethylene)</div></div>
-              <div class="spec-row"><div class="spec-key">Conductor</div><div class="spec-val">Bare copper or tinned copper</div></div>
-              <div class="spec-row"><div class="spec-key">Standards</div><div class="spec-val">UL 3173, VW-1, CSA CL 125 FT2, RoHS</div></div>
-              <div class="spec-row"><div class="spec-key">Application</div><div class="spec-val">Appliances, switchboards, high-temperature internal wiring</div></div>
-              <div class="spec-row"><div class="spec-key">Spec Sheet</div><div class="spec-val"><a href="../products.html" class="btn btn-outline btn-sm" style="margin:4px 0;">Download (Placeholder)</a></div></div>
-            </div>
-          </div>
-
-          <div class="prod-spec-card">
-            <div class="prod-spec-head"><h4>UL Style 1015 / CSA TEW — AWM Hook-up Wire</h4></div>
-            <div class="prod-spec-body">
-              <div class="spec-row"><div class="spec-key">Temp Rating</div><div class="spec-val">105°C</div></div>
-              <div class="spec-row"><div class="spec-key">Voltage</div><div class="spec-val">600V</div></div>
-              <div class="spec-row"><div class="spec-key">Insulation</div><div class="spec-val">PVC — 1/32" wall</div></div>
-              <div class="spec-row"><div class="spec-key">Conductor</div><div class="spec-val">Bare copper or tinned copper</div></div>
-              <div class="spec-row"><div class="spec-key">Standards</div><div class="spec-val">UL 1015, UL 1230, MTW, CSA TEW</div></div>
-              <div class="spec-row"><div class="spec-key">Spec Sheet</div><div class="spec-val"><a href="../products.html" class="btn btn-outline btn-sm" style="margin:4px 0;">Download (Placeholder)</a></div></div>
-            </div>
-          </div>
-
-          <div class="prod-spec-card">
-            <div class="prod-spec-head"><h4>AWM PVC / Nylon Wire — UL 1316 / UL 1452</h4></div>
-            <div class="prod-spec-body">
-              <div class="spec-row"><div class="spec-key">Temp Rating</div><div class="spec-val">90°C (UL 1452) / 105°C (UL 1316)</div></div>
-              <div class="spec-row"><div class="spec-key">Voltage</div><div class="spec-val">600V</div></div>
-              <div class="spec-row"><div class="spec-key">Insulation</div><div class="spec-val">PVC with optional nylon sheath</div></div>
-              <div class="spec-row"><div class="spec-key">Standards</div><div class="spec-val">UL 1316 / UL 1452, CSA AWM</div></div>
-              <div class="spec-row"><div class="spec-key">Spec Sheet</div><div class="spec-val"><a href="../products.html" class="btn btn-outline btn-sm" style="margin:4px 0;">Download (Placeholder)</a></div></div>
-            </div>
-          </div>
-
-        </div>
-
-        <div style="margin-top:40px;" class="fade-in">
-          <h3 style="margin-bottom:20px;">Why appliance OEMs choose Unified Wire</h3>
-          <div class="why-grid">
-            <div class="why-item">
-              <h4>Consistent delivery</h4>
-              <p>Vertical integration and finished goods inventory mean reliable lead times — even during raw material volatility.</p>
-            </div>
-            <div class="why-item">
-              <h4>RoHS &amp; REACH compliant</h4>
-              <p>All standard product families are RoHS3 and REACH SVHC compliant. Documentation downloadable without a form.</p>
-            </div>
-            <div class="why-item">
-              <h4>100+ UL AWM styles</h4>
-              <p>Wide UL listing portfolio means your engineer can spec what the application requires — we likely already produce it.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar -->
-      <div style="position:sticky;top:88px;" class="fade-in">
-        <div class="card" style="margin-bottom:16px;">
-          <h4 style="margin-bottom:12px;">Key Specifications</h4>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div class="tag tag-blue" style="justify-content:flex-start;">105°C – 125°C rated</div>
-            <div class="tag tag-blue" style="justify-content:flex-start;">300V – 600V</div>
-            <div class="tag tag-blue" style="justify-content:flex-start;">UL Listed</div>
-            <div class="tag tag-blue" style="justify-content:flex-start;">CSA Approved</div>
-            <div class="tag tag-blue" style="justify-content:flex-start;">RoHS3 Compliant</div>
-            <div class="tag tag-blue" style="justify-content:flex-start;">REACH Compliant</div>
-          </div>
-        </div>
-        <div class="card" style="margin-bottom:16px;">
-          <h4 style="margin-bottom:8px;">Compliance Documents</h4>
-          <p style="font-size:.85rem;margin-bottom:12px;">Download RoHS, REACH, and ISO 9001:2015 certificates directly — no form required.</p>
-          <a href="../resources/compliance.html" class="btn btn-outline" style="width:100%;justify-content:center;">Compliance Center</a>
-        </div>
-        <div class="card">
-          <h4 style="margin-bottom:8px;">Request a Quote</h4>
-          <p style="font-size:.85rem;margin-bottom:12px;">Tell us your gauge, quantity, and spec. Our team responds the same business day.</p>
-          <a href="../contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Contact Sales</a>
-          <p style="margin-top:8px;font-size:.78rem;text-align:center;color:var(--text-lt);">uwcsales@unifiedwire.com</p>
+<!-- ── Hero ───────────────────────────────────────────── -->
+<section class="mk-hero">
+  <div class="mk-hero-inner">
+    <div class="container">
+      <div class="mk-glass">
+        <span class="mk-eyebrow"><a href="index.html">Markets</a> &nbsp;/&nbsp; Appliance</span>
+        <h1>Wire &amp; Cable for Appliance Manufacturers</h1>
+        <p>High-temperature insulation, RoHS-compliant materials, and reliable delivery for appliance OEMs &mdash; dishwashers, ovens, refrigerators, HVAC, and more.</p>
+        <div class="mk-cta-row">
+          <a href="../products.html" class="btn btn-primary">Browse Spec Navigator</a>
+          <a href="../contact.html" class="btn btn-outline-wh">Request a Quote</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section-dark" style="padding:56px 0;">
+<!-- ── Featured products ──────────────────────────────── -->
+<section class="mk-products">
   <div class="container">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;" class="fade-in">
-      <div>
-        <h3 style="color:#fff;">Ready to spec a product?</h3>
-        <p style="margin-top:6px;">Use the Spec Navigator to filter by gauge, voltage, temp, and UL style.</p>
+
+    <div class="mk-sec-head fade-in">
+      <span class="mk-eyebrow mk-eyebrow--dk">Featured Products</span>
+      <h2>Recommended for appliance applications</h2>
+      <p>Open the spec sheet for full data &mdash; construction details, conductor counts, insulation thicknesses, and approvals for every gauge.</p>
+    </div>
+
+    <div class="pd-grid fade-in">
+
+      <article class="pd-card">
+        <div class="pd-card-photo">
+          <img src="../assets/img/cables/wire-mtw-1015.png" alt="UL 1015 / MTW 600V hookup wire">
+        </div>
+        <div class="pd-card-meta">
+          <div class="pd-card-name">UL 1015 / MTW</div>
+          <div class="pd-card-tag">600V &middot; 105&deg;C &middot; PVC</div>
+        </div>
+        <div class="pd-card-cta">
+          <a href="../spec-sheet-1015.html">View Spec Sheet
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pd-card">
+        <div class="pd-card-photo">
+          <img src="../assets/img/cables/wire-ul1007-1569.png" alt="UL 1007 PVC hookup wire">
+        </div>
+        <div class="pd-card-meta">
+          <div class="pd-card-name">UL 1007 / 1569</div>
+          <div class="pd-card-tag">300V &middot; Bare or Tinned Copper</div>
+        </div>
+        <div class="pd-card-cta">
+          <a href="../spec-sheet-1007.html">View Spec Sheet
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pd-card">
+        <div class="pd-card-photo">
+          <img src="../assets/img/cables/wire-tfn-tffn-solid.png" alt="TFN / TFFN fixture wire">
+        </div>
+        <div class="pd-card-meta">
+          <div class="pd-card-name">TFN / TFFN</div>
+          <div class="pd-card-tag">Fixture Wire &middot; 600V &middot; 90&deg;C</div>
+        </div>
+        <div class="pd-card-cta">
+          <a href="../spec-sheet-tfn-tffn.html">View Spec Sheet
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="mk-cert-row">
+      <div class="cert-made-usa">
+        <img class="flag-img" src="../assets/img/marks/usa-flag.svg" alt="USA flag">
+        <div>MADE IN USA</div>
       </div>
-      <a href="../products.html" class="btn btn-primary btn-lg">Open Spec Navigator</a>
+      <img class="cert-mark" src="../assets/img/marks/cert-ul.svg" alt="UL Listed">
+      <img class="cert-mark" src="../assets/img/marks/cert-ISO_9001-2015.svg" alt="ISO 9001:2015">
+      <img class="cert-mark" src="../assets/img/marks/cert-compliant-reach.svg" alt="REACH Compliant">
+      <img class="cert-mark" src="../assets/img/marks/cert-compliant-rc-RoHS.svg" alt="RC RoHS Compliant">
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Why band ───────────────────────────────────────── -->
+<section class="mk-why">
+  <div class="container">
+    <div class="mk-sec-head fade-in" style="margin-bottom:32px;">
+      <h2 style="margin:0;">Why appliance OEMs choose Unified Wire</h2>
+    </div>
+    <div class="mk-why-grid fade-in">
+      <div class="mk-why-item">
+        <h4>Consistent delivery</h4>
+        <p>Vertical integration and finished-goods inventory mean reliable lead times &mdash; even during raw-material volatility.</p>
+      </div>
+      <div class="mk-why-item">
+        <h4>RoHS &amp; REACH compliant</h4>
+        <p>All standard product families are RoHS3 and REACH SVHC compliant. Documentation downloadable without a form.</p>
+      </div>
+      <div class="mk-why-item">
+        <h4>100+ UL AWM styles</h4>
+        <p>A wide UL listing portfolio means your engineer can spec what the application requires &mdash; we likely already produce it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Bottom tagline band ───────────────────────────── -->
+<section class="mk-tagline-bar">
+  <div class="container">
+    <div class="mk-tagline-inner">
+      <div class="mk-tagline">From Cathode to Wire &amp; Cable</div>
+      <a href="../contact.html" class="btn btn-outline-wh">Request a Quote</a>
     </div>
   </div>
 </section>

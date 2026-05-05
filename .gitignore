@@ -28,3 +28,27 @@ generated_imgs/
 # Third-party reference materials used during spec-sheet planning
 # (IEWC catalogs, internal source docs) — not for redistribution
 0-spec-sheets-for-print/plan/
+
+# Old WordPress site mirror — reference only, not deployed
+unifiedwire.com-old-site/
+
+# Pre-edit page snapshots
+site/markets-backup-*/
+
+# Media assets — served via Cloudinary, kept locally only.
+# Code (HTML/CSS/JS), PDFs, XLSX, and Python scripts stay in git.
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.ico
+*.mp3
+*.mp4
+*.m4a
+*.mov
+*.webm
+*.wav
+*.svg
+# Allowlist: cert/standards mark SVGs referenced inline by spec sheets
+!site/assets/img/marks/*.svg

@@ -9,34 +9,51 @@
   <link rel="stylesheet" href="assets/css/uwc.css">
   <style>
     .about-hero {
-      position: relative; overflow: hidden;
-      min-height: 520px; display: flex; align-items: center;
-      background: var(--navy);
+      background: #fff;
+      padding: 88px 0 80px;
+      overflow: hidden;
     }
-    .about-hero video {
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-hero-content { color: var(--text); }
+    .about-hero-content h1 { color: var(--text); font-size:clamp(2rem,4vw,3.2rem); margin-top:12px; }
+    .about-hero-content p  { color: var(--text-lt); max-width:520px; margin-top:14px; font-size:1.1rem; }
+
+    .about-hero-art {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      aspect-ratio: 1 / 1;
+      margin-left: auto;
+    }
+    .about-hero-art .cable-rings {
       position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%; height: 100%;
+      z-index: 1; pointer-events: none;
+      filter: drop-shadow(0 28px 50px rgba(10,22,40,.30));
     }
-    .about-hero-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to right,
-        rgba(10,22,40,.96) 0%,
-        rgba(10,22,40,.88) 25%,
-        rgba(10,22,40,.60) 48%,
-        rgba(10,22,40,.18) 66%,
-        transparent 80%
-      );
+    .about-hero-video-wrap {
+      position: absolute;
+      inset: 10%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #000;
+      z-index: 2;
     }
-    .about-hero-content {
-      position: relative; z-index: 2;
-      color: #fff; padding: 104px 0 88px; max-width: 560px;
+    .about-hero-video-wrap video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .about-hero-content h1 { color:#fff; font-size:clamp(2rem,4vw,3.2rem); margin-top:12px; }
-    .about-hero-content p  { color:rgba(255,255,255,.65); max-width:520px; margin-top:14px; font-size:1.1rem; }
-    @media (max-width:768px) {
-      .about-hero-overlay { background: rgba(10,22,40,.82); }
-      .about-hero-content { max-width:100%; }
+    @media (max-width: 860px) {
+      .about-hero { padding: 64px 0 56px; }
+      .about-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .about-hero-art { margin: 0 auto; max-width: 480px; }
     }
 
     /* Origin Story */
@@ -76,24 +93,345 @@
 
     @media (max-width: 760px) { .origin-grid { grid-template-columns:1fr; gap:36px; } }
 
-    /* Facility */
-    .facility-grid {
-      display: grid; grid-template-columns: 3fr 2fr;
-      gap: 56px; align-items: start;
+    /* === Our Story — full-bleed cinematic === */
+    .story-section {
+      position: relative;
+      padding: 120px 0 108px;
+      overflow: hidden;
+      isolation: isolate;
+      color: #fff;
+      background: #0a1628;
     }
+    .story-bg { position: absolute; inset: 0; z-index: 0; }
+    .story-bg-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.08);
+      transition: opacity 1.6s ease, transform 9s linear;
+    }
+    .story-bg-img.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .story-bg-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10,22,40,.78) 0%, rgba(10,22,40,.42) 26%, rgba(10,22,40,.55) 68%, rgba(10,22,40,.95) 100%),
+        radial-gradient(ellipse at 22% 8%, rgba(3,98,188,.18) 0%, rgba(0,0,0,0) 55%);
+    }
+    .story-progress {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 2px;
+      background: rgba(255,255,255,.06);
+      z-index: 2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .story-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #b84f10 0%, #E36417 55%, #f08542 100%);
+      box-shadow: 0 0 10px rgba(227,100,23,.55);
+    }
+    .story-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .story-content h2 {
+      color: #fff;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -.02em;
+      margin-top: 14px;
+    }
+    .story-content > p.story-lead {
+      color: rgba(255,255,255,.80);
+      max-width: 600px; margin: 14px auto 0;
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    /* Chapter stage */
+    .story-stage {
+      position: relative;
+      margin: 56px auto 0;
+      max-width: 720px;
+      min-height: 320px;
+    }
+    .story-chapter {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+      pointer-events: none;
+      text-align: left;
+      background: rgba(10, 22, 40, .58);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 38px 42px 36px;
+      box-shadow: 0 30px 70px -20px rgba(0,0,0,.55);
+    }
+    .story-chapter.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .story-year {
+      font-family: var(--mono);
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .story-title {
+      font-size: clamp(1.55rem, 2.7vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .story-body {
+      color: rgba(255,255,255,.86);
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .btn-deep {
+      display: inline-flex; align-items: center; gap: 9px;
+      margin-top: 22px;
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,.42);
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-family: var(--mono);
+      font-size: .70rem; letter-spacing: .14em; text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s, color .2s;
+    }
+    .btn-deep:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: translateY(-1px);
+    }
+    .btn-deep svg { transition: transform .2s; }
+    .btn-deep:hover svg { transform: translateX(2px); }
+
+    /* Timeline rail */
+    .story-rail {
+      display: flex; align-items: center; gap: 18px;
+      margin: 60px auto 0;
+      justify-content: center;
+    }
+    .story-rail-nav {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.22);
+      color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s;
+      flex-shrink: 0;
+    }
+    .story-rail-nav:hover {
+      background: rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.55);
+    }
+    .story-rail-nav:active { transform: scale(.94); }
+    .story-rail-track {
+      display: flex; align-items: flex-start; gap: 0;
+      flex: 0 1 auto;
+    }
+    .story-stop {
+      background: transparent;
+      border: none;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .story-stop-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: rgba(255,255,255,.30);
+      border: 2px solid rgba(255,255,255,.45);
+      transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .story-stop.active .story-stop-dot {
+      background: var(--orange);
+      border-color: #fff;
+      transform: scale(1.25);
+      box-shadow: 0 0 0 7px rgba(227,100,23,.22);
+    }
+    .story-stop-label {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      font-weight: 700;
+      transition: color .2s;
+      white-space: nowrap;
+    }
+    .story-stop.active .story-stop-label { color: #fff; }
+    .story-stop:hover .story-stop-label { color: rgba(255,255,255,.92); }
+    .story-rail-bar {
+      display: inline-block;
+      width: 50px; height: 1.5px;
+      background: rgba(255,255,255,.22);
+      margin: 11px 4px 0;
+      align-self: flex-start;
+    }
+
+    @media (max-width: 720px) {
+      .story-section { padding: 80px 0 76px; }
+      .story-stage { min-height: 380px; padding: 0 12px; }
+      .story-chapter { padding: 28px 24px 26px; }
+      .story-rail-bar { width: 22px; }
+      .story-stop-label { font-size: .58rem; letter-spacing: .08em; }
+      .story-stop { padding: 4px 4px; }
+      .story-rail { gap: 6px; }
+      .story-rail-nav { width: 40px; height: 40px; }
+    }
+    @media (max-width: 480px) {
+      .story-stop-label { display: none; }
+      .story-rail-bar { width: 16px; }
+      .story-rail-nav { width: 36px; height: 36px; }
+    }
+
+    /* Deep-dive modal */
+    .deep-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 1000;
+      background: rgba(5, 12, 24, .78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .deep-overlay.open { display: flex; opacity: 1; }
+    .deep-modal {
+      position: relative;
+      background: #fff;
+      color: var(--text);
+      border-radius: 18px;
+      max-width: 660px; width: 100%;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      padding: 48px 48px 40px;
+      box-shadow: 0 40px 90px rgba(0,0,0,.45);
+      transform: translateY(14px) scale(.98);
+      transition: transform .35s ease;
+    }
+    .deep-overlay.open .deep-modal { transform: translateY(0) scale(1); }
+    .deep-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--gray-lt);
+      border: none;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .15s;
+    }
+    .deep-close:hover { background: var(--border); }
+    .deep-close:active { transform: scale(.92); }
+    .deep-meta {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .deep-modal h3 {
+      font-size: 1.7rem;
+      letter-spacing: -.02em;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .deep-modal p { font-size: 1rem; line-height: 1.65; color: var(--text-lt); margin-bottom: 14px; }
+    .deep-modal p strong { color: var(--text); font-weight: 700; }
+    .deep-pull {
+      border-left: 3px solid var(--orange);
+      padding: 8px 0 8px 18px;
+      margin: 22px 0;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .deep-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+    .deep-stat-num {
+      font-size: 1.6rem; font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .deep-stat-label {
+      font-family: var(--mono); font-size: .62rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-lt);
+    }
+    @media (max-width: 600px) {
+      .deep-modal { padding: 36px 26px 30px; border-radius: 14px; }
+      .deep-modal h3 { font-size: 1.35rem; }
+      .deep-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Facility — vertical stack */
+    .facility-hero-img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 24px 60px -24px rgba(10,22,40,.35);
+    }
+    .facility-copy {
+      max-width: 760px;
+      margin: 56px auto 0;
+      text-align: center;
+    }
+    .facility-copy p { font-size: 1.05rem; line-height: 1.65; }
+    .facility-copy p + p { margin-top: 14px; }
     .facility-stats {
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 1px; background: var(--border);
       border: 1.5px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; margin-top: 32px;
+      overflow: hidden; margin: 48px auto 0;
     }
-    .fac-stat { background: var(--white); padding: 24px; }
+    .fac-stat { background: var(--white); padding: 32px 24px; text-align: center; }
     .fac-stat-num {
-      font-size: 2rem; font-weight: 800; letter-spacing:-.03em;
-      color: var(--blue); line-height:1; margin-bottom:4px;
+      font-size: 2.4rem; font-weight: 800; letter-spacing:-.03em;
+      color: var(--blue); line-height:1; margin-bottom:6px;
     }
-    .fac-stat-label { font-family:var(--mono); font-size:.68rem; letter-spacing:.10em; text-transform:uppercase; color:var(--text-lt); }
-    @media (max-width: 760px) { .facility-grid { grid-template-columns:1fr; gap:36px; } }
+    .fac-stat-label { font-family:var(--mono); font-size:.70rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-lt); }
+    @media (max-width: 760px) {
+      .facility-stats { grid-template-columns: 1fr 1fr; }
+      .fac-stat { padding: 24px 16px; }
+      .fac-stat-num { font-size: 1.9rem; }
+    }
 
     /* Vertical Integration */
     .vi-steps {
@@ -262,96 +600,285 @@
 
 <!-- Hero -->
 <section class="about-hero">
-  <video autoplay muted loop playsinline preload="none"
-    poster="https://res.cloudinary.com/dsbllwpbh/video/upload/f_jpg,q_auto:good,w_1600,so_0/about_hero_V1_ftbos0.jpg">
-    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_webm,q_auto:good,vc_vp9/about_hero_V1_ftbos0.webm" type="video/webm">
-    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_mp4,q_auto:good,vc_h264/about_hero_V1_ftbos0.mp4" type="video/mp4">
-  </video>
-  <div class="about-hero-overlay"></div>
   <div class="container">
-    <div class="about-hero-content">
-      <span class="badge badge-blue">About Us</span>
-      <h1>Built from the inside out.<br>Since 1977.</h1>
-      <p>Unified Wire &amp; Cable was founded on a simple premise: control your own supply chain, control your own quality. Nearly 50 years later, that principle still drives every spool of wire that leaves our DeKalb, Illinois facility.</p>
+    <div class="about-hero-grid">
+      <div class="about-hero-content">
+        <span class="badge badge-blue">About Us</span>
+        <h1>Built from the inside out.<br>Since 1977.</h1>
+        <p>Unified Wire &amp; Cable was founded on a simple premise: control your own supply chain, control your own quality. Nearly 50 years later, that principle still drives every spool of wire that leaves our DeKalb, Illinois facility.</p>
+      </div>
+      <div class="about-hero-art">
+        <svg class="cable-rings" viewBox="0 0 800 800" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="copperGrad" cx="32%" cy="26%" r="92%">
+              <stop offset="0%"   stop-color="#FBD3A8"/>
+              <stop offset="18%"  stop-color="#E9A371"/>
+              <stop offset="42%"  stop-color="#C97843"/>
+              <stop offset="68%"  stop-color="#8E4A22"/>
+              <stop offset="100%" stop-color="#4A2510"/>
+            </radialGradient>
+            <radialGradient id="jacketGrad" cx="32%" cy="26%" r="95%">
+              <stop offset="0%"   stop-color="#2a2a2a"/>
+              <stop offset="60%"  stop-color="#0a0a0a"/>
+              <stop offset="100%" stop-color="#000000"/>
+            </radialGradient>
+          </defs>
+          <circle cx="400" cy="400" r="359" fill="none" stroke="url(#jacketGrad)" stroke-width="40"/>
+          <circle cx="400" cy="400" r="328" fill="none" stroke="url(#copperGrad)" stroke-width="22"/>
+        </svg>
+        <div class="about-hero-video-wrap">
+          <video autoplay muted loop playsinline preload="metadata"
+            poster="https://res.cloudinary.com/dsbllwpbh/video/upload/f_jpg,q_auto:good,w_900,c_fill,ar_1:1,so_0/v1777930213/about_hero_V2_fgnj3e.jpg">
+            <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_webm,q_auto:good,vc_vp9,w_900,c_fill,ar_1:1/v1777930213/about_hero_V2_fgnj3e.webm" type="video/webm">
+            <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_mp4,q_auto:good,vc_h264,w_900,c_fill,ar_1:1/v1777930213/about_hero_V2_fgnj3e.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Origin Story -->
-<section class="section">
-  <div class="container">
-    <div class="origin-grid">
-      <div class="fade-in">
-        <span class="badge badge-gray">Our Story</span>
-        <h2 style="margin-top:12px;">The name says it all.</h2>
-        <p style="margin-top:14px;">In 1965, our founder was running a wiring harness manufacturing company in Chicago — buying wire on the outside like everyone else. Watching his supply chain introduce delays, quality variability, and pricing he couldn't control, he made a decision: vertically integrate.</p>
-        <p style="margin-top:12px;">In 1977, Unified Wire &amp; Cable was founded — named for that philosophy of integration. By owning copper fabrication, extrusion, and production under one roof, we could guarantee what no outside supplier could: consistency from rod to finished spool.</p>
-        <p style="margin-top:12px;">His son, Tim Foley, has led the sales organization for 25 years. Jorge Hernandez — the second person ever hired — still manages the production floor. This is not a company that turns over. It is a company that compounds.</p>
-        <div class="timeline" style="margin-top:36px;">
-          <div class="timeline-item">
-            <div class="timeline-year">1965</div>
-            <h4>The harness company</h4>
-            <p>Founder establishes a wiring harness manufacturing company in Chicago — the customer that would inspire Unified Wire.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">1977</div>
-            <h4>Unified Wire &amp; Cable founded</h4>
-            <p>Vertical integration strategy becomes a company. The name "Unified" reflects the philosophy of connecting copper fabrication through extrusion — all in one place.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">Present</div>
-            <h4>Approaching 50 years</h4>
-            <p>75,000 sq ft facility in DeKalb, IL. 7 extrusion lines. A team whose average tenure exceeds a decade. ISO 9001:2015 certified. 100+ UL AWM approved styles.</p>
-          </div>
-        </div>
+<!-- Our Story — Cinematic chapter timeline -->
+<section class="story-section" id="story">
+  <div class="story-bg" aria-hidden="true">
+    <img class="story-bg-img active" data-bg="0" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/facility-carousel-1.png" alt="">
+    <img class="story-bg-img" data-bg="1" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/facility-carousel-2.png" alt="">
+    <img class="story-bg-img" data-bg="2" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/facility-carousel-3.png" alt="">
+    <img class="story-bg-img" data-bg="3" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/facility-carousel-4.png" alt="">
+    <img class="story-bg-img" data-bg="4" loading="lazy" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/story-bg-corp-capabil-1" alt="">
+    <img class="story-bg-img" data-bg="5" loading="lazy" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/story-bg-corp-capabil-4" alt="">
+    <img class="story-bg-img" data-bg="6" loading="lazy" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/story-bg-corp-capabil-6" alt="">
+    <img class="story-bg-img" data-bg="7" loading="lazy" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/story-bg-corp-capabil-8" alt="">
+    <img class="story-bg-img" data-bg="8" loading="lazy" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/story-bg-corp-capabil-10" alt="">
+    <img class="story-bg-img" data-bg="9" loading="lazy" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/story-bg-corp-capabil-12" alt="">
+    <div class="story-bg-overlay"></div>
+  </div>
+
+  <div class="container story-content">
+    <span class="badge badge-orange fade-in">Our Story</span>
+    <h2 class="fade-in">The name says it all.</h2>
+    <p class="story-lead fade-in">A vertically-integrated philosophy that became a company &mdash; chapter by chapter.</p>
+
+    <div class="story-stage fade-in">
+      <article class="story-chapter active" data-chapter="0">
+        <div class="story-year">1965 &middot; Chicago</div>
+        <h3 class="story-title">The harness company</h3>
+        <p class="story-body">Our founder ran a wiring harness shop in Wrigleyville &mdash; a three-story walk-up where wire was cut on the floor below the assembly bays. He bought spools on the outside, like everyone else. Delays, quality drift, pricing he couldn't control. He made the decision: own it.</p>
+        <button class="btn-deep" type="button" data-deep="deep-1965">Read the full chapter
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </article>
+
+      <article class="story-chapter" data-chapter="1">
+        <div class="story-year">1977 &middot; Founded</div>
+        <h3 class="story-title">Unified Wire &amp; Cable is born</h3>
+        <p class="story-body">Vertical integration becomes a company. The name "Unified" reflects the philosophy itself &mdash; copper fabrication through extrusion, all under one roof. One name. One supply chain. One quality standard.</p>
+        <button class="btn-deep" type="button" data-deep="deep-1977">Read the full chapter
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </article>
+
+      <article class="story-chapter" data-chapter="2">
+        <div class="story-year">1983 &middot; DeKalb</div>
+        <h3 class="story-title">Ninety miles west &mdash; one extruder, one Foley brother</h3>
+        <p class="story-body">Both companies relocate from Chicago to DeKalb. Unified leases space from the harness side. The whole wire operation: <strong>one extruder, one person</strong> &mdash; the founder's son Brian &mdash; running it. The seed of an extrusion plant.</p>
+        <button class="btn-deep" type="button" data-deep="deep-1983">Read the full chapter
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </article>
+
+      <article class="story-chapter" data-chapter="3">
+        <div class="story-year">1992 &middot; Our own roof</div>
+        <h3 class="story-title">Twenty thousand square feet, next door</h3>
+        <p class="story-body">Year-over-year growth pushes Unified out of leased space. We break ground on a 20,000 sq ft building of our own next door &mdash; three or four people, still one extruder, but the room and the intent to grow into it. Over the next two decades, that 20K becomes 65K.</p>
+        <button class="btn-deep" type="button" data-deep="deep-1992">Read the full chapter
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </article>
+
+      <article class="story-chapter" data-chapter="4">
+        <div class="story-year">2024 &middot; A new chapter</div>
+        <h3 class="story-title">Joining Mueller Industries</h3>
+        <p class="story-body">After nearly five decades of family ownership, Unified joins <strong>Mueller Industries</strong> &mdash; a publicly traded multi-billion-dollar parent that sees what the team built and is funding the next generation of capacity. Same DeKalb crew. Same nimble culture. Bigger runway.</p>
+        <button class="btn-deep" type="button" data-deep="deep-2024">Read the full chapter
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </article>
+
+      <article class="story-chapter" data-chapter="5">
+        <div class="story-year">Today &middot; DeKalb, IL</div>
+        <h3 class="story-title">A new frontier &mdash; medium voltage</h3>
+        <p class="story-body">100,000 sq ft horseshoe footprint. Seven extrusion lines running 24/7. Copper drawn from rod in-house. 95%+ on-time delivery, ~300 PPM defect rate. And a new frontier: medium voltage &mdash; 15kV to 69kV &mdash; layered onto the low-voltage foundation we've refined since 1977.</p>
+        <button class="btn-deep" type="button" data-deep="deep-today">Read the full chapter
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </article>
+    </div>
+
+    <div class="story-rail fade-in" role="tablist" aria-label="Chapter timeline">
+      <button class="story-rail-nav prev" type="button" aria-label="Previous chapter">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="story-rail-track">
+        <button class="story-stop active" type="button" role="tab" aria-selected="true" data-stop="0">
+          <span class="story-stop-dot"></span>
+          <span class="story-stop-label">1965</span>
+        </button>
+        <span class="story-rail-bar"></span>
+        <button class="story-stop" type="button" role="tab" aria-selected="false" data-stop="1">
+          <span class="story-stop-dot"></span>
+          <span class="story-stop-label">1977</span>
+        </button>
+        <span class="story-rail-bar"></span>
+        <button class="story-stop" type="button" role="tab" aria-selected="false" data-stop="2">
+          <span class="story-stop-dot"></span>
+          <span class="story-stop-label">1983</span>
+        </button>
+        <span class="story-rail-bar"></span>
+        <button class="story-stop" type="button" role="tab" aria-selected="false" data-stop="3">
+          <span class="story-stop-dot"></span>
+          <span class="story-stop-label">1992</span>
+        </button>
+        <span class="story-rail-bar"></span>
+        <button class="story-stop" type="button" role="tab" aria-selected="false" data-stop="4">
+          <span class="story-stop-dot"></span>
+          <span class="story-stop-label">2024</span>
+        </button>
+        <span class="story-rail-bar"></span>
+        <button class="story-stop" type="button" role="tab" aria-selected="false" data-stop="5">
+          <span class="story-stop-dot"></span>
+          <span class="story-stop-label">Today</span>
+        </button>
       </div>
-      <div class="fade-in">
-        <div class="origin-visual">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Facility Photo — Placeholder</span>
-        </div>
-        <div class="origin-visual" style="margin-top:16px; aspect-ratio:16/7;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Team / Extrusion Line Photo</span>
-        </div>
+      <button class="story-rail-nav next" type="button" aria-label="Next chapter">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="story-progress" aria-hidden="true"><div class="story-progress-fill"></div></div>
+</section>
+
+<!-- Deep-dive modals -->
+<div class="deep-overlay" id="deep-1965" onclick="closeDeep(event,'deep-1965')">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-1965')" aria-label="Close">&times;</button>
+    <div class="deep-meta">Chapter 1 &middot; 1965 &middot; Chicago, Illinois</div>
+    <h3>The harness company</h3>
+    <p>Twelve years before Unified Wire &amp; Cable existed, our founder was already in the wire business &mdash; just from the customer side. He ran a wiring harness manufacturing operation in Chicago, building assemblies for industrial and commercial OEMs.</p>
+    <p>Like every harness shop, he bought spools of finished wire from outside suppliers. And like every harness shop, he watched <strong>lead times slip, quality drift between lots, and pricing be dictated by middlemen</strong> who had no stake in his output.</p>
+    <div class="deep-pull">"Why not get more integrated?"</div>
+    <p>That question was the seed. Rather than absorb the volatility, he decided to build the wire company that would supply his harness business &mdash; and others. The plan: own the copper, own the draw, own the extrusion. Control the variables you can.</p>
+  </div>
+</div>
+
+<div class="deep-overlay" id="deep-1977" onclick="closeDeep(event,'deep-1977')">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-1977')" aria-label="Close">&times;</button>
+    <div class="deep-meta">Chapter 2 &middot; 1977 &middot; Founded</div>
+    <h3>Unified Wire &amp; Cable is born</h3>
+    <p>In 1977, vertical integration was uncommon in the wire industry. Most manufacturers bought rod, drew it, extruded it &mdash; and outsourced everything else. The new company took the opposite stance.</p>
+    <p>The name was deliberate. "Unified" wasn't a brand flourish; it was a description. <strong>Copper fabrication, wire drawing, stranding, and extrusion would all happen at one address</strong>, under one quality system, accountable to one team.</p>
+    <div class="deep-pull">One name. One supply chain. One quality standard.</div>
+    <p>The decisions made in those early years still shape who picks up the phone today. Tim Foley &mdash; the founder's son &mdash; joined the sales organization 25 years ago and now leads it. Jorge Hernandez, the second person ever hired, still runs the production floor more than three decades later.</p>
+    <p>This is not a company that turns over. It is a company that compounds.</p>
+  </div>
+</div>
+
+<div class="deep-overlay" id="deep-1983" onclick="closeDeep(event,'deep-1983')">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-1983')" aria-label="Close">&times;</button>
+    <div class="deep-meta">Chapter 3 &middot; 1983 &middot; DeKalb, Illinois</div>
+    <h3>Ninety miles west of Chicago</h3>
+    <p>By the early 1980s, the harness business needs more room than its three-story Wrigleyville walk-up can provide. Both Electromechanical Devices (the harness side) and Unified Wire &amp; Cable relocate to DeKalb, Illinois &mdash; ninety miles west of the city, off I-88, on a single-floor industrial parcel with room to grow.</p>
+    <p>Unified, still small, leases space inside its sister company. <strong>One extruder.</strong> One person running it: Brian Foley, the founder's eldest son, by himself. The harness business is the engine; the wire business is its quiet, vertically integrated apprentice.</p>
+    <div class="deep-pull">"It was just my brother. That was all."</div>
+    <p>That arrangement holds for almost a decade. The team is small, the product range narrow, but the foundations of what would become a vertically integrated wire plant are quietly being laid &mdash; one production run at a time.</p>
+  </div>
+</div>
+
+<div class="deep-overlay" id="deep-1992" onclick="closeDeep(event,'deep-1992')">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-1992')" aria-label="Close">&times;</button>
+    <div class="deep-meta">Chapter 4 &middot; 1992 &middot; A building of our own</div>
+    <h3>Twenty thousand square feet, three or four people</h3>
+    <p>Year-over-year demand starts to outgrow the leased corner inside the harness company. In 1992, Unified breaks ground on its own building next door &mdash; a 20,000 sq ft facility built specifically for wire, with one extruder and a team of three or four.</p>
+    <div class="deep-pull">"We had growth, year after year. So we needed more space."</div>
+    <p>The building itself is the bet. Room for a second extruder, then a third. Room for stranding, then bunching. Room to bring copper draw in-house. Over the next two decades, that 20,000 sq ft expands incrementally to 65,000 &mdash; until the lot itself runs out of land.</p>
+    <p>By 2011, an adjacent building becomes available. Unified buys it, ties the two together, and the horseshoe-shaped footprint that defines the operation today is set.</p>
+  </div>
+</div>
+
+<div class="deep-overlay" id="deep-2024" onclick="closeDeep(event,'deep-2024')">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-2024')" aria-label="Close">&times;</button>
+    <div class="deep-meta">Chapter 5 &middot; 2024 &middot; A new chapter</div>
+    <h3>Joining Mueller Industries</h3>
+    <p>Heading toward fifty years, Unified Wire &amp; Cable becomes part of <strong>Mueller Industries</strong> &mdash; a publicly traded multi-billion-dollar parent and one of the largest copper and copper-alloy manufacturers in North America.</p>
+    <p>The acquisition unlocks a scale of investment that would take a family business decades to fund organically. The thesis is straightforward: the team in DeKalb knows how to make wire, has the customer relationships to grow it, and now has the capital to extend into new product categories.</p>
+    <div class="deep-pull">"We're not afraid to invest where it makes sense."</div>
+    <p>Medium voltage is the first major bet &mdash; a brand-new product line at 15kV to 69kV, built on top of the low-voltage foundation Unified has refined since 1977. More to follow.</p>
+  </div>
+</div>
+
+<div class="deep-overlay" id="deep-today" onclick="closeDeep(event,'deep-today')">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-today')" aria-label="Close">&times;</button>
+    <div class="deep-meta">Chapter 6 &middot; Today &middot; DeKalb, Illinois</div>
+    <h3>Approaching fifty years</h3>
+    <p>Nearly half a century after that first decision in Chicago, the philosophy is intact &mdash; and the operation has scaled around it. Unified Wire &amp; Cable manufactures from a 100,000 square foot horseshoe-shaped facility in DeKalb, Illinois, 1.5 hours west of Chicago.</p>
+    <p>The Midwest address is a logistics asset: shorter transit to OEMs and distributors across the continental U.S. than coastal alternatives. Seven extrusion lines run 24/7, spanning the full breadth of the catalog &mdash; from automotive hook-up wire to MIL spec constructions &mdash; and now extending into <strong>15kV to 69kV medium voltage</strong>, a brand-new product category in 2026.</p>
+    <p>What hasn't changed is the team. <strong>Average tenure on the production floor exceeds a decade.</strong> Defective parts per million sit around 300. On-time delivery clears 95%. The institutional knowledge that comes with that kind of continuity is the asset that no spec sheet captures &mdash; and the reason customers keep calling back.</p>
+    <div class="deep-stats">
+      <div>
+        <div class="deep-stat-num">100K</div>
+        <div class="deep-stat-label">Square Feet</div>
+      </div>
+      <div>
+        <div class="deep-stat-num">7</div>
+        <div class="deep-stat-label">Extrusion Lines</div>
+      </div>
+      <div>
+        <div class="deep-stat-num">100+</div>
+        <div class="deep-stat-label">UL AWM Styles</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- Facility -->
 <section class="section-alt">
   <div class="container">
-    <div class="facility-grid">
-      <div class="fade-in">
-        <span class="badge badge-gray">The Facility</span>
-        <h2 style="margin-top:12px;">DeKalb, Illinois.<br>1.5 hours west of Chicago.</h2>
-        <p style="margin-top:14px;">Our 75,000 square foot manufacturing facility houses seven extrusion lines capable of producing the full breadth of our product range — from automotive hook-up wire to MIL spec constructions.</p>
-        <p style="margin-top:12px;">Our central Midwest location provides a logistics advantage to OEMs and distributors across the continental U.S. — shorter transit times from a single manufacturing address.</p>
-        <div class="facility-stats">
-          <div class="fac-stat">
-            <div class="fac-stat-num">75K</div>
-            <div class="fac-stat-label">Square Feet</div>
-          </div>
-          <div class="fac-stat">
-            <div class="fac-stat-num">7</div>
-            <div class="fac-stat-label">Extrusion Lines</div>
-          </div>
-          <div class="fac-stat">
-            <div class="fac-stat-num">1977</div>
-            <div class="fac-stat-label">Year Founded</div>
-          </div>
-          <div class="fac-stat">
-            <div class="fac-stat-num">DeKalb</div>
-            <div class="fac-stat-label">Illinois, USA</div>
-          </div>
-        </div>
+    <div class="sec-head fade-in">
+      <span class="badge badge-gray">The Facility</span>
+      <h2 style="margin-top:12px;">DeKalb, Illinois.<br>1.5 hours west of Chicago.</h2>
+    </div>
+    <div class="fade-in">
+      <img class="facility-hero-img"
+           src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_1800,c_limit/uwc/facility-aerial-v2"
+           alt="Aerial view of Unified Wire & Cable's 100,000 sq ft horseshoe-shaped facility in DeKalb, Illinois — the front roof painted with the UWC logo and the back building roof painted with 'Unified Wire & Cable'"
+           loading="lazy">
+    </div>
+    <div class="facility-copy fade-in">
+      <p>Our 100,000 square foot horseshoe-shaped manufacturing facility houses seven extrusion lines capable of producing the full breadth of our product range &mdash; from automotive hook-up wire to MIL spec constructions.</p>
+      <p>Our central Midwest location provides a logistics advantage to OEMs and distributors across the continental U.S. &mdash; shorter transit times from a single manufacturing address.</p>
+    </div>
+    <div class="facility-stats fade-in">
+      <div class="fac-stat">
+        <div class="fac-stat-num">100K</div>
+        <div class="fac-stat-label">Square Feet</div>
       </div>
-      <div class="fade-in">
-        <div style="background:var(--gray-lt); border:2px dashed var(--border); border-radius:12px; aspect-ratio:3/4; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:var(--text-lt);">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span style="font-family:var(--mono); font-size:.72rem; letter-spacing:.10em; text-transform:uppercase;">Aerial / Facility Exterior</span>
-        </div>
+      <div class="fac-stat">
+        <div class="fac-stat-num">7</div>
+        <div class="fac-stat-label">Extrusion Lines</div>
+      </div>
+      <div class="fac-stat">
+        <div class="fac-stat-num">1977</div>
+        <div class="fac-stat-label">Year Founded</div>
+      </div>
+      <div class="fac-stat">
+        <div class="fac-stat-num">DeKalb</div>
+        <div class="fac-stat-label">Illinois, USA</div>
       </div>
     </div>
   </div>
@@ -437,11 +964,11 @@
       </a>
 
       <a href="daniela.html" class="person-card">
-        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/daniela-profile-square" alt="Daniela">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/daniela-troconiz-profile-square" alt="Daniela Troconiz">
         <div class="person-card-gradient"></div>
         <div class="person-card-inner">
           <div class="person-card-title">Quality Team · QMS Lead, in training</div>
-          <div class="person-card-name">Daniela</div>
+          <div class="person-card-name">Daniela Troconiz</div>
           <div class="person-card-tenure">5 years · Industrial Engineer</div>
           <p class="person-card-quote">"I'm kind of like that bridge in between. The most difficult part — and the most rewarding."</p>
           <span class="person-card-cta">
@@ -452,7 +979,7 @@
       </a>
 
       <div class="person-card">
-        <div class="person-card-initial" aria-hidden="true">J</div>
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/jorge-hernandez-profile-square" alt="Jorge Hernandez">
         <div class="person-card-gradient"></div>
         <div class="person-card-inner">
           <div class="person-card-title">Production Manager</div>
@@ -463,31 +990,61 @@
       </div>
 
       <div class="person-card">
-        <div class="person-card-initial" aria-hidden="true">S</div>
-        <div class="person-card-gradient"></div>
-        <div class="person-card-inner">
-          <div class="person-card-title">Wire Mill Supervisor</div>
-          <div class="person-card-name">Salvador Lopez</div>
-          <div class="person-card-tenure">14 years · Promoted from within</div>
-          <p class="person-card-quote">"Every day is learning more. Every day is a different job."</p>
-        </div>
-      </div>
-
-      <div class="person-card">
-        <div class="person-card-initial" aria-hidden="true">E</div>
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/ebaa-albarbarawi-profile-square" alt="Ebaa Albarbarawi">
         <div class="person-card-gradient"></div>
         <div class="person-card-inner">
           <div class="person-card-title">Plant Engineer</div>
-          <div class="person-card-name">Ebba</div>
+          <div class="person-card-name">Ebaa Albarbarawi</div>
           <div class="person-card-tenure">M.S. Energy Systems Engineering</div>
           <p class="person-card-quote">"Everyone teaches from the roots. You need to understand root causes."</p>
         </div>
       </div>
 
-      <div class="person-card-placeholder">
-        <p style="font-size:.88rem; color:var(--text-lt); margin:0;">Additional team members to be added</p>
-        <a href="careers.html" class="btn btn-outline btn-sm">View Open Positions</a>
+      <div class="person-card">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/tom-bushman-profile-square" alt="Tom Bushman">
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Production Manager</div>
+          <div class="person-card-name">Tom Bushman</div>
+        </div>
       </div>
+
+      <div class="person-card">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/tina-fant-profile-square" alt="Tina Fant">
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Customer Service · Shipping</div>
+          <div class="person-card-name">Tina Fant</div>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/brittany-hughes-profile-square" alt="Brittany Hughes">
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Operations Manager</div>
+          <div class="person-card-name">Brittany Hughes</div>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/john-nelson-profile-square" alt="John Nelson">
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">Director of Operations</div>
+          <div class="person-card-name">John Nelson</div>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/les-tucker-profile-square" alt="Les Tucker">
+        <div class="person-card-gradient"></div>
+        <div class="person-card-inner">
+          <div class="person-card-title">VP of Sales & Commercial Strategy</div>
+          <div class="person-card-name">Les Tucker</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -535,5 +1092,104 @@
 <script>window._uwcDepth=''; window._uwcPage='About';</script>
 <script src="assets/js/uwc.js"></script>
 <script src="assets/js/password.js"></script>
+<script>
+// === Story chapter timeline ===
+(function () {
+  var section = document.querySelector('.story-section');
+  if (!section) return;
+
+  var bgImgs   = section.querySelectorAll('.story-bg-img');
+  var chapters = section.querySelectorAll('.story-chapter');
+  var stops    = section.querySelectorAll('.story-stop');
+  var prevBtn  = section.querySelector('.story-rail-nav.prev');
+  var nextBtn  = section.querySelector('.story-rail-nav.next');
+  var progress = section.querySelector('.story-progress-fill');
+  var n = chapters.length;
+  if (n < 1) return;
+
+  var idx = 0, bgIdx = 0;
+  var paused = false;
+  var chapterTimer = null, bgTimer = null;
+  var CHAPTER_DELAY = 6500;
+  var BG_DELAY = 4000;
+
+  function showChapter(i) {
+    idx = (i + n) % n;
+    chapters.forEach(function (el, k) { el.classList.toggle('active', k === idx); });
+    stops.forEach(function (el, k) {
+      el.classList.toggle('active', k === idx);
+      el.setAttribute('aria-selected', k === idx ? 'true' : 'false');
+    });
+  }
+  function runProgress() {
+    if (!progress) return;
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    void progress.offsetWidth; // reflow
+    progress.style.transition = 'width ' + BG_DELAY + 'ms linear';
+    progress.style.width = '100%';
+  }
+  function freezeProgress() {
+    if (!progress) return;
+    var w = getComputedStyle(progress).width;
+    progress.style.transition = 'none';
+    progress.style.width = w;
+  }
+  function cycleBg() {
+    bgIdx = (bgIdx + 1) % bgImgs.length;
+    bgImgs.forEach(function (el, k) { el.classList.toggle('active', k === bgIdx); });
+    runProgress();
+  }
+  function startAuto() {
+    stopAuto();
+    if (paused) return;
+    chapterTimer = setInterval(function () { showChapter(idx + 1); }, CHAPTER_DELAY);
+    if (bgImgs.length > 1) {
+      bgTimer = setInterval(cycleBg, BG_DELAY);
+      runProgress();
+    }
+  }
+  function stopAuto() {
+    if (chapterTimer) { clearInterval(chapterTimer); chapterTimer = null; }
+    if (bgTimer)      { clearInterval(bgTimer);      bgTimer = null; }
+  }
+  function pauseForever() { paused = true; stopAuto(); freezeProgress(); }
+
+  stops.forEach(function (s) {
+    s.addEventListener('click', function () {
+      pauseForever();
+      showChapter(parseInt(s.getAttribute('data-stop'), 10));
+    });
+  });
+  if (prevBtn) prevBtn.addEventListener('click', function () { pauseForever(); showChapter(idx - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { pauseForever(); showChapter(idx + 1); });
+
+  startAuto();
+})();
+
+// === Deep-dive modals ===
+function closeDeep(ev, id) {
+  if (ev && ev.currentTarget && ev.target !== ev.currentTarget) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('open');
+  document.body.style.overflow = '';
+}
+(function () {
+  document.querySelectorAll('.btn-deep').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-deep'));
+      if (!el) return;
+      el.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.deep-overlay.open').forEach(function (m) { m.classList.remove('open'); });
+    document.body.style.overflow = '';
+  });
+})();
+</script>
 </body>
 </html>

@@ -28,7 +28,29 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 /* Nav handled by uwc.css site nav */
 
 /* Hero */
-.hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%); padding: 52px 24px 48px; text-align: center; }
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  padding: 52px 24px 48px;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(10,22,40,.42) 0%, rgba(10,22,40,.62) 100%);
+  z-index: 1;
+}
+.hero > * { position: relative; z-index: 2; }
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
 .hero-badge { display: inline-block; background: rgba(3,98,188,0.3); color: #7eb8f7; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 16px; border: 1px solid rgba(3,98,188,0.4); }
 .hero h1 { color: #fff; font-size: clamp(26px, 5vw, 42px); font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
 .hero p { color: var(--gray); font-size: 16px; margin-bottom: 36px; }
@@ -49,6 +71,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .state-select:focus { border-color: var(--orange); }
 .search-status { color: rgba(255,255,255,0.55); font-size: 13px; margin-top: 10px; min-height: 18px; text-align: left; }
 .search-status.error { color: #fca5a5; }
+.clear-btn { display: flex; align-items: center; gap: 6px; margin-top: 10px; padding: 0; background: none; border: none; color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 600; letter-spacing: .04em; cursor: pointer; transition: color .15s; }
+.clear-btn:hover { color: rgba(255,255,255,0.85); }
 
 /* Layout */
 .layout { display: grid; grid-template-columns: 1fr 360px; min-height: calc(100vh - 280px); }
@@ -58,9 +82,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .panel-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-lt); margin-bottom: 16px; }
 .map-wrap { flex: 1; min-height: 360px; position: relative; }
 .map-wrap svg { width: 100%; height: auto; display: block; }
-.state-path { cursor: pointer; stroke: rgba(255,255,255,0.5); stroke-width: 0.7; transition: filter 0.15s, stroke-width 0.15s; }
+.state-path { cursor: pointer; stroke: rgba(255,255,255,0.5); stroke-width: 0.7; transition: filter 0.3s, stroke-width 0.15s, opacity 0.3s; }
 .state-path:hover { filter: brightness(1.2); stroke-width: 1.2; }
 .state-path.active { stroke: #fff; stroke-width: 2; filter: brightness(1.25) drop-shadow(0 0 6px rgba(255,255,255,0.4)); }
+.map-wrap.has-selection .state-path:not(.active) { filter: grayscale(1) brightness(0.7); opacity: 0.5; }
+.map-wrap.has-selection .state-path:not(.active):hover { filter: grayscale(0.4) brightness(1.1); opacity: 0.85; }
 .state-label-text { font-size: 6px; fill: rgba(255,255,255,0.7); text-anchor: middle; pointer-events: none; user-select: none; font-family: -apple-system, sans-serif; font-weight: 600; }
 
 /* Legend */
@@ -267,6 +293,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 <header id="site-nav"></header>
 
 <div class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" oncanplay="this.playbackRate=0.5">
+    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778010685/salesrep-hero-usa-lights-a_fnpisl.mp4" type="video/mp4">
+  </video>
   <div class="hero-badge">Sales Network</div>
   <h1>Find Your Sales Rep</h1>
   <p>Enter your zip code or select your state to connect with the right rep.</p>
@@ -280,6 +309,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <option value="">Choose a state…</option>
     </select>
     <div class="search-status" id="searchStatus"></div>
+    <button id="clearBtn" class="clear-btn" onclick="clearSelection()" style="display:none">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Clear selection
+    </button>
   </div>
 </div>
 
@@ -899,6 +932,18 @@ function selectState(val) {
   document.getElementById('zipInput').value = '';
 }
 
+function clearSelection() {
+  if (activeStatePath) { activeStatePath.classList.remove('active'); activeStatePath = null; }
+  const mapWrap = document.getElementById('mapWrap');
+  if (mapWrap) mapWrap.classList.remove('has-selection');
+  document.getElementById('repCard').classList.remove('show');
+  document.getElementById('panelEmpty').style.display = '';
+  document.getElementById('stateSelect').value = '';
+  document.getElementById('zipInput').value = '';
+  document.getElementById('clearBtn').style.display = 'none';
+  setStatus('');
+}
+
 // ── Render Rep Card ───────────────────────────────────────────────────────────
 function showRep(stateName) {
   const rep = getRepForState(stateName);
@@ -953,6 +998,7 @@ function showRep(stateName) {
 
   highlightState(stateName);
   document.getElementById('stateSelect').value = stateName;
+  document.getElementById('clearBtn').style.display = 'flex';
 
   // Mobile: hide map, show rep
   if (window.innerWidth <= 820) {
@@ -1109,6 +1155,8 @@ function highlightState(stateName) {
   if (activeStatePath) activeStatePath.classList.remove('active');
   const el = document.querySelector(`[data-state="${stateName}"]`);
   if (el) { el.classList.add('active'); activeStatePath = el; }
+  const mapWrap = document.getElementById('mapWrap');
+  if (mapWrap) mapWrap.classList.toggle('has-selection', !!stateName);
 }
 
 function colorMap() {

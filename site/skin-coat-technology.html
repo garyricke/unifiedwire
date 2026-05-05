@@ -9,14 +9,31 @@
   <link rel="stylesheet" href="assets/css/uwc.css">
   <style>
     .page-hero {
-      background:
-        radial-gradient(ellipse at 15% 75%, rgba(227,100,23,.25) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 20%, rgba(3,98,188,.18) 0%, transparent 50%),
-        var(--navy);
-      color: #fff; padding: 80px 0 72px;
+      background: var(--navy);
+      color: #fff;
+      padding: 96px 0 88px;
+      position: relative;
+      overflow: hidden;
     }
+    .page-hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      z-index: 0;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 75%, rgba(227,100,23,.30) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(3,98,188,.22) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(10,22,40,.88) 0%, rgba(10,22,40,.74) 50%, rgba(10,22,40,.84) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .page-hero > .container { position: relative; z-index: 2; }
     .page-hero h1 { color: #fff; font-size: clamp(2rem,4vw,3.2rem); margin-top: 12px; }
-    .page-hero p  { color: rgba(255,255,255,.6); max-width: 640px; margin-top: 14px; font-size: 1.1rem; }
+    .page-hero p  { color: rgba(255,255,255,.72); max-width: 640px; margin-top: 14px; font-size: 1.1rem; }
 
     /* Process Diagram */
     .process-block {
@@ -127,6 +144,11 @@
 
 <!-- Hero -->
 <section class="page-hero">
+  <video class="page-hero-video" autoplay muted loop playsinline preload="metadata"
+         poster="https://res.cloudinary.com/dsbllwpbh/video/upload/f_jpg,q_auto:good,w_1920,c_limit,so_0/v1778012155/skin_coat_V1_jkok84.jpg">
+    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_webm,q_auto:good,vc_vp9,w_1920,c_limit/v1778012155/skin_coat_V1_jkok84.webm" type="video/webm">
+    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_mp4,q_auto:good,vc_h264,w_1920,c_limit/v1778012155/skin_coat_V1_jkok84.mp4" type="video/mp4">
+  </video>
   <div class="container">
     <span class="badge badge-orange">Proprietary Process</span>
     <h1>Skin Coat Technology</h1>
@@ -201,10 +223,10 @@
     </div>
     <div class="grid-2 fade-in" style="align-items:center; gap:56px;">
       <div>
-        <div class="img-placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Facility / Process Photo — Placeholder</span>
-        </div>
+        <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_1200,c_fill,g_auto/uwc/skin-coat-process.png"
+             alt="Skin Coat co-extruder head with wire passing through, showing the precision color-fusing process"
+             loading="lazy"
+             style="width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; display:block;">
       </div>
       <div>
         <h3 style="margin-bottom:20px;">What makes it different</h3>

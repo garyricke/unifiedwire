@@ -4,10 +4,23 @@
 function setActiveNav() {
   var path = window.location.pathname;
   document.querySelectorAll('#site-nav .nav-links a').forEach(function (a) {
-    if (a.getAttribute('href') && path.endsWith(a.getAttribute('href').replace(/^.*\//, ''))) {
+    var href = a.getAttribute('href');
+    if (href && path.endsWith(href.replace(/^.*\//, ''))) {
       a.classList.add('active');
+      // Mark parent dropdown trigger as active too
+      var parentItem = a.closest('.nav-item');
+      if (parentItem) parentItem.classList.add('nav-item--active');
     }
   });
+  // Section-level: any /markets/* page → mark Markets active; same for resources
+  if (/\/markets\//.test(path)) {
+    var m = document.querySelector('#site-nav .nav-item[data-nav-item="markets"]');
+    if (m) m.classList.add('nav-item--active');
+  }
+  if (/\/resources\//.test(path)) {
+    var r = document.querySelector('#site-nav .nav-item[data-nav-item="resources"]');
+    if (r) r.classList.add('nav-item--active');
+  }
 }
 
 // ── Mobile hamburger ─────────────────────────────────────────
@@ -15,15 +28,38 @@ function initMobileNav() {
   var btn   = document.getElementById('nav-hamburger');
   var links = document.getElementById('nav-links');
   if (!btn || !links) return;
-  btn.addEventListener('click', function () {
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
     var open = links.classList.toggle('open');
     btn.setAttribute('aria-expanded', open);
+    if (!open) {
+      // collapse any accordion sections when drawer closes
+      links.querySelectorAll('.nav-item--open').forEach(function (it) {
+        it.classList.remove('nav-item--open');
+        var t = it.querySelector('.nav-item-trigger');
+        if (t) t.setAttribute('aria-expanded', false);
+      });
+    }
   });
-  // close on outside click
+  // Mobile-only: clicking a dropdown trigger toggles the accordion section
+  links.querySelectorAll('.nav-item-trigger').forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      // Only intercept when the mobile drawer is open (desktop uses hover)
+      if (!links.classList.contains('open')) return;
+      e.stopPropagation();
+      var item = trigger.closest('.nav-item');
+      var isOpen = item.classList.toggle('nav-item--open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+  });
+  // close drawer on outside click
   document.addEventListener('click', function (e) {
     if (!btn.contains(e.target) && !links.contains(e.target)) {
       links.classList.remove('open');
       btn.setAttribute('aria-expanded', false);
+      links.querySelectorAll('.nav-item--open').forEach(function (it) {
+        it.classList.remove('nav-item--open');
+      });
     }
   });
 }
@@ -47,6 +83,7 @@ function renderNav(depth) {
   depth = depth || '';
   var nav = document.getElementById('site-nav');
   if (!nav) return;
+  var chevron = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
   nav.innerHTML = [
     '<div class="nav-inner">',
     '  <a class="nav-logo" href="' + depth + 'home.html">',
@@ -54,8 +91,29 @@ function renderNav(depth) {
     '  </a>',
     '  <nav class="nav-links" id="nav-links" role="navigation" aria-label="Main">',
     '    <a href="' + depth + 'products.html">Products</a>',
-    '    <a href="' + depth + 'markets/index.html">Markets</a>',
-    '    <a href="' + depth + 'resources/index.html">Resources</a>',
+    '    <div class="nav-item" data-nav-item="markets">',
+    '      <button type="button" class="nav-item-trigger" aria-haspopup="true" aria-expanded="false">Markets ' + chevron + '</button>',
+    '      <div class="nav-menu" role="menu">',
+    '        <a href="' + depth + 'markets/index.html">All Markets</a>',
+    '        <div class="nav-menu-divider"></div>',
+    '        <a href="' + depth + 'markets/appliance.html">Appliance</a>',
+    '        <a href="' + depth + 'markets/automotive.html">Automotive</a>',
+    '        <a href="' + depth + 'markets/marine.html">Marine</a>',
+    '        <a href="' + depth + 'markets/rv.html">Recreational Vehicle</a>',
+    '        <a href="' + depth + 'markets/electronics-oem.html">Electronics &amp; OEM</a>',
+    '        <a href="' + depth + 'markets/military.html">Military</a>',
+    '        <a href="' + depth + 'markets/distribution.html">Distribution</a>',
+    '      </div>',
+    '    </div>',
+    '    <div class="nav-item" data-nav-item="resources">',
+    '      <button type="button" class="nav-item-trigger" aria-haspopup="true" aria-expanded="false">Resources ' + chevron + '</button>',
+    '      <div class="nav-menu" role="menu">',
+    '        <a href="' + depth + 'resources/index.html">Resources Hub</a>',
+    '        <div class="nav-menu-divider"></div>',
+    '        <a href="' + depth + 'resources/compliance.html">Compliance Center</a>',
+    '        <a href="' + depth + 'resources/tools.html">Engineering Tools</a>',
+    '      </div>',
+    '    </div>',
     '    <a href="' + depth + 'about.html">About</a>',
     '    <a href="' + depth + 'careers.html">Careers</a>',
     '  </nav>',
@@ -96,11 +154,7 @@ function renderFooter(depth) {
     '    <div class="footer-col">',
     '      <h5>Products</h5>',
     '      <a href="' + depth + 'products.html">Spec Navigator</a>',
-    '      <a href="' + depth + 'products.html">Automotive Wire</a>',
-    '      <a href="' + depth + 'products.html">UL Style Hook-up</a>',
-    '      <a href="' + depth + 'products.html">X-Link / XLPE</a>',
-    '      <a href="' + depth + 'products.html">MIL Spec Wire</a>',
-    '      <a href="' + depth + 'products.html">Boat Cable</a>',
+    '      <a href="' + depth + 'spec-sheets.html">All Spec Sheets</a>',
     '    </div>',
     '    <div class="footer-col">',
     '      <h5>Company</h5>',
@@ -120,7 +174,7 @@ function renderFooter(depth) {
     '  </div>',
     '  <div class="footer-bottom">',
     '    <span>© 2026 Unified Wire & Cable, Inc. &nbsp;·&nbsp; DeKalb, IL 60115 &nbsp;·&nbsp; 815-748-4876</span>',
-    '    <a href="#">Privacy Policy</a>',
+    '    <a href="' + depth + 'privacy-policy.html">Privacy Policy</a>',
     '  </div>',
     '</div>'
   ].join('\n');
@@ -150,6 +204,45 @@ function renderGate(pageName) {
   ].join('\n');
 }
 
+// ── See Also: mini product navigator ─────────────────────────
+var UWC_SPEC_SHEETS = [
+  { slug: '1007',              name: 'UL 1007',           sub: 'Bare/Tin Copper',     img: 'assets/img/cables/wire-ul1007-1569.png' },
+  { slug: '1015',              name: 'UL 1015',           sub: 'Bare/Tin 600V',       img: 'assets/img/cables/wire-mtw-1015.png' },
+  { slug: 'gpt',               name: 'GPT',               sub: 'Bare Copper',         img: 'assets/img/cables/wire-auto-primary.png' },
+  { slug: 'gptm',              name: 'GPTM',              sub: 'Marine Primary',      img: 'assets/img/cables/wire-gptm-marine.png' },
+  { slug: 'gxl',               name: 'GXL',               sub: 'Bare Copper',         img: 'assets/img/cables/wire-sgx.png' },
+  { slug: 'tfn-tffn',          name: 'TFN / TFFN',        sub: 'Fixture Wire',        img: 'assets/img/cables/wire-tfn-tffn-solid.png' },
+  { slug: 'thhn-mtw-thwn-2',   name: 'THHN / THWN-2',     sub: 'Building Wire',       img: 'assets/img/cables/wire-thhn-thwn.png' },
+  { slug: 'xhhw-sis',          name: 'XHHW-2 / SIS',      sub: 'Building Wire',       img: 'assets/img/cables/wire-xhhw2.png' },
+  { slug: 'sjtoow',            name: 'SJTOOW',            sub: 'Portable Cord',       img: 'assets/img/cables/wire-soow.png' },
+  { slug: 'mv-15kv-cu',        name: 'CU 15kV',           sub: 'MV Power Cable',      img: 'assets/img/cables/wire-mv-15kv.png' },
+  { slug: 'mv-15kv-al',        name: 'AL 15kV',           sub: 'MV Power Cable',      img: 'assets/img/cables/wire-mv-15kv.png' },
+  { slug: 'mv-25kv-al',        name: 'AL 25kV',           sub: 'MV Power Cable',      img: 'assets/img/cables/wire-mv-25kv-cu.png' },
+  { slug: 'mv-35kv-al',        name: 'AL 35kV',           sub: 'MV Power Cable',      img: 'assets/img/cables/wire-mv-35kv-al.png' }
+];
+
+function getCurrentSpecSlug() {
+  var m = (location.pathname || '').match(/spec-sheet-(.+?)\.html/);
+  return m ? m[1] : null;
+}
+
+function renderSeeAlso(depth) {
+  depth = depth || '';
+  var host = document.getElementById('see-also-grid');
+  if (!host) return;
+  var current = getCurrentSpecSlug();
+  var html = '';
+  UWC_SPEC_SHEETS.forEach(function (p) {
+    if (p.slug === current) return;
+    html += '<a class="see-also-card" href="' + depth + 'spec-sheet-' + p.slug + '.html">' +
+            '<img src="' + depth + p.img + '" alt="' + p.name + '" loading="lazy">' +
+            '<div class="sa-name">' + p.name + '</div>' +
+            '<div class="sa-sub">' + p.sub + '</div>' +
+            '</a>';
+  });
+  host.innerHTML = html;
+}
+
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function () {
   var depth = window._uwcDepth || '';
@@ -159,4 +252,5 @@ document.addEventListener('DOMContentLoaded', function () {
   setActiveNav();
   initMobileNav();
   initFadeIn();
+  renderSeeAlso(depth);
 });

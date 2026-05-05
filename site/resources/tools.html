@@ -8,7 +8,15 @@
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
   <link rel="stylesheet" href="../assets/css/uwc.css">
   <style>
-    .page-hero { background: radial-gradient(ellipse at 20% 80%, rgba(3,98,188,.22) 0%, transparent 55%), var(--navy); color:#fff; padding:80px 0 64px; }
+    .page-hero {
+      background:
+        linear-gradient(90deg, rgba(10,22,40,.78) 0%, rgba(10,22,40,.45) 32%, rgba(10,22,40,.05) 60%, rgba(10,22,40,0) 100%),
+        radial-gradient(ellipse at 20% 80%, rgba(3,98,188,.22) 0%, transparent 55%),
+        url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2400,c_limit/uwc/engineering-tools-hero') right center / cover no-repeat,
+        var(--navy);
+      color:#fff;
+      padding:80px 0 64px;
+    }
     .page-hero h1 { color:#fff; font-size:clamp(2rem,4vw,3rem); margin-top:12px; }
     .page-hero p  { color:rgba(255,255,255,.6); max-width:580px; margin-top:12px; }
 
@@ -50,6 +58,13 @@
     .converter-arrow { text-align:center; color:var(--blue); font-size:1.4rem; padding-top:20px; }
     .conv-result { background:var(--gray-lt); border:1.5px solid var(--border); border-radius:8px; padding:11px 14px; font-size:.95rem; font-weight:700; color:var(--text); min-height:44px; display:flex; align-items:center; }
 
+    /* Helper tip */
+    .tool-tip { background:rgba(3,98,188,.06); border-left:3px solid var(--blue); padding:14px 18px; border-radius:6px; font-size:.86rem; line-height:1.55; color:var(--text); margin-bottom:22px; overflow:hidden; transition: opacity .22s ease, max-height .32s cubic-bezier(.4,0,.2,1), margin-bottom .3s ease, padding .3s ease, border-left-width .3s ease; max-height:240px; }
+    .tool-tip p { margin:0; }
+    .tool-tip p + p { margin-top:6px; }
+    .tool-tip-label { font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:var(--blue); margin-right:8px; }
+    .tool-tip.hidden { opacity:0; max-height:0; margin-bottom:0; padding-top:0; padding-bottom:0; border-left-width:0; pointer-events:none; }
+
     @media(max-width:640px) {
       .form-grid { grid-template-columns:1fr; }
       .form-grid-2 { grid-template-columns:1fr; }
@@ -85,12 +100,16 @@
         </div>
       </div>
       <div class="tool-body">
+        <div class="tool-tip" id="vd-tip">
+          <p><span class="tool-tip-label">Pre-filled</span>A 20-amp residential branch circuit on a 50-foot run (12 AWG copper, 120V single phase).</p>
+          <p><span class="tool-tip-label">Try this</span>Change the length to 100 ft to see drop double. Switch the gauge to 14 AWG to watch it cross NEC's 3% line. Bump the voltage to 240V to see why higher voltages tolerate longer runs.</p>
+        </div>
         <div class="form-grid">
           <div class="field">
             <label for="vd-gauge">Wire Gauge (AWG)</label>
             <select id="vd-gauge">
               <option value="14">14 AWG</option>
-              <option value="12">12 AWG</option>
+              <option value="12" selected>12 AWG</option>
               <option value="10">10 AWG</option>
               <option value="8">8 AWG</option>
               <option value="6">6 AWG</option>
@@ -112,11 +131,11 @@
           </div>
           <div class="field">
             <label for="vd-length">One-Way Length (ft)</label>
-            <input type="number" id="vd-length" placeholder="e.g. 100" min="1" max="10000">
+            <input type="number" id="vd-length" value="50" min="1" max="10000">
           </div>
           <div class="field">
             <label for="vd-current">Current (Amps)</label>
-            <input type="number" id="vd-current" placeholder="e.g. 20" min="0.1" max="400" step="0.1">
+            <input type="number" id="vd-current" value="20" min="0.1" max="400" step="0.1">
           </div>
           <div class="field">
             <label for="vd-voltage">System Voltage (V)</label>
@@ -178,6 +197,10 @@
         </div>
       </div>
       <div class="tool-body">
+        <div class="tool-tip" id="conv-tip">
+          <p><span class="tool-tip-label">Pre-filled</span>12 AWG (≈ 3.31 mm²), 1,000 feet (one standard wire spool), and 35 lbs/1000 ft (≈ bare 12 AWG copper).</p>
+          <p><span class="tool-tip-label">Try this</span>Pick any AWG to see its metric equivalent &mdash; 4/0 (107.2 mm²) is the largest single conductor in NEC tables; 30 AWG (0.0507 mm²) is at the thin end. Type any feet value or change the lbs/1000 ft to convert weights for shipping or BOM math.</p>
+        </div>
 
         <!-- AWG ↔ mm² -->
         <h4 style="margin-bottom:14px;">AWG ↔ mm²</h4>
@@ -190,7 +213,7 @@
               <option value="26">26 AWG</option><option value="24">24 AWG</option>
               <option value="22">22 AWG</option><option value="20">20 AWG</option>
               <option value="18">18 AWG</option><option value="16">16 AWG</option>
-              <option value="14">14 AWG</option><option value="12">12 AWG</option>
+              <option value="14">14 AWG</option><option value="12" selected>12 AWG</option>
               <option value="10">10 AWG</option><option value="8">8 AWG</option>
               <option value="6">6 AWG</option><option value="4">4 AWG</option>
               <option value="2">2 AWG</option><option value="1">1 AWG</option>
@@ -210,7 +233,7 @@
         <div class="converter-grid">
           <div class="field">
             <label for="ft-in">Feet</label>
-            <input type="number" id="ft-in" placeholder="e.g. 1000" oninput="convertFt()">
+            <input type="number" id="ft-in" value="1000" oninput="convertFt()">
           </div>
           <div class="converter-arrow">⇌</div>
           <div class="field">
@@ -224,7 +247,7 @@
         <div class="converter-grid">
           <div class="field">
             <label for="lbs-in">lbs / 1000 ft</label>
-            <input type="number" id="lbs-in" placeholder="e.g. 35" step="0.1" oninput="convertLbs()">
+            <input type="number" id="lbs-in" value="35" step="0.1" oninput="convertLbs()">
           </div>
           <div class="converter-arrow">⇌</div>
           <div class="field">
@@ -281,9 +304,18 @@ function calcVoltageDrop(){
   var current = parseFloat(document.getElementById('vd-current').value);
   var voltage = parseFloat(document.getElementById('vd-voltage').value);
   var circuit = document.getElementById('vd-circuit').value;
+  var result  = document.getElementById('vd-result');
+  result.classList.add('visible');
 
   if(isNaN(length)||isNaN(current)||!AWG_OHM[gauge]){
-    alert('Please fill in all fields.'); return;
+    document.getElementById('vd-drop').textContent = '—';
+    document.getElementById('vd-pct').textContent  = '—';
+    document.getElementById('vd-load').textContent = '—';
+    var necEl = document.getElementById('vd-nec');
+    necEl.textContent = '—';
+    necEl.className = 'result-val';
+    document.getElementById('vd-note').textContent = 'Enter a length and current to calculate.';
+    return;
   }
 
   var r_per_kft = AWG_OHM[gauge] * (mat==='aluminum' ? AL_FACTOR : 1);
@@ -293,8 +325,6 @@ function calcVoltageDrop(){
   var pct = (vdrop / voltage) * 100;
   var vload = voltage - vdrop;
 
-  var result = document.getElementById('vd-result');
-  result.classList.add('visible');
   document.getElementById('vd-drop').textContent = vdrop.toFixed(2)+' V';
   document.getElementById('vd-pct').textContent  = pct.toFixed(2)+'%';
   document.getElementById('vd-load').textContent = vload.toFixed(2)+' V';
@@ -316,6 +346,33 @@ function calcVoltageDrop(){
     : 'Your wire size is within NEC recommendations for this run. Browse matching products in the Spec Navigator.';
   document.getElementById('vd-note').textContent=note;
 }
+
+// Run all calculations once on load and recalculate on any field change
+function dismissTip(id) {
+  return function () {
+    var t = document.getElementById(id);
+    if (t) t.classList.add('hidden');
+  };
+}
+document.addEventListener('DOMContentLoaded', function () {
+  ['vd-gauge','vd-material','vd-length','vd-current','vd-voltage','vd-circuit'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    var evt = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evt, calcVoltageDrop);
+    el.addEventListener(evt, dismissTip('vd-tip'));
+  });
+  ['awg-in','ft-in','lbs-in'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    var evt = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evt, dismissTip('conv-tip'));
+  });
+  convertAwg();
+  convertFt();
+  convertLbs();
+  calcVoltageDrop();
+});
 </script>
 
 <script>window._uwcDepth='../'; window._uwcPage='Engineering Tools';</script>

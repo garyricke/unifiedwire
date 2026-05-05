@@ -10,7 +10,9 @@
   <style>
     .page-hero {
       background:
+        linear-gradient(90deg, rgba(10,22,40,.78) 0%, rgba(10,22,40,.45) 32%, rgba(10,22,40,.05) 60%, rgba(10,22,40,0) 100%),
         radial-gradient(ellipse at 20% 80%, rgba(3,98,188,.22) 0%, transparent 55%),
+        url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2400,c_limit/uwc/compliance-hero') right center / cover no-repeat,
         var(--navy);
       color: #fff; padding: 72px 0 64px;
     }
@@ -44,14 +46,6 @@
       white-space: nowrap; cursor: pointer;
     }
     .doc-dl-btn:hover { background: var(--blue); color: #fff; }
-    .doc-dl-btn.placeholder {
-      background: var(--gray-lt); color: var(--text-lt);
-      border-color: var(--border); cursor: default; opacity: .7;
-    }
-    .doc-placeholder-note {
-      font-size: .75rem; color: var(--text-lt); font-family: var(--mono);
-      margin-top: 4px; letter-spacing: .03em;
-    }
 
     /* UL Styles */
     .ul-style-grid {
@@ -77,7 +71,9 @@
     .check-yes { color: var(--blue); font-weight: 700; }
 
     @media (max-width: 640px) {
-      .doc-table td:nth-child(3) { display: none; }
+      .doc-table td:nth-child(2) { display: none; }
+      .doc-table td { padding: 14px 8px; }
+      .doc-dl-btn { padding: 7px 12px; font-size: .78rem; }
     }
   </style>
 </head>
@@ -110,14 +106,13 @@
             <tr>
               <td>
                 <div class="doc-name">ISO 9001:2015 Certificate</div>
-                <div class="doc-scope">Covers all manufacturing operations — DeKalb, IL facility</div>
-                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+                <div class="doc-scope">Issued by Verisys Registrars &middot; Cert. #U042808 &middot; Scope: drawing, bunching, and insulating of nonferrous wire &middot; Expires 7/21/2027</div>
               </td>
-              <td class="doc-updated">Last Updated<br>2024</td>
-              <td><span class="doc-dl-btn placeholder">
+              <td class="doc-updated">Effective<br>Jul 22, 2024</td>
+              <td><a class="doc-dl-btn" href="../assets/compliance/iso-9001-2015-certificate.pdf" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download PDF
-              </span></td>
+              </a></td>
             </tr>
           </table>
         </div>
@@ -129,50 +124,46 @@
             <tr>
               <td>
                 <div class="doc-name">RoHS3 Compliance Declaration</div>
-                <div class="doc-scope">EU Directive 2011/65/EU as amended — all standard product families</div>
-                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+                <div class="doc-scope">EU Directive 2011/65/EU as amended by 2015/863 &mdash; covers all 10 restricted substances across our product range</div>
               </td>
-              <td class="doc-updated">Last Updated<br>2024</td>
-              <td><span class="doc-dl-btn placeholder">
+              <td class="doc-updated">Updated<br>Apr 3, 2025</td>
+              <td><a class="doc-dl-btn" href="../assets/compliance/rohs-3-declaration.pdf" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download PDF
-              </span></td>
+              </a></td>
             </tr>
             <tr>
               <td>
                 <div class="doc-name">REACH SVHC Declaration</div>
-                <div class="doc-scope">EU REACH Regulation (EC) No 1907/2006 — substances of very high concern</div>
-                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+                <div class="doc-scope">EU Regulation (EC) 1907/2006 &mdash; evaluated against all 250 ECHA SVHCs (June 2025 candidate list)</div>
               </td>
-              <td class="doc-updated">Last Updated<br>2024</td>
-              <td><span class="doc-dl-btn placeholder">
+              <td class="doc-updated">Updated<br>Jun 25, 2025</td>
+              <td><a class="doc-dl-btn" href="../assets/compliance/reach-svhc-declaration.pdf" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download PDF
-              </span></td>
+              </a></td>
             </tr>
             <tr>
               <td>
-                <div class="doc-name">California Proposition 65 Compliance</div>
-                <div class="doc-scope">OEHHA Safe Drinking Water and Toxic Enforcement Act of 1986</div>
-                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+                <div class="doc-name">California Proposition 65 Statement</div>
+                <div class="doc-scope">OEHHA Safe Drinking Water &amp; Toxic Enforcement Act &mdash; outer-packaging warning label compliant with p65warnings.ca.gov</div>
               </td>
-              <td class="doc-updated">Last Updated<br>2024</td>
-              <td><span class="doc-dl-btn placeholder">
+              <td class="doc-updated">Updated<br>Feb 24, 2025</td>
+              <td><a class="doc-dl-btn" href="../assets/compliance/prop-65-statement.pdf" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download PDF
-              </span></td>
+              </a></td>
             </tr>
             <tr>
               <td>
-                <div class="doc-name">TSCA Compliance Statement</div>
-                <div class="doc-scope">Toxic Substances Control Act — U.S. EPA</div>
-                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+                <div class="doc-name">TSCA &mdash; Persistent, Bio-accumulative &amp; Toxic (PBT) Statement</div>
+                <div class="doc-scope">U.S. EPA Section 6(h) of TSCA &mdash; PIP (3:1), DecaBDE, HCBD, PCTP, and 2,4,6-TTBP</div>
               </td>
-              <td class="doc-updated">Last Updated<br>2024</td>
-              <td><span class="doc-dl-btn placeholder">
+              <td class="doc-updated">Updated<br>Mar 7, 2025</td>
+              <td><a class="doc-dl-btn" href="../assets/compliance/tsca-pbt-statement.pdf" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download PDF
-              </span></td>
+              </a></td>
             </tr>
           </table>
         </div>
@@ -183,15 +174,14 @@
           <table class="doc-table">
             <tr>
               <td>
-                <div class="doc-name">Conflict Minerals Statement (6.31)</div>
-                <div class="doc-scope">Dodd-Frank Section 1502 — 3TG minerals disclosure</div>
-                <div class="doc-placeholder-note">PDF available upon request — placeholder active</div>
+                <div class="doc-name">Conflict Minerals Reporting Template (CMRT)</div>
+                <div class="doc-scope">Dodd-Frank Section 1502 / 3TG &mdash; standard RMI CMRT v6.4 spreadsheet for inclusion in your supplier audit file</div>
               </td>
-              <td class="doc-updated">Last Updated<br>2024</td>
-              <td><span class="doc-dl-btn placeholder">
+              <td class="doc-updated">Updated<br>Aug 23, 2024</td>
+              <td><a class="doc-dl-btn" href="../assets/compliance/conflict-minerals-cmrt.xlsx" target="_blank" rel="noopener">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download PDF
-              </span></td>
+                Download XLSX
+              </a></td>
             </tr>
           </table>
         </div>

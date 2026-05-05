@@ -27,6 +27,284 @@
     .culture-quote { border-left:4px solid var(--orange); padding:20px 24px; background:var(--gray-lt); border-radius:0 var(--radius) var(--radius) 0; margin-bottom:20px; }
     .culture-quote p { font-style:italic; font-size:1rem; margin-bottom:8px; }
     .culture-quote cite { font-family:var(--mono); font-size:.70rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-lt); }
+
+    /* Voices carousel */
+    .voices {
+      position: relative;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 12px 32px -16px rgba(10,22,40,.35);
+      padding: 44px 36px 28px;
+      min-height: 460px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .voices-track { position: relative; flex: 1; }
+    .voice-slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .55s ease;
+    }
+    .voice-slide.active { opacity: 1; pointer-events: auto; }
+    .voice-photo {
+      width: 124px; height: 124px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 24px -8px rgba(10,22,40,.35);
+      border: 4px solid var(--white);
+      outline: 1px solid var(--border);
+    }
+    .voice-mark {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 4rem; line-height: 1;
+      color: var(--orange);
+      margin-top: 16px;
+      height: 28px;
+    }
+    .voice-quote {
+      font-style: italic;
+      font-size: 1.18rem;
+      line-height: 1.45;
+      color: var(--text);
+      max-width: 28em;
+      margin-top: 4px;
+    }
+    .voice-attr {
+      margin-top: 18px;
+      font-family: var(--mono);
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-lt);
+    }
+    .voice-attr strong { color: var(--text); font-weight: 700; }
+    .voices-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 18px;
+    }
+    .voice-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); border: none; padding: 0; cursor: pointer;
+      transition: background .2s, width .2s;
+    }
+    .voice-dot.active { background: var(--blue); width: 24px; border-radius: 4px; }
+    .voice-dot:hover { background: var(--blue-dk); }
+    @media (max-width: 760px) {
+      .voices { padding: 36px 22px 22px; min-height: 440px; }
+      .voice-quote { font-size: 1.05rem; }
+    }
+
+    /* Apply-now modal */
+    .apply-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10,22,40,.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: none;
+      align-items: flex-start; justify-content: center;
+      z-index: 1000;
+      padding: 32px 16px;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .apply-overlay.open { display: flex; opacity: 1; }
+    .apply-modal {
+      position: relative;
+      width: 100%; max-width: 640px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 30px 80px -20px rgba(10,22,40,.55);
+      overflow: hidden;
+      transform: translateY(12px) scale(.98);
+      transition: transform .25s cubic-bezier(.2,.8,.3,1.1);
+    }
+    .apply-overlay.open .apply-modal { transform: translateY(0) scale(1); }
+    .apply-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 36px; height: 36px;
+      border: none; background: rgba(255,255,255,.85);
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text); z-index: 3;
+      transition: background .15s, transform .15s;
+    }
+    .apply-close:hover { background: var(--white); transform: scale(1.06); }
+    .apply-head {
+      padding: 36px 36px 24px;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(227,100,23,.10) 0%, transparent 55%),
+        radial-gradient(circle at 0% 100%, rgba(3,98,188,.12) 0%, transparent 55%),
+        var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .apply-eyebrow {
+      font-family: var(--mono);
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 10px;
+    }
+    .apply-title {
+      font-size: 1.75rem; line-height: 1.15; letter-spacing: -.02em;
+      color: var(--text); margin: 0 0 10px;
+    }
+    .apply-sub {
+      font-size: .95rem; color: var(--text-lt); line-height: 1.5;
+      margin: 0;
+    }
+    .apply-body {
+      padding: 28px 36px 32px;
+      max-height: calc(100vh - 240px);
+      overflow-y: auto;
+    }
+    .apply-row { margin-bottom: 18px; }
+    .apply-row.two {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .apply-label {
+      display: block;
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .10em; text-transform: uppercase;
+      color: var(--text); margin-bottom: 6px; font-weight: 700;
+    }
+    .apply-label .opt { color: var(--text-lt); font-weight: 400; letter-spacing: .04em; text-transform: none; margin-left: 4px; }
+    .apply-input, .apply-select, .apply-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font: inherit; font-size: .96rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color .15s, box-shadow .15s;
+      box-sizing: border-box;
+    }
+    .apply-textarea { min-height: 96px; resize: vertical; line-height: 1.5; font-family: inherit; }
+    .apply-input:focus, .apply-select:focus, .apply-textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(3,98,188,.14);
+    }
+    .apply-helper {
+      font-size: .78rem; color: var(--text-lt); margin-top: 6px; line-height: 1.4;
+    }
+    .apply-drop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 22px 18px;
+      text-align: center;
+      cursor: pointer;
+      background: var(--gray-lt);
+      transition: border-color .15s, background .15s;
+      position: relative;
+    }
+    .apply-drop:hover, .apply-drop.dragover {
+      border-color: var(--blue);
+      background: rgba(3,98,188,.06);
+    }
+    .apply-drop.has-file {
+      border-color: var(--blue); background: rgba(3,98,188,.06); border-style: solid;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+    }
+    .apply-drop input[type=file] {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0; cursor: pointer;
+    }
+    .apply-drop-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--blue-tint, rgba(3,98,188,.12)); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 6px;
+    }
+    .apply-drop.has-file .apply-drop-icon { margin-bottom: 0; }
+    .apply-drop-title { font-weight: 700; color: var(--text); font-size: .95rem; }
+    .apply-drop-sub   { font-size: .78rem; color: var(--text-lt); margin-top: 2px; }
+    .apply-drop-info  { flex: 1; min-width: 0; }
+    .apply-drop-info .fname { font-weight: 700; color: var(--text); font-size: .92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .apply-drop-info .fsize { font-size: .78rem; color: var(--text-lt); margin-top: 2px; }
+    .apply-drop-clear {
+      background: none; border: none; color: var(--text-lt); cursor: pointer;
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .10em; text-transform: uppercase;
+      padding: 8px 12px; border-radius: 8px;
+    }
+    .apply-drop-clear:hover { background: rgba(10,22,40,.06); color: var(--text); }
+    .apply-bot { position: absolute; left: -9999px; top: -9999px; }
+    .apply-error {
+      background: #fef2f2; border: 1px solid #fecaca; color: #991b1b;
+      padding: 10px 14px; border-radius: 10px; font-size: .88rem;
+      margin-bottom: 14px; display: none;
+    }
+    .apply-error.show { display: block; }
+    .apply-actions {
+      display: flex; gap: 12px; align-items: center;
+      margin-top: 24px;
+    }
+    .apply-submit {
+      flex: 1;
+      padding: 14px 22px;
+      font: inherit; font-weight: 700; font-size: 1rem;
+      background: var(--blue); color: #fff;
+      border: none; border-radius: 10px;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .apply-submit:hover:not(:disabled) { background: var(--blue-dk); transform: translateY(-1px); }
+    .apply-submit:disabled { opacity: .65; cursor: wait; }
+    .apply-spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: apply-spin .7s linear infinite;
+      display: none;
+    }
+    .apply-submit.loading .apply-spinner { display: inline-block; }
+    .apply-submit.loading .apply-submit-label { opacity: .85; }
+    @keyframes apply-spin { to { transform: rotate(360deg); } }
+    .apply-fineprint {
+      font-size: .78rem; color: var(--text-lt); text-align: center; margin-top: 14px; line-height: 1.45;
+    }
+
+    /* Success state */
+    .apply-success {
+      display: none;
+      padding: 56px 36px 44px; text-align: center;
+    }
+    .apply-success.show { display: block; }
+    .apply-form.hide { display: none; }
+    .apply-check {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, #1e7fd1 100%);
+      color: #fff;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 12px 28px -10px rgba(3,98,188,.55);
+      animation: apply-pop .45s cubic-bezier(.2,1.4,.4,1.1) both;
+    }
+    @keyframes apply-pop {
+      0%   { transform: scale(.4); opacity: 0; }
+      60%  { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .apply-success h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .apply-success p  { color: var(--text-lt); max-width: 380px; margin: 0 auto 20px; line-height: 1.55; }
+    .apply-success .btn { display: inline-block; }
+
+    @media (max-width: 560px) {
+      .apply-overlay { padding: 0; align-items: stretch; }
+      .apply-modal { border-radius: 0; max-width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
+      .apply-head { padding: 28px 22px 20px; }
+      .apply-body { padding: 22px 22px 28px; max-height: none; flex: 1; }
+      .apply-title { font-size: 1.4rem; }
+      .apply-row.two { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -38,7 +316,7 @@
     <span class="badge badge-blue">Careers</span>
     <h1>Join the team at Unified Wire &amp; Cable</h1>
     <p>Since 1977, we've been making quality insulated wire for appliance, automotive, recreational, and electronics markets. We can't do it without the dedicated people on our team.</p>
-    <a href="mailto:careers@unifiedwire.com" class="btn btn-primary btn-lg" style="margin-top:28px;">Apply Now — careers@unifiedwire.com</a>
+    <button type="button" class="btn btn-primary btn-lg" style="margin-top:28px;" data-apply-open>Apply Now</button>
   </div>
 </section>
 
@@ -51,25 +329,70 @@
         <h2 style="margin-top:12px;">A team that teaches from the roots</h2>
         <p style="margin-top:14px;">At Unified Wire &amp; Cable, experience compounds. Our production manager has been here for 33 years — he trained most of the people on the floor. That's not a statistic; that's a culture.</p>
         <p style="margin-top:12px;">We believe in understanding the "why" behind every process. New team members are mentored — not just handed a procedure. Whether you're running an extrusion line or managing quality systems, you'll understand what you're doing and why it matters.</p>
-        <div style="margin-top:28px;">
-          <div class="culture-quote">
-            <p>"Every day is learning more. Every day is a different job."</p>
-            <cite>Salvador Lopez · Wire Mill Supervisor · 14 years</cite>
-          </div>
-          <div class="culture-quote">
-            <p>"Everyone teaches from the roots. You need to understand root causes."</p>
-            <cite>Ebba · Plant Engineer</cite>
-          </div>
-          <div class="culture-quote">
-            <p>"Relationships are the key to everything."</p>
-            <cite>Jorge Hernandez · Production Manager · 33 years</cite>
-          </div>
-        </div>
+        <p style="margin-top:12px;">Hear it in their own words →</p>
       </div>
       <div>
-        <div style="background:var(--gray-lt);border:2px dashed var(--border);border-radius:12px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--text-lt);">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".3"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          <span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;">Team Photo — Placeholder</span>
+        <div class="voices" data-voice-interval="6000" aria-label="Team member quotes">
+          <div class="voices-track">
+            <div class="voice-slide active">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/uwc/daniela-troconiz-profile-square" alt="Daniela Troconiz">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">I feel like Sherlock Holmes &mdash; finding clues here and there until I put everything together.</p>
+              <div class="voice-attr"><strong>Daniela Troconiz</strong> · Quality Team · 5 years</div>
+            </div>
+            <div class="voice-slide">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/v1776693528/tim-foley-profile-square_jboy8f.jpg" alt="Tim Foley">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">We&rsquo;re nimble. We do things our competitors either can&rsquo;t or won&rsquo;t do.</p>
+              <div class="voice-attr"><strong>Tim Foley</strong> · VP Sales · 25 years</div>
+            </div>
+            <div class="voice-slide">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/uwc/jorge-hernandez-profile-square" alt="Jorge Hernandez">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">33 years here, and I like it because I never finish learning. Every time, something new.</p>
+              <div class="voice-attr"><strong>Jorge Hernandez</strong> · Production Manager · 33 years</div>
+            </div>
+            <div class="voice-slide">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/uwc/ebaa-albarbarawi-profile-square" alt="Ebaa Albarbarawi">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">They teach you from the roots. Not &lsquo;take this and take that&rsquo; &mdash; let&rsquo;s understand the root of everything.</p>
+              <div class="voice-attr"><strong>Ebaa Albarbarawi</strong> · Plant Engineer</div>
+            </div>
+            <div class="voice-slide">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/v1776693528/tim-foley-profile-square_jboy8f.jpg" alt="Tim Foley">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">We think we&rsquo;re heroes sometimes &mdash; and we prove that we are, actually.</p>
+              <div class="voice-attr"><strong>Tim Foley</strong> · VP Sales · 25 years</div>
+            </div>
+            <div class="voice-slide">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/uwc/ebaa-albarbarawi-profile-square" alt="Ebaa Albarbarawi">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">Cable is the source of power. That&rsquo;s why I wanted to be here. I want my name on that.</p>
+              <div class="voice-attr"><strong>Ebaa Albarbarawi</strong> · Plant Engineer</div>
+            </div>
+            <div class="voice-slide">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/uwc/jorge-hernandez-profile-square" alt="Jorge Hernandez">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">Everybody has my phone. 24/7. If a machine&rsquo;s not running, we lose money. So I answer.</p>
+              <div class="voice-attr"><strong>Jorge Hernandez</strong> · Production Manager · 33 years</div>
+            </div>
+            <div class="voice-slide">
+              <img class="voice-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_400,c_fill,g_face/uwc/daniela-troconiz-profile-square" alt="Daniela Troconiz">
+              <div class="voice-mark">&ldquo;</div>
+              <p class="voice-quote">I don&rsquo;t want to say family &mdash; that sounds cliché. But we know each other.</p>
+              <div class="voice-attr"><strong>Daniela Troconiz</strong> · Quality Team · 5 years</div>
+            </div>
+          </div>
+          <div class="voices-dots" role="tablist" aria-label="Select a quote">
+            <button type="button" class="voice-dot active" data-idx="0" aria-label="Quote 1: Daniela Troconiz"></button>
+            <button type="button" class="voice-dot" data-idx="1" aria-label="Quote 2: Tim Foley"></button>
+            <button type="button" class="voice-dot" data-idx="2" aria-label="Quote 3: Jorge Hernandez"></button>
+            <button type="button" class="voice-dot" data-idx="3" aria-label="Quote 4: Ebaa Albarbarawi"></button>
+            <button type="button" class="voice-dot" data-idx="4" aria-label="Quote 5: Tim Foley"></button>
+            <button type="button" class="voice-dot" data-idx="5" aria-label="Quote 6: Ebaa Albarbarawi"></button>
+            <button type="button" class="voice-dot" data-idx="6" aria-label="Quote 7: Jorge Hernandez"></button>
+            <button type="button" class="voice-dot" data-idx="7" aria-label="Quote 8: Daniela Troconiz"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -143,9 +466,9 @@
     </div>
     <div class="openings-placeholder fade-in">
       <h3>Current openings</h3>
-      <p>We are actively accepting applications for positions at our DeKalb, Illinois manufacturing facility. Send your resume and a brief introduction to get the conversation started.</p>
-      <a href="mailto:careers@unifiedwire.com" class="btn btn-primary btn-lg">Send Your Resume</a>
-      <p style="margin-top:16px;font-size:.85rem;color:var(--text-lt);">careers@unifiedwire.com &nbsp;·&nbsp; Unified Wire &amp; Cable, Inc. &nbsp;·&nbsp; DeKalb, IL 60115</p>
+      <p>We are actively accepting applications for positions at our DeKalb, Illinois manufacturing facility. Drop in a resume and tell us a little about yourself &mdash; we&rsquo;ll be in touch within a few business days.</p>
+      <button type="button" class="btn btn-primary btn-lg" data-apply-open>Start Your Application</button>
+      <p style="margin-top:16px;font-size:.85rem;color:var(--text-lt);">Unified Wire &amp; Cable, Inc. &nbsp;·&nbsp; DeKalb, IL 60115</p>
     </div>
   </div>
 </section>
@@ -154,5 +477,326 @@
 <script>window._uwcDepth=''; window._uwcPage='Careers';</script>
 <script src="assets/js/uwc.js"></script>
 <script src="assets/js/password.js"></script>
+<script>
+(function () {
+  document.querySelectorAll('.voices').forEach(function (root) {
+    var slides = root.querySelectorAll('.voice-slide');
+    var dots   = root.querySelectorAll('.voice-dot');
+    var n      = slides.length;
+    if (n < 2) return;
+    var idx    = 0;
+    var delay  = parseInt(root.getAttribute('data-voice-interval') || '6000', 10);
+    var timer  = null;
+    var stopped = false;
+
+    function show(i) {
+      idx = (i + n) % n;
+      slides.forEach(function (el, k) { el.classList.toggle('active', k === idx); });
+      dots.forEach(function (el, k) { el.classList.toggle('active', k === idx); });
+    }
+    function start() {
+      if (stopped || timer) return;
+      timer = setInterval(function () { show(idx + 1); }, delay);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+      stopped = true;
+    }
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        stop();
+        show(parseInt(dot.getAttribute('data-idx'), 10));
+      });
+    });
+
+    start();
+  });
+})();
+</script>
+
+<!-- Apply-Now Modal -->
+<div class="apply-overlay" id="apply-overlay" role="dialog" aria-modal="true" aria-labelledby="apply-title" hidden>
+  <div class="apply-modal">
+    <button type="button" class="apply-close" id="apply-close" aria-label="Close application form">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div class="apply-head">
+      <div class="apply-eyebrow">Join the Team</div>
+      <h2 class="apply-title" id="apply-title">Let&rsquo;s start a conversation.</h2>
+      <p class="apply-sub">Tell us a little about yourself and drop in a resume. No formal cover letter needed &mdash; just be yourself. We read every one and respond within a few business days.</p>
+    </div>
+
+    <form class="apply-form apply-body" id="apply-form" name="application" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" netlify>
+      <input type="hidden" name="form-name" value="application">
+      <p class="apply-bot"><label>Skip if you&rsquo;re human: <input name="bot-field"></label></p>
+
+      <div class="apply-error" id="apply-error" role="alert"></div>
+
+      <div class="apply-row">
+        <label class="apply-label" for="ap-name">Your name</label>
+        <input class="apply-input" type="text" id="ap-name" name="name" required autocomplete="name" placeholder="Alex Rivera">
+      </div>
+
+      <div class="apply-row two">
+        <div>
+          <label class="apply-label" for="ap-email">Email</label>
+          <input class="apply-input" type="email" id="ap-email" name="email" required autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div>
+          <label class="apply-label" for="ap-phone">Phone <span class="opt">(optional)</span></label>
+          <input class="apply-input" type="tel" id="ap-phone" name="phone" autocomplete="tel" placeholder="(815) 555&ndash;0123">
+        </div>
+      </div>
+
+      <div class="apply-row two">
+        <div>
+          <label class="apply-label" for="ap-role">What kind of role?</label>
+          <select class="apply-select" id="ap-role" name="role" required>
+            <option value="">Pick one&hellip;</option>
+            <option>Production / Extrusion</option>
+            <option>Quality / Lab</option>
+            <option>Engineering</option>
+            <option>Maintenance</option>
+            <option>Sales / Customer Service</option>
+            <option>Office / Admin</option>
+            <option>Not sure &mdash; open to hear ideas</option>
+          </select>
+        </div>
+        <div>
+          <label class="apply-label" for="ap-exp">Years in this kind of work</label>
+          <select class="apply-select" id="ap-exp" name="experience" required>
+            <option value="">Pick one&hellip;</option>
+            <option>New to it &mdash; eager to learn</option>
+            <option>1&ndash;3 years</option>
+            <option>4&ndash;9 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="apply-row">
+        <label class="apply-label" for="ap-story">A little about you <span class="opt">(the fun part)</span></label>
+        <textarea class="apply-textarea" id="ap-story" name="story" placeholder="What kind of work do you love? What are you good at? What are you hoping to find here? A few sentences is plenty."></textarea>
+      </div>
+
+      <div class="apply-row">
+        <label class="apply-label">Resume</label>
+        <label class="apply-drop" id="ap-drop" for="ap-resume">
+          <div class="apply-drop-icon" id="ap-drop-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div class="apply-drop-info" id="ap-drop-info" style="display:none;">
+            <div class="fname"></div>
+            <div class="fsize"></div>
+          </div>
+          <div class="apply-drop-text" id="ap-drop-text">
+            <div class="apply-drop-title">Drop a file here, or click to browse</div>
+            <div class="apply-drop-sub">PDF, DOC, or DOCX &mdash; up to 10 MB</div>
+          </div>
+          <button type="button" class="apply-drop-clear" id="ap-drop-clear" style="display:none;">Remove</button>
+          <input type="file" id="ap-resume" name="resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        </label>
+      </div>
+
+      <div class="apply-actions">
+        <button type="submit" class="apply-submit" id="ap-submit">
+          <span class="apply-submit-label">Send your application</span>
+          <span class="apply-spinner"></span>
+        </button>
+      </div>
+      <p class="apply-fineprint">By submitting, you&rsquo;re agreeing to let us hold onto your application for hiring purposes. We won&rsquo;t share it with anyone outside Unified.</p>
+    </form>
+
+    <div class="apply-success" id="apply-success">
+      <div class="apply-check">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 id="apply-success-name">Got it &mdash; thanks!</h3>
+      <p>Your application is on its way to our team. Someone from Unified will reach out within a few business days. Welcome to the start of the conversation.</p>
+      <button type="button" class="btn btn-outline" id="apply-success-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var overlay   = document.getElementById('apply-overlay');
+  if (!overlay) return;
+  var modal     = overlay.querySelector('.apply-modal');
+  var form      = document.getElementById('apply-form');
+  var success   = document.getElementById('apply-success');
+  var nameField = document.getElementById('ap-name');
+  var fileInput = document.getElementById('ap-resume');
+  var drop      = document.getElementById('ap-drop');
+  var dropText  = document.getElementById('ap-drop-text');
+  var dropInfo  = document.getElementById('ap-drop-info');
+  var dropIcon  = document.getElementById('ap-drop-icon');
+  var dropClear = document.getElementById('ap-drop-clear');
+  var submitBtn = document.getElementById('ap-submit');
+  var errBox    = document.getElementById('apply-error');
+  var successName = document.getElementById('apply-success-name');
+  var prevFocus = null;
+
+  var MAX_BYTES = 10 * 1024 * 1024;
+  var ALLOWED   = /\.(pdf|doc|docx)$/i;
+  var pickedFile = null;
+
+  function open()  {
+    prevFocus = document.activeElement;
+    overlay.hidden = false;
+    requestAnimationFrame(function () { overlay.classList.add('open'); });
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { nameField && nameField.focus(); }, 250);
+  }
+  function close() {
+    overlay.classList.remove('open');
+    setTimeout(function () {
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+      reset();
+      if (prevFocus && prevFocus.focus) prevFocus.focus();
+    }, 200);
+  }
+  function reset() {
+    form.reset();
+    form.classList.remove('hide');
+    success.classList.remove('show');
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+    errBox.classList.remove('show');
+    errBox.textContent = '';
+    clearFile();
+  }
+
+  document.querySelectorAll('[data-apply-open]').forEach(function (btn) {
+    btn.addEventListener('click', open);
+  });
+  document.getElementById('apply-close').addEventListener('click', close);
+  document.getElementById('apply-success-close').addEventListener('click', close);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !overlay.hidden) close();
+  });
+
+  // Drag and drop file handling
+  function setFile(file) {
+    if (!file) return clearFile();
+    if (!ALLOWED.test(file.name)) {
+      showError('Resume must be a PDF, DOC, or DOCX file.');
+      clearFile();
+      return;
+    }
+    if (file.size > MAX_BYTES) {
+      showError('Resume is over 10 MB. Try compressing it or exporting a smaller PDF.');
+      clearFile();
+      return;
+    }
+    pickedFile = file;
+    hideError();
+    drop.classList.add('has-file');
+    dropText.style.display = 'none';
+    dropInfo.style.display = 'block';
+    dropClear.style.display = 'inline-flex';
+    dropInfo.querySelector('.fname').textContent = file.name;
+    dropInfo.querySelector('.fsize').textContent = humanSize(file.size);
+  }
+  function clearFile() {
+    pickedFile = null;
+    fileInput.value = '';
+    drop.classList.remove('has-file');
+    dropText.style.display = '';
+    dropInfo.style.display = 'none';
+    dropClear.style.display = 'none';
+  }
+  function humanSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(0) + ' KB';
+    return (b / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+  function showError(msg) {
+    errBox.textContent = msg;
+    errBox.classList.add('show');
+    errBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function hideError() {
+    errBox.classList.remove('show');
+    errBox.textContent = '';
+  }
+
+  fileInput.addEventListener('change', function () {
+    setFile(fileInput.files && fileInput.files[0]);
+  });
+  dropClear.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    clearFile();
+  });
+  ['dragenter', 'dragover'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) {
+      e.preventDefault();
+      drop.classList.add('dragover');
+    });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) {
+      e.preventDefault();
+      if (ev === 'dragleave' && e.target !== drop) return;
+      drop.classList.remove('dragover');
+    });
+  });
+  drop.addEventListener('drop', function (e) {
+    e.preventDefault();
+    var files = e.dataTransfer && e.dataTransfer.files;
+    if (files && files[0]) {
+      try {
+        var dt = new DataTransfer();
+        dt.items.add(files[0]);
+        fileInput.files = dt.files;
+      } catch (_) { /* older browsers — input.files won't update, but submit still uses dropped file via FormData below */ }
+      setFile(files[0]);
+    }
+  });
+
+  // Submit via fetch to Netlify
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    hideError();
+
+    if (!pickedFile) {
+      showError('Please attach your resume so we have something to read.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+
+    var data = new FormData(form);
+    data.set('resume', pickedFile, pickedFile.name);
+
+    fetch('/', {
+      method: 'POST',
+      body: data
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('Submission failed (' + res.status + ').');
+      var first = (nameField.value || '').trim().split(/\s+/)[0];
+      if (first) successName.textContent = 'Got it, ' + first + ' — thanks!';
+      form.classList.add('hide');
+      success.classList.add('show');
+      modal.scrollTop = 0;
+    })
+    .catch(function (err) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      showError('Something went wrong sending your application. Please try again, or email careers@unifiedwire.com directly.');
+      console.error(err);
+    });
+  });
+})();
+</script>
 </body>
 </html>
