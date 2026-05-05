@@ -10,15 +10,32 @@
   <style>
     /* Hero */
     .page-hero {
-      background:
-        radial-gradient(ellipse at 18% 80%, rgba(3,98,188,.26) 0%, transparent 55%),
-        radial-gradient(ellipse at 82% 18%, rgba(227,100,23,.10) 0%, transparent 45%),
-        var(--navy);
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
       color: #fff;
       padding: 84px 0 76px;
     }
+    .page-hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: .28;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse at 18% 80%, rgba(3,98,188,.32) 0%, transparent 55%),
+        radial-gradient(ellipse at 82% 18%, rgba(227,100,23,.14) 0%, transparent 45%),
+        linear-gradient(to bottom, rgba(10,22,40,.55) 0%, rgba(10,22,40,.35) 55%, rgba(10,22,40,.85) 100%);
+      pointer-events: none;
+    }
+    .page-hero > .container { position: relative; z-index: 2; }
     .page-hero h1 { color:#fff; font-size:clamp(2rem,4vw,3rem); margin-top:12px; }
-    .page-hero p  { color:rgba(255,255,255,.62); max-width:640px; margin-top:14px; font-size:1.08rem; line-height:1.55; }
+    .page-hero p  { color:rgba(255,255,255,.72); max-width:640px; margin-top:14px; font-size:1.08rem; line-height:1.55; }
 
     /* Catalog stats band */
     .catalog-band {
@@ -190,6 +207,9 @@
 <header id="site-nav"></header>
 
 <section class="page-hero">
+  <video class="page-hero-video" autoplay loop muted playsinline preload="auto">
+    <source src="https://player.vimeo.com/progressive_redirect/playback/1170752441/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=711c6d73e860131e883033dd5aa582410461a11055b0c351e0a6cc1ef6895d62" type="video/mp4">
+  </video>
   <div class="container">
     <span class="badge badge-blue">Spec Sheet Library</span>
     <h1>Detailed product specifications</h1>
