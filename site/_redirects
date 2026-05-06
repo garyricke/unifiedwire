@@ -1,0 +1,18 @@
+# Serve home.html at domain root
+/                               /home.html                          200
+
+# Spec sheet detail pages — pretty URLs
+# QR codes printed on the spec sheets point to unifiedwire.com/spec-sheet-{slug}
+/spec-sheet-1007                /spec-sheet-1007.html               200
+/spec-sheet-1015                /spec-sheet-1015.html               200
+/spec-sheet-gpt                 /spec-sheet-gpt.html                200
+/spec-sheet-gptm                /spec-sheet-gptm.html               200
+/spec-sheet-gxl                 /spec-sheet-gxl.html                200
+/spec-sheet-mv-15kv-al          /spec-sheet-mv-15kv-al.html         200
+/spec-sheet-mv-15kv-cu          /spec-sheet-mv-15kv-cu.html         200
+/spec-sheet-mv-25kv-al          /spec-sheet-mv-25kv-al.html         200
+/spec-sheet-mv-35kv-al          /spec-sheet-mv-35kv-al.html         200
+/spec-sheet-sjtoow              /spec-sheet-sjtoow.html             200
+/spec-sheet-tfn-tffn            /spec-sheet-tfn-tffn.html           200
+/spec-sheet-thhn-mtw-thwn-2     /spec-sheet-thhn-mtw-thwn-2.html    200
+/spec-sheet-xhhw-sis            /spec-sheet-xhhw-sis.html           200
