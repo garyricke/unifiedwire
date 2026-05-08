@@ -52,3 +52,9 @@ site/markets-backup-*/
 *.svg
 # Allowlist: cert/standards mark SVGs referenced inline by spec sheets
 !site/assets/img/marks/*.svg
+
+# Allowlist: print-suite landing imagery deployed alongside its HTML.
+# (PDFs for this suite live on Cloudinary; only the .html/.css/imagery is here.)
+!site/0-spec-sheets-for-print/**/*.png
+!site/0-spec-sheets-for-print/**/*.svg
+!site/assets/banners-22apr2026/unified-logo-redraw-with-*-text.png

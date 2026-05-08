@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UWC Spec Sheet — 01 Corporate Capabilities</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* Sheet 01 — Corporate Capabilities
+     Front: 3 stacked horizontal strips of facility photography, frosted-glass
+     title overlay near top, 3 capability pillars overlaid on the bottom strip.
+     Back: full UWC line-card style product listing. */
+
+  /* ── FRONT ─────────────────────────────────────── */
+  .corp-front .hero-wrap {
+    position: relative;
+    width: 8.5in;
+    height: auto;
+    flex: 1 1 auto;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .corp-strip {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  .corp-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+    display: block;
+  }
+  /* Subtle separators between strips */
+  .corp-strip + .corp-strip { border-top: 1.5pt solid #fff; }
+
+  /* Bottom strip — no darkening overlay */
+
+  /* Pillar tiles overlaid on the bottom strip */
+  .corp-pillars {
+    position: absolute;
+    bottom: 14pt;
+    left: 14pt;
+    right: 14pt;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10pt;
+    z-index: 3;
+  }
+  .corp-pillar {
+    position: relative;
+    background: rgba(255,255,255,.40);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1pt solid rgba(255,255,255,.55);
+    border-left: 3pt solid var(--blue);
+    border-radius: 4pt;
+    padding: 10pt 12pt 11pt;
+    box-shadow: 0 4pt 16pt rgba(0,0,0,.18);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* Cloned blurred bottom-strip image behind each pillar — matches the
+     backdrop-filter look in printed PDFs. Each pillar's offset within the
+     strip is set inline so the visible window aligns with reality. */
+  .corp-pillar > .pillar-blur-bg {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    object-fit: cover;
+    filter: blur(14px);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .corp-pillar.corp-pillar--orange { border-left-color: var(--orange); }
+  .corp-pillar.corp-pillar--navy   { border-left-color: var(--navy); }
+  .corp-pillar-mark {
+    height: 22pt;
+    margin-bottom: 5pt;
+    display: flex;
+    align-items: center;
+  }
+  .corp-pillar-mark img,
+  .corp-pillar-mark svg { height: 22pt; width: auto; }
+  .corp-pillar-mark.corp-pillar-mark--flag img { width: 36pt; height: 22pt; object-fit: contain; }
+  .corp-pillar-eyebrow {
+    font-size: 6pt;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1pt;
+  }
+  .corp-pillar.corp-pillar--orange .corp-pillar-eyebrow { color: var(--orange); }
+  .corp-pillar.corp-pillar--navy   .corp-pillar-eyebrow { color: var(--navy); }
+  .corp-pillar-headline {
+    font-size: 9.5pt;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -.005em;
+  }
+  .corp-pillar-body {
+    font-size: 7pt;
+    line-height: 1.35;
+    color: #fff;
+    margin-top: 3pt;
+  }
+
+  /* Title glass clears the absolute front-header on the corporate page */
+  .corp-front .title-glass {
+    top: 64pt;
+    left: 18pt;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* Cloned-and-blurred top-strip image fills the panel — the visible portion
+     matches what's actually behind it, simulating backdrop-filter for print.
+     Top strip is 1/3 of hero-wrap (746pt) = 248.67pt tall. */
+  .corp-front .title-glass .title-glass-blur-bg {
+    top: -64pt;
+    left: -18pt;
+    width: 8.5in;
+    height: 248.67pt;
+  }
+  /* Front-header overlays the top strip on corp; clone is sized to that strip */
+  .corp-front .front-header .front-header-blur-bg {
+    height: 248.67pt;
+  }
+
+  /* ── BACK ──────────────────────────────────────── */
+  .corp-back-content {
+    padding: 10pt 22pt 90pt;
+    display: flex;
+    flex-direction: column;
+    gap: 10pt;
+  }
+  .corp-back-headline {
+    text-align: center;
+  }
+  .corp-back-headline .label {
+    font-size: 7.5pt;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 2pt;
+  }
+  .corp-back-headline h2 {
+    font-size: 16pt;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 4pt;
+    letter-spacing: -.005em;
+  }
+  .corp-back-headline .contact {
+    font-size: 8pt;
+    color: var(--text-lt);
+  }
+  .corp-back-headline .contact strong { color: var(--text); }
+
+  /* Markets / Capabilities band */
+  .corp-meta-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1pt solid var(--border);
+    border-radius: 3pt;
+    overflow: hidden;
+  }
+  .corp-meta-cell {
+    padding: 7pt 12pt;
+  }
+  .corp-meta-cell + .corp-meta-cell { border-left: 1pt solid var(--border); }
+  .corp-meta-label {
+    font-size: 6.5pt;
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 2pt;
+  }
+  .corp-meta-value {
+    font-size: 8pt;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* Product category grid */
+  .corp-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8pt;
+  }
+  .corp-cat {
+    background: #fff;
+    border: 1pt solid var(--border);
+    border-top: 3pt solid var(--blue);
+    border-radius: 3pt;
+    padding: 8pt 10pt 9pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .corp-cat--orange { border-top-color: var(--orange); }
+  .corp-cat--navy   { border-top-color: var(--navy); }
+  .corp-cat-title {
+    font-size: 8.5pt;
+    font-weight: 800;
+    letter-spacing: .04em;
+    color: var(--text);
+    margin-bottom: 4pt;
+    line-height: 1.15;
+  }
+  .corp-cat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .corp-cat-list li {
+    font-size: 6.8pt;
+    line-height: 1.4;
+    color: var(--text);
+    padding: 1.5pt 0;
+    border-bottom: .5pt dotted var(--border);
+  }
+  .corp-cat-list li:last-child { border-bottom: none; }
+  .corp-cat-list .item-name {
+    font-weight: 700;
+  }
+  .corp-cat-list .item-detail {
+    color: var(--text-lt);
+    font-size: 6.4pt;
+    display: block;
+  }
+
+  /* ── Process flow band ─────────────────────────── */
+  .process-band-wrap {
+    margin-top: 6pt;
+  }
+  .process-band-title {
+    font-size: 7.5pt;
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-bottom: 6pt;
+    text-align: center;
+  }
+  .process-band {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* 5 steps + 4 connectors */
+    align-items: center;
+    padding: 8pt 0;
+    background: var(--gray-lt);
+    border-radius: 4pt;
+  }
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 4pt;
+    grid-column: span 1;
+  }
+  .process-icon {
+    width: 28pt;
+    height: 28pt;
+    color: var(--blue);
+    background: #fff;
+    border: 1.5pt solid var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4pt;
+  }
+  .process-icon svg { width: 16pt; height: 16pt; display: block; }
+  .process-num {
+    font-size: 6pt;
+    font-weight: 800;
+    color: var(--orange);
+    letter-spacing: .15em;
+    margin-bottom: 1pt;
+  }
+  .process-label {
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.15;
+    max-width: 70pt;
+  }
+  .process-connector {
+    height: 1.5pt;
+    background: var(--blue);
+    opacity: .4;
+    margin-top: -10pt; /* align with icon center */
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 1 — FRONT
+════════════════════════════════════════════════════ -->
+<div class="page page-front corp-front hero-overlay">
+
+  <div class="front-header">
+    <img class="front-header-blur-bg" src="corp-cap/corp-capabil-13-openai-clean.png" alt="" aria-hidden="true">
+    <img class="uwc-logo" src="../assets/banners-22apr2026/unified-logo-redraw-with-white-text.png" alt="UWC">
+    <div class="cat-label">
+      <span class="cat-name">Corporate Capabilities</span>
+    </div>
+  </div>
+
+  <div class="hero-wrap">
+
+    <div class="corp-strip">
+      <img src="corp-cap/corp-capabil-13-openai-clean.png" alt="UWC manufacturing floor — extrusion and jacketing line">
+    </div>
+    <div class="corp-strip">
+      <img src="corp-cap/corp-capabil-8-openai-clean.png" alt="UWC manufacturing floor — copper drawing and stranding">
+    </div>
+    <div class="corp-strip corp-strip-bottom">
+      <img src="corp-cap/corp-capabil-15-openai-clean.png" alt="UWC manufacturing floor — finished spools and shipping">
+
+      <!-- Capability pillars overlaid on the bottom strip -->
+      <div class="corp-pillars">
+
+        <div class="corp-pillar">
+          <img class="pillar-blur-bg" src="corp-cap/corp-capabil-15-openai-clean.png" alt="" aria-hidden="true">
+          <div class="corp-pillar-mark corp-pillar-mark--flag">
+            <img src="images/marks/usa-flag.svg" alt="USA flag">
+          </div>
+          <div class="corp-pillar-eyebrow">Made in USA</div>
+          <div class="corp-pillar-headline">DeKalb, Illinois Manufacturing</div>
+          <div class="corp-pillar-body">100% domestic production with predictable lead times.</div>
+        </div>
+
+        <div class="corp-pillar corp-pillar--orange">
+          <img class="pillar-blur-bg" src="corp-cap/corp-capabil-15-openai-clean.png" alt="" aria-hidden="true">
+          <div class="corp-pillar-mark">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="32" cy="32" r="22" fill="none" stroke="#E36417" stroke-width="3.5"/>
+              <circle cx="32" cy="10" r="5" fill="#E36417"/>
+              <circle cx="51" cy="43" r="5" fill="#E36417"/>
+              <circle cx="13" cy="43" r="5" fill="#E36417"/>
+              <line x1="32" y1="15" x2="32" y2="32" stroke="#E36417" stroke-width="2"/>
+              <line x1="32" y1="32" x2="48" y2="42" stroke="#E36417" stroke-width="2"/>
+              <line x1="32" y1="32" x2="16" y2="42" stroke="#E36417" stroke-width="2"/>
+              <circle cx="32" cy="32" r="3" fill="#fff" stroke="#E36417" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="corp-pillar-eyebrow">Vertically Integrated</div>
+          <div class="corp-pillar-headline">End-to-End Under One Roof</div>
+          <div class="corp-pillar-body">Drawing through extrusion, jacketing, and finishing &mdash; tighter quality control at every stage.</div>
+        </div>
+
+        <div class="corp-pillar corp-pillar--navy">
+          <img class="pillar-blur-bg" src="corp-cap/corp-capabil-15-openai-clean.png" alt="" aria-hidden="true">
+          <div class="corp-pillar-mark">
+            <img src="images/marks/cert-ISO_9001-2015.svg" alt="ISO 9001:2015 Certified">
+          </div>
+          <div class="corp-pillar-eyebrow">Quality Assured</div>
+          <div class="corp-pillar-headline">ISO 9001:2015 Certified</div>
+          <div class="corp-pillar-body">Independently audited quality management system &mdash; every spool meets repeatable standards.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Frosted-glass title overlay near the top -->
+    <div class="title-glass">
+      <img class="title-glass-blur-bg" src="corp-cap/corp-capabil-13-openai-clean.png" alt="" aria-hidden="true">
+      <div class="sheet-title">Corporate<br>Capabilities</div>
+      <div class="sheet-subtitle">American-Made &middot; Fully Integrated &middot; Quality Assured</div>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar">
+    <span class="tagline">From Cathode to Wire &amp; Cable</span>
+    <img class="bottom-logo" src="../assets/banners-22apr2026/unified-logo-redraw-with-white-text.png" alt="UWC">
+  </div>
+
+</div><!-- /page-front -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 2 — BACK · FULL LINE CARD
+════════════════════════════════════════════════════ -->
+<div class="page page-back">
+
+  <div class="back-header">
+    <div class="back-header-left">
+      <img class="back-logo" src="../assets/banners-22apr2026/unified-logo-redraw-with-black-text.png" alt="UWC">
+      <span class="back-title">Electrical Wire &amp; Cable Manufacturing &middot; Full Line Card</span>
+    </div>
+  </div>
+
+  <div class="corp-back-content">
+
+    <div class="corp-back-headline">
+      <div class="label">2026 Product Line Card</div>
+      <h2>Standard &amp; Custom Constructions, Multiple UL Listings, Broad&nbsp;Gauge&nbsp;Range</h2>
+    </div>
+
+    <div class="corp-meta-band">
+      <div class="corp-meta-cell">
+        <div class="corp-meta-label">Markets Served</div>
+        <div class="corp-meta-value">Automotive &middot; Industrial &middot; Building Wire &middot; Marine &middot; Elevator &middot; OEM &middot; Custom Applications</div>
+      </div>
+      <div class="corp-meta-cell">
+        <div class="corp-meta-label">Capabilities</div>
+        <div class="corp-meta-value">Standard &amp; Custom Constructions &middot; Multiple UL Listings &middot; Broad Gauge Range</div>
+      </div>
+    </div>
+
+    <div class="corp-cat-grid">
+
+      <div class="corp-cat">
+        <div class="corp-cat-title">Automotive &amp; Marine Wire</div>
+        <ul class="corp-cat-list">
+          <li><span class="item-name">XLPE Automotive (SAE J1128)</span><span class="item-detail">GXL, SXL, TXL &middot; 8&ndash;18 AWG</span></li>
+          <li><span class="item-name">GPT Automotive Primary</span><span class="item-detail">SAE J1128 GPT &middot; 8&ndash;20 AWG</span></li>
+          <li><span class="item-name">GPTM Marine Primary</span><span class="item-detail">SAE J378 / J1128 GPTM &middot; 8&ndash;20 AWG</span></li>
+          <li><span class="item-name">GPT Ripcord</span><span class="item-detail">SAE J1128 GPT &middot; 8/2&ndash;18/2</span></li>
+          <li><span class="item-name">SGT, STT, SGX Battery Cables</span><span class="item-detail">4/0&ndash;6 AWG</span></li>
+          <li><span class="item-name">Brake Cable</span><span class="item-detail">SAE J1128 GPT &middot; 10/2&ndash;18/2 &middot; 2- &amp; 3-cond</span></li>
+          <li><span class="item-name">Trailer Cable</span><span class="item-detail">SAE J1128 GPT &middot; 8&ndash;18 AWG &middot; 3-cond plus</span></li>
+        </ul>
+      </div>
+
+      <div class="corp-cat corp-cat--orange">
+        <div class="corp-cat-title">Building &amp; Lighting Wire</div>
+        <ul class="corp-cat-list">
+          <li><span class="item-name">THHN</span><span class="item-detail">14 AWG &ndash; 750 MCM</span></li>
+          <li><span class="item-name">TFN / TFFN</span><span class="item-detail">UL 1316 / UL 1452 &middot; 16&ndash;18 AWG</span></li>
+        </ul>
+      </div>
+
+      <div class="corp-cat corp-cat--navy">
+        <div class="corp-cat-title">Medium Voltage (5kV &ndash; 69kV)</div>
+        <ul class="corp-cat-list">
+          <li><span class="item-name">25kV URD AL or CU</span><span class="item-detail">100% TR-XLPE &middot; Full Neutral</span></li>
+          <li><span class="item-name">15kV URD AL or CU</span><span class="item-detail">133% TR-XLPE &middot; Full Neutral</span></li>
+          <li><span class="item-name">1/0 15kV AL/EPR</span><span class="item-detail">Full Neutral &middot; LLDPE jacket</span></li>
+          <li><span class="item-name">1/0 25kV AL/EPR</span><span class="item-detail">Full Neutral &middot; LLDPE jacket</span></li>
+          <li><span class="item-name">1/0 25kV AL TR-XLPE</span><span class="item-detail">LLDPE jacket</span></li>
+          <li><span class="item-name">1/0 15kV AL TR-XLPE</span><span class="item-detail">LLDPE jacket</span></li>
+          <li><span class="item-name">4/0 25kV AL TR-XLPE</span><span class="item-detail">LLDPE jacket</span></li>
+          <li><span class="item-name">More MV products to come</span><span class="item-detail">Contact sales</span></li>
+        </ul>
+      </div>
+
+      <div class="corp-cat">
+        <div class="corp-cat-title">XLPE &mdash; UL</div>
+        <ul class="corp-cat-list">
+          <li><span class="item-name">UL 3173 / SIS</span><span class="item-detail">14 &ndash; 10 AWG</span></li>
+          <li><span class="item-name">UL 3173</span><span class="item-detail">16 &ndash; 18 AWG</span></li>
+          <li><span class="item-name">UL 3321</span><span class="item-detail">6 &ndash; 18 AWG</span></li>
+          <li><span class="item-name">UL 3195</span><span class="item-detail">8 AWG</span></li>
+          <li><span class="item-name">UL 3196</span><span class="item-detail">6 &ndash; 2 AWG</span></li>
+          <li><span class="item-name">XHHW / XHHW-2 VW-1</span><span class="item-detail">UL Listed &middot; 4 &ndash; 14 AWG</span></li>
+          <li><span class="item-detail">All XLPE-UL above with or without VW-1</span></li>
+        </ul>
+      </div>
+
+      <div class="corp-cat corp-cat--orange">
+        <div class="corp-cat-title">Hook-Up Wire &mdash; UL Styles</div>
+        <ul class="corp-cat-list">
+          <li><span class="item-name">UL 1028</span><span class="item-detail">10 &ndash; 22 AWG</span></li>
+          <li><span class="item-name">UL 1007 / 1569</span><span class="item-detail">16 &ndash; 26 AWG</span></li>
+          <li><span class="item-name">UL 1569</span><span class="item-detail">12 AWG &amp; 14 AWG</span></li>
+          <li><span class="item-name">UL 1061</span><span class="item-detail">16 &ndash; 24 AWG</span></li>
+          <li><span class="item-name">MTW (Machine Tool Wire)</span><span class="item-detail">Multi-rated UL 1015 / 1230 &middot; 10 &ndash; 20 AWG</span></li>
+        </ul>
+      </div>
+
+      <div class="corp-cat corp-cat--navy">
+        <div class="corp-cat-title">Cords &amp; Specialty Cable</div>
+        <ul class="corp-cat-list">
+          <li><span class="item-name">Flexible Cord</span><span class="item-detail">SPT-1, SPT-2 &middot; 16 &ndash; 18 AWG</span></li>
+          <li><span class="item-name">Portable Cord</span><span class="item-detail">300V &amp; 600V &middot; SJT, SJTOOW, STOW, STOOW, SVT &middot; up to 1.25" OD</span></li>
+          <li><span class="item-name">Mil-Spec Wire</span><span class="item-detail">Type B &amp; Type C &middot; 14 &ndash; 22 AWG</span></li>
+          <li><span class="item-name">Hoistway / Elevator Cable</span><span class="item-detail">Custom constructions available</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Vertically Integrated Manufacturing process band -->
+    <div class="process-band-wrap">
+      <div class="process-band-title">Vertically Integrated Manufacturing &middot; 5 Stages Under One Roof</div>
+      <div class="process-band">
+
+        <div class="process-step">
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="6" cy="12" rx="2.5" ry="4" fill="#0362BC"/>
+              <rect x="6" y="8" width="13" height="8" fill="#0362BC"/>
+              <ellipse cx="19" cy="12" rx="2.5" ry="4" fill="#024a90"/>
+            </svg>
+          </div>
+          <div class="process-num">01</div>
+          <div class="process-label">Copper Rod</div>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-step">
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 8 L11 11 L11 13 L2 16 Z" fill="#0362BC"/>
+              <path d="M22 8 L13 11 L13 13 L22 16 Z" fill="#0362BC"/>
+              <line x1="11" y1="12" x2="13" y2="12" stroke="#E36417" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="process-num">02</div>
+          <div class="process-label">Drawing</div>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-step">
+          <div class="process-icon">
+            <!-- Bunching: three intertwined strands -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 12 C7 6, 11 18, 15 12 C18 7, 21 17, 21 12" stroke="#0362BC" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M3 12 C7 18, 11 6, 15 12 C18 17, 21 7, 21 12" stroke="#E36417" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M3 12 C7 12, 11 12, 15 12 C18 12, 21 12, 21 12" stroke="#024a90" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".55"/>
+            </svg>
+          </div>
+          <div class="process-num">03</div>
+          <div class="process-label">Bunching</div>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-step">
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="9" width="11" height="6" rx="1" fill="#0362BC"/>
+              <polygon points="14,9 19,9 21,12 19,15 14,15" fill="#024a90"/>
+              <line x1="2" y1="12" x2="22" y2="12" stroke="#E36417" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="process-num">04</div>
+          <div class="process-label">Extrusion</div>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-step">
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="4" width="2" height="16" fill="#0362BC"/>
+              <rect x="19" y="4" width="2" height="16" fill="#0362BC"/>
+              <ellipse cx="12" cy="12" rx="7" ry="5" fill="#E36417"/>
+              <ellipse cx="12" cy="12" rx="3" ry="2.5" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="process-num">05</div>
+          <div class="process-label">Spooling &amp; QC</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cert-row">
+    <div class="cert-made-usa">
+      <img class="flag-img" src="images/marks/usa-flag.svg" alt="USA flag">
+      <div>MADE IN USA</div>
+    </div>
+    <img class="cert-mark" src="images/marks/cert-ul.svg" alt="UL Listed">
+    <img class="cert-mark" src="images/marks/cert-ISO_9001-2015.svg" alt="ISO 9001:2015">
+    <img class="cert-mark" src="images/marks/cert-compliant-reach.svg" alt="REACH Compliant">
+    <img class="cert-mark" src="images/marks/cert-compliant-rc-RoHS.svg" alt="RC RoHS Compliant">
+  </div>
+
+  <div class="back-footer">
+    <div class="back-footer-left">
+      <img class="footer-logo" src="../assets/banners-22apr2026/unified-logo-redraw-with-black-text.png" alt="UWC">
+      <div class="footer-info">
+        <span>www.unifiedwire.com</span>
+        <span>Sales: 815-748-4876</span>
+        <span>Email: sales@unifiedwire.com</span>
+      </div>
+    </div>
+    <div class="footer-disclaimer">All specified parameters are nominal and subject to variation</div>
+  </div>
+
+</div><!-- /page-back -->
+
+</body>
+</html>

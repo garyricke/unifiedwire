@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UWC Spec Sheet Suite — Print &amp; Digital</title>
+<style>
+  /* ── Brand tokens (mirrored from shared.css for self-contained landing) ── */
+  :root {
+    --blue:      #0362BC;
+    --blue-dk:   #024a90;
+    --blue-tint: #e8f1fa;
+    --orange:    #E36417;
+    --orange-dk: #b84f10;
+    --orange-tint: #fdf0e6;
+    --navy:      #0A1628;
+    --navy-lt:   #0d1e38;
+    --gray:      #B9BDBD;
+    --gray-lt:   #f0f2f4;
+    --gray-vlt:  #f7f9fb;
+    --border:    #dce3ed;
+    --text:      #1a2535;
+    --text-lt:   #4a5568;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--gray-lt);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.45;
+  }
+
+  /* ── Page shell ──────────────────────────────── */
+  .landing-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 28px 64px;
+  }
+
+  /* ── Hero header ─────────────────────────────── */
+  .landing-header {
+    background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 40px 44px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 32px rgba(3,98,188,.22);
+  }
+  .landing-header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -.01em;
+    margin-bottom: 8px;
+  }
+  .landing-header h1 .accent { color: var(--orange); }
+  .landing-header p {
+    font-size: 15px;
+    color: rgba(255,255,255,.78);
+    max-width: 720px;
+  }
+  .landing-header .header-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: right;
+    font-size: 11pt;
+    letter-spacing: .04em;
+  }
+  .landing-header .header-meta .label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+  }
+  .landing-header .header-meta .value {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  /* ── Section wrapper ─────────────────────────── */
+  section.panel {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(10,22,40,.06);
+  }
+  section.panel h2 {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  section.panel h2 + .section-headline {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 18px;
+    letter-spacing: -.005em;
+  }
+
+  /* ── Print Requirements ─────────────────────── */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .spec-card {
+    background: var(--gray-vlt);
+    border-left: 3px solid var(--blue);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .spec-card.spec-orange { border-left-color: var(--orange); }
+  .spec-card.spec-navy   { border-left-color: var(--navy); }
+
+  .spec-card .spec-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-bottom: 4px;
+  }
+  .spec-card .spec-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .spec-card .spec-detail {
+    font-size: 12.5px;
+    color: var(--text-lt);
+    line-height: 1.4;
+  }
+
+  .specs-totals {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    text-align: center;
+  }
+  .specs-totals .total-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .specs-totals .total-num.placeholder {
+    color: #bbb;
+    font-style: italic;
+    font-size: 22px;
+  }
+  .specs-totals .total-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+  }
+
+  /* ── How-to-PDF ─────────────────────────────── */
+  .howto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    counter-reset: step;
+  }
+  .howto-step {
+    counter-increment: step;
+    padding: 16px 18px 18px;
+    background: var(--blue-tint);
+    border-radius: 6px;
+    position: relative;
+  }
+  .howto-step::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--blue);
+    opacity: .35;
+    letter-spacing: -.02em;
+    line-height: 1;
+  }
+  .howto-step strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -.005em;
+  }
+  .howto-step span {
+    font-size: 12.5px;
+    color: var(--text-lt);
+    line-height: 1.45;
+  }
+  .howto-step kbd {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  /* ── Spec sheet thumbnail grid ─────────────── */
+  .sheets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
+  }
+  .sheet-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(10,22,40,.08);
+    transition: transform .18s ease, box-shadow .18s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .sheet-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(10,22,40,.16);
+  }
+
+  .sheet-thumb-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .sheet-thumb {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: var(--gray-lt);
+    position: relative;
+  }
+  .sheet-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .sheet-num-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .15em;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  .sheet-card-meta {
+    padding: 14px 16px 14px;
+    border-top: 3px solid var(--blue);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .sheet-card.theme-orange .sheet-card-meta { border-top-color: var(--orange); }
+  .sheet-card.theme-navy .sheet-card-meta   { border-top-color: var(--navy); }
+
+  .sheet-card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -.005em;
+  }
+  .sheet-card-products {
+    font-size: 11.5px;
+    color: var(--text-lt);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .sheet-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .sheet-card-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .action-view {
+    background: var(--gray-vlt);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .action-view:hover {
+    background: var(--blue-tint);
+    color: var(--blue-dk);
+  }
+  .action-pdf {
+    background: var(--orange);
+    color: #fff;
+  }
+  .action-pdf:hover {
+    background: var(--orange-dk);
+  }
+  .action-icon {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  /* ── QR Target Pages ────────────────────────── */
+  .qr-targets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .qr-target {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--blue);
+    border-radius: 6px;
+    padding: 14px 14px 12px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
+    align-items: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .qr-target:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(10,22,40,.10);
+  }
+  .qr-target.qr-target--copper { border-top-color: #b07a4a; }
+  .qr-target.qr-target--orange { border-top-color: var(--orange); }
+  .qr-target-img {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: #fff;
+    object-fit: contain;
+  }
+  .qr-target-meta {
+    min-width: 0;
+  }
+  .qr-target-name {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -.005em;
+    margin-bottom: 3px;
+  }
+  .qr-target-tag {
+    font-size: 11px;
+    color: var(--text-lt);
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .qr-target-links {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .qr-target-links a {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+    transition: background-color .15s ease;
+  }
+  .qr-target-link-page {
+    background: var(--blue-tint);
+    color: var(--blue-dk);
+  }
+  .qr-target-link-page:hover { background: var(--blue); color: #fff; }
+  .qr-target-link-url {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+    color: var(--text-lt);
+    background: var(--gray-vlt);
+    border: 1px solid var(--border);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .qr-target-link-url:hover { background: #fff; color: var(--blue-dk); }
+
+  /* ── Footer ─────────────────────────────────── */
+  .landing-footer {
+    text-align: center;
+    color: var(--text-lt);
+    font-size: 12px;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Responsive ─────────────────────────────── */
+  @media (max-width: 720px) {
+    .landing-header {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    .landing-header .header-meta { text-align: left; }
+    .specs-totals { grid-template-columns: 1fr; }
+  }
+
+  /* ── Password Gate (self-contained, mirrors site/assets/css/uwc.css) ── */
+  #uwc-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px 16px;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(3,98,188,.22) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(227,100,23,.10) 0%, transparent 55%),
+      var(--navy);
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  }
+  #uwc-gate.hidden { display: none; }
+  .gate-card {
+    width: 100%; max-width: 420px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 24px 80px rgba(0,0,0,.45);
+  }
+  .gate-logo { display: flex; align-items: center; justify-content: center; margin-bottom: 32px; }
+  .gate-logo img { height: 52px; width: auto; mix-blend-mode: screen; }
+  .gate-divider { border: none; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 28px; }
+  .gate-eyebrow {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.4); text-align: center; margin-bottom: 8px;
+  }
+  .gate-heading {
+    font-size: 1.25rem; font-weight: 800; text-align: center;
+    color: #fff; margin-bottom: 6px; letter-spacing: -.02em;
+  }
+  .gate-sub {
+    font-size: .85rem; color: rgba(255,255,255,.45);
+    text-align: center; margin-bottom: 32px; line-height: 1.5;
+  }
+  .gate-label {
+    display: block; font-size: .75rem; font-weight: 600;
+    color: rgba(255,255,255,.5); margin-bottom: 6px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .gate-input {
+    width: 100%; padding: 13px 16px;
+    background: rgba(255,255,255,.07);
+    border: 1.5px solid rgba(255,255,255,.12);
+    border-radius: 8px; color: #fff;
+    font-size: .95rem; outline: none;
+    transition: border-color .2s, background .2s;
+    margin-bottom: 4px;
+  }
+  .gate-input::placeholder { color: rgba(255,255,255,.25); }
+  .gate-input:focus { border-color: var(--blue); background: rgba(3,98,188,.08); }
+  .gate-input.error { border-color: #ef4444; animation: gate-shake .35s ease; }
+  .gate-error {
+    font-size: .8rem; color: #f87171; margin-bottom: 12px;
+    display: none; font-weight: 600;
+  }
+  .gate-error.visible { display: block; }
+  .gate-btn {
+    width: 100%; padding: 14px;
+    background: var(--blue); border: none; border-radius: 8px;
+    color: #fff; font-size: .95rem; font-weight: 700;
+    cursor: pointer; transition: background .2s, transform .1s;
+    margin-top: 8px;
+  }
+  .gate-btn:hover { background: var(--blue-dk); }
+  .gate-btn:active { transform: scale(.98); }
+  .gate-footer {
+    margin-top: 28px; text-align: center;
+    font-size: .75rem; color: rgba(255,255,255,.2);
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    letter-spacing: .04em;
+  }
+  @keyframes gate-shake {
+    0%,100% { transform: translateX(0); }
+    20%      { transform: translateX(-6px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(4px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Password Gate (uwc_auth sessionStorage key — shared with rest of site) ── -->
+<div id="uwc-gate">
+  <div class="gate-card">
+    <div class="gate-logo">
+      <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/unified-logo-current" alt="Unified Wire &amp; Cable">
+    </div>
+    <hr class="gate-divider">
+    <div class="gate-eyebrow">UWC Spec Sheet Suite</div>
+    <div class="gate-heading">Preview Access</div>
+    <p class="gate-sub">This page is currently in development. Enter your access password to continue.</p>
+    <form id="gate-form" autocomplete="off">
+      <label class="gate-label" for="gate-input">Password</label>
+      <input type="password" id="gate-input" class="gate-input" placeholder="Enter password" autocomplete="current-password">
+      <div class="gate-error" id="gate-error">Incorrect password. Please try again.</div>
+      <button type="submit" class="gate-btn">Enter</button>
+    </form>
+    <div class="gate-footer">Unified Wire &amp; Cable &nbsp;·&nbsp; Internal Preview</div>
+  </div>
+</div>
+
+<div class="landing-wrap">
+
+  <!-- ── Header ─────────────────────────────── -->
+  <header class="landing-header">
+    <div>
+      <h1>UWC Spec Sheet <span class="accent">Suite</span></h1>
+      <p>Eight-sheet print &amp; digital reference suite for trade shows, sales, and customer accounts. Click any sheet to open the full version, then print to PDF for distribution or hand to your printer.</p>
+    </div>
+    <div class="header-meta">
+      <div>
+        <div class="label">Sheets</div>
+        <div class="value">8</div>
+      </div>
+      <div>
+        <div class="label">Format</div>
+        <div class="value">8.5″ × 11″</div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ── Print Requirements ─────────────────── -->
+  <section class="panel">
+    <h2>Print Requirements</h2>
+    <div class="section-headline">Specifications for the print run</div>
+
+    <div class="specs-grid">
+
+      <div class="spec-card">
+        <div class="spec-label">Paper Stock</div>
+        <div class="spec-value">100 lb Gloss Cover</div>
+        <div class="spec-detail">Heavyweight cardstock — gloss preferred for color saturation; matte acceptable. 80 lb cover is the lightest acceptable.</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-label">Trim Size</div>
+        <div class="spec-value">8.5″ × 11″ Letter</div>
+        <div class="spec-detail">US Letter, portrait orientation. Single sheet, double-sided (front + back).</div>
+      </div>
+
+      <div class="spec-card spec-orange">
+        <div class="spec-label">Color &amp; Sides</div>
+        <div class="spec-value">4/4 Full Color</div>
+        <div class="spec-detail">CMYK process, full color both sides. No spot colors required.</div>
+      </div>
+
+      <div class="spec-card spec-orange">
+        <div class="spec-label">Bleed</div>
+        <div class="spec-value">0.125″ All Sides</div>
+        <div class="spec-detail">Standard 1/8″ bleed if extending backgrounds to the trim edge. Current files have white margins — confirm with printer.</div>
+      </div>
+
+      <div class="spec-card spec-navy">
+        <div class="spec-label">Finishing</div>
+        <div class="spec-value">Aqueous Coating</div>
+        <div class="spec-detail">Aqueous gloss recommended for durability and a clean tradeshow feel. UV coating optional for higher gloss.</div>
+      </div>
+
+      <div class="spec-card spec-navy">
+        <div class="spec-label">Delivery Format</div>
+        <div class="spec-value">Print-Ready PDF</div>
+        <div class="spec-detail">High-resolution PDF/X-1a, embedded fonts, 300 dpi raster, CMYK. One PDF per sheet (8 PDFs total).</div>
+      </div>
+
+    </div>
+
+    <div class="specs-totals">
+      <div>
+        <div class="total-num">8</div>
+        <div class="total-label">Spec Sheets</div>
+      </div>
+      <div>
+        <div class="total-num">200</div>
+        <div class="total-label">Per Sheet · Standard</div>
+        <div style="font-size:11px; color:var(--text-lt); margin-top:4px; letter-spacing:.04em;">Medium Voltage: 100 copies</div>
+      </div>
+      <div>
+        <div class="total-num">1,500</div>
+        <div class="total-label">Total Run</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Download & Deliver ─────────────────── -->
+  <section class="panel">
+    <h2>Download &amp; Deliver</h2>
+    <div class="section-headline">Print-ready PDFs are pre-built — just click and send to the printer</div>
+
+    <div class="howto-grid">
+      <div class="howto-step">
+        <strong>Click the PDF button</strong>
+        <span>Each sheet card below has a <em>PDF</em> button. Clicking it downloads the latest print-ready PDF — front + back, 8.5″ × 11″, no headers or footers.</span>
+      </div>
+      <div class="howto-step">
+        <strong>Filename includes a version</strong>
+        <span>Each PDF is timestamped <code>YYYYMMDD-HHMM</code> (e.g. <code>UWC-03-Building-Lighting-20260429-1430.pdf</code>) so the printer always knows which build they have.</span>
+      </div>
+      <div class="howto-step">
+        <strong>Need a fresh build?</strong>
+        <span>Edit any HTML, then run <code>python3 generate-pdfs.py</code> from this folder. Every sheet regenerates with a new timestamp and the buttons below auto-update.</span>
+      </div>
+      <div class="howto-step">
+        <strong>Manual re-print fallback</strong>
+        <span>You can also open any sheet via <em>View</em>, press <kbd>⌘ P</kbd> / <kbd>Ctrl P</kbd>, choose <em>Save as PDF</em>, and set Paper: <em>US Letter</em>, Margins: <em>None</em>, Scale: <em>100%</em>, Background graphics: <em>On</em>.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Spec Sheet Thumbnails ─────────────────── -->
+  <section class="panel">
+    <h2>Spec Sheets</h2>
+    <div class="section-headline">8 sheets · click to open the print-ready version</div>
+
+    <div class="sheets-grid">
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-01-corporate.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-01.png" alt="Sheet 01 Corporate Capabilities">
+            <div class="sheet-num-badge">01</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Corporate Capabilities</div>
+          <div class="sheet-card-products">Made in USA · Vertically Integrated · ISO 9001:2015</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-01-corporate.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-01-Corporate-Capabilities.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-02-automotive-marine.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-02.png" alt="Sheet 02 Automotive &amp; Marine">
+            <div class="sheet-num-badge">02</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Automotive &amp; Marine</div>
+          <div class="sheet-card-products">GPT · GXL · GPTM Marine Tinned</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-02-automotive-marine.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-02-Automotive-Marine.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-orange">
+        <a class="sheet-thumb-link" href="spec-sheet-03-building-lighting.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-03.png" alt="Sheet 03 Building &amp; Lighting">
+            <div class="sheet-num-badge">03</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Building &amp; Lighting</div>
+          <div class="sheet-card-products">THHN / MTW / THWN-2 / T90 — Bare Copper</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-03-building-lighting.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-03-Building-Lighting.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-04-hookup.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-04.png" alt="Sheet 04 Hook-Up Wire">
+            <div class="sheet-num-badge">04</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Hook-Up Wire</div>
+          <div class="sheet-card-products">UL 1007 · UL 1015 · MTW · UL 1569</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-04-hookup.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-04-Hookup-Wire.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-orange">
+        <a class="sheet-thumb-link" href="spec-sheet-05-power-battery.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-05.png" alt="Sheet 05 Power &amp; Battery">
+            <div class="sheet-num-badge">05</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Power &amp; Battery</div>
+          <div class="sheet-card-products">SGT · SGX</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-05-power-battery.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-05-Power-Battery.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <a class="sheet-thumb-link" href="spec-sheet-06-specialty-cords.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-06.png" alt="Sheet 06 Portable Cord">
+            <div class="sheet-num-badge">06</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Portable Cord</div>
+          <div class="sheet-card-products">SJTOOW · Bare Copper · UL 62 / NEC 400</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-06-specialty-cords.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-06-Portable-Cord.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-orange">
+        <a class="sheet-thumb-link" href="spec-sheet-07-medium-voltage.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-07.png" alt="Sheet 07 Medium Voltage">
+            <div class="sheet-num-badge">07</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Medium Voltage</div>
+          <div class="sheet-card-products">CU 15kV · AL 15kV · AL 35kV</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-07-medium-voltage.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-07-Medium-Voltage.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet-card theme-navy">
+        <a class="sheet-thumb-link" href="spec-sheet-08-data-center.html" target="_blank" rel="noopener">
+          <div class="sheet-thumb">
+            <img src="images/thumbs/sheet-08.png" alt="Sheet 08 Data Center">
+            <div class="sheet-num-badge">08</div>
+          </div>
+        </a>
+        <div class="sheet-card-meta">
+          <div class="sheet-card-title">Data Center</div>
+          <div class="sheet-card-products">THHN/THWN-2 · XHHW-2 / UL SIS</div>
+          <div class="sheet-card-actions">
+            <a class="action-view" href="spec-sheet-08-data-center.html" target="_blank" rel="noopener"><span class="action-icon">↗</span>View</a>
+            <a class="action-pdf" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/pdfs/UWC-08-Data-Center.pdf" download><span class="action-icon">⬇</span>PDF</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- ── QR Target Pages (the URLs the print QR codes point at) ── -->
+  <section class="panel">
+    <h2>QR Target Pages</h2>
+    <div class="section-headline">13 detailed product pages on unifiedwire.com — what the print QR codes resolve to</div>
+
+    <div class="qr-targets-grid">
+
+      <a class="qr-target" href="../spec-sheet-gpt.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-gpt.png" alt="QR for GPT spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">GPT &mdash; Bare Copper</div>
+          <div class="qr-target-tag">SAE J1128 &middot; 8&ndash;20 AWG</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-gpt</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../spec-sheet-gxl.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-gxl.png" alt="QR for GXL spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">GXL &mdash; XLPE Auto</div>
+          <div class="qr-target-tag">SAE J1128 &middot; 8&ndash;18 AWG</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-gxl</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../spec-sheet-gptm.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-gptm.png" alt="QR for GPTM spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">GPTM &mdash; Marine Tinned</div>
+          <div class="qr-target-tag">SAE J378 / J1128 &middot; 8&ndash;20 AWG</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-gptm</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../spec-sheet-1007.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-1007.png" alt="QR for UL 1007 spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">UL 1007 &mdash; Bare / Tinned Copper</div>
+          <div class="qr-target-tag">300 V &middot; 80&deg;C &middot; CSA TR-64</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-1007</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../spec-sheet-1015.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-1015.png" alt="QR for UL 1015 spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">UL 1015 &mdash; Bare / Tinned Copper, 600 V</div>
+          <div class="qr-target-tag">600 V &middot; MTW Multi-Rated &middot; 105&deg;C</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-1015</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--orange" href="../spec-sheet-tfn-tffn.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-tfn-tffn.png" alt="QR for TFN/TFFN spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">16 &amp; 18 Gauge TFN &amp; TFFN</div>
+          <div class="qr-target-tag">UL 66 &middot; UL 1316 &middot; UL 1452 &middot; 600 V &middot; 90&deg;C</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-tfn-tffn</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--orange" href="../spec-sheet-thhn-mtw-thwn-2.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-thhn-mtw-thwn-2.png" alt="QR for THHN/MTW/THWN-2 spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">THHN / MTW / THWN-2 / T90 &mdash; Bare Copper</div>
+          <div class="qr-target-tag">UL 83 &middot; UL 1063 &middot; UL 1581</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-thhn-mtw-thwn-2</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--orange" href="../spec-sheet-xhhw-sis.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-xhhw-sis.png" alt="QR for XHHW-2 / UL SIS spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">XHHW-2 / UL SIS &mdash; Copper</div>
+          <div class="qr-target-tag">UL 44 &middot; UL 854 &middot; 600 V</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-xhhw-sis</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target" href="../spec-sheet-sjtoow.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-sjtoow.png" alt="QR for SJTOOW spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">SJTOOW &mdash; Bare Copper</div>
+          <div class="qr-target-tag">UL 62 &middot; CSA C22.2 No. 49 &middot; NEC 400</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-sjtoow</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--copper" href="../spec-sheet-mv-15kv-cu.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-mv-15kv-cu.png" alt="QR for CU 15kV MV spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">CU 15kV MV Power</div>
+          <div class="qr-target-tag">SS-220 EPR &middot; PVC Jacket &middot; Copper</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-mv-15kv-cu</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--copper" href="../spec-sheet-mv-15kv-al.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-mv-15kv-al.png" alt="QR for AL 15kV MV spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">AL 15kV MV Power</div>
+          <div class="qr-target-tag">SS-220 EPR &middot; PVC Jacket &middot; Aluminum</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-mv-15kv-al</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--copper" href="../spec-sheet-mv-25kv-al.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-mv-25kv-al.png" alt="QR for AL 25kV MV spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">AL 25kV MV Power</div>
+          <div class="qr-target-tag">SS-260 EPR &middot; PVC Jacket &middot; Aluminum</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-mv-25kv-al</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="qr-target qr-target--copper" href="../spec-sheet-mv-35kv-al.html" target="_blank" rel="noopener">
+        <img class="qr-target-img" src="qr-codes/qr-spec-sheet-mv-35kv-al.png" alt="QR for AL 35kV MV spec sheet">
+        <div class="qr-target-meta">
+          <div class="qr-target-name">AL 35kV MV Power</div>
+          <div class="qr-target-tag">SS-420 EPR &middot; PVC Jacket &middot; Aluminum</div>
+          <div class="qr-target-links">
+            <span class="qr-target-link-url">/spec-sheet-mv-35kv-al</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+
+  <footer class="landing-footer">
+    Unified Wire &amp; Cable &middot; DeKalb, Illinois &middot; Spec Sheet Suite v2.0 (QR-driven, May 2026)
+  </footer>
+
+</div>
+
+<script>
+  // Password gate — same key as site-wide gate so auth carries across pages
+  (function () {
+    var PASS = 'copper', KEY = 'uwc_auth';
+    var gate = document.getElementById('uwc-gate');
+    if (sessionStorage.getItem(KEY) === PASS) {
+      gate.classList.add('hidden');
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    var form  = document.getElementById('gate-form');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = (input.value || '').trim().toLowerCase();
+      if (v === PASS) {
+        sessionStorage.setItem(KEY, PASS);
+        gate.classList.add('hidden');
+        document.body.style.overflow = '';
+      } else {
+        input.classList.add('error');
+        error.classList.add('visible');
+        input.value = '';
+        input.focus();
+        setTimeout(function () { input.classList.remove('error'); }, 400);
+      }
+    });
+    input.focus();
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,765 @@
+/* ── Print Setup ─────────────────────────────────── */
+@page { size: 8.5in 11in; margin: 0; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:      #0362BC;
+  --blue-dk:   #024a90;
+  --blue-tint: #7ebfff;
+  --orange:    #E36417;
+  --orange-dk: #b84f10;
+  --orange-tint: #ffb07a;
+  --navy:      #0A1628;
+  --navy-lt:   #0d1e38;
+  --gray:      #B9BDBD;
+  --gray-lt:   #f0f2f4;
+  --border:    #dce3ed;
+  --text:      #1a2535;
+  --text-lt:   #4a5568;
+}
+
+body {
+  background: #6b7280;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media print {
+  body { background: none; padding: 0; gap: 0; }
+}
+
+/* ── Page Shell ──────────────────────────────────── */
+.page {
+  width: 8.5in;
+  height: 11in;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(0,0,0,.35);
+  flex-shrink: 0;
+}
+
+@media print {
+  .page { box-shadow: none; page-break-after: always; }
+  .page:last-child { page-break-after: avoid; }
+}
+
+/* ════════════════════════════════════════════════════
+   FRONT PAGE
+═══════════════════════════════════════════════════ */
+
+/* ── Front Header ────────────────────────────────── */
+.front-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28pt;
+  height: 52pt;
+  background: #fff;
+  border-bottom: 2pt solid var(--border);
+}
+
+/* When the hero spans the whole page, the header is a full-width
+   frosted-glass band — 20% white tint + blurred hero clone behind so
+   the logo and cat-name read against any photo. */
+.page-front.hero-overlay .front-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.front-header .uwc-logo {
+  height: 28pt;
+  width: auto;
+}
+
+.cat-label {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-lt);
+  background: transparent;
+}
+
+.cat-label .cat-num { color: var(--orange); font-size: 9pt; }
+.cat-label .cat-sep { color: var(--border); }
+.cat-label .cat-name {
+  color: #fff;
+  background: transparent;
+}
+
+/* ── Hero Wrap ───────────────────────────────────── */
+.hero-wrap {
+  position: relative;
+  width: 8.5in;
+  height: 5.85in;
+  overflow: hidden;
+}
+
+/* Hero spans the full page: top:0 (under the absolute header) to bottom:46pt
+   (above the absolute bottom-bar) so the image is uninterrupted edge-to-edge. */
+.page-front.hero-overlay { position: relative; }
+.page-front.hero-overlay .hero-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 46pt;
+  height: auto;
+  overflow: hidden;
+}
+
+.hero-wrap .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Bottom-of-hero darkening removed — printed too dark in PDF */
+
+/* ── Frosted-Glass Title Overlay ─────────────────── */
+/* Sits over the hero image so more of the photo is visible.
+   Sized to ~60% of page width so the photo reads alongside it. */
+.title-glass {
+  position: absolute;
+  z-index: 4;
+  top: 70pt;     /* clears the absolute front-header (52pt) plus a small margin */
+  left: 24pt;
+  right: auto;
+  max-width: 62%;
+  background: rgba(255,255,255,.40);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1pt solid rgba(255,255,255,.55);
+  border-left: 4pt solid var(--blue);
+  border-radius: 4pt;
+  padding: 16pt 22pt 18pt;
+  box-shadow: 0 6pt 24pt rgba(10,22,40,.18);
+}
+.title-glass.title-glass--orange { border-left-color: var(--orange); }
+.title-glass.title-glass--navy   { border-left-color: var(--navy); }
+
+.title-glass .sheet-number {
+  margin-bottom: 6pt;
+}
+.title-glass .sheet-title {
+  font-size: 28pt;
+  margin-bottom: 6pt;
+}
+.title-glass .sheet-subtitle {
+  font-size: 10.5pt;
+}
+
+.callout-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.callout-label {
+  position: absolute;
+  z-index: 3;
+  background: rgba(255,255,255,.92);
+  border: 1pt solid rgba(255,255,255,.6);
+  border-radius: 3pt;
+  padding: 3pt 7pt;
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  letter-spacing: .03em;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Title Block ─────────────────────────────────── */
+.title-block {
+  padding: 18pt 28pt 14pt;
+  background: #fff;
+  flex: 1;
+}
+
+.sheet-number {
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 6pt;
+}
+
+.sheet-title {
+  font-size: 32pt;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  line-height: 1.0;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 7pt;
+  text-shadow: 0 2pt 6pt rgba(10,22,40,.50);
+}
+
+.sheet-subtitle {
+  font-size: 11pt;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1.4;
+  text-shadow: 0 1pt 4pt rgba(10,22,40,.45);
+}
+
+/* ── Bottom Bar ──────────────────────────────────── */
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 46pt;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28pt;
+  z-index: 5;
+}
+
+.bottom-bar .tagline {
+  font-size: 13pt;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.bottom-bar .bottom-logo {
+  height: 26pt;
+  width: auto;
+}
+
+/* ════════════════════════════════════════════════════
+   BACK PAGE
+═══════════════════════════════════════════════════ */
+
+/* ── Back Header ─────────────────────────────────── */
+.back-header {
+  background: #fff;
+  border-bottom: 3pt solid var(--blue);
+  height: 50pt;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24pt;
+}
+
+.back-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12pt;
+}
+
+.back-header .back-logo {
+  height: 28pt;
+  width: auto;
+}
+
+.back-title {
+  font-size: 9pt;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue-dk);
+}
+
+/* ── Cert Badges ─────────────────────────────────── */
+.cert-row {
+  position: absolute;
+  bottom: 36pt;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10pt;
+  padding: 5pt 24pt;
+  background: #fff;
+  border-top: 1pt solid var(--border);
+  z-index: 2;
+}
+
+.cert-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 34pt;
+  height: 34pt;
+  border-radius: 4pt;
+  font-size: 6pt;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.cert-made-usa {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  width: auto;
+  height: 28pt;
+  margin-top: 4pt;
+  white-space: nowrap;
+  font-size: 4.5pt;
+  letter-spacing: .05em;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.cert-made-usa .flag-img {
+  width: 32pt;
+  height: 18pt;
+  display: block;
+  margin-bottom: 2pt;
+  object-fit: contain;
+}
+
+.cert-made-usa .flag {
+  font-size: 16pt;
+  line-height: 1;
+  margin-bottom: 1pt;
+}
+
+/* Image-based certification marks (UL, ISO, REACH, RoHS) */
+.cert-mark {
+  width: 28pt;
+  height: 28pt;
+  object-fit: contain;
+  display: block;
+}
+
+.cert-ul {
+  background: #000;
+  color: #fff;
+  font-size: 9pt;
+  font-weight: 900;
+  letter-spacing: .05em;
+  border-radius: 50%;
+}
+
+.cert-iso {
+  background: var(--blue);
+  color: #fff;
+}
+
+.cert-reach {
+  background: #2d7d2e;
+  color: #fff;
+}
+
+.cert-rco {
+  background: #1a6b1a;
+  color: #fff;
+  border-radius: 50%;
+}
+
+/* ── Back Content ────────────────────────────────── */
+.back-content {
+  padding: 12pt 24pt 60pt; /* bottom padding clears absolute cert-row */
+  display: flex;
+  flex-direction: column;
+  gap: 10pt;
+}
+
+/* ── Spec Section (themed via CSS vars) ──────────── */
+.spec-section {
+  --section-color: var(--blue);
+  --section-color-dk: var(--blue-dk);
+  --section-tint: #e8f1fa;       /* very light blue */
+}
+
+.spec-section--orange {
+  --section-color: var(--orange);
+  --section-color-dk: var(--orange-dk);
+  --section-tint: #fdf0e6;       /* very light peach */
+}
+
+.spec-section--navy {
+  --section-color: var(--navy);
+  --section-color-dk: var(--navy);
+  --section-tint: #e8ecf2;       /* light cool gray */
+}
+
+.spec-sec-header {
+  display: inline-block;
+  background: var(--section-color);
+  color: #fff;
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5pt 26pt 5pt 12pt;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 14pt) 100%, 0 100%);
+}
+
+.spec-sec-sub {
+  font-size: 7pt;
+  color: var(--text);
+  padding: 4pt 10pt 4pt;
+  background: var(--section-tint);
+  border-top: 1.5pt solid var(--section-color);
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7.5pt;
+}
+
+.spec-table th {
+  background: var(--section-color-dk);
+  color: #fff;
+  padding: 5pt 8pt;
+  text-align: left;
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.spec-table td {
+  padding: 4pt 8pt;
+  border-bottom: .5pt solid var(--border);
+  color: var(--text);
+}
+
+.spec-table tr:nth-child(even) td { background: var(--section-tint); }
+.spec-table tr:last-child td { border-bottom: none; }
+
+.spec-table td.placeholder { color: #bbb; font-style: italic; }
+
+/* ── Product Strip (3-up below back-header) ──────── */
+.product-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fff;
+  border-bottom: 1pt solid var(--border);
+}
+
+.product-cell {
+  display: flex;
+  flex-direction: column;
+  border-right: 1pt solid var(--border);
+  overflow: hidden;
+  padding-bottom: 10pt;
+}
+
+.product-cell:last-child { border-right: none; }
+
+.product-cell img {
+  width: 100%;
+  height: 140pt;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  margin-bottom: 6pt;
+}
+
+.product-cell-label {
+  font-size: 8.5pt;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 12pt;
+}
+
+.product-cell-sub {
+  font-size: 6.5pt;
+  color: var(--text-lt);
+  letter-spacing: .04em;
+  margin-top: 2pt;
+  text-align: center;
+  padding: 0 12pt;
+}
+
+/* ════════════════════════════════════════════════════
+   QR-DRIVEN BACK PAGE
+   Big product images + QR tile + plain-text URL.
+   Replaces the spec-table + product-strip stack on
+   every sheet except Corporate Capabilities.
+═══════════════════════════════════════════════════ */
+
+.qr-back-content {
+  padding: 16pt 24pt 90pt;
+  display: flex;
+  flex-direction: column;
+  gap: 14pt;
+}
+
+.qr-back-intro {
+  text-align: center;
+  padding: 0 8pt;
+}
+.qr-back-intro .qr-back-eyebrow {
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4pt;
+}
+.qr-back-intro .qr-back-headline {
+  font-size: 18pt;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -.005em;
+  margin-bottom: 4pt;
+}
+.qr-back-intro .qr-back-sub {
+  font-size: 9pt;
+  color: var(--text-lt);
+  max-width: 560pt;
+  margin: 0 auto;
+  line-height: 1.45;
+}
+
+/* Big-card grid — auto-balances 1, 2, or 3 cards */
+.qr-card-grid {
+  display: grid;
+  gap: 14pt;
+}
+.qr-card-grid.qr-cols-1 { grid-template-columns: minmax(0, 420pt); justify-content: center; }
+.qr-card-grid.qr-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.qr-card-grid.qr-cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+.qr-card {
+  background: #fff;
+  border: 1pt solid var(--border);
+  border-top: 4pt solid var(--blue);
+  border-radius: 5pt;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.qr-card-photo {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.qr-card.qr-card--orange { border-top-color: var(--orange); }
+.qr-card.qr-card--navy   { border-top-color: var(--navy); }
+.qr-card.qr-card--copper { border-top-color: #b07a4a; }
+
+.qr-card-photo {
+  background: #fff;
+  overflow: hidden;
+  padding: 0;
+}
+.qr-card-photo img {
+  width: 100%;
+  height: 240pt;
+  /* cover for the magazine-spread feel; position tuned so the cut-end at
+     ~18% reads on the left while the wire's natural taper at ~65% stays
+     inside the visible crop on the right. */
+  object-fit: cover;
+  object-position: 28% center;
+  display: block;
+}
+/* Two-card layouts get bigger images (wider cards = same content fits at more height) */
+.qr-card-grid.qr-cols-2 .qr-card-photo img { height: 320pt; }
+/* Single-card layouts: wider card so photo can be a touch taller, but capped
+   so the QR + URL stack fits inside the page below it. */
+.qr-card-grid.qr-cols-1 .qr-card-photo img { height: 320pt; }
+
+.qr-card-meta {
+  border-top: 1pt solid var(--border);
+  padding: 10pt 12pt 0;
+  text-align: center;
+}
+.qr-card-name {
+  font-size: 12pt;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -.005em;
+  line-height: 1.15;
+  margin-bottom: 3pt;
+}
+.qr-card-tag {
+  font-size: 7.5pt;
+  color: var(--text-lt);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.qr-card-cta {
+  margin-top: 10pt;
+  padding: 10pt 12pt 14pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6pt;
+  background: var(--gray-lt);
+}
+.qr-card-cta .qr-img {
+  width: 96pt;
+  height: 96pt;
+  display: block;
+  background: #fff;
+  border: 1pt solid var(--border);
+  border-radius: 3pt;
+}
+.qr-card-grid.qr-cols-1 .qr-card-cta .qr-img { width: 130pt; height: 130pt; }
+.qr-card-cta .qr-scan-label {
+  font-size: 6.5pt;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-lt);
+}
+.qr-card-cta .qr-url {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: var(--blue-dk);
+  letter-spacing: 0;
+  word-break: break-all;
+  text-align: center;
+  line-height: 1.3;
+  padding: 0 4pt;
+}
+/* Single- and two-card layouts have room for nowrap and a bigger URL */
+.qr-card-grid.qr-cols-1 .qr-card-cta .qr-url,
+.qr-card-grid.qr-cols-2 .qr-card-cta .qr-url {
+  font-size: 8pt;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+/* Image-only card variant for sheets without a target page yet (Power & Battery) */
+.qr-card-cta--noqr {
+  background: var(--gray-lt);
+  padding: 8pt 12pt 12pt;
+  text-align: center;
+}
+.qr-card-cta--noqr .noqr-note {
+  font-size: 7pt;
+  font-style: italic;
+  color: var(--text-lt);
+  letter-spacing: .04em;
+}
+
+/* ── Back Footer ─────────────────────────────────── */
+.back-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 2pt solid var(--blue);
+  padding: 9pt 24pt;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16pt;
+}
+
+.back-footer .footer-logo {
+  height: 22pt;
+  width: auto;
+}
+
+.footer-info {
+  display: flex;
+  gap: 14pt;
+}
+
+.footer-info span {
+  font-size: 7pt;
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.footer-info a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer-disclaimer {
+  font-size: 5.5pt;
+  color: var(--text-lt);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+/* ════════════════════════════════════════════════════
+   GLASS PANEL BLUR (PDF-COMPATIBLE)
+   `backdrop-filter: blur()` doesn't render in Chrome's print-to-PDF, so
+   we instead inject a clone of the hero image inside each glass panel
+   (with `filter: blur()` applied directly), then clip it via the panel's
+   `overflow: hidden`. The result simulates the frosted look in the PDF
+   while the on-screen view still benefits from the live backdrop-filter.
+═══════════════════════════════════════════════════ */
+.title-glass-blur-bg,
+.front-header-blur-bg {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  object-fit: cover;
+  filter: blur(14px);
+}
+
+/* Title-glass on standard sheets (full-page hero, image fills hero-wrap) */
+.page-front.hero-overlay .title-glass {
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-front.hero-overlay .title-glass .title-glass-blur-bg {
+  /* Hero spans hero-wrap (8.5in × calc(100% - 46pt)).
+     Title-glass is at top:70pt left:24pt; pull the clone back so the
+     visible window matches the actual hero pixels behind. */
+  top: -70pt;
+  left: -24pt;
+  width: 8.5in;
+  height: calc(11in - 46pt);
+}
+
+/* Front-header on standard sheets — blurred hero clone behind 20% white */
+.page-front.hero-overlay .front-header {
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-front.hero-overlay .front-header .front-header-blur-bg {
+  top: 0;
+  left: 0;
+  width: 8.5in;
+  height: calc(11in - 46pt);
+}
