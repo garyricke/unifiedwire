@@ -607,7 +607,6 @@
           <div class="filter-options" data-filter="family">
             <label class="filter-option"><input type="checkbox" value="THHN/THWN-2"> THHN / THWN-2 <span class="filter-option-count">7</span></label>
             <label class="filter-option"><input type="checkbox" value="XHHW-2"> XHHW-2 <span class="filter-option-count">2</span></label>
-            <label class="filter-option"><input type="checkbox" value="NM-B"> NM-B (Romex type) <span class="filter-option-count">2</span></label>
             <label class="filter-option"><input type="checkbox" value="USE-2"> USE-2 <span class="filter-option-count">1</span></label>
             <label class="filter-option"><input type="checkbox" value="SOOW"> SOOW Flexible Cord <span class="filter-option-count">1</span></label>
           </div>
@@ -619,7 +618,7 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
           <div class="filter-options" data-filter="material">
-            <label class="filter-option"><input type="checkbox" value="Copper"> Copper <span class="filter-option-count">13</span></label>
+            <label class="filter-option"><input type="checkbox" value="Copper"> Copper <span class="filter-option-count">11</span></label>
             <label class="filter-option"><input type="checkbox" value="Aluminum"> Aluminum <span class="filter-option-count">0</span></label>
           </div>
         </div>
@@ -630,8 +629,8 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
           <div class="filter-options" data-filter="awg">
-            <label class="filter-option"><input type="checkbox" value="14 AWG"> 14 AWG <span class="filter-option-count">2</span></label>
-            <label class="filter-option"><input type="checkbox" value="12 AWG"> 12 AWG <span class="filter-option-count">4</span></label>
+            <label class="filter-option"><input type="checkbox" value="14 AWG"> 14 AWG <span class="filter-option-count">1</span></label>
+            <label class="filter-option"><input type="checkbox" value="12 AWG"> 12 AWG <span class="filter-option-count">3</span></label>
             <label class="filter-option"><input type="checkbox" value="10 AWG"> 10 AWG <span class="filter-option-count">2</span></label>
             <label class="filter-option"><input type="checkbox" value="8 AWG"> 8 AWG <span class="filter-option-count">1</span></label>
             <label class="filter-option"><input type="checkbox" value="6 AWG"> 6 AWG <span class="filter-option-count">2</span></label>
@@ -647,7 +646,7 @@
           </div>
           <div class="filter-options" data-filter="voltage">
             <label class="filter-option"><input type="checkbox" value="300V"> 300V <span class="filter-option-count">1</span></label>
-            <label class="filter-option"><input type="checkbox" value="600V"> 600V <span class="filter-option-count">12</span></label>
+            <label class="filter-option"><input type="checkbox" value="600V"> 600V <span class="filter-option-count">10</span></label>
           </div>
         </div>
 
@@ -658,7 +657,7 @@
           </div>
           <div class="filter-options" data-filter="temp">
             <label class="filter-option"><input type="checkbox" value="75°C"> 75°C <span class="filter-option-count">1</span></label>
-            <label class="filter-option"><input type="checkbox" value="90°C"> 90°C <span class="filter-option-count">12</span></label>
+            <label class="filter-option"><input type="checkbox" value="90°C"> 90°C <span class="filter-option-count">10</span></label>
           </div>
         </div>
 
@@ -692,7 +691,7 @@
       <!-- Results -->
       <div>
         <div class="results-header">
-          <div class="results-count"><strong id="resultCount">13</strong> products found</div>
+          <div class="results-count"><strong id="resultCount">11</strong> products found</div>
           <select class="sort-select" id="sortSelect" onchange="renderProducts()">
             <option value="default">Sort: Default</option>
             <option value="awg-asc">AWG: Fine to Heavy</option>
@@ -710,12 +709,11 @@
     <div class="search-mode">
       <div class="search-big">
         <svg class="search-big-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" placeholder='Try: "12 AWG THHN red" or "romex" or "underground solar"…' autocomplete="off">
+        <input type="text" id="searchInput" placeholder='Try: "12 AWG THHN red" or "underground solar" or "flexible cord"…' autocomplete="off">
       </div>
       <div class="search-tips">
         <span class="label" style="color:var(--text-lt);align-self:center;margin-right:4px;">Try:</span>
         <button class="search-tip" onclick="setSearch('THHN')"><strong>THHN</strong></button>
-        <button class="search-tip" onclick="setSearch('romex')">romex → <strong>NM-B</strong></button>
         <button class="search-tip" onclick="setSearch('underground')">underground → <strong>USE-2</strong></button>
         <button class="search-tip" onclick="setSearch('solar')">solar → <strong>USE-2 / XHHW-2</strong></button>
         <button class="search-tip" onclick="setSearch('flexible cord')"><strong>flexible cord</strong></button>
@@ -1181,40 +1179,6 @@ const PRODUCTS = [
     crossRef:['Southwire 15363499'],
   },
   {
-    id:10, sku:'UWC-NMB122',
-    name:'NM-B  12/2 w/ Ground',
-    family:'NM-B',
-    desc:'Non-metallic sheathed cable for residential branch circuits. Two insulated conductors plus bare ground in PVC jacket. Dry locations only.',
-    awg:'12 AWG', awgNum:12, voltage:'600V', temp:'90°C',
-    material:'Copper', stranding:'Solid',
-    insulation:'PVC', jacket:'PVC Sheath (White)',
-    color:'White Jacket / Black + White conductors', colorHex:'#e0e0e0',
-    packaging:['250 ft Roll','1,000 ft Reel'],
-    standards:['UL 719','NFPA 70 Article 334'],
-    applications:['Residential','Commercial'],
-    stock:'In Stock', leadTime:null,
-    ampacity:'20A', weight:'58 lb/MFT', od:'0.41 × 0.25 in (flat)',
-    layers:{ conductor:'#b5791e', insulation:'#e0e0e0', jacket:'#f5f5f5' },
-    crossRef:['Southwire 28827422','Encore Wire NM12-2'],
-  },
-  {
-    id:11, sku:'UWC-NMB142',
-    name:'NM-B  14/2 w/ Ground',
-    family:'NM-B',
-    desc:'Standard residential cable for lighting and 15A general circuits. Solid copper conductors with ground in PVC jacket. Dry locations only.',
-    awg:'14 AWG', awgNum:14, voltage:'600V', temp:'90°C',
-    material:'Copper', stranding:'Solid',
-    insulation:'PVC', jacket:'PVC Sheath (White)',
-    color:'White Jacket / Black + White conductors', colorHex:'#e0e0e0',
-    packaging:['250 ft Roll','1,000 ft Reel'],
-    standards:['UL 719','NFPA 70 Article 334'],
-    applications:['Residential'],
-    stock:'In Stock', leadTime:null,
-    ampacity:'15A', weight:'42 lb/MFT', od:'0.36 × 0.22 in (flat)',
-    layers:{ conductor:'#b5791e', insulation:'#e0e0e0', jacket:'#f5f5f5' },
-    crossRef:['Southwire 28827322'],
-  },
-  {
     id:12, sku:'UWC-USE6BK',
     name:'USE-2  6 AWG  Black',
     family:'USE-2',
@@ -1256,7 +1220,7 @@ const APPLICATIONS = [
     id:'commercial', label:'Commercial Construction',
     desc:'Office, retail, and mixed-use projects. NEC 2023 compliant.',
     icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
-    apps:['Commercial'], families:['THHN/THWN-2','NM-B'],
+    apps:['Commercial'], families:['THHN/THWN-2'],
     bg:'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-commercial',
     palette:{ accent:'#0362BC', dk:'#024a90' },
   },
@@ -1288,7 +1252,7 @@ const APPLICATIONS = [
     id:'residential', label:'Residential Wiring',
     desc:'New construction, renovation, and service upgrades.',
     icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-    apps:['Residential'], families:['NM-B','USE-2'],
+    apps:['Residential'], families:['USE-2'],
     bg:'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-residential',
     palette:{ accent:'#16a34a', dk:'#15803d' },
   },
@@ -1313,15 +1277,12 @@ const WIRE_IMAGES = {
   7:  'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/wire-thhn-green-6',
   8:  'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/wire-xhhw2-2awg',
   9:  'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/wire-xhhw2-4-0',
-  10: 'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/wire-nmb',
-  11: 'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/wire-nmb',
   12: 'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/wire-use2',
   13: 'https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/wire-soow',
 };
 
 // ─── Jargon / alias map ───────────────────────────────────────────────────
 const ALIASES = {
-  'romex':'NM-B', 'nmb':'NM-B', 'nm-b':'NM-B',
   'underground':'USE-2', 'direct burial':'USE-2',
   'solar':'USE-2 XHHW-2', 'pv':'USE-2',
   'flexible cord':'SOOW', 'portable cord':'SOOW',
