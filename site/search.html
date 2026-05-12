@@ -321,47 +321,6 @@
       margin: 0 auto;
     }
 
-    /* ── Browse-by-category (shown on empty page) ─────────────── */
-    .browse-grid {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    @media (max-width: 720px) {
-      .browse-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .browse-grid { grid-template-columns: 1fr; }
-    }
-    .browse-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 18px 20px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      background: var(--white);
-      text-decoration: none;
-      color: inherit;
-      transition: border-color .2s, transform .15s;
-    }
-    .browse-card:hover {
-      border-color: var(--blue);
-      transform: translateY(-2px);
-    }
-    .browse-card-label {
-      font-weight: 700;
-      font-size: .95rem;
-      color: var(--text);
-    }
-    .browse-card-count {
-      font-family: var(--mono);
-      font-size: .75rem;
-      color: var(--text-lt);
-    }
-
     @media (max-width: 720px) {
       .search-hero { padding: 72px 0 56px; }
       .search-bar input { font-size: 1.05rem; padding: 18px 0; }
@@ -595,20 +554,22 @@
     const tokens  = tokenize(trimmed);
     const rawLow  = trimmed.toLowerCase();
 
+    // Empty query → list every indexed page, grouped, in source order.
+    // Non-empty query → score, filter, sort by score, then group.
+    let items;
     if (!trimmed) {
-      renderEmpty();
-      status.textContent = `Browsing all ${INDEX.length} pages`;
-      return;
+      items = INDEX.map(e => ({ entry: e }));
+      status.textContent = `All ${INDEX.length} indexed pages`;
+    } else {
+      items = INDEX
+        .map(e => ({ entry: e, s: score(e, tokens, rawLow) }))
+        .filter(x => x.s > 0)
+        .sort((a, b) => b.s - a.s);
+      status.textContent = items.length
+        ? `${items.length} result${items.length === 1 ? '' : 's'} for "${trimmed}"`
+        : `No results for "${trimmed}"`;
     }
-
-    const scored = INDEX
-      .map(e => ({ entry: e, s: score(e, tokens, rawLow) }))
-      .filter(x => x.s > 0)
-      .sort((a, b) => b.s - a.s);
-
-    status.textContent = scored.length
-      ? `${scored.length} result${scored.length === 1 ? '' : 's'} for "${trimmed}"`
-      : `No results for "${trimmed}"`;
+    const scored = items;
 
     if (!scored.length) {
       resultsEl.innerHTML = `
@@ -671,38 +632,6 @@
       </a>`;
   }
 
-  // ── Empty state: browse-by-category ────────────────────────
-  function renderEmpty() {
-    const counts = {};
-    for (const e of INDEX) counts[e.type] = (counts[e.type] || 0) + 1;
-    const cards = TYPE_ORDER
-      .filter(t => counts[t])
-      .map(t => {
-        // pick a representative landing URL for each category
-        const landing = ({
-          'Spec Sheet': 'spec-sheets.html',
-          'Catalog':    'products.html',
-          'Market':     'markets/index.html',
-          'Resource':   'resources/index.html',
-          'Tool':       'find-a-rep.html',
-          'Page':       'about.html',
-        })[t];
-        return `
-          <a class="browse-card" href="${landing}">
-            <span class="browse-card-label">${TYPE_LABEL_PLURAL[t] || t}</span>
-            <span class="browse-card-count">${counts[t]}</span>
-          </a>`;
-      }).join('');
-
-    resultsEl.innerHTML = `
-      <div class="results-group">
-        <div class="results-group-head">
-          <h2>Browse by category</h2>
-          <span class="count">${INDEX.length} pages indexed</span>
-        </div>
-        <div class="browse-grid">${cards}</div>
-      </div>`;
-  }
 })();
 </script>
 
