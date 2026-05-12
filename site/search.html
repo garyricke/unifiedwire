@@ -296,25 +296,25 @@
     }
     .result:hover .result-arrow { transform: translateX(4px); }
 
-    /* ── Empty / no-results states ────────────────────────────── */
-    .empty, .no-results {
+    /* ── No-results state ─────────────────────────────────────── */
+    .no-results {
       text-align: center;
       padding: 48px 32px;
       border: 1.5px dashed var(--border);
       border-radius: var(--radius);
       background: var(--gray-lt);
     }
-    .empty svg, .no-results svg {
+    .no-results svg {
       color: var(--text-lt);
       margin: 0 auto 16px;
       opacity: .55;
     }
-    .empty h3, .no-results h3 {
+    .no-results h3 {
       font-size: 1.05rem;
       color: var(--text);
       margin-bottom: 8px;
     }
-    .empty p, .no-results p {
+    .no-results p {
       font-size: .9rem;
       color: var(--text-lt);
       max-width: 440px;
@@ -554,22 +554,21 @@
     const tokens  = tokenize(trimmed);
     const rawLow  = trimmed.toLowerCase();
 
-    // Empty query → list every indexed page, grouped, in source order.
-    // Non-empty query → score, filter, sort by score, then group.
-    let items;
+    // Empty query → no results below; user picks a suggestion pill or types.
     if (!trimmed) {
-      items = INDEX.map(e => ({ entry: e }));
-      status.textContent = `All ${INDEX.length} indexed pages`;
-    } else {
-      items = INDEX
-        .map(e => ({ entry: e, s: score(e, tokens, rawLow) }))
-        .filter(x => x.s > 0)
-        .sort((a, b) => b.s - a.s);
-      status.textContent = items.length
-        ? `${items.length} result${items.length === 1 ? '' : 's'} for "${trimmed}"`
-        : `No results for "${trimmed}"`;
+      status.textContent = 'Type a search term to begin';
+      resultsEl.innerHTML = '';
+      return;
     }
-    const scored = items;
+
+    const scored = INDEX
+      .map(e => ({ entry: e, s: score(e, tokens, rawLow) }))
+      .filter(x => x.s > 0)
+      .sort((a, b) => b.s - a.s);
+
+    status.textContent = scored.length
+      ? `${scored.length} result${scored.length === 1 ? '' : 's'} for "${trimmed}"`
+      : `No results for "${trimmed}"`;
 
     if (!scored.length) {
       resultsEl.innerHTML = `
