@@ -1,0 +1,322 @@
+[
+  {
+    "url": "spec-sheet-thhn-mtw-thwn-2.html",
+    "type": "Spec Sheet",
+    "title": "THHN / MTW / THWN-2 / T90",
+    "family": "Building Wire",
+    "tags": ["THHN", "MTW", "THWN-2", "T90", "600V", "Bare Copper"],
+    "snippet": "Triple-rated building wire for commercial, industrial, machine-tool, and data-center installations. PVC insulation, nylon jacket, 600V.",
+    "keywords": "thhn thwn-2 thwn mtw t90 building wire conduit raceway commercial industrial data center machine tool panel ul 83 ul 1063 csa pvc nylon 90c 75c wet dry"
+  },
+  {
+    "url": "spec-sheet-xhhw-sis.html",
+    "type": "Spec Sheet",
+    "title": "XHHW-2 / UL SIS Copper",
+    "family": "Building Wire",
+    "tags": ["XHHW-2", "SIS", "600V", "Switchgear", "Solar"],
+    "snippet": "Cross-linked polyethylene insulation. 90°C wet and dry. Switchboard wiring, solar PV arrays, industrial feeders.",
+    "keywords": "xhhw xhhw-2 sis switchboard switchgear solar pv photovoltaic xlpe cross-linked polyethylene ul 44 ul 854 600v feeder industrial wet dry"
+  },
+  {
+    "url": "spec-sheet-tfn-tffn.html",
+    "type": "Spec Sheet",
+    "title": "TFN / TFFN Fixture Wire",
+    "family": "Fixture Wire",
+    "tags": ["TFN", "TFFN", "600V", "Lighting"],
+    "snippet": "Thermoplastic fixture wire for luminaires, electrical signs, and machine-tool wiring inside enclosures.",
+    "keywords": "tfn tffn fixture wire lighting luminaire sign machine tool 16 awg 18 awg 600v ul 66 thermoplastic nylon"
+  },
+  {
+    "url": "spec-sheet-gpt.html",
+    "type": "Spec Sheet",
+    "title": "GPT Automotive Primary Wire",
+    "family": "Automotive",
+    "tags": ["GPT", "Automotive", "Primary Wire"],
+    "snippet": "General-purpose thermoplastic automotive primary wire. PVC insulation, 80°C, 50V. Standard harness applications.",
+    "keywords": "gpt automotive primary wire harness sae j1128 pvc 80c 50v vehicle car truck"
+  },
+  {
+    "url": "spec-sheet-gptm.html",
+    "type": "Spec Sheet",
+    "title": "GPTM Marine Primary Wire",
+    "family": "Marine",
+    "tags": ["GPTM", "Marine", "Tinned Copper", "USCG"],
+    "snippet": "Tinned copper marine primary wire. Corrosion-resistant, USCG approved, ABYC compliant for boats and yachts.",
+    "keywords": "gptm marine primary wire boat yacht tinned copper uscg abyc ul 1426 corrosion saltwater"
+  },
+  {
+    "url": "spec-sheet-gxl.html",
+    "type": "Spec Sheet",
+    "title": "GXL Cross-Linked Automotive",
+    "family": "Automotive",
+    "tags": ["GXL", "Automotive", "Cross-Linked"],
+    "snippet": "Cross-linked polyethylene automotive primary wire. Higher temperature and abrasion resistance than GPT.",
+    "keywords": "gxl automotive primary cross-linked polyethylene xlpe high temperature 125c sae j1128 abrasion vehicle truck heavy-duty"
+  },
+  {
+    "url": "spec-sheet-sjtoow.html",
+    "type": "Spec Sheet",
+    "title": "SJTOOW Portable Cord",
+    "family": "Portable Cord",
+    "tags": ["SJTOOW", "300V", "Junior Service", "Oil/Water Resistant"],
+    "snippet": "Junior hard-service portable cord. Oil-, water-, and weather-resistant CPE jacket. 300V. Industrial tools and equipment.",
+    "keywords": "sjtoow portable cord flexible junior hard service 300v oil water weather resistant cpe industrial tool equipment generator extension"
+  },
+  {
+    "url": "spec-sheet-1007.html",
+    "type": "Spec Sheet",
+    "title": "UL 1007 Hookup Wire",
+    "family": "Hookup",
+    "tags": ["UL 1007", "300V", "Bare/Tin Copper"],
+    "snippet": "Internal hookup wire for electronics and appliances. 300V, 80°C, PVC insulation. Solid or stranded copper.",
+    "keywords": "ul 1007 hookup wire internal wiring electronics appliance 300v pvc 80c bare copper tinned"
+  },
+  {
+    "url": "spec-sheet-1015.html",
+    "type": "Spec Sheet",
+    "title": "UL 1015 Hookup Wire 600V",
+    "family": "Hookup",
+    "tags": ["UL 1015", "600V", "Bare/Tin Copper"],
+    "snippet": "Panel-board and appliance wiring. 600V, 105°C, PVC insulation. Higher voltage than UL 1007.",
+    "keywords": "ul 1015 hookup wire panel board appliance internal 600v 105c pvc bare copper tinned"
+  },
+  {
+    "url": "spec-sheet-mv-15kv-cu.html",
+    "type": "Spec Sheet",
+    "title": "Copper 15kV MV Power Cable",
+    "family": "Medium Voltage",
+    "tags": ["MV", "15kV", "Copper", "Utility"],
+    "snippet": "Medium-voltage 15kV copper power cable. EPR or XLPE insulation. Utility distribution, substations, primary feeders.",
+    "keywords": "medium voltage mv 15kv 15 kv copper power cable utility substation distribution feeder epr xlpe icea aeic ul 1072"
+  },
+  {
+    "url": "spec-sheet-mv-15kv-al.html",
+    "type": "Spec Sheet",
+    "title": "Aluminum 15kV MV Power Cable",
+    "family": "Medium Voltage",
+    "tags": ["MV", "15kV", "Aluminum", "Utility"],
+    "snippet": "Medium-voltage 15kV aluminum power cable. Cost-effective alternative to copper for long-run utility feeders.",
+    "keywords": "medium voltage mv 15kv 15 kv aluminum power cable utility substation distribution feeder epr xlpe icea aeic"
+  },
+  {
+    "url": "spec-sheet-mv-25kv-al.html",
+    "type": "Spec Sheet",
+    "title": "Aluminum 25kV MV Power Cable",
+    "family": "Medium Voltage",
+    "tags": ["MV", "25kV", "Aluminum", "Utility"],
+    "snippet": "Medium-voltage 25kV aluminum power cable for utility distribution at the 25kV class.",
+    "keywords": "medium voltage mv 25kv 25 kv aluminum power cable utility substation distribution feeder epr xlpe icea aeic"
+  },
+  {
+    "url": "spec-sheet-mv-35kv-al.html",
+    "type": "Spec Sheet",
+    "title": "Aluminum 35kV MV Power Cable",
+    "family": "Medium Voltage",
+    "tags": ["MV", "35kV", "Aluminum", "Utility"],
+    "snippet": "Medium-voltage 35kV aluminum power cable. Highest standard MV distribution class.",
+    "keywords": "medium voltage mv 35kv 35 kv aluminum power cable utility substation distribution feeder epr xlpe icea aeic"
+  },
+
+  {
+    "url": "spec-sheets.html",
+    "type": "Catalog",
+    "title": "Spec Sheet Library",
+    "family": "Catalog",
+    "tags": ["All Products", "Download PDF"],
+    "snippet": "Browse the full library of UWC spec sheets across building wire, automotive, marine, hookup, portable cord, and medium-voltage families.",
+    "keywords": "spec sheet library catalog all products download pdf datasheet"
+  },
+  {
+    "url": "products.html",
+    "type": "Catalog",
+    "title": "Products & Spec Navigator",
+    "family": "Catalog",
+    "tags": ["Filter", "Search", "Compare"],
+    "snippet": "Filter and search products by family, AWG, voltage, temperature, and application. Compare side-by-side.",
+    "keywords": "product navigator catalog filter compare browse awg voltage temperature application thhn xhhw use-2 soow"
+  },
+
+  {
+    "url": "markets/index.html",
+    "type": "Market",
+    "title": "Markets & Industries",
+    "family": "Overview",
+    "tags": ["All Markets"],
+    "snippet": "Application-specific wire and cable solutions for appliance, automotive, marine, RV, electronics, military, and distribution.",
+    "keywords": "markets industries applications appliance automotive marine rv electronics oem military distribution"
+  },
+  {
+    "url": "markets/appliance.html",
+    "type": "Market",
+    "title": "Appliance Wire & Cable",
+    "family": "Appliance",
+    "tags": ["UL 1007", "UL 1015", "TEW"],
+    "snippet": "Internal wiring for major and small appliances. UL/CSA recognized, RoHS compliant, custom colors.",
+    "keywords": "appliance internal wiring oem major small kitchen laundry hvac ul 1007 ul 1015 tew rohs custom color"
+  },
+  {
+    "url": "markets/automotive.html",
+    "type": "Market",
+    "title": "Automotive Wire & Cable",
+    "family": "Automotive",
+    "tags": ["GPT", "GXL", "SAE J1128"],
+    "snippet": "Primary wire for cars, trucks, and heavy equipment. GPT, GXL, and TXL constructions to SAE J1128.",
+    "keywords": "automotive primary wire car truck vehicle heavy duty gpt gxl txl sae j1128 harness"
+  },
+  {
+    "url": "markets/marine.html",
+    "type": "Market",
+    "title": "Marine Wire & Cable",
+    "family": "Marine",
+    "tags": ["GPTM", "Tinned Copper", "USCG", "ABYC"],
+    "snippet": "Tinned-copper marine wire and cable. USCG approved, ABYC compliant, corrosion-resistant in saltwater environments.",
+    "keywords": "marine boat yacht ship tinned copper uscg abyc corrosion saltwater gptm bc-5w2 ul 1426"
+  },
+  {
+    "url": "markets/rv.html",
+    "type": "Market",
+    "title": "Recreational Vehicle Wire",
+    "family": "RV",
+    "tags": ["12V DC", "Primary Wire", "Trailer"],
+    "snippet": "12V DC primary wire and trailer cable for motorhomes, fifth-wheels, travel trailers, and toy haulers.",
+    "keywords": "recreational vehicle rv motorhome trailer fifth wheel travel toy hauler 12v dc primary wire camper"
+  },
+  {
+    "url": "markets/electronics-oem.html",
+    "type": "Market",
+    "title": "Electronics & OEM",
+    "family": "Electronics",
+    "tags": ["UL 1007", "Hookup Wire", "Custom"],
+    "snippet": "Hookup wire for circuit boards, consumer electronics, and industrial controls. Custom AWGs and colors.",
+    "keywords": "electronics oem hookup wire circuit board pcb consumer industrial control ul 1007 ul 1015 custom awg color"
+  },
+  {
+    "url": "markets/military.html",
+    "type": "Market",
+    "title": "Military Wire & Cable",
+    "family": "Military",
+    "tags": ["MIL-Spec", "Defense", "ITAR"],
+    "snippet": "Military-grade wire and cable to MIL specifications. Defense, aerospace ground support, and tactical equipment.",
+    "keywords": "military mil-spec mil-w defense aerospace tactical itar government dod"
+  },
+  {
+    "url": "markets/distribution.html",
+    "type": "Market",
+    "title": "Wire Distribution",
+    "family": "Distribution",
+    "tags": ["Wholesale", "Partner Program"],
+    "snippet": "Wholesale distribution partnerships. Stock programs, private labeling, and direct-mill pricing.",
+    "keywords": "distribution distributor wholesale partner program stock private label direct mill pricing reseller"
+  },
+
+  {
+    "url": "resources/index.html",
+    "type": "Resource",
+    "title": "Resources Hub",
+    "family": "Hub",
+    "tags": ["Tools", "Compliance", "Library"],
+    "snippet": "Engineering tools, compliance documentation, and the full spec-sheet library — one click away.",
+    "keywords": "resources hub tools compliance library documentation"
+  },
+  {
+    "url": "resources/compliance.html",
+    "type": "Resource",
+    "title": "Compliance Center",
+    "family": "Compliance",
+    "tags": ["UL", "RoHS", "REACH", "Prop 65"],
+    "snippet": "Certifications, regulatory documents, and material declarations. UL, CSA, RoHS, REACH, Prop 65, and California TB117.",
+    "keywords": "compliance regulatory certifications ul csa rohs reach prop 65 california tb117 conflict minerals material declaration sds"
+  },
+  {
+    "url": "resources/tools.html",
+    "type": "Resource",
+    "title": "Engineering Tools",
+    "family": "Tools",
+    "tags": ["Ampacity", "Voltage Drop", "Conduit Fill"],
+    "snippet": "Calculators for ampacity, voltage drop, conduit fill, AWG conversion, and circuit sizing.",
+    "keywords": "engineering tools calculator ampacity voltage drop conduit fill awg conversion circuit size nec table"
+  },
+
+  {
+    "url": "find-a-rep.html",
+    "type": "Tool",
+    "title": "Find a Rep",
+    "family": "Sales Locator",
+    "tags": ["Sales Rep", "Locator"],
+    "snippet": "Find your regional sales representative by territory, state, or product family.",
+    "keywords": "find rep sales representative locator territory region state manufacturer rep mrep"
+  },
+
+  {
+    "url": "home.html",
+    "type": "Page",
+    "title": "Home",
+    "family": "Landing",
+    "tags": ["Overview"],
+    "snippet": "Precision-manufactured wire and cable, ready when the job starts. DeKalb, Illinois.",
+    "keywords": "home landing unified wire cable precision manufactured american made dekalb illinois"
+  },
+  {
+    "url": "about.html",
+    "type": "Page",
+    "title": "About Us",
+    "family": "Company",
+    "tags": ["History", "Manufacturing"],
+    "snippet": "Three generations of American wire manufacturing. Our story, our floor, and our standards.",
+    "keywords": "about us company history generations american manufacturing dekalb illinois family owned mill story"
+  },
+  {
+    "url": "careers.html",
+    "type": "Page",
+    "title": "Careers",
+    "family": "Company",
+    "tags": ["Jobs", "Hiring"],
+    "snippet": "Open positions across operations, engineering, sales, and quality. Built in DeKalb.",
+    "keywords": "careers jobs employment hiring openings operations engineering sales quality dekalb illinois benefits"
+  },
+  {
+    "url": "contact.html",
+    "type": "Page",
+    "title": "Contact / Request a Quote",
+    "family": "Company",
+    "tags": ["Quote", "RFQ"],
+    "snippet": "Request a quote, ask a technical question, or schedule a plant tour.",
+    "keywords": "contact request quote rfq technical question plant tour phone email customer service"
+  },
+  {
+    "url": "skin-coat-technology.html",
+    "type": "Page",
+    "title": "Skin Coat Technology",
+    "family": "Technology",
+    "tags": ["Process", "Quality"],
+    "snippet": "The proprietary skin-coat process behind UWC's color consistency, surface finish, and dimensional accuracy.",
+    "keywords": "skin coat technology process quality color consistency surface finish dimensional accuracy extrusion"
+  },
+  {
+    "url": "daniela.html",
+    "type": "Page",
+    "title": "Daniela — The Bridge Between Quality & The Floor",
+    "family": "Story",
+    "tags": ["Team", "Quality"],
+    "snippet": "How Daniela bridges the QA lab and the production floor, line by line.",
+    "keywords": "daniela team story quality control qa floor production employee profile"
+  },
+  {
+    "url": "tim-foley.html",
+    "type": "Page",
+    "title": "Tim Foley — 25 Years Inside the Wire",
+    "family": "Story",
+    "tags": ["Team", "Operations"],
+    "snippet": "Tim Foley's 25-year career on the UWC mill floor and what longevity does to product quality.",
+    "keywords": "tim foley team story operations mill floor veteran 25 years employee profile"
+  },
+  {
+    "url": "privacy-policy.html",
+    "type": "Page",
+    "title": "Privacy Policy",
+    "family": "Legal",
+    "tags": ["Legal"],
+    "snippet": "How Unified Wire & Cable collects, uses, and protects information on this site.",
+    "keywords": "privacy policy legal data collection cookies gdpr ccpa"
+  }
+]

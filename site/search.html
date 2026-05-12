@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Search — Unified Wire &amp; Cable</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/favicon">
+  <link rel="stylesheet" href="assets/css/uwc.css">
+  <style>
+    /* ── Page hero ───────────────────────────────────────────── */
+    .search-hero {
+      position: relative;
+      background: var(--navy);
+      color: #fff;
+      padding: 96px 0 72px;
+      overflow: hidden;
+    }
+    .search-hero::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse at 18% 80%, rgba(3,98,188,.38) 0%, transparent 55%),
+        radial-gradient(ellipse at 82% 18%, rgba(227,100,23,.18) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .search-hero > .container { position: relative; z-index: 1; }
+    .search-hero .label { color: rgba(255,255,255,.55); }
+    .search-hero h1 {
+      color: #fff;
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      margin-top: 14px;
+      max-width: 720px;
+    }
+    .search-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .search-hero p {
+      color: rgba(255,255,255,.65);
+      max-width: 580px;
+      margin-top: 14px;
+      font-size: 1.05rem;
+    }
+
+    /* ── Search input ─────────────────────────────────────────── */
+    .search-bar-wrap {
+      position: relative;
+      max-width: 720px;
+      margin-top: 36px;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: 0 18px 0 22px;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    .search-bar:focus-within {
+      border-color: var(--blue);
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 0 0 4px rgba(3,98,188,.22);
+    }
+    .search-bar svg.icon-search {
+      flex-shrink: 0;
+      color: rgba(255,255,255,.62);
+    }
+    .search-bar input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      outline: none;
+      color: #fff;
+      font-size: 1.18rem;
+      font-weight: 500;
+      padding: 22px 0;
+      letter-spacing: -.005em;
+    }
+    .search-bar input::placeholder { color: rgba(255,255,255,.42); }
+    .search-clear {
+      flex-shrink: 0;
+      background: transparent;
+      border: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.55);
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .search-bar.has-value .search-clear { display: flex; }
+    .search-clear:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+    .search-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      min-height: 18px;
+    }
+    .search-meta .kbd {
+      font-family: var(--mono);
+      font-size: .68rem;
+      padding: 2px 7px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      letter-spacing: 0;
+      text-transform: none;
+      color: rgba(255,255,255,.78);
+    }
+
+    /* ── Suggestion pills (empty state) ───────────────────────── */
+    .suggestions {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .suggestions-label {
+      font-family: var(--mono);
+      font-size: .70rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-right: 4px;
+    }
+    .suggestion {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.85);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .suggestion:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.32);
+      color: #fff;
+    }
+
+    /* ── Results ──────────────────────────────────────────────── */
+    .results-section {
+      padding: 64px 0 96px;
+      background: var(--white);
+      min-height: 60vh;
+    }
+    .results-group {
+      margin-bottom: 48px;
+    }
+    .results-group:last-child { margin-bottom: 0; }
+    .results-group-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .results-group-head h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -.005em;
+      color: var(--text);
+    }
+    .results-group-head .count {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--text-lt);
+      letter-spacing: .06em;
+    }
+
+    .result {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      padding: 22px 24px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      margin-bottom: 12px;
+    }
+    .result:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .result-main {
+      min-width: 0;
+    }
+    .result-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .type-chip {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .type-chip[data-type="Spec Sheet"]  { background: rgba(3,98,188,.10);  color: var(--blue-dk); }
+    .type-chip[data-type="Catalog"]     { background: rgba(227,100,23,.10); color: var(--orange-dk); }
+    .type-chip[data-type="Market"]      { background: rgba(13,123,69,.10); color: #0b5f37; }
+    .type-chip[data-type="Resource"]    { background: rgba(124,58,237,.10); color: #5b21b6; }
+    .type-chip[data-type="Tool"]        { background: rgba(202,138,4,.12);  color: #854d0e; }
+    .type-chip[data-type="Page"]        { background: var(--gray-lt);      color: var(--text-lt); }
+
+    .result-family {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--text-lt);
+      letter-spacing: .04em;
+    }
+    .result h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -.012em;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .result h3 mark {
+      background: rgba(227,100,23,.18);
+      color: inherit;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .result-snippet {
+      font-size: .92rem;
+      color: var(--text-lt);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+    .result-snippet mark {
+      background: rgba(3,98,188,.14);
+      color: inherit;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .result-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .result-tag {
+      font-size: .68rem;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--gray-lt);
+      color: var(--text-lt);
+      letter-spacing: .02em;
+    }
+    .result-url {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--text-lt);
+      opacity: .55;
+      margin-top: 8px;
+      letter-spacing: .02em;
+      word-break: break-all;
+    }
+    .result-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--blue);
+      transition: transform .2s;
+      flex-shrink: 0;
+    }
+    .result:hover .result-arrow { transform: translateX(4px); }
+
+    /* ── Empty / no-results states ────────────────────────────── */
+    .empty, .no-results {
+      text-align: center;
+      padding: 48px 32px;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--gray-lt);
+    }
+    .empty svg, .no-results svg {
+      color: var(--text-lt);
+      margin: 0 auto 16px;
+      opacity: .55;
+    }
+    .empty h3, .no-results h3 {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .empty p, .no-results p {
+      font-size: .9rem;
+      color: var(--text-lt);
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* ── Browse-by-category (shown on empty page) ─────────────── */
+    .browse-grid {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 720px) {
+      .browse-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .browse-grid { grid-template-columns: 1fr; }
+    }
+    .browse-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, transform .15s;
+    }
+    .browse-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .browse-card-label {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--text);
+    }
+    .browse-card-count {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--text-lt);
+    }
+
+    @media (max-width: 720px) {
+      .search-hero { padding: 72px 0 56px; }
+      .search-bar input { font-size: 1.05rem; padding: 18px 0; }
+      .result { grid-template-columns: 1fr; padding: 18px 20px; }
+      .result-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header id="site-nav"></header>
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO + SEARCH INPUT
+══════════════════════════════════════════════════════════ -->
+<section class="search-hero">
+  <div class="container">
+    <span class="label">Search</span>
+    <h1>What can we help you <em>find</em>?</h1>
+    <p>Search spec sheets, products, markets, and resources across the Unified Wire &amp; Cable site.</p>
+
+    <div class="search-bar-wrap">
+      <div class="search-bar" id="searchBar">
+        <svg class="icon-search" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder='Try "THHN", "marine wire", "15kV", or "engineering tools"…'
+          autocomplete="off"
+          spellcheck="false"
+          autofocus>
+        <button class="search-clear" id="searchClear" aria-label="Clear search" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-meta">
+        <span id="searchStatus">Browsing all content</span>
+        <span><span class="kbd">/</span> to focus · <span class="kbd">Esc</span> to clear</span>
+      </div>
+    </div>
+
+    <div class="suggestions" id="suggestions">
+      <span class="suggestions-label">Popular:</span>
+      <button class="suggestion" data-q="THHN">THHN</button>
+      <button class="suggestion" data-q="automotive">Automotive</button>
+      <button class="suggestion" data-q="marine">Marine</button>
+      <button class="suggestion" data-q="15kV">15kV</button>
+      <button class="suggestion" data-q="hookup wire">Hookup wire</button>
+      <button class="suggestion" data-q="solar">Solar / PV</button>
+      <button class="suggestion" data-q="compliance">Compliance</button>
+      <button class="suggestion" data-q="find a rep">Find a rep</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     RESULTS
+══════════════════════════════════════════════════════════ -->
+<section class="results-section">
+  <div class="container">
+    <div id="results"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════ -->
+<footer id="site-footer"></footer>
+
+<script src="assets/js/uwc.js"></script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// SEARCH PAGE — client-side fuzzy search over search-index.json
+// ═══════════════════════════════════════════════════════════════════════════
+(function () {
+  const TYPE_ORDER = ['Spec Sheet', 'Catalog', 'Market', 'Resource', 'Tool', 'Page'];
+  const TYPE_LABEL_PLURAL = {
+    'Spec Sheet': 'Spec Sheets',
+    'Catalog':    'Product Catalog',
+    'Market':     'Markets & Industries',
+    'Resource':   'Resources',
+    'Tool':       'Tools',
+    'Page':       'Other Pages',
+  };
+
+  let INDEX = [];
+  const input      = document.getElementById('searchInput');
+  const bar        = document.getElementById('searchBar');
+  const clearBtn   = document.getElementById('searchClear');
+  const status     = document.getElementById('searchStatus');
+  const resultsEl  = document.getElementById('results');
+  const suggestEl  = document.getElementById('suggestions');
+
+  // ── Load index ─────────────────────────────────────────────
+  fetch('search-index.json')
+    .then(r => r.json())
+    .then(data => {
+      INDEX = data;
+      // honor ?q= query string
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (q) {
+        input.value = q;
+        bar.classList.add('has-value');
+      }
+      render(input.value);
+    })
+    .catch(err => {
+      resultsEl.innerHTML = `
+        <div class="no-results">
+          <h3>Search index failed to load</h3>
+          <p>${err.message}. Try refreshing the page.</p>
+        </div>`;
+    });
+
+  // ── Wire input events ──────────────────────────────────────
+  let debounceTimer;
+  input.addEventListener('input', () => {
+    bar.classList.toggle('has-value', !!input.value);
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => render(input.value), 60);
+    // keep URL in sync (no reload)
+    const url = new URL(window.location);
+    if (input.value) url.searchParams.set('q', input.value);
+    else url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    bar.classList.remove('has-value');
+    input.focus();
+    render('');
+    const url = new URL(window.location);
+    url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  });
+
+  // Suggestion pills set the query
+  suggestEl.addEventListener('click', e => {
+    const btn = e.target.closest('.suggestion');
+    if (!btn) return;
+    input.value = btn.dataset.q;
+    bar.classList.add('has-value');
+    input.dispatchEvent(new Event('input'));
+    input.focus();
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== input) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    } else if (e.key === 'Escape' && document.activeElement === input) {
+      if (input.value) {
+        input.value = '';
+        bar.classList.remove('has-value');
+        render('');
+      } else {
+        input.blur();
+      }
+    }
+  });
+
+  // ── Scoring ────────────────────────────────────────────────
+  function tokenize(s) {
+    return s.toLowerCase().trim().split(/\s+/).filter(Boolean);
+  }
+
+  function score(entry, tokens, rawQuery) {
+    const title    = entry.title.toLowerCase();
+    const family   = (entry.family || '').toLowerCase();
+    const tags     = (entry.tags || []).join(' ').toLowerCase();
+    const snippet  = (entry.snippet || '').toLowerCase();
+    const keywords = (entry.keywords || '').toLowerCase();
+    let s = 0;
+
+    // whole-query boosts (treat the user's literal query as a phrase)
+    if (title === rawQuery)               s += 1000;
+    else if (title.startsWith(rawQuery))  s += 500;
+    else if (title.includes(rawQuery))    s += 200;
+    if (family.includes(rawQuery))        s += 80;
+    if (tags.includes(rawQuery))          s += 60;
+    if (snippet.includes(rawQuery))       s += 25;
+    if (keywords.includes(rawQuery))      s += 25;
+
+    // per-token contributions
+    for (const t of tokens) {
+      if (title.includes(t))    s += 30;
+      if (family.includes(t))   s += 20;
+      if (tags.includes(t))     s += 15;
+      if (keywords.includes(t)) s += 8;
+      if (snippet.includes(t))  s += 3;
+    }
+
+    // small bias toward shorter titles when tied
+    if (s > 0) s -= title.length * 0.05;
+    return s;
+  }
+
+  // ── Highlighter ────────────────────────────────────────────
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, m => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[m]));
+  }
+  function escapeRegex(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function highlight(text, tokens) {
+    if (!tokens.length) return escapeHtml(text);
+    const escaped = escapeHtml(text);
+    const pattern = new RegExp(
+      '(' + tokens.map(escapeRegex).join('|') + ')',
+      'gi'
+    );
+    return escaped.replace(pattern, '<mark>$1</mark>');
+  }
+
+  // ── Render ─────────────────────────────────────────────────
+  function render(query) {
+    const trimmed = query.trim();
+    const tokens  = tokenize(trimmed);
+    const rawLow  = trimmed.toLowerCase();
+
+    if (!trimmed) {
+      renderEmpty();
+      status.textContent = `Browsing all ${INDEX.length} pages`;
+      return;
+    }
+
+    const scored = INDEX
+      .map(e => ({ entry: e, s: score(e, tokens, rawLow) }))
+      .filter(x => x.s > 0)
+      .sort((a, b) => b.s - a.s);
+
+    status.textContent = scored.length
+      ? `${scored.length} result${scored.length === 1 ? '' : 's'} for "${trimmed}"`
+      : `No results for "${trimmed}"`;
+
+    if (!scored.length) {
+      resultsEl.innerHTML = `
+        <div class="no-results">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <h3>No matches for "${escapeHtml(trimmed)}"</h3>
+          <p>Try a different spelling, a broader term, or one of the popular searches above.</p>
+        </div>`;
+      return;
+    }
+
+    // group by type, preserving score order within each group
+    const groups = {};
+    for (const { entry, s } of scored) {
+      (groups[entry.type] = groups[entry.type] || []).push({ entry, s });
+    }
+
+    const html = TYPE_ORDER
+      .filter(t => groups[t] && groups[t].length)
+      .map(t => renderGroup(t, groups[t], tokens))
+      .join('');
+
+    resultsEl.innerHTML = html;
+  }
+
+  function renderGroup(type, items, tokens) {
+    const cards = items.map(({ entry }) => renderResult(entry, tokens)).join('');
+    return `
+      <div class="results-group">
+        <div class="results-group-head">
+          <h2>${TYPE_LABEL_PLURAL[type] || type}</h2>
+          <span class="count">${items.length}</span>
+        </div>
+        ${cards}
+      </div>`;
+  }
+
+  function renderResult(entry, tokens) {
+    const tags = (entry.tags || []).slice(0, 4)
+      .map(t => `<span class="result-tag">${escapeHtml(t)}</span>`).join('');
+    return `
+      <a class="result" href="${escapeHtml(entry.url)}">
+        <div class="result-main">
+          <div class="result-row">
+            <span class="type-chip" data-type="${escapeHtml(entry.type)}">${escapeHtml(entry.type)}</span>
+            <span class="result-family">${escapeHtml(entry.family || '')}</span>
+          </div>
+          <h3>${highlight(entry.title, tokens)}</h3>
+          <p class="result-snippet">${highlight(entry.snippet || '', tokens)}</p>
+          <div class="result-tags">${tags}</div>
+          <div class="result-url">${escapeHtml(entry.url)}</div>
+        </div>
+        <div class="result-arrow">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+      </a>`;
+  }
+
+  // ── Empty state: browse-by-category ────────────────────────
+  function renderEmpty() {
+    const counts = {};
+    for (const e of INDEX) counts[e.type] = (counts[e.type] || 0) + 1;
+    const cards = TYPE_ORDER
+      .filter(t => counts[t])
+      .map(t => {
+        // pick a representative landing URL for each category
+        const landing = ({
+          'Spec Sheet': 'spec-sheets.html',
+          'Catalog':    'products.html',
+          'Market':     'markets/index.html',
+          'Resource':   'resources/index.html',
+          'Tool':       'find-a-rep.html',
+          'Page':       'about.html',
+        })[t];
+        return `
+          <a class="browse-card" href="${landing}">
+            <span class="browse-card-label">${TYPE_LABEL_PLURAL[t] || t}</span>
+            <span class="browse-card-count">${counts[t]}</span>
+          </a>`;
+      }).join('');
+
+    resultsEl.innerHTML = `
+      <div class="results-group">
+        <div class="results-group-head">
+          <h2>Browse by category</h2>
+          <span class="count">${INDEX.length} pages indexed</span>
+        </div>
+        <div class="browse-grid">${cards}</div>
+      </div>`;
+  }
+})();
+</script>
+
+</body>
+</html>
