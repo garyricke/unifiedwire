@@ -185,6 +185,8 @@ function renderFooter(depth) {
 function renderInternalPagesWidget(basePath) {
   basePath = basePath || '';
   var items = [
+    { href: 'status.html',               label: 'Status',
+      svg: '<line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="16"/>' },
     { href: 'brand-guide.html',          label: 'Brand Guide',
       svg: '<circle cx="13.5" cy="6.5" r=".75"/><circle cx="17.5" cy="10.5" r=".75"/><circle cx="8.5" cy="7.5" r=".75"/><circle cx="6.5" cy="12.5" r=".75"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.74 1.5-1.66 0-.44-.17-.83-.43-1.13-.27-.31-.42-.7-.42-1.13 0-.92.74-1.66 1.66-1.66H16c3.31 0 6-2.69 6-6 0-5.5-4.5-10-10-10z"/>' },
     { href: 'spec-navigator.html',       label: 'Spec Navigator',
@@ -194,7 +196,9 @@ function renderInternalPagesWidget(basePath) {
     { href: 'tradeshow-banners-v2.html', label: 'Tradeshow Banners',
       svg: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>' },
     { href: 'truck-wrap.html',           label: 'Truck Wrap',
-      svg: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>' }
+      svg: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>' },
+    { href: 'search.html',               label: 'Search',
+      svg: '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>' }
   ];
   var links = items.map(function (it) {
     return '<a href="' + basePath + it.href + '" role="menuitem">' +

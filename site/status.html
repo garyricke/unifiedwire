@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Status — Unified Wire & Cable</title>
+<link rel="icon" type="image/png" href="unifiedwire-favicon-apr2026.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #0362BC;
+    --blue-dk: #024a90;
+    --orange: #E36417;
+    --navy: #0A1628;
+    --navy2: #0d1e38;
+    --text: #1a2535;
+    --text-lt: #4a5568;
+    --border: #dce3ed;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  html, body { background: #f5f7fa; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── NAV ── */
+  nav.top {
+    background: var(--navy);
+    padding: 18px 0;
+  }
+  .top-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .top-logo { display: flex; align-items: center; gap: 12px; }
+  .top-logo img { height: 26px; width: auto; opacity: .9; }
+  .top-divider { width: 1px; height: 18px; background: rgba(255,255,255,.15); }
+  .top-label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    color: rgba(255,255,255,.55);
+    text-transform: uppercase;
+  }
+  .top-back {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: rgba(255,255,255,.45);
+    transition: color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .top-back:hover { color: #fff; }
+
+  /* ── HEADER ── */
+  .hero {
+    padding: 80px 0 56px;
+    background: linear-gradient(180deg, #f0f3f8 0%, #f5f7fa 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .16em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-lt);
+    max-width: 620px;
+    line-height: 1.55;
+  }
+  .hero-meta {
+    display: flex; gap: 28px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: var(--text-lt);
+    text-transform: uppercase;
+  }
+  .meta-pill::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+  .meta-pill.orange::before { background: var(--orange); }
+  .meta-count { color: var(--text); font-weight: 700; }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 32px 80px;
+  }
+  .day {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+  .day:last-child { border-bottom: 1px solid var(--border); }
+  .day-date {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+  }
+  .day-date-iso {
+    font-family: var(--mono);
+    font-size: .8rem;
+    letter-spacing: .04em;
+    color: var(--blue);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .day-date-pretty {
+    font-size: .88rem;
+    color: var(--text-lt);
+  }
+  .day-items {
+    display: flex; flex-direction: column;
+    gap: 18px;
+  }
+  .item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .item-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+    margin-top: 9px;
+    flex-shrink: 0;
+  }
+  .item.major .item-dot { background: var(--orange); width: 10px; height: 10px; margin-top: 8px; }
+  .item-body { flex: 1; }
+  .item-title {
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -.005em;
+  }
+  .item-desc {
+    font-size: .95rem;
+    color: var(--text-lt);
+    line-height: 1.5;
+  }
+  .item-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .08em;
+    color: var(--blue);
+    background: rgba(3,98,188,.08);
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    vertical-align: 2px;
+  }
+  .item-tag.orange { color: var(--orange); background: rgba(227,100,23,.08); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,.4);
+    padding: 36px 32px;
+    text-align: center;
+    font-size: .82rem;
+    position: relative;
+  }
+  footer .mono {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── INTERNAL GATE ── */
+  #st-gate { position: fixed; inset: 0; z-index: 9999; background: var(--navy);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    transition: opacity .6s ease; }
+  #st-gate.hide { opacity: 0; pointer-events: none; }
+  .st-gate-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px; padding: 48px 40px; text-align: center;
+    max-width: 380px; width: 100%; }
+  .st-gate-card img { height: 38px; width: auto; margin: 0 auto 24px; display: block; opacity: .9; }
+  .st-gate-eyebrow { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+  .st-gate-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 24px; letter-spacing: -.01em; }
+  .st-gate-input { width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px; padding: 14px 16px; color: #fff; font-size: 1rem;
+    font-family: inherit; outline: none; transition: border-color .2s; }
+  .st-gate-input::placeholder { color: rgba(255,255,255,.3); }
+  .st-gate-input:focus { border-color: rgba(3,98,188,.6); }
+  .st-gate-input.shake { animation: stShake .55s ease; }
+  @keyframes stShake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
+  .st-gate-btn { width: 100%; margin-top: 12px; padding: 14px 16px;
+    background: var(--blue); color: #fff; border: 0; border-radius: 8px;
+    font-weight: 700; font-size: .95rem; cursor: pointer;
+    font-family: inherit; transition: background .2s; }
+  .st-gate-btn:hover { background: var(--blue-dk); }
+  .st-gate-err { margin-top: 12px; font-size: .82rem; color: var(--orange);
+    opacity: 0; transition: opacity .2s; }
+  .st-gate-err.show { opacity: 1; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .hero { padding: 56px 0 40px; }
+    .timeline { padding: 40px 24px 56px; }
+    .top-inner, .hero-inner { padding: 0 24px; }
+    .day { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
+    .day-date { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── INTERNAL GATE ── -->
+<div id="st-gate">
+  <div class="st-gate-card">
+    <img src="Unified-Logo-current.png" alt="UWC">
+    <div class="st-gate-eyebrow">Internal Preview</div>
+    <div class="st-gate-title">Project Status</div>
+    <form id="st-gate-form" autocomplete="off">
+      <input type="password" id="st-gate-input" class="st-gate-input"
+             placeholder="Password" autocomplete="current-password">
+      <button type="submit" class="st-gate-btn">Enter</button>
+      <div class="st-gate-err" id="st-gate-err">Incorrect password.</div>
+    </form>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="top">
+  <div class="top-inner">
+    <div class="top-logo">
+      <img src="Unified-Logo-current.png" alt="Unified Wire &amp; Cable">
+    </div>
+    <div class="top-divider"></div>
+    <span class="top-label">Project Status</span>
+    <a href="home.html" class="top-back">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Engagement Log · UWC × Orbis</div>
+    <h1>What we've built so far.</h1>
+    <p>A running record of milestones delivered for the Unified Wire &amp; Cable brand and digital transformation, newest first.</p>
+    <div class="hero-meta">
+      <span class="meta-pill"><span class="meta-count">Mar 5, 2026</span> &nbsp;· kickoff</span>
+      <span class="meta-pill orange"><span class="meta-count">May 7, 2026</span> &nbsp;· site launch</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── TIMELINE ── -->
+<section class="timeline">
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-15</div>
+      <div class="day-date-pretty">Thursday, May 15</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Internal Pages portal <span class="item-tag">Tooling</span></div>
+          <div class="item-desc">Hidden "A" widget in the footer of the proposal and every site page opens a popover linking to the protected internal tools. Five gated pages share a single session — log in once, access them all.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Brand Guide gated + moved into site/</div>
+          <div class="item-desc">Brand Guide picked up its own password gate and joined the other internal pages under <code>site/</code> so they're reachable on the live deployment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-12</div>
+      <div class="day-date-pretty">Monday, May 12</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Site search launched at /search.html <span class="item-tag">Site</span></div>
+          <div class="item-desc">Client-side fuzzy match over a hand-curated 35-entry index covering spec sheets, markets, resources, and tools. Includes synonyms (PV, mil-spec, UL numbers), live filtering, and a sitemap-as-empty-state.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">NM-B removed from site</div>
+          <div class="item-desc">UWC does not manufacture NM-B/Romex — pulled it from spec sheets, products list, and the search index after client confirmation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-08</div>
+      <div class="day-date-pretty">Friday, May 8</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Print-suite landing page deployed</div>
+          <div class="item-desc">Spec sheet print suite browsable at <code>/0-spec-sheets-for-print/</code>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-06</div>
+      <div class="day-date-pretty">Wednesday, May 6 — Launch week</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">New site live <span class="item-tag orange">Milestone</span></div>
+          <div class="item-desc">unifiedwire.com is now served from the new <code>/site/</code> build via Netlify. Home, products, spec sheets library, all market pages, About, Skin Coat Technology, Find a Rep, Contact, and Tim Foley / Daniela story pages are public.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Home application panels wired to spec sheets</div>
+          <div class="item-desc">Each industry panel on the home page now deep-links to the specific spec sheet or the spec library.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Password gates removed from public-facing pages</div>
+          <div class="item-desc">Only the dev preview gate remains on staging-only routes; all customer-facing pages are open.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-05</div>
+      <div class="day-date-pretty">Tuesday, May 5</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">About page: drone facility hero video</div>
+          <div class="item-desc">Looping aerial drone footage of the DeKalb plant replaces the static aerial photo, with a glass facility-stats card overlapping the bottom of the video.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Skin Coat Technology page: ping-pong hero video</div>
+          <div class="item-desc">Seamless forward/reverse hero video via Cloudinary splice; overlay lightened so the cable extrusion footage reads clearly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-04</div>
+      <div class="day-date-pretty">Monday, May 4</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">AirPod Giveaway sheets for EWPTE 2026 <span class="item-tag">Print</span></div>
+          <div class="item-desc">10 print-ready 8.5×11 concept sheets (5 concepts × Nano-Banana &amp; OpenAI variants) for the badge-scan AirPods drawing at the show.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Spec sheets: final print polish</div>
+          <div class="item-desc">Thumbnails regenerated at 2x for crisper landing-page display; hero-bottom darkening gradient removed (printed too dark); card image positioning tightened across the suite.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-01</div>
+      <div class="day-date-pretty">Friday, May 1 — Print delivery</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Spec Sheet Suite v2.0 delivered <span class="item-tag orange">Milestone</span></div>
+          <div class="item-desc">Eight-sheet suite on the QR-driven blue brand template, ready for the 6,000-unit print run. Premier Sales Group feedback round incorporated; corporate capability sheet finalized with the "5 Stages Under One Roof" process band.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Spec sheet detail pages public, pretty URLs added</div>
+          <div class="item-desc">Each printed QR code now resolves to a clean URL (<code>unifiedwire.com/spec-sheet-thhn-mtw-thwn-2</code> etc.) via Netlify redirects.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-29</div>
+      <div class="day-date-pretty">Wednesday, April 29</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">10-sheet spec sheet print suite + PDF build pipeline</div>
+          <div class="item-desc">Chrome-headless print-to-PDF workflow for repeatable spec sheet rasterization with timestamped filenames.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-28</div>
+      <div class="day-date-pretty">Tuesday, April 28</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">All tradeshow banners regenerated at Topaz 6× upscale</div>
+          <div class="item-desc">Background plates upgraded to 6× upscaled versions; all 14 print PDFs regenerated.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-27</div>
+      <div class="day-date-pretty">Monday, April 27</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">10ft Perfect-Pop pop-up display added (Banner 07)</div>
+          <div class="item-desc">Dramatic close-up flag background, darker overlay for hero contrast.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">USA Banner 04C — Hard-Hat American</div>
+          <div class="item-desc">Single-portrait variant added alongside the diptych. Tradeshow banners 04-27 client revisions delivered.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-26</div>
+      <div class="day-date-pretty">Sunday, April 26</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Print-ready PDFs + per-card download links</div>
+          <div class="item-desc">Every banner concept now has a one-click PDF download. Applications banner refreshed to the 7 client-supplied product categories.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-24</div>
+      <div class="day-date-pretty">Friday, April 24</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Tradeshow Banners v2 — expanded to 6 banners</div>
+          <div class="item-desc">Three additional concepts join the original three: a richer review-page lineup across cable categories.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Daniela long-form story page</div>
+          <div class="item-desc">Person-story page with a video gallery above the chapter content; redesigned About people cards.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-23</div>
+      <div class="day-date-pretty">Thursday, April 23</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Tradeshow Banners v2 review page</div>
+          <div class="item-desc">Six 33"×81" banner concepts presented for client review, each with live preview + downloadable print PDF.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-20</div>
+      <div class="day-date-pretty">Monday, April 20</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">New /site/ build started <span class="item-tag">Site</span></div>
+          <div class="item-desc">Foundation for the current public site: shared nav/footer system, brand tokens, page templates.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Tim Foley long-form story page</div>
+          <div class="item-desc">First of the people-story pages — chapter-driven scrollytelling format that became the template for Daniela's.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-09</div>
+      <div class="day-date-pretty">Thursday, April 9</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Tradeshow Banners v1 — 3 AI-generated concepts</div>
+          <div class="item-desc">First tradeshow banner review page (password-protected) with the real UWC logo applied.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">America 250 logo page</div>
+          <div class="item-desc">Password-protected internal page hosting the UWC America 250 lockup.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-04-03</div>
+      <div class="day-date-pretty">Friday, April 3</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Rep Locator: territory cache + favicon + nav fixes</div>
+          <div class="item-desc">Rep territory data cached in localStorage with 10-min TTL; UWC favicon added across all pages; contact form 404 fixed by handling submission via fetch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-03-30</div>
+      <div class="day-date-pretty">Monday, March 30</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Repository renamed to <code>unifiedwire</code></div>
+          <div class="item-desc">Coming-soon page promoted to index.html as a temporary public landing while the new site builds.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-03-25</div>
+      <div class="day-date-pretty">Wednesday, March 25</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Rep Locator: updated territory assignments</div>
+          <div class="item-desc">New rep assignments applied, Jordan removed, corporate-rep note added. State label positions polished to inspector-exact coordinates over the next few days.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-03-19</div>
+      <div class="day-date-pretty">Thursday, March 19</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Rep Locator launched <span class="item-tag">Tooling</span></div>
+          <div class="item-desc">Interactive SVG U.S. map with admin editor for territory assignments; tutorial video and info-modal walkthrough added the same day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-03-17</div>
+      <div class="day-date-pretty">Monday, March 17</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Truck Wrap concept page</div>
+          <div class="item-desc">Four design concepts (A–D) with an inline commenting system. Round 2 and Round 3 revisions delivered through March 18 — UWC wordmark + colorful wire treatment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-03-05</div>
+      <div class="day-date-pretty">Thursday, March 5 — Kickoff</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Engagement kickoff <span class="item-tag orange">Milestone</span></div>
+          <div class="item-desc">Initial UWC proposal delivered. Brand Guide published in HTML form, the Spec Sheet Navigator went online (AES-GCM password gated), and the project repository spun up.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div>338 Wurlitzer Dr, DeKalb, IL 60115 &nbsp;—&nbsp; 815-748-4876</div>
+  <div class="mono" style="margin-top:8px;">© 2026 Unified Wire &amp; Cable · Project status, updated <span id="updated"></span></div>
+</footer>
+
+<script>
+  document.getElementById('updated').textContent = new Date().toLocaleDateString('en-US',
+    { month: 'short', day: 'numeric', year: 'numeric' });
+
+  /* ── INTERNAL GATE ── */
+  (function () {
+    const PASS = 'copper';
+    const SHARED = 'uwc_internal_auth';
+    const gate = document.getElementById('st-gate');
+    const form = document.getElementById('st-gate-form');
+    const input = document.getElementById('st-gate-input');
+    const err = document.getElementById('st-gate-err');
+
+    function hide() {
+      gate.classList.add('hide');
+      setTimeout(() => { gate.style.display = 'none'; }, 650);
+    }
+    if (sessionStorage.getItem(SHARED) === PASS) { hide(); return; }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value.trim().toLowerCase() === PASS) {
+        sessionStorage.setItem(SHARED, PASS);
+        hide();
+      } else {
+        err.classList.add('show');
+        input.classList.remove('shake'); void input.offsetWidth;
+        input.classList.add('shake');
+        input.value = '';
+        input.focus();
+      }
+    });
+    setTimeout(() => input.focus(), 100);
+  })();
+</script>
+</body>
+</html>
