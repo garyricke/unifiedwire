@@ -215,6 +215,7 @@ async function unlock() {
 
     // Store session so refresh doesn't re-prompt
     sessionStorage.setItem('uwc_auth', pw);
+    sessionStorage.setItem('uwc_internal_auth', pw);
 
     const html = new TextDecoder().decode(decrypted);
     document.open();
@@ -231,9 +232,9 @@ async function unlock() {
   }
 }
 
-// Auto-unlock if session already authenticated
+// Auto-unlock if session already authenticated (own key or shared)
 (async () => {
-  const saved = sessionStorage.getItem('uwc_auth');
+  const saved = sessionStorage.getItem('uwc_auth') || sessionStorage.getItem('uwc_internal_auth');
   if (saved) {
     document.getElementById('pwInput').value = saved;
     await unlock();

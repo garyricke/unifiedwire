@@ -175,8 +175,68 @@ function renderFooter(depth) {
     '    <span>© 2026 Unified Wire & Cable, Inc. &nbsp;·&nbsp; DeKalb, IL 60115 &nbsp;·&nbsp; 815-748-4876</span>',
     '    <a href="' + depth + 'privacy-policy.html">Privacy Policy</a>',
     '  </div>',
+    '</div>',
+    renderInternalPagesWidget(depth)
+  ].join('\n');
+  initInternalPagesWidget();
+}
+
+// ── Internal Pages widget ────────────────────────────────────
+function renderInternalPagesWidget(basePath) {
+  basePath = basePath || '';
+  var items = [
+    { href: 'brand-guide.html',          label: 'Brand Guide',
+      svg: '<circle cx="13.5" cy="6.5" r=".75"/><circle cx="17.5" cy="10.5" r=".75"/><circle cx="8.5" cy="7.5" r=".75"/><circle cx="6.5" cy="12.5" r=".75"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.74 1.5-1.66 0-.44-.17-.83-.43-1.13-.27-.31-.42-.7-.42-1.13 0-.92.74-1.66 1.66-1.66H16c3.31 0 6-2.69 6-6 0-5.5-4.5-10-10-10z"/>' },
+    { href: 'spec-navigator.html',       label: 'Spec Navigator',
+      svg: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' },
+    { href: 'rep-locator.html',          label: 'Rep Locator',
+      svg: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>' },
+    { href: 'USA250.html',               label: 'America 250',
+      svg: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>' },
+    { href: 'tradeshow-banners-v2.html', label: 'Tradeshow Banners',
+      svg: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>' },
+    { href: 'truck-wrap.html',           label: 'Truck Wrap',
+      svg: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>' }
+  ];
+  var links = items.map(function (it) {
+    return '<a href="' + basePath + it.href + '" role="menuitem">' +
+           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + it.svg + '</svg>' +
+           it.label +
+           '</a>';
+  }).join('');
+  return [
+    '<div class="uwc-ipw" id="uwc-ipw">',
+    '  <button type="button" class="uwc-ipw-btn" id="uwc-ipw-btn" aria-label="Internal pages" aria-expanded="false">A</button>',
+    '  <div class="uwc-ipw-pop" id="uwc-ipw-pop" role="menu" aria-hidden="true">',
+    '    <div class="uwc-ipw-eyebrow">Internal Pages</div>',
+    links,
+    '  </div>',
     '</div>'
   ].join('\n');
+}
+
+function initInternalPagesWidget() {
+  var btn = document.getElementById('uwc-ipw-btn');
+  var pop = document.getElementById('uwc-ipw-pop');
+  if (!btn || !pop) return;
+  function close() {
+    pop.classList.remove('open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+    pop.setAttribute('aria-hidden', 'true');
+  }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = !pop.classList.contains('open');
+    pop.classList.toggle('open', open);
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
+    pop.setAttribute('aria-hidden', String(!open));
+  });
+  document.addEventListener('click', function (e) {
+    if (!pop.contains(e.target) && !btn.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 }
 
 // ── Gate HTML helper ─────────────────────────────────────────

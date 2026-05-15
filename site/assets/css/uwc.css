@@ -373,6 +373,7 @@ p  { font-size: 1.05rem; font-weight: 400; color: var(--text-lt); line-height: 1
   background: var(--navy);
   color: rgba(255,255,255,.55);
   padding: 72px 0 0;
+  position: relative;
 }
 .footer-grid {
   display: grid;
@@ -415,12 +416,76 @@ p  { font-size: 1.05rem; font-weight: 400; color: var(--text-lt); line-height: 1
 .footer-bottom a { color: rgba(255,255,255,.2); transition: color .2s; }
 .footer-bottom a:hover { color: rgba(255,255,255,.5); }
 
+/* --- Internal Pages widget --------------------------------- */
+.uwc-ipw { position: absolute; right: 18px; bottom: 14px; z-index: 50; }
+.uwc-ipw-btn {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.22);
+  font-family: inherit;
+  font-size: 11px; font-weight: 700;
+  cursor: pointer; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.uwc-ipw-btn:hover { color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.55); }
+.uwc-ipw-btn.active {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255,255,255,.08);
+}
+.uwc-ipw-pop {
+  position: absolute;
+  right: 0; bottom: calc(100% + 14px);
+  background: #fff;
+  color: #1a2535;
+  border-radius: 18px;
+  box-shadow: 0 30px 60px -16px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.25);
+  min-width: 280px;
+  padding: 26px 28px;
+  opacity: 0;
+  transform: translateY(6px) scale(.97);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+  text-align: left;
+}
+.uwc-ipw-pop.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.uwc-ipw-eyebrow {
+  font-family: var(--mono, ui-monospace, 'SF Mono', Menlo, monospace);
+  font-size: .68rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: #8a93a8;
+  margin-bottom: 16px;
+}
+.uwc-ipw-pop a {
+  display: flex; align-items: center;
+  gap: 14px; padding: 8px 0;
+  color: #1a2535;
+  font-size: 1.02rem; font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -.005em;
+  margin-bottom: 0;
+  transition: color .15s;
+}
+.uwc-ipw-pop a:hover { color: var(--blue, #0362BC); }
+.uwc-ipw-pop a svg {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  color: #8a93a8;
+  transition: color .15s;
+}
+.uwc-ipw-pop a:hover svg { color: var(--blue, #0362BC); }
+
 @media (max-width: 860px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
 }
 @media (max-width: 500px) {
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .uwc-ipw-pop { min-width: 260px; right: -8px; }
 }
 
 /* --- Trust Bar --------------------------------------------- */

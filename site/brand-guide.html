@@ -394,9 +394,52 @@
     }
     .footer-inner img { height: 24px; width: auto; }
     .footer-txt { font-family: var(--mono); font-size: .68rem; color: rgba(255,255,255,.3); letter-spacing: .08em; }
+
+    /* ── INTERNAL GATE ────────────────────────────────────── */
+    #bg-gate { position: fixed; inset: 0; z-index: 9999; background: #0A1628;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      transition: opacity .6s ease; }
+    #bg-gate.hide { opacity: 0; pointer-events: none; }
+    .bg-gate-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px; padding: 48px 40px; text-align: center;
+      max-width: 380px; width: 100%; }
+    .bg-gate-card img { height: 38px; width: auto; margin: 0 auto 24px; display: block; opacity: .9; }
+    .bg-gate-eyebrow { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
+      text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+    .bg-gate-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 24px; letter-spacing: -.01em; }
+    .bg-gate-input { width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px; padding: 14px 16px; color: #fff; font-size: 1rem;
+      font-family: inherit; outline: none; transition: border-color .2s; }
+    .bg-gate-input::placeholder { color: rgba(255,255,255,.3); }
+    .bg-gate-input:focus { border-color: rgba(3,98,188,.6); }
+    .bg-gate-input.shake { animation: bgShake .55s ease; }
+    @keyframes bgShake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
+    .bg-gate-btn { width: 100%; margin-top: 12px; padding: 14px 16px;
+      background: #0362BC; color: #fff; border: 0; border-radius: 8px;
+      font-weight: 700; font-size: .95rem; cursor: pointer;
+      font-family: inherit; transition: background .2s; }
+    .bg-gate-btn:hover { background: #024a90; }
+    .bg-gate-err { margin-top: 12px; font-size: .82rem; color: #E36417;
+      opacity: 0; transition: opacity .2s; }
+    .bg-gate-err.show { opacity: 1; }
   </style>
 </head>
 <body>
+
+<!-- ── INTERNAL GATE ── -->
+<div id="bg-gate">
+  <div class="bg-gate-card">
+    <img src="Unified-Logo-current.png" alt="UWC">
+    <div class="bg-gate-eyebrow">Internal Preview</div>
+    <div class="bg-gate-title">Brand Guide Access</div>
+    <form id="bg-gate-form" autocomplete="off">
+      <input type="password" id="bg-gate-input" class="bg-gate-input"
+             placeholder="Password" autocomplete="current-password">
+      <button type="submit" class="bg-gate-btn">Enter</button>
+      <div class="bg-gate-err" id="bg-gate-err">Incorrect password.</div>
+    </form>
+  </div>
+</div>
 
 <!-- ── NAV ── -->
 <nav>
@@ -1073,6 +1116,38 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
   document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+  /* ── INTERNAL GATE ── */
+  (function () {
+    const PASS = 'copper';
+    const SHARED = 'uwc_internal_auth';
+    const gate = document.getElementById('bg-gate');
+    const form = document.getElementById('bg-gate-form');
+    const input = document.getElementById('bg-gate-input');
+    const err = document.getElementById('bg-gate-err');
+
+    function hide() {
+      gate.classList.add('hide');
+      setTimeout(() => { gate.style.display = 'none'; }, 650);
+    }
+
+    if (sessionStorage.getItem(SHARED) === PASS) { hide(); return; }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value.trim().toLowerCase() === PASS) {
+        sessionStorage.setItem(SHARED, PASS);
+        hide();
+      } else {
+        err.classList.add('show');
+        input.classList.remove('shake'); void input.offsetWidth;
+        input.classList.add('shake');
+        input.value = '';
+        input.focus();
+      }
+    });
+    setTimeout(() => input.focus(), 100);
+  })();
 </script>
 </body>
 </html>

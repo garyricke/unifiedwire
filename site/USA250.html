@@ -688,7 +688,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-wordmark">
+    <a href="home.html" class="nav-wordmark">
       <div class="nav-logo-dot"></div>
       <span class="nav-name">Unified Wire &amp; Cable</span>
     </a>
@@ -784,6 +784,7 @@
   /* ── PASSWORD GATE ──────────────────────────────────────── */
   const PASS     = 'copper';
   const SESSION  = 'uwc_250_auth';
+  const SHARED   = 'uwc_internal_auth';
   const gate     = document.getElementById('gate');
   const main     = document.getElementById('main-content');
   const errEl    = document.getElementById('gate-error');
@@ -802,6 +803,7 @@
     });
     setTimeout(() => { gate.style.display = 'none'; }, 800);
     sessionStorage.setItem(SESSION, '1');
+    sessionStorage.setItem(SHARED, PASS);
     initScrollObserver();
   }
 
@@ -819,8 +821,10 @@
     }
   }
 
-  /* Auto-unlock if already authenticated this session */
-  if (sessionStorage.getItem(SESSION) === '1') {
+  /* Auto-unlock if already authenticated this session (own key or shared) */
+  if (sessionStorage.getItem(SESSION) === '1' || sessionStorage.getItem(SHARED) === PASS) {
+    sessionStorage.setItem(SESSION, '1');
+    sessionStorage.setItem(SHARED, PASS);
     gate.style.display = 'none';
     main.style.visibility = 'visible';
     setTimeout(initScrollObserver, 100);

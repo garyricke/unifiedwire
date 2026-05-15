@@ -1469,7 +1469,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-brand">
+  <a href="home.html" class="nav-brand">
     <div class="nav-pip"></div>
     <span class="nav-name">Unified Wire &amp; Cable</span>
   </a>
@@ -2432,6 +2432,7 @@
   /* ── PASSWORD GATE ───────────────────────────────────────── */
   const PASS    = 'copper';
   const SESSION = 'uwc_banners_v2_auth';
+  const SHARED  = 'uwc_internal_auth';
   const gate    = document.getElementById('gate');
   const main    = document.getElementById('main-content');
   const errEl   = document.getElementById('gate-error');
@@ -2448,6 +2449,7 @@
     }));
     setTimeout(() => gate.style.display = 'none', 800);
     sessionStorage.setItem(SESSION, '1');
+    sessionStorage.setItem(SHARED, PASS);
     initObserver();
   }
 
@@ -2464,7 +2466,9 @@
     }
   }
 
-  if (sessionStorage.getItem(SESSION) === '1') {
+  if (sessionStorage.getItem(SESSION) === '1' || sessionStorage.getItem(SHARED) === PASS) {
+    sessionStorage.setItem(SESSION, '1');
+    sessionStorage.setItem(SHARED, PASS);
     gate.style.display = 'none';
     main.style.visibility = 'visible';
     window.addEventListener('DOMContentLoaded', () => initObserver());

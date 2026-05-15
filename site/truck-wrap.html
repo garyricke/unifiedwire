@@ -1287,12 +1287,15 @@
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-    // Password gate
+    // Password gate — accepts page-specific or shared internal password
     const PASS = 'unifiedrules';
+    const SHARED_PASS = 'copper';
     function checkPassword() {
       const input = document.getElementById('gate-input');
-      if (input.value === PASS) {
+      const val = input.value;
+      if (val === PASS || val === SHARED_PASS) {
         sessionStorage.setItem('uwc_auth', '1');
+        sessionStorage.setItem('uwc_internal_auth', SHARED_PASS);
         document.getElementById('gate').style.display = 'none';
       } else {
         document.getElementById('gate-error').textContent = 'Incorrect password. Try again.';
@@ -1303,7 +1306,9 @@
         input.focus();
       }
     }
-    if (sessionStorage.getItem('uwc_auth') === '1') {
+    if (sessionStorage.getItem('uwc_auth') === '1' || sessionStorage.getItem('uwc_internal_auth') === SHARED_PASS) {
+      sessionStorage.setItem('uwc_auth', '1');
+      sessionStorage.setItem('uwc_internal_auth', SHARED_PASS);
       document.getElementById('gate').style.display = 'none';
     }
 
