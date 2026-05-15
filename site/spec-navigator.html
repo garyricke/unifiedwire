@@ -177,6 +177,81 @@ function b64ToBytes(b64) {
   return bytes;
 }
 
+function injectInternalPagesWidget() {
+  if (document.getElementById('uwc-ipw')) return;
+  const css = `
+    .uwc-ipw { position: fixed; right: 18px; bottom: 14px; z-index: 99999; }
+    .uwc-ipw-btn { width: 24px; height: 24px; border-radius: 50%; background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.35); color: rgba(255,255,255,.55);
+      font-family: inherit; font-size: 11px; font-weight: 700; cursor: pointer; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: color .2s, border-color .2s, background .2s; backdrop-filter: blur(6px); }
+    .uwc-ipw-btn:hover { color: #fff; border-color: rgba(255,255,255,.85); background: rgba(0,0,0,.55); }
+    .uwc-ipw-btn.active { color: #fff; border-color: #fff; background: rgba(0,0,0,.7); }
+    .uwc-ipw-pop { position: absolute; right: 0; bottom: calc(100% + 14px);
+      background: #fff; color: #1a2535; border-radius: 18px;
+      box-shadow: 0 30px 60px -16px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.25);
+      min-width: 280px; padding: 26px 28px;
+      opacity: 0; transform: translateY(6px) scale(.97); transform-origin: bottom right;
+      pointer-events: none; transition: opacity .18s ease, transform .18s ease; text-align: left;
+      font-family: -apple-system, 'Plus Jakarta Sans', system-ui, sans-serif; }
+    .uwc-ipw-pop.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .uwc-ipw-eyebrow { font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: #8a93a8; margin-bottom: 16px; }
+    .uwc-ipw-pop a { display: flex; align-items: center; gap: 14px; padding: 8px 0;
+      color: #1a2535; font-size: 1.02rem; font-weight: 700;
+      text-decoration: none; letter-spacing: -.005em; transition: color .15s; }
+    .uwc-ipw-pop a:hover { color: #0362BC; }
+    .uwc-ipw-pop a svg { width: 22px; height: 22px; flex-shrink: 0; color: #8a93a8; transition: color .15s; }
+    .uwc-ipw-pop a:hover svg { color: #0362BC; }
+  `;
+  const style = document.createElement('style');
+  style.textContent = css;
+  document.head.appendChild(style);
+
+  const items = [
+    ['status.html',                'Status',            '<line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="16"/>'],
+    ['brand-guide.html',           'Brand Guide',       '<circle cx="13.5" cy="6.5" r=".75"/><circle cx="17.5" cy="10.5" r=".75"/><circle cx="8.5" cy="7.5" r=".75"/><circle cx="6.5" cy="12.5" r=".75"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.74 1.5-1.66 0-.44-.17-.83-.43-1.13-.27-.31-.42-.7-.42-1.13 0-.92.74-1.66 1.66-1.66H16c3.31 0 6-2.69 6-6 0-5.5-4.5-10-10-10z"/>'],
+    ['spec-navigator.html',        'Spec Navigator',    '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>'],
+    ['USA250.html',                'America 250',       '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>'],
+    ['tradeshow-banners-v2.html',  'Tradeshow Banners', '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'],
+    ['truck-wrap.html',            'Truck Wrap',        '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>'],
+    ['airpod-giveaway/index.html', 'AirPod Giveaway',   '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3z"/><path d="M3 19a2 2 0 0 0 2 2h1v-7H3z"/>'],
+    ['search.html',                'Search',            '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>']
+  ];
+  const links = items.map(([href, label, svg]) =>
+    `<a href="${href}" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${svg}</svg>${label}</a>`
+  ).join('');
+
+  const wrap = document.createElement('div');
+  wrap.className = 'uwc-ipw';
+  wrap.id = 'uwc-ipw';
+  wrap.innerHTML =
+    '<button type="button" class="uwc-ipw-btn" id="uwc-ipw-btn" aria-label="Internal pages" aria-expanded="false">A</button>' +
+    '<div class="uwc-ipw-pop" id="uwc-ipw-pop" role="menu" aria-hidden="true">' +
+      '<div class="uwc-ipw-eyebrow">Internal Pages</div>' + links +
+    '</div>';
+  document.body.appendChild(wrap);
+
+  const btn = wrap.querySelector('.uwc-ipw-btn');
+  const pop = wrap.querySelector('.uwc-ipw-pop');
+  function close() {
+    pop.classList.remove('open'); btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false'); pop.setAttribute('aria-hidden', 'true');
+  }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const open = !pop.classList.contains('open');
+    pop.classList.toggle('open', open); btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open)); pop.setAttribute('aria-hidden', String(!open));
+  });
+  document.addEventListener('click', function (e) {
+    if (!pop.contains(e.target) && !btn.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+}
+
 async function unlock() {
   const pw    = document.getElementById('pwInput').value;
   const input = document.getElementById('pwInput');
@@ -221,6 +296,11 @@ async function unlock() {
     document.open();
     document.write(html);
     document.close();
+
+    // Internal-pages widget: inject into the unlocked page so users can hop
+    // to the other tools without backing out. position:fixed because the
+    // decrypted page's footer (if any) isn't ours to anchor against.
+    injectInternalPagesWidget();
 
   } catch (e) {
     btn.disabled = false;
