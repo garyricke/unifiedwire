@@ -189,8 +189,6 @@ function renderInternalPagesWidget(basePath) {
       svg: '<circle cx="13.5" cy="6.5" r=".75"/><circle cx="17.5" cy="10.5" r=".75"/><circle cx="8.5" cy="7.5" r=".75"/><circle cx="6.5" cy="12.5" r=".75"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.74 1.5-1.66 0-.44-.17-.83-.43-1.13-.27-.31-.42-.7-.42-1.13 0-.92.74-1.66 1.66-1.66H16c3.31 0 6-2.69 6-6 0-5.5-4.5-10-10-10z"/>' },
     { href: 'spec-navigator.html',       label: 'Spec Navigator',
       svg: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' },
-    { href: 'rep-locator.html',          label: 'Rep Locator',
-      svg: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>' },
     { href: 'USA250.html',               label: 'America 250',
       svg: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>' },
     { href: 'tradeshow-banners-v2.html', label: 'Tradeshow Banners',
