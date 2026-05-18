@@ -59,13 +59,7 @@ def put_updated(data: dict) -> int:
 def mutate(data: dict) -> dict:
     """Edit this function for one-shot maintenance fixes, then run the script.
 
-    Past applied changes (left as recipe templates, not active):
-
-      # Remove a contact from the Ohio Territory rep
-      data["reps"]["ohio"]["contacts"] = [
-          c for c in data["reps"]["ohio"]["contacts"]
-          if "winar" not in c.get("name", "").lower()
-      ]
+    Recipe templates (uncomment and adapt for the next change):
 
       # Add a contact to an existing rep
       data["reps"]["ohio"]["contacts"].append({
@@ -74,6 +68,31 @@ def mutate(data: dict) -> dict:
           "phone": "513-771-0002",
           "email": "riffle@riffleassoc.com",
       })
+
+      # Remove a contact by name match
+      data["reps"]["ohio"]["contacts"] = [
+          c for c in data["reps"]["ohio"]["contacts"]
+          if "winar" not in c.get("name", "").lower()
+      ]
+
+      # Add states to an existing rep (idempotent)
+      for s in ["Alabama", "Mississippi", "Arkansas"]:
+          if s not in data["reps"]["james"]["states"]:
+              data["reps"]["james"]["states"].append(s)
+
+      # Promote a contact to its own standalone rep, ordered after HQ
+      new_reps = {}
+      for key, value in data["reps"].items():
+          new_reps[key] = value
+          if key == "hq":
+              new_reps["riffle"] = {
+                  "name": "Riffle & Associates",
+                  "address": "",
+                  "contacts": [{"name": "Riffle & Associates", ...}],
+                  "color": "#d97706",
+                  "states": ["Ohio", "Indiana", ...],
+              }
+      data["reps"] = new_reps
     """
     return data
 
