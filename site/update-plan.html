@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Plan — May 18 Call · Unified Wire &amp; Cable</title>
+<link rel="icon" type="image/png" href="unifiedwire-favicon-apr2026.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #0362BC;
+    --blue-dk: #024a90;
+    --orange: #E36417;
+    --orange-dk: #b84f10;
+    --navy: #0A1628;
+    --navy2: #0d1e38;
+    --text: #1a2535;
+    --text-lt: #4a5568;
+    --border: #dce3ed;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  html, body { background: #f5f7fa; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── NAV ── */
+  nav.top { background: var(--navy); padding: 18px 0; }
+  .top-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .top-logo { display: flex; align-items: center; gap: 12px; }
+  .top-logo img { height: 26px; width: auto; opacity: .9; }
+  .top-divider { width: 1px; height: 18px; background: rgba(255,255,255,.15); }
+  .top-label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    color: rgba(255,255,255,.55);
+    text-transform: uppercase;
+  }
+  .top-back {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: rgba(255,255,255,.45);
+    transition: color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .top-back:hover { color: #fff; }
+  .top-link {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: rgba(255,255,255,.45);
+    transition: color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 12px;
+  }
+  .top-link:hover { color: #fff; }
+
+  /* ── HEADER ── */
+  .hero {
+    padding: 80px 0 56px;
+    background: linear-gradient(180deg, #f0f3f8 0%, #f5f7fa 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .16em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-lt);
+    max-width: 720px;
+    line-height: 1.55;
+  }
+  .hero-meta {
+    display: flex; gap: 28px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: var(--text-lt);
+    text-transform: uppercase;
+  }
+  .meta-pill::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--blue);
+  }
+  .meta-pill.orange::before { background: var(--orange); }
+  .meta-pill .count { color: var(--text); font-weight: 700; }
+
+  /* ── LEGEND ── */
+  .legend {
+    max-width: 1100px;
+    margin: 36px auto 0;
+    padding: 0 32px;
+    display: flex; flex-wrap: wrap;
+    gap: 18px;
+  }
+  .legend-item {
+    display: inline-flex; align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+  }
+  .legend-item .status-chip { margin: 0; }
+
+  /* ── ITEMS ── */
+  .plan { max-width: 1100px; margin: 0 auto; padding: 56px 32px 80px; }
+
+  .item-block {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 22px;
+    box-shadow: 0 1px 0 rgba(10,22,40,.02), 0 6px 18px -10px rgba(10,22,40,.08);
+  }
+  .item-head {
+    display: flex; align-items: flex-start;
+    gap: 16px; flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .item-num {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    color: var(--blue);
+    font-weight: 500;
+    padding-top: 6px;
+  }
+  .item-title-wrap { flex: 1; min-width: 220px; }
+  .item-title {
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -.015em;
+    line-height: 1.3;
+  }
+  .status-chip {
+    display: inline-flex; align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-chip::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .status-ready { background: rgba(3,98,188,.08); color: var(--blue); }
+  .status-ready::before { background: var(--blue); }
+  .status-waiting { background: rgba(227,100,23,.10); color: var(--orange-dk); }
+  .status-waiting::before { background: var(--orange); }
+  .status-done { background: rgba(34,139,34,.10); color: #1d6a1d; }
+  .status-done::before { background: #228B22; }
+  .status-progress { background: rgba(120,80,180,.10); color: #5b3aa3; }
+  .status-progress::before { background: #7858b4; }
+
+  .tag-row {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 6px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(3,98,188,.07);
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .tag.orange { background: rgba(227,100,23,.08); color: var(--orange-dk); }
+  .tag.grey { background: #eef1f5; color: var(--text-lt); }
+
+  .item-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .field {
+    border-left: 3px solid var(--border);
+    padding: 4px 0 4px 16px;
+  }
+  .field.client { border-left-color: var(--orange); }
+  .field.plan { border-left-color: var(--blue); }
+  .field.question { border-left-color: #7858b4; }
+  .field-label {
+    font-family: var(--mono);
+    font-size: .64rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .field p {
+    font-size: .96rem;
+    color: var(--text);
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+  .field p:last-child { margin-bottom: 0; }
+  .field ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; flex-direction: column;
+    gap: 8px;
+  }
+  .field li {
+    font-size: .94rem;
+    color: var(--text);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .field li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 9px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .field.client li::before { background: var(--orange); }
+  .field.plan li::before { background: var(--blue); }
+  .field.question li::before { background: #7858b4; }
+  .field li em {
+    color: var(--text-lt);
+    font-style: italic;
+    display: block;
+    font-size: .85rem;
+    margin-top: 2px;
+  }
+  .field code {
+    font-family: var(--mono);
+    font-size: .82rem;
+    background: #eef1f5;
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+  blockquote {
+    margin: 0;
+    padding: 12px 16px;
+    background: #fff8ef;
+    border-left: 3px solid var(--orange);
+    border-radius: 4px;
+    font-style: italic;
+    font-size: .92rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: .64rem;
+    letter-spacing: .1em;
+    color: var(--text-lt);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section-head {
+    max-width: 1100px;
+    margin: 12px auto 0;
+    padding: 32px 32px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .section-head:first-of-type { border-top: none; padding-top: 0; }
+  .section-head h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -.02em;
+  }
+  .section-head p {
+    color: var(--text-lt);
+    font-size: .96rem;
+    margin-top: 4px;
+  }
+
+  /* ── APPROVAL BOX ── */
+  .approval {
+    max-width: 920px;
+    margin: 0 auto 36px;
+    background: linear-gradient(180deg, rgba(3,98,188,.04) 0%, rgba(3,98,188,.0) 100%);
+    border: 1px solid rgba(3,98,188,.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+  }
+  .approval h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: -.005em;
+  }
+  .approval p {
+    color: var(--text-lt);
+    font-size: .96rem;
+    line-height: 1.55;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,.4);
+    padding: 36px 32px;
+    text-align: center;
+    font-size: .82rem;
+    position: relative;
+  }
+  footer .mono {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── INTERNAL GATE ── */
+  #st-gate { position: fixed; inset: 0; z-index: 9999; background: var(--navy);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    transition: opacity .6s ease; }
+  #st-gate.hide { opacity: 0; pointer-events: none; }
+  .st-gate-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px; padding: 48px 40px; text-align: center;
+    max-width: 380px; width: 100%; }
+  .st-gate-card img { height: 38px; width: auto; margin: 0 auto 24px; display: block; opacity: .9; }
+  .st-gate-eyebrow { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+  .st-gate-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 24px; letter-spacing: -.01em; }
+  .st-gate-input { width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px; padding: 14px 16px; color: #fff; font-size: 1rem;
+    font-family: inherit; outline: none; transition: border-color .2s; }
+  .st-gate-input::placeholder { color: rgba(255,255,255,.3); }
+  .st-gate-input:focus { border-color: rgba(3,98,188,.6); }
+  .st-gate-input.shake { animation: stShake .55s ease; }
+  @keyframes stShake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
+  .st-gate-btn { width: 100%; margin-top: 12px; padding: 14px 16px;
+    background: var(--blue); color: #fff; border: 0; border-radius: 8px;
+    font-weight: 700; font-size: .95rem; cursor: pointer;
+    font-family: inherit; transition: background .2s; }
+  .st-gate-btn:hover { background: var(--blue-dk); }
+  .st-gate-err { margin-top: 12px; font-size: .82rem; color: var(--orange);
+    opacity: 0; transition: opacity .2s; }
+  .st-gate-err.show { opacity: 1; }
+
+  /* ── INTERNAL PAGES WIDGET ── */
+  .uwc-ipw { position: absolute; right: 18px; bottom: 14px; z-index: 50; }
+  .uwc-ipw-btn {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.18);
+    color: rgba(255,255,255,.22);
+    font-family: inherit;
+    font-size: 11px; font-weight: 700;
+    cursor: pointer; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color .2s, border-color .2s, background .2s;
+  }
+  .uwc-ipw-btn:hover { color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.55); }
+  .uwc-ipw-btn.active {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255,255,255,.08);
+  }
+  .uwc-ipw-pop {
+    position: absolute;
+    right: 0; bottom: calc(100% + 14px);
+    background: #fff;
+    color: var(--text);
+    border-radius: 18px;
+    box-shadow: 0 30px 60px -16px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.25);
+    min-width: 280px;
+    padding: 26px 28px;
+    opacity: 0;
+    transform: translateY(6px) scale(.97);
+    transform-origin: bottom right;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+    text-align: left;
+  }
+  .uwc-ipw-pop.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .uwc-ipw-eyebrow {
+    font-family: var(--mono);
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: #8a93a8;
+    margin-bottom: 16px;
+  }
+  .uwc-ipw-pop a {
+    display: flex; align-items: center;
+    gap: 14px; padding: 8px 0;
+    color: var(--text);
+    font-size: 1.02rem; font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -.005em;
+    transition: color .15s;
+  }
+  .uwc-ipw-pop a:hover { color: var(--blue); }
+  .uwc-ipw-pop a svg {
+    width: 22px; height: 22px;
+    flex-shrink: 0;
+    color: #8a93a8;
+    transition: color .15s;
+  }
+  .uwc-ipw-pop a:hover svg { color: var(--blue); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .hero { padding: 56px 0 40px; }
+    .plan { padding: 40px 24px 56px; }
+    .top-inner, .hero-inner, .legend, .section-head { padding-left: 24px; padding-right: 24px; }
+    .item-block { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── INTERNAL GATE ── -->
+<div id="st-gate">
+  <div class="st-gate-card">
+    <img src="Unified-Logo-current.png" alt="UWC">
+    <div class="st-gate-eyebrow">Internal Preview</div>
+    <div class="st-gate-title">Update Plan</div>
+    <form id="st-gate-form" autocomplete="off">
+      <input type="password" id="st-gate-input" class="st-gate-input"
+             placeholder="Password" autocomplete="current-password">
+      <button type="submit" class="st-gate-btn">Enter</button>
+      <div class="st-gate-err" id="st-gate-err">Incorrect password.</div>
+    </form>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="top">
+  <div class="top-inner">
+    <div class="top-logo">
+      <img src="Unified-Logo-current.png" alt="Unified Wire &amp; Cable">
+    </div>
+    <div class="top-divider"></div>
+    <span class="top-label">Update Plan · May 18 Call</span>
+    <a href="status.html" class="top-link">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="16"/></svg>
+      Status
+    </a>
+    <a href="home.html" class="top-back">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Call Notes &amp; Action Items · May 18, 2026</div>
+    <h1>Update plan — May 18 call.</h1>
+    <p>Working list of all changes raised on the call with Jason Foley &amp; Tim Foley on May 18, 2026. Each item shows what was said, the proposed approach, status, and any open questions before we touch the site. Review and approve in batches.</p>
+    <div class="hero-meta">
+      <span class="meta-pill"><span class="count">9</span>&nbsp;items</span>
+      <span class="meta-pill orange"><span class="count">Pending</span>&nbsp;assets from UWC for several items</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── LEGEND ── -->
+<div class="legend">
+  <span class="legend-item"><span class="status-chip status-done">Done</span> already shipped</span>
+  <span class="legend-item"><span class="status-chip status-ready">Ready to build</span> approved, no blockers</span>
+  <span class="legend-item"><span class="status-chip status-progress">In progress</span> partially built</span>
+  <span class="legend-item"><span class="status-chip status-waiting">Awaiting input</span> need content/assets from UWC</span>
+</div>
+
+<!-- ── ITEMS ── -->
+<section class="plan">
+
+  <!-- Section: Rep locator -->
+  <div class="section-head">
+    <h2>Rep Locator</h2>
+    <p>Carried over from earlier in the day — confirmed on the call.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">01</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Multi-rep stacking on overlapping states</div>
+        <div class="tag-row">
+          <span class="tag">Find a Rep</span>
+          <span class="status-chip status-done">Done</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "When you click on Louisiana, it'll show both of their information. Their customers will just know which one to call."
+        <cite>Jason — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">What we shipped</div>
+        <p>Riffle &amp; Associates is now a standalone rep firm (warm amber on the map) covering OH, IN, KY, PA, MI, WV. James Nunn gains AL, MS, AR. Bobby Griffith gains LA, TX. Where two firms overlap on a state, the panel stacks both with an "or" separator.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">02</div>
+      <div class="item-title-wrap">
+        <div class="item-title">No physical mailing addresses on rep cards</div>
+        <div class="tag-row">
+          <span class="tag">Find a Rep</span>
+          <span class="status-chip status-done">Done</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "Since we're all just individual reps, our address is our home and we don't want our home address. So it'll just be what it is now — Jason Foley, phone number, email. Same as Riffle &amp; Associates: office number and email."
+        <cite>Jason — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Status</div>
+        <p>"Waiting on Unified" callout removed from the status page. We will not be collecting or displaying mailing addresses for reps.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">03</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Rep data history + safe-edit tooling</div>
+        <div class="tag-row">
+          <span class="tag orange">Tooling</span>
+          <span class="status-chip status-done">Done</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "We're going to start snapshotting everything before a change happens. That really wasn't happening before."
+        <cite>Gary — call transcript (confirmed by Jason)</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">In place</div>
+        <p>Every rep-data edit now uses a read-modify-write helper that touches only the fields being changed. Each edit auto-saves a full timestamped snapshot to git so any prior state can be restored precisely.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: About page -->
+  <div class="section-head">
+    <h2>About page</h2>
+    <p>Parent-company direction — pivot from family-business storytelling to focused "who we are today" framing.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">04</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Team cards — drop the long-form story dive-ins</div>
+        <div class="tag-row">
+          <span class="tag">About</span>
+          <span class="tag grey">Big change</span>
+          <span class="status-chip status-waiting">Awaiting reference</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "Right now on the About page you can click on Tim Foley and Daniela Trocóniz and it dives in — you can listen to the audio of the interview and read the whole interview. Both of those we're gonna have to kill so that it just shows VP Sales Tim Foley. And then there will be a little click-through box."
+        <cite>Jason — call transcript</cite>
+      </blockquote>
+      <blockquote>
+        "It's gonna be about three or four sentences. I joined Unified in 2001 as a sales rep. I was promoted along the way to VP of Sales. I'm in charge of key accounts. Prior to that, I worked in the wire harness industry. Short and sweet."
+        <cite>Tim — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Proposed approach</div>
+        <ul>
+          <li>Retire the long-form story pages for Tim Foley and Daniela Trocóniz; remove the deep-link click-through from the About cards.</li>
+          <li>Replace each people card with a click-to-expand "little box": photo, name, title, 3–4 sentence bio. Same compact treatment for everyone on the team grid.</li>
+          <li>Hold drafting the new bios until Jason sends his competitor reference link (the style he likes).</li>
+        </ul>
+      </div>
+      <div class="field question">
+        <div class="field-label">Open questions / inputs needed</div>
+        <ul>
+          <li>Competitor reference URL (Jason: "I'll send you an example from one of our competitors that we really like").</li>
+          <li>3–4 sentence bios for each team member — Tim has drafted his on the call; need the rest.</li>
+          <li>Should we keep the existing <code>tim-foley.html</code> and <code>daniela.html</code> URLs as redirects to <code>about.html</code>, or 410 / hard-delete them?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">05</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Two pending title updates</div>
+        <div class="tag-row">
+          <span class="tag">About</span>
+          <span class="status-chip status-waiting">Awaiting names</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "Two people didn't reply to what they want their title update to, which now when we met today they want their title changed. I'll send you those updates."
+        <cite>Jason — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Proposed approach</div>
+        <p>Wait for Jason's internal document from today's meeting, then apply the two title updates in the next batch with the other About-page changes.</p>
+      </div>
+      <div class="field question">
+        <div class="field-label">Inputs needed</div>
+        <ul>
+          <li>The internal meeting document from Jason naming the two people and their corrected titles.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">06</div>
+      <div class="item-title-wrap">
+        <div class="item-title">"Our Story" chapters — rewrite, de-emphasize Foley framing</div>
+        <div class="tag-row">
+          <span class="tag">About</span>
+          <span class="tag grey">Big change</span>
+          <span class="status-chip status-waiting">Awaiting milestone list</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "In 1983 it says 'One extruder, one Foley brother.' Our parent company read that and said we don't want this to be tied to Foley. We'll give you some new years with what we see as big milestones, and you can plug it into AI to spruce up a quick two-sentence reply."
+        <cite>Jason — call transcript</cite>
+      </blockquote>
+      <blockquote>
+        "We definitely need your artistic help with telling our story. We wanna show growth. Hey, we started in '77 — and we do wanna point that out because we're celebrating 50 years next year — one extruder. Fast-forward to today: seven extruders and this whole copper fab thing going on."
+        <cite>Tim — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Proposed approach</div>
+        <ul>
+          <li>Rewrite each chapter to be milestone- and growth-focused, not founder/family-focused.</li>
+          <li>Keep 1977 (founding) as the anchor, lead a "50 years in 2027" thread, and end on the current scale (7 extruders, copper fab).</li>
+          <li>Strip any line that names "Foley" as the story's subject (the Foley name can still appear factually as a year/role, but isn't the headline).</li>
+        </ul>
+      </div>
+      <div class="field question">
+        <div class="field-label">Inputs needed</div>
+        <ul>
+          <li>The milestone list Jason &amp; Tim are putting together — years + key facts for each.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">07</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Aerial facility photo — expand to three buildings</div>
+        <div class="tag-row">
+          <span class="tag">About</span>
+          <span class="status-chip status-waiting">Awaiting marked-up screenshot</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "We want to capture a building you don't even know is ours… 335 Wurlitzer. There's a building in between that you'll have to do something with — let's just make it look like grass or something — so right now the quote-unquote drone video is two buildings, now it's gonna be three."
+        <cite>Tim &amp; Jason — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Proposed approach</div>
+        <ul>
+          <li>Source a higher Google Earth frame that includes the 335 Wurlitzer building.</li>
+          <li>Either composite out the intermediate non-UWC plumbing building (replace with grass/lot), or leave it as-is — to be decided once we see the screenshot.</li>
+          <li>Re-apply the UWC logo treatment to all three roofs.</li>
+          <li>Drop the new still into the existing drone hero on the About page.</li>
+        </ul>
+      </div>
+      <div class="field question">
+        <div class="field-label">Inputs needed</div>
+        <ul>
+          <li>Marked-up screenshot from Jason showing which three buildings to include and whether to remove the intermediate building.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Home page -->
+  <div class="section-head">
+    <h2>Home page</h2>
+    <p>"As soon as you click on it, you see wire." Visual reset for the landing.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">08</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Replace warehouse-walkthrough hero with wire imagery</div>
+        <div class="tag-row">
+          <span class="tag">Home</span>
+          <span class="tag grey">Big change</span>
+          <span class="status-chip status-waiting">Awaiting reference URLs</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "We want the video. We don't want it to be when you open the landing page. As I go to my competition's websites, as soon as you click on it, in most cases you see a picture of wire. It tells somebody, okay, I'm at the right place. In our case it starts with that 20-foot view and you don't know where you are."
+        <cite>Tim — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Proposed approach</div>
+        <ul>
+          <li>Pull the warehouse walkthrough video off the home hero.</li>
+          <li>Replace the hero with a strong wire image (close-up wire/cable) so a visitor immediately knows what UWC is.</li>
+          <li>Decision: which existing UWC wire shot to use, or do we generate a fresh hero specifically for the home page.</li>
+        </ul>
+      </div>
+      <div class="field question">
+        <div class="field-label">Inputs needed</div>
+        <ul>
+          <li>The 2–3 competitor home pages Jason mentioned ("I'm gonna send you a couple URLs… click on it and see what their landing page is").</li>
+          <li>Approval to pick a wire still from existing assets, or kick off a new hero render.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">09</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Walkthrough video — trim &amp; relocate to About</div>
+        <div class="tag-row">
+          <span class="tag">Home</span>
+          <span class="tag">About</span>
+          <span class="status-chip status-ready">Ready to build</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "Wherever we move the video to, I'd like to start the video at the entrance of the factory door — meaning when you're exiting the office. Delete everything prior to that door."
+        <cite>Tim — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Proposed approach</div>
+        <ul>
+          <li>Trim the walkthrough video so it begins the moment we cross the factory door (drop the fisheye / office-area lead-in).</li>
+          <li>Relocate to the About page as a "Tour the plant" section — most likely below the drone hero. (Alternative: a dedicated new section; Jason was open to either.)</li>
+          <li>Push to Cloudinary as a new asset; keep the original full-length take stored as a fallback master.</li>
+        </ul>
+      </div>
+      <div class="field question">
+        <div class="field-label">Open questions</div>
+        <ul>
+          <li>Confirm About-page placement (under the drone hero) vs. a new standalone section.</li>
+          <li>Title for the section — "Inside the plant"? "Plant walkthrough"? Open to suggestions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Markets -->
+  <div class="section-head">
+    <h2>Markets</h2>
+    <p>Sync the website markets to the printed line cards (the line cards are the source of truth).</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">10</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Reconcile website markets to the line cards</div>
+        <div class="tag-row">
+          <span class="tag">Markets</span>
+          <span class="status-chip status-progress">Lower priority — later this week</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "All the line cards are accurate and correct — how we want them worded, the products associated with them. But the markets on the website have not been updated. Right now Markets says Military, which we got rid of. It says Distribution, which was never one. Put it towards the bottom right now — it's not a priority for today and tomorrow."
+        <cite>Jason — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Proposed approach</div>
+        <ul>
+          <li>Re-read each line card and produce a definitive market list (name + products mapped to each).</li>
+          <li>Compare to <code>markets/</code> on the site; remove "Military" and "Distribution"; rename any divergences; add anything missing.</li>
+          <li>Update the home page application panels and the search index in the same pass so everything stays in sync.</li>
+        </ul>
+      </div>
+      <div class="field question">
+        <div class="field-label">Inputs needed</div>
+        <ul>
+          <li>The current line-card set — confirming we're working from the May 1 print-delivery v2.0 suite.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Commercial -->
+  <div class="section-head">
+    <h2>Scope &amp; commercial</h2>
+    <p>Not an immediate site change — recording it so it's visible.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">11</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Expanded scope acknowledged by UWC</div>
+        <div class="tag-row">
+          <span class="tag grey">Commercial</span>
+          <span class="status-chip status-progress">Track separately</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "The original pricing was spec sheets and website design. We have tasked you with so many more things — banner design, logo design, a lot of last-minute changes. So if there ever needs to be updates, it wouldn't be out of right field."
+        <cite>Jason — call transcript</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Status</div>
+        <ul>
+          <li>No site action required.</li>
+          <li>Hold the conversation until the Product Navigator is scoped — Jason and Gary both agreed that's likely the largest remaining lift.</li>
+          <li>When proposing extras, reference this acknowledgement so it isn't a surprise.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Approval -->
+<div class="approval">
+  <h3>Next step</h3>
+  <p>Once Jason sends the post-meeting document (title updates, milestone list, marked-up aerial screenshot, competitor reference URLs), we'll move items 4–10 from <em>Awaiting input</em> to <em>Ready to build</em> and start implementation in the order Jason and Tim prioritize.</p>
+</div>
+
+<footer>
+  <div>338 Wurlitzer Dr, DeKalb, IL 60115 &nbsp;—&nbsp; 815-748-4876</div>
+  <div class="mono" style="margin-top:8px;">© 2026 Unified Wire &amp; Cable · Update plan, generated <span id="updated"></span></div>
+
+  <!-- Internal pages widget -->
+  <div class="uwc-ipw" id="uwc-ipw">
+    <button type="button" class="uwc-ipw-btn" id="uwc-ipw-btn" aria-label="Internal pages" aria-expanded="false">A</button>
+    <div class="uwc-ipw-pop" id="uwc-ipw-pop" role="menu" aria-hidden="true">
+      <div class="uwc-ipw-eyebrow">Internal Pages</div>
+      <a href="status.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="16"/></svg>
+        Status
+      </a>
+      <a href="update-plan.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Update Plan
+      </a>
+      <a href="brand-guide.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".75"/><circle cx="17.5" cy="10.5" r=".75"/><circle cx="8.5" cy="7.5" r=".75"/><circle cx="6.5" cy="12.5" r=".75"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.74 1.5-1.66 0-.44-.17-.83-.43-1.13-.27-.31-.42-.7-.42-1.13 0-.92.74-1.66 1.66-1.66H16c3.31 0 6-2.69 6-6 0-5.5-4.5-10-10-10z"/></svg>
+        Brand Guide
+      </a>
+      <a href="spec-navigator.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        Spec Navigator
+      </a>
+      <a href="USA250.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        America 250
+      </a>
+      <a href="tradeshow-banners-v2.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Tradeshow Banners
+      </a>
+      <a href="truck-wrap.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Truck Wrap
+      </a>
+      <a href="airpod-giveaway/index.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3z"/><path d="M3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg>
+        AirPod Giveaway
+      </a>
+      <a href="search.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('updated').textContent = new Date().toLocaleDateString('en-US',
+    { month: 'short', day: 'numeric', year: 'numeric' });
+
+  /* ── INTERNAL GATE ── */
+  (function () {
+    const PASS = 'copper';
+    const SHARED = 'uwc_internal_auth';
+    const gate = document.getElementById('st-gate');
+    const form = document.getElementById('st-gate-form');
+    const input = document.getElementById('st-gate-input');
+    const err = document.getElementById('st-gate-err');
+
+    function hide() {
+      gate.classList.add('hide');
+      setTimeout(() => { gate.style.display = 'none'; }, 650);
+    }
+    if (sessionStorage.getItem(SHARED) === PASS) { hide(); return; }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value.trim().toLowerCase() === PASS) {
+        sessionStorage.setItem(SHARED, PASS);
+        hide();
+      } else {
+        err.classList.add('show');
+        input.classList.remove('shake'); void input.offsetWidth;
+        input.classList.add('shake');
+        input.value = '';
+        input.focus();
+      }
+    });
+    setTimeout(() => input.focus(), 100);
+  })();
+
+  /* ── INTERNAL PAGES WIDGET ── */
+  (function () {
+    const btn = document.getElementById('uwc-ipw-btn');
+    const pop = document.getElementById('uwc-ipw-pop');
+    if (!btn || !pop) return;
+    function close() {
+      pop.classList.remove('open');
+      btn.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+      pop.setAttribute('aria-hidden', 'true');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = !pop.classList.contains('open');
+      pop.classList.toggle('open', open);
+      btn.classList.toggle('active', open);
+      btn.setAttribute('aria-expanded', String(open));
+      pop.setAttribute('aria-hidden', String(!open));
+    });
+    document.addEventListener('click', (e) => {
+      if (!pop.contains(e.target) && !btn.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  })();
+</script>
+</body>
+</html>

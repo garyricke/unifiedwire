@@ -210,6 +210,66 @@
     border-left: 4px solid var(--orange);
     border-radius: 12px;
   }
+
+  /* Update-plan callout (link to the May 18 call's pending action list) */
+  .plan-callout {
+    max-width: 1100px;
+    margin: 32px auto -16px;
+    padding: 0 32px;
+  }
+  .plan-callout a {
+    display: flex; align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+    background: linear-gradient(180deg, rgba(3,98,188,.06) 0%, rgba(3,98,188,.02) 100%);
+    border: 1px solid rgba(3,98,188,.22);
+    border-left: 4px solid var(--blue);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .plan-callout a:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -16px rgba(3,98,188,.4);
+    border-color: rgba(3,98,188,.5);
+  }
+  .plan-callout-icon {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--blue);
+    color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .plan-callout-body { flex: 1; }
+  .plan-callout-eyebrow {
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .14em;
+    color: var(--blue);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .plan-callout-title {
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    margin-bottom: 2px;
+  }
+  .plan-callout-desc {
+    color: var(--text-lt);
+    font-size: .9rem;
+  }
+  .plan-callout-arrow {
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px) {
+    .plan-callout { padding: 0 24px; }
+    .plan-callout a { padding: 16px 18px; gap: 14px; }
+  }
   .pending-eyebrow {
     font-family: var(--mono);
     font-size: .68rem;
@@ -416,6 +476,23 @@
     </div>
   </div>
 </header>
+
+<!-- ── UPDATE PLAN CALLOUT ── -->
+<div class="plan-callout">
+  <a href="update-plan.html">
+    <span class="plan-callout-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    </span>
+    <div class="plan-callout-body">
+      <div class="plan-callout-eyebrow">Action list · May 18 call</div>
+      <div class="plan-callout-title">Update Plan — pending changes for review</div>
+      <div class="plan-callout-desc">11 items from the call with Jason &amp; Tim, organized with status, source quotes, and inputs we still need.</div>
+    </div>
+    <span class="plan-callout-arrow">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </span>
+  </a>
+</div>
 
 <!-- ── TIMELINE ── -->
 <section class="timeline">
@@ -905,6 +982,10 @@
       <a href="status.html" role="menuitem">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="16"/></svg>
         Status
+      </a>
+      <a href="update-plan.html" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Update Plan
       </a>
       <a href="brand-guide.html" role="menuitem">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".75"/><circle cx="17.5" cy="10.5" r=".75"/><circle cx="8.5" cy="7.5" r=".75"/><circle cx="6.5" cy="12.5" r=".75"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.74 1.5-1.66 0-.44-.17-.83-.43-1.13-.27-.31-.42-.7-.42-1.13 0-.92.74-1.66 1.66-1.66H16c3.31 0 6-2.69 6-6 0-5.5-4.5-10-10-10z"/></svg>
