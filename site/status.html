@@ -200,6 +200,62 @@
   }
   .item-tag.orange { color: var(--orange); background: rgba(227,100,23,.08); }
 
+  /* Pending callout */
+  .pending {
+    max-width: 920px;
+    margin: -8px auto 0;
+    padding: 28px 28px 24px;
+    background: #FFF7ED;
+    border: 1px solid #FED7AA;
+    border-left: 4px solid var(--orange);
+    border-radius: 12px;
+  }
+  .pending-eyebrow {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--orange-dk, #b84f10);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .pending h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0 0 14px;
+    color: var(--text);
+    letter-spacing: -.01em;
+  }
+  .pending ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pending li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: .96rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .pending li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    margin-top: 9px;
+  }
+  .pending li strong { font-weight: 700; }
+  .pending li .pending-detail { display: block; font-size: .88rem; color: var(--text-lt); margin-top: 2px; }
+  @media (max-width: 720px) {
+    .pending { margin: 0 24px; padding: 22px 20px 18px; }
+  }
+
   /* ── FOOTER ── */
   footer {
     background: var(--navy);
@@ -360,6 +416,32 @@
     </div>
   </div>
 </header>
+
+<!-- ── PENDING FROM UNIFIED ── -->
+<section class="pending" aria-label="Waiting on Unified">
+  <div class="pending-eyebrow">Waiting on Unified</div>
+  <h2>What we need from you</h2>
+  <ul>
+    <li>
+      <div>
+        <strong>Mailing addresses for the sales reps</strong> so we can show them on each rep card in Find a Rep.
+        <span class="pending-detail">Ripple and Associates · S2Nunn Inc. (James Nunn) · MYA Inc. (Bobby Griffith) · Premier Sales Group (Jason Foley)</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Full contact details for Ripple and Associates</strong> — primary contact name, phone, and email.
+        <span class="pending-detail">Currently shown as "Contact info pending" on the OH, IN, KY, PA, MI, and WV cards.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Winar's contact info for the Ohio Territory card</strong> — name, phone, email.
+        <span class="pending-detail">Listed as "Winar (contact info pending)" alongside Deb Freeman on the Ohio rep card.</span>
+      </div>
+    </li>
+  </ul>
+</section>
 
 <!-- ── TIMELINE ── -->
 <section class="timeline">
