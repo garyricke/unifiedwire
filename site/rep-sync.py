@@ -21,12 +21,15 @@ The bin id + master key are embedded in find-a-rep.html and are already
 client-readable, so they're safe to keep here.
 """
 import argparse
+import datetime as dt
 import json
 import sys
 import urllib.request
+from pathlib import Path
 
 BIN_ID = "69bc4cd6aa77b81da9fd805e"
 KEY    = "$2a$10$R1cylWk2DnScmcNByb85puFMEA.mHscaOdY4tke8wcJEZRxVMuqrS"
+SNAPSHOT_DIR = Path(__file__).resolve().parent / "rep-data-snapshots"
 
 
 _HEADERS = {
@@ -75,10 +78,27 @@ def mutate(data: dict) -> dict:
     return data
 
 
+def write_snapshot(data: dict, label=None) -> Path:
+    SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
+    stamp = dt.datetime.now().strftime("%Y-%m-%d-%H%M")
+    suffix = f"-{label}" if label else ""
+    path = SNAPSHOT_DIR / f"{stamp}{suffix}.json"
+    path.write_text(json.dumps(data, indent=2) + "\n")
+    return path
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="print diff and exit without PUTting")
+    ap.add_argument("--snapshot", action="store_true", help="GET the bin and save it as a JSON snapshot under site/rep-data-snapshots/")
+    ap.add_argument("--label", default=None, help="optional suffix on the snapshot filename (e.g. --label pre-edit)")
     args = ap.parse_args()
+
+    if args.snapshot:
+        current = fetch_current()
+        path = write_snapshot(current, args.label)
+        print(f"snapshot written → {path}")
+        return 0
 
     before = fetch_current()
     after  = mutate(json.loads(json.dumps(before)))  # deep copy
@@ -86,6 +106,10 @@ def main() -> int:
     if before == after:
         print("No changes — mutate() returned the data unchanged.")
         return 0
+
+    # Always snapshot the pre-mutation state so we have a recovery point
+    pre_path = write_snapshot(before, "pre-edit")
+    print(f"pre-edit snapshot → {pre_path}")
 
     print("--- before ---")
     print(json.dumps(before, indent=2))
@@ -98,6 +122,10 @@ def main() -> int:
 
     status = put_updated(after)
     print(f"\nPUT → HTTP {status}")
+
+    if status == 200:
+        post_path = write_snapshot(after, "post-edit")
+        print(f"post-edit snapshot → {post_path}")
     return 0 if status == 200 else 1
 
 
