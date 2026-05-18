@@ -131,6 +131,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .new-biz-banner a { color: var(--orange-dk); text-decoration: none; font-weight: 600; }
 .corp-note { margin-top: 16px; background: var(--gray-lt); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text-lt); line-height: 1.6; border-left: 3px solid var(--border); }
 .corp-note a { color: var(--blue); text-decoration: none; font-weight: 600; }
+.rep-multi-note { font-size: 12px; color: var(--text-lt); line-height: 1.5; margin: -8px 0 18px; }
+.rep-multi-note strong { color: var(--text); font-weight: 700; }
+.rep-multi-sep { display: flex; align-items: center; gap: 12px; margin: 22px 0 18px; color: var(--text-lt); font-family: var(--mono, monospace); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.rep-multi-sep::before, .rep-multi-sep::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.rep-block { display: block; }
 
 /* Mobile toggle */
 .map-fab { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--navy); color: #fff; border: none; border-radius: 28px; padding: 14px 28px; font-size: 15px; font-weight: 700; cursor: pointer; z-index: 200; box-shadow: 0 6px 24px rgba(0,0,0,0.35); min-height: 52px; gap: 8px; align-items: center; white-space: nowrap; }
@@ -523,6 +528,15 @@ function defaultRepData() {
         color: '#3d5a80',
         states: ['Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New York','New Jersey','Pennsylvania','Delaware','Maryland','Virginia','West Virginia']
       },
+      ripple: {
+        name: 'Ripple and Associates',
+        address: '',
+        contacts: [
+          { name: 'Contact info pending' }
+        ],
+        color: '#d97706',
+        states: ['Ohio','Indiana','Kentucky','Pennsylvania','Michigan','West Virginia']
+      },
       ohio: {
         name: 'Ohio Territory',
         address: '',
@@ -549,7 +563,7 @@ function defaultRepData() {
           { name: 'Bobby Griffith', phone: '334-324-9687', email: 'bobby@MYAinc.net' }
         ],
         color: '#16a34a',
-        states: ['Alabama','Florida','Mississippi','Arkansas']
+        states: ['Alabama','Florida','Mississippi','Arkansas','Louisiana','Texas']
       },
       jason: {
         name: 'Premier Sales Group',
@@ -567,7 +581,7 @@ function defaultRepData() {
           { name: 'James Nunn', phone: '256-962-4055', email: 'James@S2Nunn.com' }
         ],
         color: '#0891b2',
-        states: ['Georgia','North Carolina','South Carolina','Louisiana','Oklahoma','Texas','New Mexico','Arizona']
+        states: ['Georgia','North Carolina','South Carolina','Louisiana','Oklahoma','Texas','New Mexico','Arizona','Alabama','Mississippi','Arkansas']
       }
     }
   };
@@ -677,6 +691,17 @@ function getRepForState(state) {
     if (key !== repData.defaultRepKey && rep.states.has(state)) return rep;
   }
   return repData.reps[repData.defaultRepKey];
+}
+
+function getRepsForState(state) {
+  const matches = [];
+  for (const [key, rep] of Object.entries(repData.reps)) {
+    if (key !== repData.defaultRepKey && rep.states.has(state)) matches.push({ key, rep });
+  }
+  if (matches.length === 0) {
+    matches.push({ key: repData.defaultRepKey, rep: repData.reps[repData.defaultRepKey] });
+  }
+  return matches;
 }
 
 // ── Zip Prefix → State ────────────────────────────────────────────────────────
@@ -945,7 +970,8 @@ function clearSelection() {
 
 // ── Render Rep Card ───────────────────────────────────────────────────────────
 function showRep(stateName) {
-  const rep = getRepForState(stateName);
+  const matches = getRepsForState(stateName);
+  const primary = matches[0].rep;
   const card = document.getElementById('repCard');
   const empty = document.getElementById('panelEmpty');
 
@@ -954,39 +980,60 @@ function showRep(stateName) {
   const emailIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`;
   const webIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`;
 
-  const contactsHTML = rep.contacts.map(c => {
-    let links = '';
-    if (c.office) links += `<a class="contact-link" href="tel:+1${c.office.replace(/\D/g,'')}"><span class="icon icon-phone">${phoneIcon}</span><span class="contact-link-text"><span class="contact-link-label">Office</span><span class="contact-link-value">${c.office}</span></span></a>`;
-    if (c.cell) links += `<a class="contact-link" href="tel:+1${c.cell.replace(/\D/g,'')}"><span class="icon icon-cell">${cellIcon}</span><span class="contact-link-text"><span class="contact-link-label">Cell</span><span class="contact-link-value">${c.cell}</span></span></a>`;
-    if (c.phone) links += `<a class="contact-link" href="tel:+1${c.phone.replace(/\D/g,'')}"><span class="icon icon-phone">${phoneIcon}</span><span class="contact-link-text"><span class="contact-link-label">Phone</span><span class="contact-link-value">${c.phone}</span></span></a>`;
-    if (c.email) links += `<a class="contact-link" href="mailto:${c.email}"><span class="icon icon-email">${emailIcon}</span><span class="contact-link-text"><span class="contact-link-label">Email</span><span class="contact-link-value">${c.email}</span></span></a>`;
-    return `<div class="contact-card">${c.name ? `<div class="contact-name">${c.name}</div>` : ''}<div class="contact-actions">${links}</div></div>`;
-  }).join('');
+  function renderRepBlock(rep) {
+    const contactsHTML = rep.contacts.map(c => {
+      let links = '';
+      if (c.office) links += `<a class="contact-link" href="tel:+1${c.office.replace(/\D/g,'')}"><span class="icon icon-phone">${phoneIcon}</span><span class="contact-link-text"><span class="contact-link-label">Office</span><span class="contact-link-value">${c.office}</span></span></a>`;
+      if (c.cell) links += `<a class="contact-link" href="tel:+1${c.cell.replace(/\D/g,'')}"><span class="icon icon-cell">${cellIcon}</span><span class="contact-link-text"><span class="contact-link-label">Cell</span><span class="contact-link-value">${c.cell}</span></span></a>`;
+      if (c.phone) links += `<a class="contact-link" href="tel:+1${c.phone.replace(/\D/g,'')}"><span class="icon icon-phone">${phoneIcon}</span><span class="contact-link-text"><span class="contact-link-label">Phone</span><span class="contact-link-value">${c.phone}</span></span></a>`;
+      if (c.email) links += `<a class="contact-link" href="mailto:${c.email}"><span class="icon icon-email">${emailIcon}</span><span class="contact-link-text"><span class="contact-link-label">Email</span><span class="contact-link-value">${c.email}</span></span></a>`;
+      const actionsHTML = links ? `<div class="contact-actions">${links}</div>` : '';
+      return `<div class="contact-card">${c.name ? `<div class="contact-name">${c.name}</div>` : ''}${actionsHTML}</div>`;
+    }).join('');
 
-  const websiteHTML = rep.website
-    ? `<a class="rep-website-btn" href="${rep.website.href}" target="_blank" rel="noopener">${webIcon} ${rep.website.label}</a>`
-    : '';
+    const websiteHTML = rep.website
+      ? `<a class="rep-website-btn" href="${rep.website.href}" target="_blank" rel="noopener">${webIcon} ${rep.website.label}</a>`
+      : '';
+    const addressHTML = rep.address ? `<div class="rep-address">${rep.address.replace(/\n/g,'<br>')}</div>` : '';
+
+    return `
+      <div class="rep-block">
+        <div class="rep-firm-name">${rep.name}</div>
+        ${addressHTML}
+        <div class="rep-contacts">${contactsHTML}</div>
+        ${websiteHTML}
+      </div>
+    `;
+  }
 
   const NEW_BIZ_STATES = new Set(['Alabama','Arkansas','Mississippi','Florida']);
   const newBizHTML = NEW_BIZ_STATES.has(stateName)
     ? `<div class="new-biz-banner"><strong>New business inquiry?</strong>For companies not yet a current customer, please contact UWC Headquarters directly — <a href="tel:+18157484876">815-748-4876</a> or <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`
     : '';
-  const addressHTML = rep.address ? `<div class="rep-address">${rep.address.replace(/\n/g,'<br>')}</div>` : '';
-  const repKey = Object.keys(repData.reps).find(k => repData.reps[k] === rep) || repData.defaultRepKey;
-  const corpNoteHTML = (repKey === repData.defaultRepKey)
+
+  const isMulti = matches.length > 1;
+  const multiNoteHTML = isMulti
+    ? `<div class="rep-multi-note"><strong>${matches.length} reps cover ${stateName}.</strong> Contact whichever fits your account.</div>`
+    : '';
+
+  const repBlocksHTML = matches.map((m, idx) => {
+    const sep = idx > 0 ? `<div class="rep-multi-sep">or</div>` : '';
+    return sep + renderRepBlock(m.rep);
+  }).join('');
+
+  const allDefault = matches.every(m => m.key === repData.defaultRepKey);
+  const corpNoteHTML = allDefault
     ? ''
     : `<div class="corp-note">If inactive or new customer, please contact Corporate Sales to be placed with a representative in your territory — <a href="tel:+18157484876">815-748-4876</a> &nbsp;·&nbsp; <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`;
 
   card.innerHTML = `
-    <div class="rep-state-tag" style="background:${rep.color}">
+    <div class="rep-state-tag" style="background:${primary.color}">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg>
       ${stateName}
     </div>
     ${newBizHTML}
-    <div class="rep-firm-name">${rep.name}</div>
-    ${addressHTML}
-    <div class="rep-contacts">${contactsHTML}</div>
-    ${websiteHTML}
+    ${multiNoteHTML}
+    ${repBlocksHTML}
     ${corpNoteHTML}
   `;
 
