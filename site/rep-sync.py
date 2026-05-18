@@ -29,10 +29,16 @@ BIN_ID = "69bc4cd6aa77b81da9fd805e"
 KEY    = "$2a$10$R1cylWk2DnScmcNByb85puFMEA.mHscaOdY4tke8wcJEZRxVMuqrS"
 
 
+_HEADERS = {
+    "X-Master-Key": KEY,
+    "User-Agent": "rep-sync.py/1.0",
+}
+
+
 def fetch_current() -> dict:
     req = urllib.request.Request(
         f"https://api.jsonbin.io/v3/b/{BIN_ID}/latest",
-        headers={"X-Master-Key": KEY},
+        headers=_HEADERS,
     )
     return json.loads(urllib.request.urlopen(req).read())["record"]
 
@@ -42,23 +48,30 @@ def put_updated(data: dict) -> int:
         f"https://api.jsonbin.io/v3/b/{BIN_ID}",
         data=json.dumps(data).encode(),
         method="PUT",
-        headers={
-            "Content-Type": "application/json",
-            "X-Master-Key": KEY,
-        },
+        headers={**_HEADERS, "Content-Type": "application/json"},
     )
     return urllib.request.urlopen(req).status
 
 
 def mutate(data: dict) -> dict:
-    """Edit this function for one-shot maintenance fixes, then run the script."""
-    # No-op by default. Past usage examples:
-    #
-    #   # Remove Winar from the Ohio Territory contacts (2026-05-18)
-    #   data["reps"]["ohio"]["contacts"] = [
-    #       c for c in data["reps"]["ohio"]["contacts"]
-    #       if "winar" not in c.get("name", "").lower()
-    #   ]
+    """Edit this function for one-shot maintenance fixes, then run the script.
+
+    Past applied changes (left as recipe templates, not active):
+
+      # Remove a contact from the Ohio Territory rep
+      data["reps"]["ohio"]["contacts"] = [
+          c for c in data["reps"]["ohio"]["contacts"]
+          if "winar" not in c.get("name", "").lower()
+      ]
+
+      # Add a contact to an existing rep
+      data["reps"]["ohio"]["contacts"].append({
+          "name": "Riffle & Associates",
+          "office": "513-771-0002",
+          "phone": "513-771-0002",
+          "email": "riffle@riffleassoc.com",
+      })
+    """
     return data
 
 
