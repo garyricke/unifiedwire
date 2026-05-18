@@ -527,7 +527,6 @@ function defaultRepData() {
         name: 'Ohio Territory',
         address: '',
         contacts: [
-          { name: 'Winar (contact info pending)' },
           { name: 'Deb Freeman — DF Sales', phone: '260-438-9101', email: 'deborafreeman@frontier.com' }
         ],
         color: '#3d5a80',
@@ -573,12 +572,23 @@ function defaultRepData() {
   };
 }
 
-// ── jsonbin.io Config (fill in after creating your bin) ─────────────────────────
-// 1. Sign up free at jsonbin.io
-// 2. Create a bin with the initial rep data JSON
-// 3. Paste your Master Key and Bin ID below
-const JSONBIN_ID  = '69bc4cd6aa77b81da9fd805e';   // e.g. '6650a1f1acd3cb34a845c530'
-const JSONBIN_KEY = '$2a$10$R1cylWk2DnScmcNByb85puFMEA.mHscaOdY4tke8wcJEZRxVMuqrS'; // e.g. '$2a$10$...'
+// ── jsonbin.io Config ───────────────────────────────────────────────────────────
+//
+// ⚠  SOURCE OF TRUTH: jsonbin is authoritative for live rep data.
+//    The `defaultRepData()` above is ONLY a fallback for when jsonbin is
+//    unreachable on first load.
+//
+//    To edit live rep data, use ONE of:
+//      • Admin panel → Save to Cloud (preferred — humans editing in-browser)
+//      • Read-modify-write via API: GET the bin, mutate the field, PUT it back
+//
+//    DO NOT naively PUT defaultRepData() to the bin. That overwrites every
+//    in-browser admin edit since the last code sync. (April 3 → May 18:
+//    Winar removal by admin got clobbered when defaults were PUT during
+//    unrelated changes.)
+//
+const JSONBIN_ID  = '69bc4cd6aa77b81da9fd805e';
+const JSONBIN_KEY = '$2a$10$R1cylWk2DnScmcNByb85puFMEA.mHscaOdY4tke8wcJEZRxVMuqrS';
 
 let repData = null; // loaded async — map won't build until this is set
 
