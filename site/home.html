@@ -22,7 +22,10 @@
       object-fit: cover;
       object-position: center right;
       z-index: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
     }
+    .hero-img.active { opacity: 1; }
     .hero::after {
       content: '';
       position: absolute; inset: 0;
@@ -46,6 +49,55 @@
           rgba(10,22,40,.55) 100%
         );
       }
+    }
+
+    /* ── Hero slideshow chrome ──────────────────────────── */
+    .hero-slide-bar {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex; align-items: center; gap: 18px;
+      padding: 8px 18px;
+      background: rgba(10,22,40,.55);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 999px;
+      max-width: calc(100% - 48px);
+    }
+    .hero-dots { display: flex; gap: 10px; }
+    .hero-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.30);
+      border: 0; padding: 0;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .hero-dot:hover { background: rgba(255,255,255,.6); }
+    .hero-dot.active { background: var(--orange); transform: scale(1.3); }
+    .hero-slide-label {
+      font-family: var(--mono);
+      font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.88);
+      position: relative;
+      height: 1.1em;
+      min-width: 220px;
+      overflow: hidden;
+    }
+    .hero-slide-label span {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity .8s ease;
+      white-space: nowrap;
+    }
+    .hero-slide-label span.active { opacity: 1; }
+    @media (max-width: 720px) {
+      .hero-slide-bar { left: 16px; right: 16px; transform: none; max-width: none; }
+      .hero-slide-label { min-width: 0; flex: 1; font-size: .64rem; }
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -293,12 +345,23 @@
 <!-- ══════════════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════════════ -->
-<section class="hero">
-  <img class="hero-img"
-       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-wire-may2026.jpg"
-       alt="Close-up of four stripped electrical conductors with copper strands fanned out — blue, black, orange, and white insulation"
-       fetchpriority="high"
-       decoding="async">
+<section class="hero" id="hero">
+  <img class="hero-img active" data-slide="0"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-thhn-may2026.jpg"
+       alt="Building wire — four stripped THHN conductors with copper strands fanned out"
+       fetchpriority="high" decoding="async">
+  <img class="hero-img" data-slide="1"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-soow-may2026.jpg"
+       alt="Portable cord — black rubber jacket cut open to show four insulated conductors inside"
+       decoding="async" loading="lazy">
+  <img class="hero-img" data-slide="2"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-mv-may2026.jpg"
+       alt="Medium voltage cable cross-section showing concentric copper, XLPE insulation, and neutral wrap"
+       decoding="async" loading="lazy">
+  <img class="hero-img" data-slide="3"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-hookup-may2026.jpg"
+       alt="Hook-up wire bundle — fine-gauge conductors in saturated colors with stripped tinned-copper ends"
+       decoding="async" loading="lazy">
   <div class="container">
     <div class="hero-inner">
       <div class="hero-eyebrow">
@@ -314,6 +377,20 @@
         <a href="spec-sheets.html" class="btn btn-primary btn-lg">Browse Products</a>
         <a href="contact.html" class="btn btn-ghost btn-lg">Request a Quote</a>
       </div>
+    </div>
+  </div>
+  <div class="hero-slide-bar" role="tablist" aria-label="Product family showcase">
+    <div class="hero-dots">
+      <button type="button" class="hero-dot active" data-slide="0" role="tab" aria-selected="true"  aria-label="Building wire"></button>
+      <button type="button" class="hero-dot"        data-slide="1" role="tab" aria-selected="false" aria-label="Portable cord"></button>
+      <button type="button" class="hero-dot"        data-slide="2" role="tab" aria-selected="false" aria-label="Medium voltage"></button>
+      <button type="button" class="hero-dot"        data-slide="3" role="tab" aria-selected="false" aria-label="Hook-up wire"></button>
+    </div>
+    <div class="hero-slide-label" aria-live="polite">
+      <span class="active" data-slide="0">THHN-2 · Building Wire</span>
+      <span data-slide="1">SOOW · Portable Cord</span>
+      <span data-slide="2">MV-105 · Medium Voltage</span>
+      <span data-slide="3">TFFN · Hook-Up Wire</span>
     </div>
   </div>
 </section>
@@ -663,6 +740,45 @@
 <script>
   window._uwcDepth = '';
   window._uwcPage  = 'Home';
+
+  /* Hero slideshow — auto-rotate, click to jump, pause on hover */
+  (function () {
+    var hero = document.getElementById('hero');
+    if (!hero) return;
+    var imgs   = hero.querySelectorAll('.hero-img');
+    var dots   = hero.querySelectorAll('.hero-dot');
+    var labels = hero.querySelectorAll('.hero-slide-label span');
+    if (imgs.length < 2 || imgs.length !== dots.length) return;
+    var idx = 0, n = imgs.length, timer = null, userPaused = false;
+    var DELAY = 5500;
+
+    function show(i) {
+      idx = (i + n) % n;
+      imgs.forEach(function (el, k)   { el.classList.toggle('active', k === idx); });
+      dots.forEach(function (el, k)   {
+        el.classList.toggle('active', k === idx);
+        el.setAttribute('aria-selected', k === idx ? 'true' : 'false');
+      });
+      labels.forEach(function (el, k) { el.classList.toggle('active', k === idx); });
+    }
+    function start() { stop(); if (userPaused) return; timer = setInterval(function () { show(idx + 1); }, DELAY); }
+    function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () {
+        userPaused = true;
+        stop();
+        show(parseInt(d.getAttribute('data-slide'), 10));
+      });
+    });
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else start();
+    });
+
+    start();
+  })();
 </script>
 <script src="assets/js/uwc.js"></script>
 </body>
