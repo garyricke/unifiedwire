@@ -408,6 +408,75 @@
       margin: 0 auto;
       box-shadow: 0 24px 60px -24px rgba(10,22,40,.35);
     }
+
+    /* Inside the Plant — full-bleed video hero with text overlay */
+    .plant-hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      color: #fff;
+      padding: 140px 0 120px;
+      min-height: 70vh;
+    }
+    .plant-hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+    .plant-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(10,22,40,.92) 0%,
+        rgba(10,22,40,.78) 35%,
+        rgba(10,22,40,.50) 70%,
+        rgba(10,22,40,.32) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .plant-hero-inner {
+      position: relative; z-index: 2;
+      max-width: 720px;
+    }
+    .plant-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono);
+      font-size: .70rem; letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 22px;
+    }
+    .plant-hero-eyebrow span {
+      width: 32px; height: 1.5px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+    .plant-hero-inner h2 {
+      color: #fff;
+      margin: 0 0 20px;
+    }
+    .plant-hero-inner p {
+      color: rgba(255,255,255,.78);
+      font-size: 1.1rem;
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0;
+    }
+    @media (max-width: 760px) {
+      .plant-hero { padding: 96px 0 80px; min-height: 60vh; }
+      .plant-hero::after {
+        background: linear-gradient(
+          180deg,
+          rgba(10,22,40,.88) 0%,
+          rgba(10,22,40,.72) 55%,
+          rgba(10,22,40,.55) 100%
+        );
+      }
+    }
     .facility-copy {
       max-width: 760px;
       margin: 48px auto 0;
@@ -905,21 +974,22 @@
   </div>
 </section>
 
-<!-- Inside the Plant — walkthrough video -->
-<section class="section">
+<!-- Inside the Plant — full-bleed walkthrough video with text overlay -->
+<section class="plant-hero">
+  <video class="plant-hero-video" autoplay muted loop playsinline preload="metadata"
+         aria-label="Walkthrough video crossing from the front office onto the Unified Wire & Cable production floor in DeKalb, Illinois"
+         poster="https://res.cloudinary.com/dsbllwpbh/video/upload/f_jpg,q_auto:good,w_1800,c_limit,so_0/Office_into_factory_V1_muv3ss.jpg">
+    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_webm,q_auto:good,vc_vp9,w_1800,c_limit/Office_into_factory_V1_muv3ss.webm" type="video/webm">
+    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_mp4,q_auto:good,vc_h264,w_1800,c_limit/Office_into_factory_V1_muv3ss.mp4"   type="video/mp4">
+  </video>
   <div class="container">
-    <div class="sec-head fade-in">
-      <span class="badge badge-gray">Inside the Plant</span>
-      <h2 style="margin-top:12px;">Through the factory door.</h2>
+    <div class="plant-hero-inner fade-in">
+      <div class="plant-hero-eyebrow">
+        <span></span>
+        Inside the Plant
+      </div>
+      <h2>Through the factory door.</h2>
       <p>From the front office onto the production floor &mdash; every step from copper to finished spool happens at this address.</p>
-    </div>
-    <div class="fade-in">
-      <video class="facility-hero-img" autoplay muted playsinline controls preload="metadata"
-             aria-label="Walkthrough video crossing from the front office onto the Unified Wire & Cable production floor in DeKalb, Illinois"
-             poster="https://res.cloudinary.com/dsbllwpbh/video/upload/f_jpg,q_auto:good,w_1800,c_limit,so_0/Office_into_factory_V1_muv3ss.jpg">
-        <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_webm,q_auto:good,vc_vp9,w_1800,c_limit/Office_into_factory_V1_muv3ss.webm" type="video/webm">
-        <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_mp4,q_auto:good,vc_h264,w_1800,c_limit/Office_into_factory_V1_muv3ss.mp4"   type="video/mp4">
-      </video>
     </div>
   </div>
 </section>
