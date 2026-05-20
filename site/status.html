@@ -485,8 +485,8 @@
     </span>
     <div class="plan-callout-body">
       <div class="plan-callout-eyebrow">Action list · May 18 call</div>
-      <div class="plan-callout-title">Update Plan — pending changes for review</div>
-      <div class="plan-callout-desc">11 items from the call with Jason &amp; Tim, organized with status, source quotes, and inputs we still need.</div>
+      <div class="plan-callout-title">Update Plan — 4 of 11 items now staged for client review</div>
+      <div class="plan-callout-desc">Items 06 (Our Story), 07 (3-building aerial), 08 (home hero slideshow), and 09 (factory-door walkthrough) are live on the deploy preview at <code>deploy-preview-1--unifiedwire.netlify.app</code>. Three items still waiting on Gabriel Ferguson's photo + 9 team bios from UWC.</div>
     </div>
     <span class="plan-callout-arrow">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -496,6 +496,57 @@
 
 <!-- ── TIMELINE ── -->
 <section class="timeline">
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-20</div>
+      <div class="day-date-pretty">Wednesday, May 20</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Client-review workflow: branch + PR + Netlify Deploy Preview <span class="item-tag orange">Tooling</span></div>
+          <div class="item-desc">Visual changes from the May 18 batch no longer go straight to <code>main</code>. They land on <code>client-review/&lt;batch&gt;</code> branches, open a PR, and Netlify auto-builds a Deploy Preview at <code>deploy-preview-N--unifiedwire.netlify.app</code>. The preview URL stays current as we stack commits, so iteration with Jason &amp; Tim doesn't require resharing links. Live now: <a href="https://github.com/garyricke/unifiedwire/pull/1" target="_blank" rel="noopener" style="color: var(--blue);">PR #1</a> → <a href="https://deploy-preview-1--unifiedwire.netlify.app" target="_blank" rel="noopener" style="color: var(--blue);">preview</a>.</div>
+        </div>
+      </div>
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Our Story rewrite — 9-milestone arc, no family framing <span class="item-tag">Site</span></div>
+          <div class="item-desc">Rebuilt the About-page "Our Story" timeline around the milestone list from Jason's 5/18 follow-up doc. Six chapters now: 1977 (founded with 1 extrusion line), 1992 (own 20K sq ft building), 2001–02 (3 lines + 65K sq ft), 2013–14 (in-house copper stranding + cross-link products), 2024 (own copper rod — vertical integration completes), Today (100K sq ft / 7 lines / 50 years in 2027). Dropped the 1965 pre-founding chapter and the "one Foley brother" 1983 chapter; reframed 2024 from the Mueller acquisition to the copper-rod milestone. Deep-dive modals rewritten to match.</div>
+        </div>
+      </div>
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Home hero: 4-slide product slideshow with Ken Burns <span class="item-tag">Site</span></div>
+          <div class="item-desc">Pulled the warehouse-walkthrough video and replaced it with a rotating slideshow of four spec-sheet families: THHN-2 (building wire), SOOW (portable cord), MV-105 (medium voltage), TFFN (hook-up). All four shot in the same dark cinematic macro aesthetic via nano-banana so the crossfade reads as variety. 5.5s auto-rotate with 1.2s opacity crossfade, navy/glass indicator pill with orange-active dots + a mono-font product label that swaps with each slide, 8s slow scale-and-drift Ken Burns on the active slide. Pauses on hover and when the tab is backgrounded.</div>
+        </div>
+      </div>
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">About-page facility aerial: now a true Veo3 drone-fly video <span class="item-tag">Site</span></div>
+          <div class="item-desc">Generated a new 3-building aerial concept via nano-banana that includes 335 Wurlitzer (with the painted-roof treatment) and replaces the intermediate non-UWC plumbing building with grass. Then piped that still into Veo3 to animate it — a real 8-second drone-fly with gentle rightward drift, cloud movement, tree sway, and light shifting across the metal roofs. Letterbox bars baked in by Veo3 (88px top / 92px bottom from the 21:9-to-16:9 fit) are cropped out at the CDN via a chained <code>c_crop,x_0,y_88,w_1280,h_540</code> transform before the encode runs. Concept piece for sign-off — re-promptable if Jason wants different motion.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">"Through the factory door" walkthrough — full-bleed video hero on About <span class="item-tag">Site</span></div>
+          <div class="item-desc">Tim's edited walkthrough (uploaded as <code>Office_into_factory_V1_muv3ss</code>) is now a full-bleed hero between The Facility and Vertical Integration sections. Text overlay matches the home-hero pattern — orange tick + mono eyebrow, white H2, muted body copy, 90° gradient darkening the left side. Auto-plays muted in a loop; the gradient hides the not-as-bright production-floor lighting per client feedback.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Update plan synced to Jason's 5/18 follow-up doc <span class="item-tag">Docs</span></div>
+          <div class="item-desc">Folded the inputs from <em>5_18 Website Updates.docx</em> into <code>update-plan-18may2026.html</code> — Tim's bio delivered (inlined), full team roster with new hire Gabriel Ferguson, the 9 milestone years, the aerial direction confirmation, and the three competitor reference URLs (atlaswirecorp / sequelwire / jamesmonroewire). Items 06/07/08 moved from "Awaiting input" to "Ready to build" status.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="day">
     <div class="day-date">
