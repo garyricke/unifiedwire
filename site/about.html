@@ -404,7 +404,7 @@
     .facility-hero-frame {
       position: relative;
       width: 100%;
-      aspect-ratio: 2200 / 933;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       border-radius: 16px;
       margin: 0 auto;
@@ -417,17 +417,6 @@
       object-fit: cover;
       object-position: center;
       display: block;
-      transform: scale(1.06) translateX(0);
-      transform-origin: 50% 50%;
-      animation: facilityPan 24s ease-in-out infinite alternate;
-      will-change: transform;
-    }
-    @keyframes facilityPan {
-      from { transform: scale(1.06) translateX(0);     }
-      to   { transform: scale(1.10) translateX(-3.2%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .facility-hero-img { animation: none; transform: none; }
     }
 
     /* Inside the Plant — full-bleed video hero with text overlay */
@@ -965,11 +954,13 @@
       <h2 style="margin-top:12px;">DeKalb, Illinois.<br>1.5 hours west of Chicago.</h2>
     </div>
     <div class="fade-in">
-      <div class="facility-hero-frame" aria-label="Slow drone pan over Unified Wire & Cable's three buildings in DeKalb, Illinois">
-        <img class="facility-hero-img"
-             src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_limit/uwc/about-aerial-3buildings-may2026.jpg"
-             alt="Aerial drone view of Unified Wire & Cable's three buildings in DeKalb, Illinois — the long back building painted with 'Unified Wire & Cable', the connected front building painted with the UWC logo, and the third building at right marked '335 Wurlitzer'"
-             loading="lazy" decoding="async">
+      <div class="facility-hero-frame">
+        <video class="facility-hero-img" autoplay muted loop playsinline preload="metadata"
+               aria-label="Slow drone pan over Unified Wire & Cable's three buildings in DeKalb, Illinois — the long back building painted with 'Unified Wire & Cable', the connected front building painted with the UWC logo, and the third building at right marked '335 Wurlitzer'"
+               poster="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_limit/uwc/about-aerial-3buildings-may2026.jpg">
+          <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_webm,q_auto:good,vc_vp9,w_1800,c_limit/uwc/about-aerial-3buildings-may2026.webm" type="video/webm">
+          <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/f_mp4,q_auto:good,vc_h264,w_1800,c_limit/uwc/about-aerial-3buildings-may2026.mp4"   type="video/mp4">
+        </video>
       </div>
     </div>
     <div class="facility-stats fade-in">
