@@ -23,9 +23,24 @@
       object-position: center right;
       z-index: 0;
       opacity: 0;
-      transition: opacity 1.2s ease;
+      transform: scale(1.12) translateX(-1.5%);
+      transform-origin: 60% 50%;
+      transition: opacity 1.2s ease, transform 1.2s ease;
+      will-change: opacity, transform;
     }
-    .hero-img.active { opacity: 1; }
+    .hero-img.active {
+      opacity: 1;
+      animation: heroKenBurns 8000ms linear;
+    }
+    @keyframes heroKenBurns {
+      from { transform: scale(1.0)  translateX(0); }
+      to   { transform: scale(1.12) translateX(-1.5%); }
+    }
+    .hero.is-paused .hero-img.active { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-img,
+      .hero-img.active { animation: none !important; transform: none; transition: opacity .3s ease; }
+    }
     .hero::after {
       content: '';
       position: absolute; inset: 0;
@@ -771,10 +786,12 @@
         show(parseInt(d.getAttribute('data-slide'), 10));
       });
     });
-    hero.addEventListener('mouseenter', stop);
-    hero.addEventListener('mouseleave', start);
+    function pause() { stop(); hero.classList.add('is-paused'); }
+    function resume() { hero.classList.remove('is-paused'); start(); }
+    hero.addEventListener('mouseenter', pause);
+    hero.addEventListener('mouseleave', resume);
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) stop(); else start();
+      if (document.hidden) pause(); else resume();
     });
 
     start();
