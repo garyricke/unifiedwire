@@ -16,24 +16,36 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-video {
+    .hero-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center right;
       z-index: 0;
     }
     .hero::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
-        135deg,
-        rgba(10,22,40,.82) 0%,
-        rgba(10,22,40,.60) 50%,
-        rgba(10,22,40,.72) 100%
+        90deg,
+        rgba(10,22,40,.92) 0%,
+        rgba(10,22,40,.78) 35%,
+        rgba(10,22,40,.45) 65%,
+        rgba(10,22,40,.20) 100%
       );
       z-index: 1;
       pointer-events: none;
+    }
+    @media (max-width: 720px) {
+      .hero-img { object-position: center; }
+      .hero::after {
+        background: linear-gradient(
+          180deg,
+          rgba(10,22,40,.88) 0%,
+          rgba(10,22,40,.72) 60%,
+          rgba(10,22,40,.55) 100%
+        );
+      }
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -282,9 +294,11 @@
      HERO
 ══════════════════════════════════════════════════════════ -->
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto">
-    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto/f_auto/v1776461808/unified-home-hero-v0_d26a22.mov" type="video/mp4">
-  </video>
+  <img class="hero-img"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-wire-may2026.jpg"
+       alt="Close-up of four stripped electrical conductors with copper strands fanned out — blue, black, orange, and white insulation"
+       fetchpriority="high"
+       decoding="async">
   <div class="container">
     <div class="hero-inner">
       <div class="hero-eyebrow">
