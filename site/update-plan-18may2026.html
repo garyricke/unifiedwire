@@ -501,12 +501,13 @@
 <!-- ── HEADER ── -->
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Call Notes &amp; Action Items · May 18, 2026</div>
+    <div class="hero-eyebrow">Call Notes &amp; Action Items · May 18, 2026 · Updated May 20 with client follow-up doc</div>
     <h1>Update plan — May 18 call.</h1>
     <p>Working list of all changes raised on the call with Jason Foley &amp; Tim Foley on May 18, 2026. Each item shows what was said, the proposed approach, status, and any open questions before we touch the site. Review and approve in batches.</p>
+    <p style="margin-top: 14px; font-size: .98rem; color: var(--text); background: rgba(3,98,188,.06); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 4px;"><strong>May 20 update:</strong> Jason sent <em>5_18 Website Updates.docx</em> with new direction. Items 4–9 now have client inputs woven in — most are ready to build pending only Gabriel Ferguson's photo and the remaining team bios.</p>
     <div class="hero-meta">
-      <span class="meta-pill"><span class="count">9</span>&nbsp;items</span>
-      <span class="meta-pill orange"><span class="count">Pending</span>&nbsp;assets from UWC for several items</span>
+      <span class="meta-pill"><span class="count">11</span>&nbsp;items</span>
+      <span class="meta-pill orange"><span class="count">Pending</span>&nbsp;Gabriel Ferguson photo + 9 team bios from UWC</span>
     </div>
   </div>
 </header>
@@ -615,7 +616,7 @@
         <div class="tag-row">
           <span class="tag">About</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-waiting">Awaiting reference</span>
+          <span class="status-chip status-progress">Tim's bio in — 9 more pending</span>
         </div>
       </div>
     </div>
@@ -633,14 +634,18 @@
         <ul>
           <li>Retire the long-form story pages for Tim Foley and Daniela Trocóniz; remove the deep-link click-through from the About cards.</li>
           <li>Replace each people card with a click-to-expand "little box": photo, name, title, 3–4 sentence bio. Same compact treatment for everyone on the team grid.</li>
-          <li>Hold drafting the new bios until Jason sends his competitor reference link (the style he likes).</li>
+          <li>Use Tim's delivered bio as the style template for the rest of the team.</li>
         </ul>
+      </div>
+      <div class="field client">
+        <div class="field-label">Tim's bio — delivered May 20</div>
+        <p>With more than 30 years of experience in the wire harness and manufacturing industry, Tim joined UWC in July 2001 as a Sales Representative and was later promoted to Vice President of Sales. In this role, Tim is responsible for managing key accounts and driving strategic customer relationships.</p>
+        <p>Prior to joining UWC, Tim spent 16 years as a partner in a harness manufacturing company, serving in a variety of roles including Vice President of Operations, with full profit and loss responsibility. His extensive background in operations, sales, and customer management provides a strong foundation for delivering value-driven solutions to customers and partners.</p>
       </div>
       <div class="field question">
         <div class="field-label">Open questions / inputs needed</div>
         <ul>
-          <li>Competitor reference URL (Jason: "I'll send you an example from one of our competitors that we really like").</li>
-          <li>3–4 sentence bios for each team member — Tim has drafted his on the call; need the rest.</li>
+          <li>3–4 sentence bios for the other 9 team members — using Tim's as the reference style. ("We are waiting for everyone to send their own.")</li>
           <li>Should we keep the existing <code>tim-foley.html</code> and <code>daniela.html</code> URLs as redirects to <code>about.html</code>, or 410 / hard-delete them?</li>
         </ul>
       </div>
@@ -652,10 +657,10 @@
     <div class="item-head">
       <div class="item-num">05</div>
       <div class="item-title-wrap">
-        <div class="item-title">Two pending title updates</div>
+        <div class="item-title">Team roster — title updates, new hire, ordering</div>
         <div class="tag-row">
           <span class="tag">About</span>
-          <span class="status-chip status-waiting">Awaiting names</span>
+          <span class="status-chip status-progress">Ready except Gabriel's photo</span>
         </div>
       </div>
     </div>
@@ -664,14 +669,33 @@
         "Two people didn't reply to what they want their title update to, which now when we met today they want their title changed. I'll send you those updates."
         <cite>Jason — call transcript</cite>
       </blockquote>
+      <div class="field client">
+        <div class="field-label">Authoritative roster — client doc, May 20</div>
+        <ul>
+          <li>John — Chief Operating Officer / President</li>
+          <li>Tom — Operations Manager</li>
+          <li>Tim — VP Sales</li>
+          <li>Les — VP Sales &amp; Commercial Strategy</li>
+          <li>Jorge — Production Manager</li>
+          <li>Tina — HR / Office Manager</li>
+          <li>Daniela — Assistant Quality Manager</li>
+          <li><strong>Gabriel Ferguson</strong> — Planning / Scheduling <em>(new addition; photo pending — "I will send a photo once I receive one")</em></li>
+          <li>Brittany — Quality Assurance</li>
+          <li>Ebaa — Plant Engineer</li>
+        </ul>
+      </div>
       <div class="field plan">
         <div class="field-label">Proposed approach</div>
-        <p>Wait for Jason's internal document from today's meeting, then apply the two title updates in the next batch with the other About-page changes.</p>
+        <ul>
+          <li>Re-sequence the team grid in the exact order above.</li>
+          <li>Apply title changes (e.g., John → COO / President; Les → VP Sales &amp; Commercial Strategy; Daniela → Assistant Quality Manager).</li>
+          <li>Add Gabriel Ferguson card with placeholder portrait until the photo arrives.</li>
+        </ul>
       </div>
       <div class="field question">
         <div class="field-label">Inputs needed</div>
         <ul>
-          <li>The internal meeting document from Jason naming the two people and their corrected titles.</li>
+          <li>Gabriel Ferguson's photo.</li>
         </ul>
       </div>
     </div>
@@ -686,7 +710,7 @@
         <div class="tag-row">
           <span class="tag">About</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-waiting">Awaiting milestone list</span>
+          <span class="status-chip status-ready">Ready to build</span>
         </div>
       </div>
     </div>
@@ -699,18 +723,32 @@
         "We definitely need your artistic help with telling our story. We wanna show growth. Hey, we started in '77 — and we do wanna point that out because we're celebrating 50 years next year — one extruder. Fast-forward to today: seven extruders and this whole copper fab thing going on."
         <cite>Tim — call transcript</cite>
       </blockquote>
+      <blockquote>
+        "Change around the wording to not make us sound so small (no family talk) — could use your creativity here on what to add."
+        <cite>Client doc — May 20</cite>
+      </blockquote>
+      <div class="field client">
+        <div class="field-label">Milestone list — client doc, May 20</div>
+        <ul>
+          <li><strong>1977</strong> — UWC opens doors with 1 extrusion line</li>
+          <li><strong>1992</strong> — built 20,000 sq ft building</li>
+          <li><strong>2001</strong> — grew to 3 extrusion lines</li>
+          <li><strong>2002</strong> — grew to 65,000 sq ft</li>
+          <li><strong>2013</strong> — started buying copper rod &amp; doing in-house copper stranding</li>
+          <li><strong>2014</strong> — added cross-link to product offerings</li>
+          <li><strong>2024</strong> — started producing our own copper rod (vertical integration)</li>
+          <li><strong>2025</strong> — grew to 100,000 sq ft</li>
+          <li><strong>2026</strong> — currently running 7 extrusion lines</li>
+        </ul>
+      </div>
       <div class="field plan">
         <div class="field-label">Proposed approach</div>
         <ul>
-          <li>Rewrite each chapter to be milestone- and growth-focused, not founder/family-focused.</li>
-          <li>Keep 1977 (founding) as the anchor, lead a "50 years in 2027" thread, and end on the current scale (7 extruders, copper fab).</li>
-          <li>Strip any line that names "Foley" as the story's subject (the Foley name can still appear factually as a year/role, but isn't the headline).</li>
-        </ul>
-      </div>
-      <div class="field question">
-        <div class="field-label">Inputs needed</div>
-        <ul>
-          <li>The milestone list Jason &amp; Tim are putting together — years + key facts for each.</li>
+          <li>Rebuild the "Our Story" timeline around the 9 milestones above — milestone- and growth-focused, not founder/family-focused.</li>
+          <li>Use 1977 as the anchor and lead the "50 years in 2027" thread.</li>
+          <li>Spotlight the vertical-integration arc (2013 in-house stranding → 2024 own copper rod) — that's the real differentiator.</li>
+          <li>End on the current scale (100,000 sq ft, 7 extrusion lines).</li>
+          <li>Draft tight 2-sentence treatments per chapter; strip "Foley" as the headline (factual mentions OK).</li>
         </ul>
       </div>
     </div>
@@ -724,7 +762,7 @@
         <div class="item-title">Aerial facility photo — expand to three buildings</div>
         <div class="tag-row">
           <span class="tag">About</span>
-          <span class="status-chip status-waiting">Awaiting marked-up screenshot</span>
+          <span class="status-chip status-ready">Ready to build</span>
         </div>
       </div>
     </div>
@@ -733,19 +771,23 @@
         "We want to capture a building you don't even know is ours… 335 Wurlitzer. There's a building in between that you'll have to do something with — let's just make it look like grass or something — so right now the quote-unquote drone video is two buildings, now it's gonna be three."
         <cite>Tim &amp; Jason — call transcript</cite>
       </blockquote>
+      <blockquote>
+        "Edit aerial photo to include our 3rd building (keep the cool logo on the roof that you did before)."
+        <cite>Client doc — May 20</cite>
+      </blockquote>
       <div class="field plan">
         <div class="field-label">Proposed approach</div>
         <ul>
-          <li>Source a higher Google Earth frame that includes the 335 Wurlitzer building.</li>
-          <li>Either composite out the intermediate non-UWC plumbing building (replace with grass/lot), or leave it as-is — to be decided once we see the screenshot.</li>
-          <li>Re-apply the UWC logo treatment to all three roofs.</li>
+          <li>Pull a higher Google Earth frame that includes 338 Wurlitzer, the second UWC building, and 335 Wurlitzer.</li>
+          <li>Composite out the intermediate non-UWC plumbing building (replace with grass/lot) per Tim's direction on the call.</li>
+          <li>Re-apply the UWC roof-logo treatment used on the original drone shot — to all three roofs.</li>
           <li>Drop the new still into the existing drone hero on the About page.</li>
         </ul>
       </div>
       <div class="field question">
-        <div class="field-label">Inputs needed</div>
+        <div class="field-label">Confirmations</div>
         <ul>
-          <li>Marked-up screenshot from Jason showing which three buildings to include and whether to remove the intermediate building.</li>
+          <li>Direction confirmed in writing — proceeding without a marked-up screenshot. Will send proof for sign-off before going live.</li>
         </ul>
       </div>
     </div>
@@ -766,7 +808,7 @@
         <div class="tag-row">
           <span class="tag">Home</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-waiting">Awaiting reference URLs</span>
+          <span class="status-chip status-ready">Ready to build</span>
         </div>
       </div>
     </div>
@@ -775,19 +817,24 @@
         "We want the video. We don't want it to be when you open the landing page. As I go to my competition's websites, as soon as you click on it, in most cases you see a picture of wire. It tells somebody, okay, I'm at the right place. In our case it starts with that 20-foot view and you don't know where you are."
         <cite>Tim — call transcript</cite>
       </blockquote>
+      <blockquote>
+        "Landing page — show wire photos to instantly show we are a wire company instead of the video."
+        <cite>Client doc — May 20</cite>
+      </blockquote>
+      <div class="field client">
+        <div class="field-label">Reference URLs — client doc, May 20</div>
+        <ul>
+          <li><a href="https://www.atlaswirecorp.com/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: underline;">atlaswirecorp.com</a></li>
+          <li><a href="https://www.sequelwire.com/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: underline;">sequelwire.com</a></li>
+          <li><a href="https://www.jamesmonroewire.com/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: underline;">jamesmonroewire.com</a></li>
+        </ul>
+      </div>
       <div class="field plan">
         <div class="field-label">Proposed approach</div>
         <ul>
-          <li>Pull the warehouse walkthrough video off the home hero.</li>
-          <li>Replace the hero with a strong wire image (close-up wire/cable) so a visitor immediately knows what UWC is.</li>
-          <li>Decision: which existing UWC wire shot to use, or do we generate a fresh hero specifically for the home page.</li>
-        </ul>
-      </div>
-      <div class="field question">
-        <div class="field-label">Inputs needed</div>
-        <ul>
-          <li>The 2–3 competitor home pages Jason mentioned ("I'm gonna send you a couple URLs… click on it and see what their landing page is").</li>
-          <li>Approval to pick a wire still from existing assets, or kick off a new hero render.</li>
+          <li>Pull the warehouse walkthrough video off the home hero (it relocates to About — see item 09).</li>
+          <li>Replace the hero with a strong wire image — taking visual cues from the three references (close-up cable cross-sections, hero product shot, dark dramatic lighting).</li>
+          <li>Default to a fresh UWC-specific hero render rather than a stock-feeling still; pull from existing assets only if a close-up matches the reference vibe.</li>
         </ul>
       </div>
     </div>
@@ -811,11 +858,15 @@
         "Wherever we move the video to, I'd like to start the video at the entrance of the factory door — meaning when you're exiting the office. Delete everything prior to that door."
         <cite>Tim — call transcript</cite>
       </blockquote>
+      <blockquote>
+        "About page — move landing page video here potentially? Also, cut the first few seconds of the video and start it right when we enter factory."
+        <cite>Client doc — May 20 (confirms destination + trim)</cite>
+      </blockquote>
       <div class="field plan">
         <div class="field-label">Proposed approach</div>
         <ul>
           <li>Trim the walkthrough video so it begins the moment we cross the factory door (drop the fisheye / office-area lead-in).</li>
-          <li>Relocate to the About page as a "Tour the plant" section — most likely below the drone hero. (Alternative: a dedicated new section; Jason was open to either.)</li>
+          <li>Relocate to the About page (confirmed) — most likely below the drone hero.</li>
           <li>Push to Cloudinary as a new asset; keep the original full-length take stored as a fallback master.</li>
         </ul>
       </div>
@@ -908,7 +959,7 @@
 <!-- Approval -->
 <div class="approval">
   <h3>Next step</h3>
-  <p>Once Jason sends the post-meeting document (title updates, milestone list, marked-up aerial screenshot, competitor reference URLs), we'll move items 4–10 from <em>Awaiting input</em> to <em>Ready to build</em> and start implementation in the order Jason and Tim prioritize.</p>
+  <p>Most of what was outstanding came in with the May 20 client doc — milestone list, full team roster, aerial direction, competitor references, and Tim's bio. Items 06, 07, 08 are ready to build; items 04 and 05 are ready except for the remaining team bios and Gabriel Ferguson's photo. We'll begin implementation in priority order (home hero + About story rewrite first) and queue Markets reconciliation for later in the week.</p>
 </div>
 
 <footer>
