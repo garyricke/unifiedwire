@@ -126,11 +126,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .rep-website-btn:hover { background: var(--navy2); }
 
 /* New-business & corp note callouts */
-.new-biz-banner { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 16px; }
-.new-biz-banner strong { color: var(--orange-dk); display: block; margin-bottom: 2px; }
-.new-biz-banner a { color: var(--orange-dk); text-decoration: none; font-weight: 600; }
-.corp-note { margin-top: 16px; background: var(--gray-lt); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text-lt); line-height: 1.6; border-left: 3px solid var(--border); }
-.corp-note a { color: var(--blue); text-decoration: none; font-weight: 600; }
+.corp-note { margin-top: 16px; background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.6; }
+.corp-note strong { color: var(--orange-dk); display: block; margin-bottom: 2px; }
+.corp-note a { color: var(--orange-dk); text-decoration: none; font-weight: 600; }
 .rep-multi-note { font-size: 12px; color: var(--text-lt); line-height: 1.5; margin: -8px 0 18px; }
 .rep-multi-note strong { color: var(--text); font-weight: 700; }
 .rep-multi-sep { display: flex; align-items: center; gap: 12px; margin: 22px 0 18px; color: var(--text-lt); font-family: var(--mono, monospace); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
@@ -1016,11 +1014,6 @@ function showRep(stateName) {
     `;
   }
 
-  const NEW_BIZ_STATES = new Set(['Alabama','Arkansas','Mississippi','Florida']);
-  const newBizHTML = NEW_BIZ_STATES.has(stateName)
-    ? `<div class="new-biz-banner"><strong>New business inquiry?</strong>For companies not yet a current customer, please contact UWC Headquarters directly — <a href="tel:+18157484876">815-748-4876</a> or <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`
-    : '';
-
   const isMulti = matches.length > 1;
   const multiNoteHTML = isMulti
     ? `<div class="rep-multi-note"><strong>${matches.length} reps cover ${stateName}.</strong> Contact whichever fits your account.</div>`
@@ -1034,14 +1027,13 @@ function showRep(stateName) {
   const allDefault = matches.every(m => m.key === repData.defaultRepKey);
   const corpNoteHTML = allDefault
     ? ''
-    : `<div class="corp-note">If inactive or new customer, please contact Corporate Sales to be placed with a representative in your territory — <a href="tel:+18157484876">815-748-4876</a> &nbsp;·&nbsp; <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`;
+    : `<div class="corp-note"><strong>New customer or inactive account?</strong>Contact UWC HQ to be assigned to a rep — <a href="tel:+18157484876">815-748-4876</a> &nbsp;·&nbsp; <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`;
 
   card.innerHTML = `
     <div class="rep-state-tag" style="background:${primary.color}">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg>
       ${stateName}
     </div>
-    ${newBizHTML}
     ${multiNoteHTML}
     ${repBlocksHTML}
     ${corpNoteHTML}
