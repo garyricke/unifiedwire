@@ -203,28 +203,6 @@
       font-size: 1.02rem;
       line-height: 1.6;
     }
-    .btn-deep {
-      display: inline-flex; align-items: center; gap: 9px;
-      margin-top: 22px;
-      background: transparent;
-      color: #fff;
-      border: 1.5px solid rgba(255,255,255,.42);
-      border-radius: 999px;
-      padding: 10px 20px;
-      font-family: var(--mono);
-      font-size: .70rem; letter-spacing: .14em; text-transform: uppercase;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .2s, border-color .2s, transform .2s, color .2s;
-    }
-    .btn-deep:hover {
-      background: var(--orange);
-      border-color: var(--orange);
-      transform: translateY(-1px);
-    }
-    .btn-deep svg { transition: transform .2s; }
-    .btn-deep:hover svg { transform: translateX(2px); }
-
     /* Timeline rail */
     .story-rail {
       display: flex; align-items: center; gap: 18px;
@@ -366,38 +344,9 @@
     }
     .deep-modal p { font-size: 1rem; line-height: 1.65; color: var(--text-lt); margin-bottom: 14px; }
     .deep-modal p strong { color: var(--text); font-weight: 700; }
-    .deep-pull {
-      border-left: 3px solid var(--orange);
-      padding: 8px 0 8px 18px;
-      margin: 22px 0;
-      font-size: 1.05rem;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.5;
-    }
-    .deep-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 22px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
-    }
-    .deep-stat-num {
-      font-size: 1.6rem; font-weight: 800;
-      letter-spacing: -.02em;
-      color: var(--blue);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .deep-stat-label {
-      font-family: var(--mono); font-size: .62rem;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-lt);
-    }
     @media (max-width: 600px) {
       .deep-modal { padding: 36px 26px 30px; border-radius: 14px; }
       .deep-modal h3 { font-size: 1.35rem; }
-      .deep-stats { grid-template-columns: 1fr 1fr; }
     }
 
     /* Facility — vertical stack */
@@ -680,6 +629,12 @@
       color: var(--text-lt);
     }
 
+    .person-card-bio { cursor: pointer; }
+    .person-card-bio:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
     @media (max-width: 760px) { .people-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .people-grid { grid-template-columns: 1fr; } }
 
@@ -764,56 +719,38 @@
     <div class="story-stage fade-in">
       <article class="story-chapter active" data-chapter="0">
         <div class="story-year">1977 &middot; Founded</div>
-        <h3 class="story-title">One extrusion line. One vision.</h3>
-        <p class="story-body">Unified Wire &amp; Cable opens for business with a single extrusion line and a deliberate operating model: vertical integration. Copper draw, stranding, and extrusion under one roof &mdash; and the name itself reflects the discipline.</p>
-        <button class="btn-deep" type="button" data-deep="deep-1977">Read the full chapter
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+        <h3 class="story-title">One extrusion line. Doors open.</h3>
+        <p class="story-body">Unified Wire &amp; Cable opens for business with a single extrusion line &mdash; a small operation built around one disciplined idea: do the work well, one job at a time.</p>
       </article>
 
       <article class="story-chapter" data-chapter="1">
         <div class="story-year">1992 &middot; Our own roof</div>
         <h3 class="story-title">Twenty thousand square feet, built for wire</h3>
         <p class="story-body">Year-over-year growth pushes the team out of leased space. UWC breaks ground on a <strong>20,000 sq ft</strong> building of its own &mdash; designed specifically around wire manufacturing, with room for a second extruder, then a third.</p>
-        <button class="btn-deep" type="button" data-deep="deep-1992">Read the full chapter
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
       </article>
 
       <article class="story-chapter" data-chapter="2">
         <div class="story-year">2001&ndash;2002 &middot; First scale-up</div>
         <h3 class="story-title">Three extrusion lines. Sixty-five thousand square feet.</h3>
         <p class="story-body">Capacity triples to <strong>three extrusion lines</strong> in 2001. A year later the plant expands to <strong>65,000 sq ft</strong> &mdash; the footprint that powers the next decade of order growth.</p>
-        <button class="btn-deep" type="button" data-deep="deep-2002">Read the full chapter
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
       </article>
 
       <article class="story-chapter" data-chapter="3">
-        <div class="story-year">2013&ndash;2014 &middot; Vertical integration deepens</div>
-        <h3 class="story-title">Copper stranding comes in-house</h3>
-        <p class="story-body">Starting in 2013, UWC buys copper rod directly and strands it in-house &mdash; eliminating a key supplier dependency. In 2014, <strong>cross-linked constructions</strong> join the catalog, expanding past PVC into higher-temperature, chemical-resistant applications.</p>
-        <button class="btn-deep" type="button" data-deep="deep-2014">Read the full chapter
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+        <div class="story-year">2005 &amp; 2013 &middot; Vertical integration begins</div>
+        <h3 class="story-title">Crosslink, then copper stranding</h3>
+        <p class="story-body">In 2005, UWC adds <strong>copper drawing &amp; bunching</strong> in-house and brings <strong>cross-linked constructions</strong> into the catalog &mdash; expanding past PVC into higher-temperature, chemical-resistant applications. Eight years later, in 2013, UWC starts buying copper rod directly and <strong>stranding it in-house</strong> &mdash; eliminating another key supplier link.</p>
       </article>
 
       <article class="story-chapter" data-chapter="4">
         <div class="story-year">2024 &middot; Vertical integration completes</div>
         <h3 class="story-title">Producing our own copper rod</h3>
         <p class="story-body">UWC takes the final step in vertical integration &mdash; <strong>producing its own copper rod</strong> on-site. Every link in the chain, from raw copper to finished spool, now happens under one roof.</p>
-        <button class="btn-deep" type="button" data-deep="deep-2024">Read the full chapter
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
       </article>
 
       <article class="story-chapter" data-chapter="5">
         <div class="story-year">Today &middot; DeKalb, IL</div>
         <h3 class="story-title">100,000 square feet. Seven extrusion lines.</h3>
         <p class="story-body">By 2025 the plant has grown to <strong>100,000 sq ft</strong>; today, seven extrusion lines run 24/7 across the full catalog &mdash; low voltage through 15kV&ndash;69kV medium voltage. In 2027, UWC marks <strong>50 years</strong> of unifying every step of wire manufacturing under one roof.</p>
-        <button class="btn-deep" type="button" data-deep="deep-today">Read the full chapter
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
       </article>
     </div>
 
@@ -839,7 +776,7 @@
         <span class="story-rail-bar"></span>
         <button class="story-stop" type="button" role="tab" aria-selected="false" data-stop="3">
           <span class="story-stop-dot"></span>
-          <span class="story-stop-label">2014</span>
+          <span class="story-stop-label">2005</span>
         </button>
         <span class="story-rail-bar"></span>
         <button class="story-stop" type="button" role="tab" aria-selected="false" data-stop="4">
@@ -860,91 +797,6 @@
 
   <div class="story-progress" aria-hidden="true"><div class="story-progress-fill"></div></div>
 </section>
-
-<!-- Deep-dive modals -->
-<div class="deep-overlay" id="deep-1977" onclick="closeDeep(event,'deep-1977')">
-  <div class="deep-modal" onclick="event.stopPropagation()">
-    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-1977')" aria-label="Close">&times;</button>
-    <div class="deep-meta">Chapter 1 &middot; 1977 &middot; Founded</div>
-    <h3>One extrusion line. One vision.</h3>
-    <p>In 1977, vertical integration was uncommon in the wire industry. Most manufacturers bought rod, drew it, extruded it &mdash; and outsourced everything else. Unified Wire &amp; Cable took the opposite stance from day one.</p>
-    <p>The name was deliberate. "Unified" wasn't a brand flourish; it was a description. <strong>Copper fabrication, wire drawing, stranding, and extrusion would all happen at one address</strong>, under one quality system, accountable to one team.</p>
-    <div class="deep-pull">One name. One supply chain. One quality standard.</div>
-    <p>The bet placed in year one &mdash; one extruder, one address, one operating model &mdash; is the same bet the company runs on today, fifty years later. Every chapter that follows is an expansion of it, not a departure from it.</p>
-  </div>
-</div>
-
-<div class="deep-overlay" id="deep-1992" onclick="closeDeep(event,'deep-1992')">
-  <div class="deep-modal" onclick="event.stopPropagation()">
-    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-1992')" aria-label="Close">&times;</button>
-    <div class="deep-meta">Chapter 2 &middot; 1992 &middot; A building of our own</div>
-    <h3>Twenty thousand square feet, built for wire</h3>
-    <p>Year-over-year demand outgrows the leased space the company had been operating from. In 1992, UWC breaks ground on its first owned facility &mdash; a <strong>20,000 sq ft building</strong> in DeKalb, Illinois, designed specifically around wire manufacturing.</p>
-    <div class="deep-pull">"We had growth, year after year. So we needed more space."</div>
-    <p>The building itself is the bet. Room for a second extruder, then a third. Room for stranding, then bunching. Room to bring more of the process in-house. The footprint is sized not for today, but for the decade of expansion that comes next.</p>
-  </div>
-</div>
-
-<div class="deep-overlay" id="deep-2002" onclick="closeDeep(event,'deep-2002')">
-  <div class="deep-modal" onclick="event.stopPropagation()">
-    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-2002')" aria-label="Close">&times;</button>
-    <div class="deep-meta">Chapter 3 &middot; 2001&ndash;2002 &middot; First scale-up</div>
-    <h3>Three extrusion lines. Sixty-five thousand square feet.</h3>
-    <p>The 1992 building was sized to grow into &mdash; and by 2001, it has. Capacity triples to <strong>three extrusion lines</strong>, with stranding and copper draw layered on alongside.</p>
-    <p>In 2002, a major expansion brings the plant to <strong>65,000 sq ft</strong> total &mdash; more than triple the original footprint, all built around the same vertically integrated operating model.</p>
-    <div class="deep-pull">Three lines. Sixty-five thousand square feet. Built to make wire.</div>
-    <p>This is the footprint that powers the next decade of order growth and sets the stage for the deeper vertical-integration moves still to come.</p>
-  </div>
-</div>
-
-<div class="deep-overlay" id="deep-2014" onclick="closeDeep(event,'deep-2014')">
-  <div class="deep-modal" onclick="event.stopPropagation()">
-    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-2014')" aria-label="Close">&times;</button>
-    <div class="deep-meta">Chapter 4 &middot; 2013&ndash;2014 &middot; Vertical integration deepens</div>
-    <h3>Copper stranding comes in-house</h3>
-    <p>For its first 35 years, UWC bought stranded copper conductor from outside suppliers &mdash; a key dependency the operating model had not yet absorbed. In 2013, that changes.</p>
-    <p>UWC starts buying <strong>copper rod directly and stranding it in-house</strong>, eliminating a major link in the supplier chain. The next year, <strong>cross-linked polyethylene</strong> constructions join the catalog &mdash; opening the door to higher-temperature, chemical-resistant applications outside PVC's range.</p>
-    <div class="deep-pull">Owning the strand was the start. The rod would come next.</div>
-    <p>Two milestones, one direction: pulling more of the manufacturing process inside the four walls where the operating model can guarantee quality, lead time, and price.</p>
-  </div>
-</div>
-
-<div class="deep-overlay" id="deep-2024" onclick="closeDeep(event,'deep-2024')">
-  <div class="deep-modal" onclick="event.stopPropagation()">
-    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-2024')" aria-label="Close">&times;</button>
-    <div class="deep-meta">Chapter 5 &middot; 2024 &middot; Vertical integration completes</div>
-    <h3>Producing our own copper rod</h3>
-    <p>Eleven years after bringing stranding in-house, UWC takes the final step in vertical integration. Starting in 2024, the company produces its own copper rod &mdash; on-site, fed directly into the stranding lines.</p>
-    <p><strong>Every step of wire manufacturing now happens under one roof</strong>: copper rod, draw, stranding, extrusion. From raw copper to finished spool, no outside supplier sits in the chain.</p>
-    <div class="deep-pull">From raw copper to finished spool. One address.</div>
-    <p>This level of in-house integration is rare in the U.S. wire industry &mdash; and it's the operating advantage UWC was designed to deliver from the founding bet in 1977.</p>
-  </div>
-</div>
-
-<div class="deep-overlay" id="deep-today" onclick="closeDeep(event,'deep-today')">
-  <div class="deep-modal" onclick="event.stopPropagation()">
-    <button class="deep-close" type="button" onclick="closeDeep(null,'deep-today')" aria-label="Close">&times;</button>
-    <div class="deep-meta">Chapter 6 &middot; Today &middot; DeKalb, Illinois</div>
-    <h3>Fifty years of unifying every step</h3>
-    <p>Nearly half a century after that single extrusion line, the operating model is intact &mdash; and the operation has scaled around it. By 2025, UWC manufactures from a <strong>100,000 square foot</strong> facility in DeKalb, Illinois, 1.5 hours west of Chicago.</p>
-    <p>The Midwest address is a logistics asset: shorter transit to OEMs and distributors across the continental U.S. than coastal alternatives. <strong>Seven extrusion lines</strong> run 24/7, spanning the full breadth of the catalog &mdash; from automotive hook-up wire to MIL spec constructions to <strong>15kV&ndash;69kV medium voltage</strong>, a brand-new product category in 2026.</p>
-    <p>Defective parts per million sit around 300. On-time delivery clears 95%. In 2027, UWC marks <strong>50 years</strong> of bringing every step of wire manufacturing under one roof &mdash; the same operating model that opened the doors in 1977, scaled to the operation it built.</p>
-    <div class="deep-stats">
-      <div>
-        <div class="deep-stat-num">100K</div>
-        <div class="deep-stat-label">Square Feet</div>
-      </div>
-      <div>
-        <div class="deep-stat-num">7</div>
-        <div class="deep-stat-label">Extrusion Lines</div>
-      </div>
-      <div>
-        <div class="deep-stat-num">100+</div>
-        <div class="deep-stat-label">UL AWM Styles</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Facility -->
 <section class="section-alt">
@@ -1090,21 +942,27 @@
         </div>
       </div>
 
-      <a href="tim-foley.html" class="person-card">
+      <div class="person-card person-card-bio" role="button" tabindex="0" data-deep="bio-tim" aria-haspopup="dialog">
         <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/v1776693528/tim-foley-profile-square_jboy8f.jpg" alt="Tim Foley">
         <div class="person-card-gradient"></div>
         <div class="person-card-inner">
           <div class="person-card-title">VP Sales</div>
           <div class="person-card-name">Tim Foley</div>
+          <span class="person-card-cta">Read Bio
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
         </div>
-      </a>
+      </div>
 
-      <div class="person-card">
+      <div class="person-card person-card-bio" role="button" tabindex="0" data-deep="bio-les" aria-haspopup="dialog">
         <img class="person-card-img" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_face/uwc/les-tucker-profile-square" alt="Les Tucker">
         <div class="person-card-gradient"></div>
         <div class="person-card-inner">
-          <div class="person-card-title">VP of Sales & Commercial Strategy</div>
+          <div class="person-card-title">VP of Sales &amp; Commercial Strategy</div>
           <div class="person-card-name">Les Tucker</div>
+          <span class="person-card-cta">Read Bio
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
         </div>
       </div>
 
@@ -1214,6 +1072,27 @@
   </div>
 </section>
 
+<!-- Bio modals -->
+<div class="deep-overlay" id="bio-tim" onclick="closeDeep(event,'bio-tim')" role="dialog" aria-modal="true" aria-labelledby="bio-tim-name">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'bio-tim')" aria-label="Close">&times;</button>
+    <div class="deep-meta">VP Sales</div>
+    <h3 id="bio-tim-name">Tim Foley</h3>
+    <p>Tim Foley brings more than 40 years of experience in the wire harness and wire and cable manufacturing industry. Since joining Unified Wire &amp; Cable (UWC) in 2001 as a Sales Representative, he has advanced to Vice President of Sales, where he leads key account management, cultivates strategic customer relationships, and supports long-term business growth across multiple market segments.</p>
+    <p>Before joining UWC, Tim spent 16 years as a partner in a wire harness manufacturing company, holding several leadership positions, including Vice President of Operations with full profit-and-loss responsibility. His broad background in operations, sales, and customer management enables him to deliver practical, customer-focused solutions that drive value for both clients and business partners.</p>
+  </div>
+</div>
+
+<div class="deep-overlay" id="bio-les" onclick="closeDeep(event,'bio-les')" role="dialog" aria-modal="true" aria-labelledby="bio-les-name">
+  <div class="deep-modal" onclick="event.stopPropagation()">
+    <button class="deep-close" type="button" onclick="closeDeep(null,'bio-les')" aria-label="Close">&times;</button>
+    <div class="deep-meta">VP of Sales &amp; Commercial Strategy</div>
+    <h3 id="bio-les-name">Les Tucker</h3>
+    <p>Les Tucker joined the UWC team in 2021 as a VP of Sales and Commercial Strategy. He is a results-driven sales and commercial executive with more than 37 years of leadership experience in the wire, cable, and manufacturing industries. His proven success in scaling startup operations, leading high-performing sales organizations, managing multimillion-dollar revenue portfolios, and driving sustainable business growth brings strategic value to both UWC and each customer no matter the market segment.</p>
+    <p>Career highlights include helping build and scale Syndeo Wire Corp. from startup through $64M in annual sales, overseeing $240M in annual revenue at International Wire Group, and leading strategic national account growth across multiple U.S. markets with IEWC's distribution footprint. Recognized for expertise in customer development, supply chain strategy, contract negotiations, operational leadership, and cross-functional team management.</p>
+  </div>
+</div>
+
 <footer id="site-footer"></footer>
 <script>window._uwcDepth=''; window._uwcPage='About';</script>
 <script src="assets/js/uwc.js"></script>
@@ -1292,7 +1171,7 @@
   startAuto();
 })();
 
-// === Deep-dive modals ===
+// === Modal triggers (bio cards, etc.) ===
 function closeDeep(ev, id) {
   if (ev && ev.currentTarget && ev.target !== ev.currentTarget) return;
   var el = document.getElementById(id);
@@ -1301,13 +1180,22 @@ function closeDeep(ev, id) {
   document.body.style.overflow = '';
 }
 (function () {
-  document.querySelectorAll('.btn-deep').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var el = document.getElementById(btn.getAttribute('data-deep'));
-      if (!el) return;
-      el.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
+  function openFor(trigger) {
+    var el = document.getElementById(trigger.getAttribute('data-deep'));
+    if (!el) return;
+    el.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  document.querySelectorAll('[data-deep]').forEach(function (trigger) {
+    trigger.addEventListener('click', function () { openFor(trigger); });
+    if (trigger.getAttribute('role') === 'button') {
+      trigger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openFor(trigger);
+        }
+      });
+    }
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
