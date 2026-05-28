@@ -501,13 +501,14 @@
 <!-- ── HEADER ── -->
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Call Notes &amp; Action Items · May 18, 2026 · Updated May 20 with client follow-up doc</div>
+    <div class="hero-eyebrow">Call Notes &amp; Action Items · May 18, 2026 · Updated May 20, then May 28 with client review batch</div>
     <h1>Update plan — May 18 call.</h1>
     <p>Working list of all changes raised on the call with Jason Foley &amp; Tim Foley on May 18, 2026. Each item shows what was said, the proposed approach, status, and any open questions before we touch the site. Review and approve in batches.</p>
-    <p style="margin-top: 14px; font-size: .98rem; color: var(--text); background: rgba(3,98,188,.06); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 4px;"><strong>May 20 update:</strong> Jason sent <em>5_18 Website Updates.docx</em> with new direction. Items 4–9 now have client inputs woven in — most are ready to build pending only Gabriel Ferguson's photo and the remaining team bios.</p>
+    <p style="margin-top: 14px; font-size: .98rem; color: var(--text); background: rgba(3,98,188,.06); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 4px;"><strong>May 20 update:</strong> Jason sent <em>5_18 Website Updates.docx</em> with new direction. Items 4–9 had client inputs woven in pending only Gabriel Ferguson's photo and the remaining team bios.</p>
+    <p style="margin-top: 10px; font-size: .98rem; color: var(--text); background: rgba(34,139,34,.08); border-left: 3px solid #228B22; padding: 10px 14px; border-radius: 4px;"><strong>May 28 update:</strong> Client reviewed <a href="https://deploy-preview-1--unifiedwire.netlify.app/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: underline;">deploy-preview-1</a> and sent a second pass. Tim &amp; Les bios delivered (now live). Factual corrections to the Our Story timeline (1977 + 2005 dates) shipped. SOOW → STOOW rename shipped on the home rotator. "Read full chapter" buttons + deep-dive modals removed. One open ask: a second edit pass on the walkthrough video (client editing).</p>
     <div class="hero-meta">
-      <span class="meta-pill"><span class="count">11</span>&nbsp;items</span>
-      <span class="meta-pill orange"><span class="count">Pending</span>&nbsp;Gabriel Ferguson photo + 9 team bios from UWC</span>
+      <span class="meta-pill"><span class="count">12</span>&nbsp;items</span>
+      <span class="meta-pill orange"><span class="count">Pending</span>&nbsp;8 team bios from UWC</span>
     </div>
   </div>
 </header>
@@ -616,7 +617,7 @@
         <div class="tag-row">
           <span class="tag">About</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-progress">Tim's bio in — 9 more pending</span>
+          <span class="status-chip status-progress">Tim &amp; Les bios live · 8 more pending</span>
         </div>
       </div>
     </div>
@@ -638,15 +639,15 @@
         </ul>
       </div>
       <div class="field client">
-        <div class="field-label">Tim's bio — delivered May 20</div>
-        <p>With more than 30 years of experience in the wire harness and manufacturing industry, Tim joined UWC in July 2001 as a Sales Representative and was later promoted to Vice President of Sales. In this role, Tim is responsible for managing key accounts and driving strategic customer relationships.</p>
-        <p>Prior to joining UWC, Tim spent 16 years as a partner in a harness manufacturing company, serving in a variety of roles including Vice President of Operations, with full profit and loss responsibility. His extensive background in operations, sales, and customer management provides a strong foundation for delivering value-driven solutions to customers and partners.</p>
+        <div class="field-label">Tim &amp; Les bios — live as of May 28</div>
+        <p><strong>Tim Foley</strong> (VP Sales) and <strong>Les Tucker</strong> (VP of Sales &amp; Commercial Strategy) cards now open click-to-expand bio modals using the final copy the client sent on May 28 (Tim's revised from the May 20 draft to "40 years of experience"; Les delivered fresh). Click + keyboard (Enter/Space) supported; Esc to close.</p>
+        <p>The deep-link to <code>tim-foley.html</code> has been removed from the About cards. The page is now orphaned from the team grid but still on disk and indexed in <code>search-index.json</code>.</p>
       </div>
       <div class="field question">
         <div class="field-label">Open questions / inputs needed</div>
         <ul>
-          <li>3–4 sentence bios for the other 9 team members — using Tim's as the reference style. ("We are waiting for everyone to send their own.")</li>
-          <li>Should we keep the existing <code>tim-foley.html</code> and <code>daniela.html</code> URLs as redirects to <code>about.html</code>, or 410 / hard-delete them?</li>
+          <li><strong>8 remaining bios</strong> — John, Tom, Jorge, Tina, Daniela, Amaya, Brittany, Ebaa (Gabriel pending alongside his photo). Per Tim: "we are waiting for everyone to send their own."</li>
+          <li>Should we keep the existing <code>tim-foley.html</code> and <code>daniela.html</code> URLs as redirects to <code>about.html</code>, or 410 / hard-delete them and drop them from <code>search-index.json</code>?</li>
         </ul>
       </div>
     </div>
@@ -660,7 +661,7 @@
         <div class="item-title">Team roster — title updates, new hire, ordering</div>
         <div class="tag-row">
           <span class="tag">About</span>
-          <span class="status-chip status-progress">Ready except Gabriel's photo</span>
+          <span class="status-chip status-done">Done — Gabriel's photo also in</span>
         </div>
       </div>
     </div>
@@ -692,11 +693,9 @@
           <li>Add Gabriel Ferguson card with placeholder portrait until the photo arrives.</li>
         </ul>
       </div>
-      <div class="field question">
-        <div class="field-label">Inputs needed</div>
-        <ul>
-          <li>Gabriel Ferguson's photo.</li>
-        </ul>
+      <div class="field plan">
+        <div class="field-label">Shipped</div>
+        <p>All 11 cards rendered with the May 20 title list. Gabriel Ferguson's photo arrived and is live (Cloudinary <code>uwc/gabriel-ferguson-profile-square</code>). Amaya Hoffman's card added in the same pass.</p>
       </div>
     </div>
   </div>
@@ -710,7 +709,7 @@
         <div class="tag-row">
           <span class="tag">About</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-ready">Ready to build</span>
+          <span class="status-chip status-done">Done · May 28 corrections applied</span>
         </div>
       </div>
     </div>
@@ -728,27 +727,26 @@
         <cite>Client doc — May 20</cite>
       </blockquote>
       <div class="field client">
-        <div class="field-label">Milestone list — client doc, May 20</div>
+        <div class="field-label">Corrected milestone list — client review, May 28</div>
         <ul>
-          <li><strong>1977</strong> — UWC opens doors with 1 extrusion line</li>
+          <li><strong>1977</strong> — UWC opens doors with 1 extrusion line. <em>Not yet vertically integrated; no copper draw or stranding at founding.</em></li>
           <li><strong>1992</strong> — built 20,000 sq ft building</li>
           <li><strong>2001</strong> — grew to 3 extrusion lines</li>
           <li><strong>2002</strong> — grew to 65,000 sq ft</li>
-          <li><strong>2013</strong> — started buying copper rod &amp; doing in-house copper stranding</li>
-          <li><strong>2014</strong> — added cross-link to product offerings</li>
-          <li><strong>2024</strong> — started producing our own copper rod (vertical integration)</li>
+          <li><strong>2005</strong> — added <strong>cross-link</strong> to product offerings <em>and</em> brought <strong>copper drawing &amp; bunching</strong> in-house <span style="color: var(--orange-dk);">(client correction May 28: original date was 2014 — wrong)</span></li>
+          <li><strong>2013</strong> — started buying copper rod &amp; doing in-house copper <strong>stranding</strong></li>
+          <li><strong>2024</strong> — started producing our own copper rod (vertical integration completes)</li>
           <li><strong>2025</strong> — grew to 100,000 sq ft</li>
           <li><strong>2026</strong> — currently running 7 extrusion lines</li>
         </ul>
       </div>
       <div class="field plan">
-        <div class="field-label">Proposed approach</div>
+        <div class="field-label">Shipped</div>
         <ul>
-          <li>Rebuild the "Our Story" timeline around the 9 milestones above — milestone- and growth-focused, not founder/family-focused.</li>
-          <li>Use 1977 as the anchor and lead the "50 years in 2027" thread.</li>
-          <li>Spotlight the vertical-integration arc (2013 in-house stranding → 2024 own copper rod) — that's the real differentiator.</li>
-          <li>End on the current scale (100,000 sq ft, 7 extrusion lines).</li>
-          <li>Draft tight 2-sentence treatments per chapter; strip "Foley" as the headline (factual mentions OK).</li>
+          <li>"Our Story" timeline rebuilt around the milestones above — milestone- and growth-focused, no Foley headline.</li>
+          <li>1977 chapter rewritten to drop vertical-integration/copper-draw/stranding claims (those were not yet in place at founding).</li>
+          <li>Chapter 3 relabeled "2005 &amp; 2013 · Vertical integration begins" — crosslink + copper drawing/bunching in 2005, stranding in 2013. Rail dot updated 2014 → 2005.</li>
+          <li>"Read full chapter" buttons removed and the six deep-dive modals deleted — client confirmed the shorter chapter snippets are all that's needed.</li>
         </ul>
       </div>
     </div>
@@ -849,7 +847,7 @@
         <div class="tag-row">
           <span class="tag">Home</span>
           <span class="tag">About</span>
-          <span class="status-chip status-ready">Ready to build</span>
+          <span class="status-chip status-done">Done — v2 cut live on About</span>
         </div>
       </div>
     </div>
@@ -863,19 +861,16 @@
         <cite>Client doc — May 20 (confirms destination + trim)</cite>
       </blockquote>
       <div class="field plan">
-        <div class="field-label">Proposed approach</div>
+        <div class="field-label">Shipped</div>
         <ul>
-          <li>Trim the walkthrough video so it begins the moment we cross the factory door (drop the fisheye / office-area lead-in).</li>
-          <li>Relocate to the About page (confirmed) — most likely below the drone hero.</li>
-          <li>Push to Cloudinary as a new asset; keep the original full-length take stored as a fallback master.</li>
+          <li><strong>Relocation done</strong> — full-bleed "Inside the Plant" walkthrough section landed below the drone hero on About.</li>
+          <li><strong>v2 cut live</strong> — client-edited version uploaded to Cloudinary as <code>uwc/office-into-factory-v2</code> (1920×1080, 2m 30s); microwave/office lead-in removed, 5/16″ rod-coiling shot moved to the front, transitions into the factory walk. Source <code>about.html:996–997</code> swapped.</li>
         </ul>
       </div>
-      <div class="field question">
-        <div class="field-label">Open questions</div>
-        <ul>
-          <li>Confirm About-page placement (under the drone hero) vs. a new standalone section.</li>
-          <li>Title for the section — "Inside the plant"? "Plant walkthrough"? Open to suggestions.</li>
-        </ul>
+      <div class="field client">
+        <div class="field-label">May 28 client direction (verbatim)</div>
+        <p>"Start the office/factory drone footage about two seconds later so it does not begin with the microwave in the office. Ideally it should start right as you walk into the factory."</p>
+        <p>"The video currently ends with the 5/16″ rod being coiled up at our sister location. Since that is the beginning of the process, can we move that footage to the start of the video, then transition into opening the door and walking into the factory?"</p>
       </div>
     </div>
   </div>
@@ -954,12 +949,58 @@
     </div>
   </div>
 
+  <!-- Section: May 28 review batch -->
+  <div class="section-head">
+    <h2>May 28 client review · second pass</h2>
+    <p>New items raised by the client's review of <a href="https://deploy-preview-1--unifiedwire.netlify.app/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: underline;">deploy-preview-1</a>. Timeline + leadership corrections from this batch are folded into items 04 / 06 / 09 above.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">12</div>
+      <div class="item-title-wrap">
+        <div class="item-title">Home rotating wire section — SOOW → STOOW</div>
+        <div class="tag-row">
+          <span class="tag">Home</span>
+          <span class="status-chip status-done">Done</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "Landing page – rotating wire section. Please change the word SOOW to STOOW."
+        <cite>Client — May 28</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Shipped</div>
+        <p>Portable-cord label in the hero rotator now reads <strong>STOOW · Portable Cord</strong> (<code>home.html:406</code>). The SOOW tag on the Industrial market card (<code>home.html:529</code>) was left untouched — flag if that should change too.</p>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- Approval -->
 <div class="approval">
-  <h3>Next step</h3>
-  <p>Most of what was outstanding came in with the May 20 client doc — milestone list, full team roster, aerial direction, competitor references, and Tim's bio. Items 06, 07, 08 are ready to build; items 04 and 05 are ready except for the remaining team bios and Gabriel Ferguson's photo. We'll begin implementation in priority order (home hero + About story rewrite first) and queue Markets reconciliation for later in the week.</p>
+  <h3>What's open</h3>
+  <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.7;">
+    <li><strong>8 team bios</strong> — John, Tom, Jorge, Tina, Daniela, Amaya, Brittany, Ebaa (item 04). Gabriel's bio waits alongside.</li>
+    <li><strong>Home hero replacement</strong> (item 08) — wire imagery to replace the walkthrough video on the landing.</li>
+    <li><strong>Aerial facility shot — three buildings</strong> (item 07) — composite + roof-logo treatment to be produced.</li>
+    <li><strong>Markets reconciliation</strong> (item 10) — sync the website Markets list to the v2 line cards.</li>
+    <li><strong>Decision needed</strong> — keep <code>tim-foley.html</code> / <code>daniela.html</code> as redirects to About, or hard-delete + drop from <code>search-index.json</code>?</li>
+    <li><strong>Decision needed</strong> — should the SOOW tag on the Industrial market card (<code>home.html:529</code>) also change to STOOW, or stay?</li>
+  </ul>
+  <h3 style="margin-top: 28px;">What's done since the last update</h3>
+  <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.7;">
+    <li>Items 01–03 shipped earlier (rep locator).</li>
+    <li>Item 05 — team roster complete with Gabriel's photo and Amaya's card.</li>
+    <li>Item 06 — Our Story timeline rebuilt with the corrected 1977 + 2005 dates; "Read full chapter" buttons and deep-dive modals removed.</li>
+    <li>Item 04 (partial) — Tim &amp; Les bio modals live; long-form story dive-in pattern dropped.</li>
+    <li>Item 09 — walkthrough v2 (client cut: microwave/office lead-in removed, rod-coiling shot front-loaded) live on About.</li>
+    <li>Item 12 — SOOW → STOOW on the home rotator.</li>
+  </ul>
 </div>
 
 <footer>
