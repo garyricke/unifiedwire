@@ -959,7 +959,7 @@
     <div class="item-head">
       <div class="item-num">12</div>
       <div class="item-title-wrap">
-        <div class="item-title">Home rotating wire section — SOOW → STOOW</div>
+        <div class="item-title">SOOW → STOOW rename (home rotator + Industrial market card)</div>
         <div class="tag-row">
           <span class="tag">Home</span>
           <span class="status-chip status-done">Done</span>
@@ -973,7 +973,19 @@
       </blockquote>
       <div class="field plan">
         <div class="field-label">Shipped</div>
-        <p>Portable-cord label in the hero rotator now reads <strong>STOOW · Portable Cord</strong> (<code>home.html:406</code>). The SOOW tag on the Industrial market card (<code>home.html:529</code>) was left untouched — flag if that should change too.</p>
+        <p>Portable-cord label in the hero rotator now reads <strong>STOOW · Portable Cord</strong> (<code>home.html:406</code>). The SOOW tag on the Industrial market card (<code>home.html:529</code>) was also renamed to STOOW per the May 28 follow-up.</p>
+      </div>
+      <div class="field question">
+        <div class="field-label">Open — products page + corporate spec sheet still mention SOOW</div>
+        <p>SOOW also appears in places that look like real product data — flagging before changing:</p>
+        <ul>
+          <li><code>products.html:611</code> — filter checkbox "SOOW Flexible Cord"</li>
+          <li><code>products.html:1199–1201</code> — product entry SKU <code>UWC-SOOW123</code>, name "SOOW 12/3 300V", family <code>SOOW</code></li>
+          <li><code>products.html:1231</code> — families array on the Industrial application card</li>
+          <li><code>products.html:1288–1289</code> — search keyword mappings ("flexible cord" / "portable cord" / "extension cord" → SOOW)</li>
+          <li><code>0-spec-sheets-for-print/spec-sheet-01-corporate.html:487</code> — Portable Cord row lists "SJT, SJTOOW, STOW, <strong>STOOW</strong>, SVT" (STOOW already there as a distinct type, no SOOW)</li>
+        </ul>
+        <p>Should I rename SOOW → STOOW everywhere (including the SKU), or does UWC actually offer SOOW as a separate product alongside STOOW?</p>
       </div>
     </div>
   </div>
@@ -986,7 +998,7 @@
   <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.7;">
     <li><strong>8 team bios</strong> — John, Tom, Jorge, Tina, Daniela, Amaya, Brittany, Ebaa (item 04). Gabriel's bio waits alongside.</li>
     <li><strong>Markets reconciliation</strong> (item 10) — sync the website Markets list to the v2 line cards.</li>
-    <li><strong>Decision needed</strong> — should the SOOW tag on the Industrial market card (<code>home.html:529</code>) also change to STOOW, or stay?</li>
+    <li><strong>Decision needed</strong> — products page and corporate spec sheet still reference SOOW (filter, SKU <code>UWC-SOOW123</code>, search mappings). Sweep those to STOOW too, or does UWC actually offer SOOW as a separate product? See item 12.</li>
   </ul>
   <h3 style="margin-top: 28px;">What's done since the last update</h3>
   <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.7;">
@@ -997,7 +1009,7 @@
     <li>Item 07 — aerial facility shot expanded to three buildings, live on About.</li>
     <li>Item 08 — warehouse-walkthrough hero on home replaced with wire imagery.</li>
     <li>Item 09 — walkthrough v2 (client cut: microwave/office lead-in removed, rod-coiling shot front-loaded) live on About.</li>
-    <li>Item 12 — SOOW → STOOW on the home rotator.</li>
+    <li>Item 12 — SOOW → STOOW on the home rotator and Industrial market card tag.</li>
   </ul>
 </div>
 
