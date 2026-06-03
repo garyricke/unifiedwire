@@ -249,6 +249,49 @@
     .logo-cell-blue .logo-cell-lbl { color: rgba(255,255,255,.45); }
     @media(max-width:680px) { .logo-grid { grid-template-columns: 1fr 1fr; } }
 
+    /* Logo version cards with per-format downloads */
+    .logover-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 28px; }
+    .logover {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .logover-stage {
+      flex: 1; min-height: 168px; padding: 30px 26px;
+      display: flex; align-items: center; justify-content: center;
+      background: repeating-conic-gradient(#f4f6f8 0% 25%, #fff 0% 50%) 0/22px 22px;
+    }
+    .logover-stage img { max-height: 96px; max-width: 100%; width: auto; height: auto; }
+    .logover-foot { border-top: 1.5px solid var(--border); padding: 16px 20px; background: var(--white); }
+    .logover-name { font-size: .95rem; font-weight: 700; margin-bottom: 2px; }
+    .logover-desc { font-size: .8rem; color: var(--text-lt); margin-bottom: 14px; line-height: 1.45; }
+    .logover-dl { display: flex; gap: 8px; }
+    .logover-dl a {
+      flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      font-family: var(--mono); font-size: .72rem; font-weight: 500; letter-spacing: .05em;
+      color: var(--blue); border: 1.5px solid var(--border); border-radius: 7px;
+      padding: 8px 6px; transition: all .18s;
+    }
+    .logover-dl a:hover { background: var(--blue); color: #fff; border-color: var(--blue); text-decoration: none; }
+    .logover-dl a svg { width: 13px; height: 13px; flex-shrink: 0; }
+    @media(max-width:760px) { .logover-grid { grid-template-columns: 1fr; } }
+
+    /* Full-package download banner */
+    .logo-pkg {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      background: var(--navy); border-radius: var(--radius); padding: 26px 32px;
+    }
+    .logo-pkg-ic {
+      width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px;
+      background: linear-gradient(135deg,var(--blue),var(--orange));
+      display: flex; align-items: center; justify-content: center; color: #fff;
+    }
+    .logo-pkg-ic svg { width: 22px; height: 22px; }
+    .logo-pkg-l { display: flex; align-items: center; gap: 18px; }
+    .logo-pkg-txt h4 { color: #fff; margin-bottom: 3px; }
+    .logo-pkg-txt p  { color: rgba(255,255,255,.6); font-size: .88rem; }
+
     .clearspace-wrap {
       display: inline-flex; flex-direction: column;
       align-items: center; gap: 24px; margin-bottom: 40px;
@@ -818,23 +861,83 @@
     <div class="sec-head fade-in">
       <span class="eyebrow">04 — Logo Usage</span>
       <h2>The UWC Mark</h2>
-      <p>The UWC monogram is the core of our identity. The metallic depth of the letterforms references our materials — structural steel-blue conductors and copper wire — unified under a single, unmistakable mark.</p>
+      <p>The UWC logo ships in three approved lockups so you can choose the right level of detail for the application — from a compact mark for apparel and merchandise to the full name-and-address lockup for stationery. Each version is available to download as a vector (SVG, PDF) for apparel and large-format print, or a transparent PNG for web and quick use.</p>
     </div>
 
-    <!-- Placement contexts -->
-    <div class="logo-grid fade-in">
-      <div class="logo-cell logo-cell-white">
-        <img src="Unified-Logo-current.png" alt="Logo on white">
-        <span class="logo-cell-lbl">On White</span>
+    <!-- Three logo versions, each downloadable per format -->
+    <div class="logover-grid fade-in">
+
+      <div class="logover">
+        <div class="logover-stage">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_900,c_limit/uwc/logo/uwc-mark.png" alt="UWC primary mark, no text">
+        </div>
+        <div class="logover-foot">
+          <div class="logover-name">Primary Mark</div>
+          <div class="logover-desc">Symbol only. Best for apparel, embroidery, favicons, and tight spaces.</div>
+          <div class="logover-dl">
+            <a href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/logo/uwc-mark.svg" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> SVG</a>
+            <a href="https://res.cloudinary.com/dsbllwpbh/image/upload/fl_attachment/uwc/logo/uwc-mark.png" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG</a>
+            <a href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/logo/uwc-mark.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF</a>
+          </div>
+        </div>
       </div>
-      <div class="logo-cell logo-cell-gray">
-        <img src="Unified-Logo-current.png" alt="Logo on light gray">
-        <span class="logo-cell-lbl">On Light Gray</span>
+
+      <div class="logover">
+        <div class="logover-stage">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_900,c_limit/uwc/logo/uwc-logo-name.png" alt="UWC logo with company name">
+        </div>
+        <div class="logover-foot">
+          <div class="logover-name">Logo + Name</div>
+          <div class="logover-desc">Primary lockup. The default for the website, signage, and most collateral.</div>
+          <div class="logover-dl">
+            <a href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/logo/uwc-logo-name.svg" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> SVG</a>
+            <a href="https://res.cloudinary.com/dsbllwpbh/image/upload/fl_attachment/uwc/logo/uwc-logo-name.png" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG</a>
+            <a href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/logo/uwc-logo-name.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF</a>
+          </div>
+        </div>
       </div>
-      <div class="logo-cell logo-cell-navy">
-        <img src="Unified-Logo-current.png" alt="Logo on navy">
-        <span class="logo-cell-lbl">On Navy</span>
+
+      <div class="logover">
+        <div class="logover-stage">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_900,c_limit/uwc/logo/uwc-logo-name-address.png" alt="UWC logo with company name and address">
+        </div>
+        <div class="logover-foot">
+          <div class="logover-name">Logo + Name &amp; Address</div>
+          <div class="logover-desc">Full lockup with address line. For letterhead, invoices, and contact-facing print.</div>
+          <div class="logover-dl">
+            <a href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/logo/uwc-logo-name-address.svg" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> SVG</a>
+            <a href="https://res.cloudinary.com/dsbllwpbh/image/upload/fl_attachment/uwc/logo/uwc-logo-name-address.png" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG</a>
+            <a href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/logo/uwc-logo-name-address.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF</a>
+          </div>
+        </div>
       </div>
+
+    </div>
+
+    <!-- Full package download -->
+    <div class="logo-pkg fade-in">
+      <div class="logo-pkg-l">
+        <div class="logo-pkg-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="logo-pkg-txt">
+          <h4>Complete Logo Package</h4>
+          <p>All three versions in SVG, PNG &amp; PDF — one ZIP for your designer or print vendor.</p>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="https://res.cloudinary.com/dsbllwpbh/raw/upload/fl_attachment/uwc/logo/uwc-logo-package-3jun2026.zip" download>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Package (ZIP)
+      </a>
     </div>
 
     <hr class="rule fade-in">
