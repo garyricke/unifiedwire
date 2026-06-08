@@ -100,7 +100,7 @@
       </div>
       <div class="tool-body">
         <div class="tool-tip" id="vd-tip">
-          <p><span class="tool-tip-label">Pre-filled</span>A 20-amp residential branch circuit on a 50-foot run (12 AWG copper, 120V single phase).</p>
+          <p><span class="tool-tip-label">Pre-filled</span>A 20-amp residential branch circuit on a 50-foot run (12 AWG bare copper, 120V single phase).</p>
           <p><span class="tool-tip-label">Try this</span>Change the length to 100 ft to see drop double. Switch the gauge to 14 AWG to watch it cross NEC's 3% line. Bump the voltage to 240V to see why higher voltages tolerate longer runs.</p>
         </div>
         <div class="form-grid">
@@ -124,7 +124,8 @@
           <div class="field">
             <label for="vd-material">Conductor Material</label>
             <select id="vd-material">
-              <option value="copper">Copper</option>
+              <option value="bare">Bare copper</option>
+              <option value="tinned">Tinned copper</option>
               <option value="aluminum">Aluminum</option>
             </select>
           </div>
@@ -280,8 +281,11 @@ const AWG_OHM = {
   '14':2.525,'12':1.588,'10':0.9989,'8':0.6282,'6':0.3951,'4':0.2485,
   '2':0.1563,'1':0.1240,'0':0.09827,'00':0.07793,'000':0.06180,'0000':0.04901
 };
-// Al resistance is ~1.64x copper
-const AL_FACTOR = 1.64;
+// Conductor resistance multipliers vs. the bare-copper base table above.
+// Tinned copper runs a few % higher than bare (tin coating, finer effective
+// copper area); aluminum is ~1.64x. Exact per-gauge UWC values can be
+// substituted here when provided.
+const MAT_FACTOR = { 'bare': 1, 'tinned': 1.03, 'aluminum': 1.64 };
 
 function convertAwg(){
   var v=document.getElementById('awg-in').value;
@@ -317,7 +321,7 @@ function calcVoltageDrop(){
     return;
   }
 
-  var r_per_kft = AWG_OHM[gauge] * (mat==='aluminum' ? AL_FACTOR : 1);
+  var r_per_kft = AWG_OHM[gauge] * (MAT_FACTOR[mat] || 1);
   var r_total = (r_per_kft / 1000) * length * 2; // round trip
   var factor = circuit==='three' ? Math.sqrt(3) : 1;
   var vdrop = factor * current * r_total;
