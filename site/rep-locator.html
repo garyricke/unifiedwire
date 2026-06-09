@@ -105,12 +105,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .rep-website-btn { display: flex; align-items: center; gap: 10px; margin-top: 16px; padding: 13px 18px; background: var(--navy); color: #fff; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; min-height: 48px; transition: background 0.2s; }
 .rep-website-btn:hover { background: var(--navy2); }
 
-/* New-business & corp note callouts */
-.new-biz-banner { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 16px; }
-.new-biz-banner strong { color: var(--orange-dk); display: block; margin-bottom: 2px; }
-.new-biz-banner a { color: var(--orange-dk); text-decoration: none; font-weight: 600; }
-.corp-note { margin-top: 16px; background: var(--gray-lt); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text-lt); line-height: 1.6; border-left: 3px solid var(--border); }
-.corp-note a { color: var(--blue); text-decoration: none; font-weight: 600; }
+/* New-customer / inactive-account callout */
+.corp-note { margin-top: 16px; background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.6; }
+.corp-note strong { color: var(--orange-dk); display: block; margin-bottom: 2px; }
+.corp-note a { color: var(--orange-dk); text-decoration: none; font-weight: 600; }
 
 /* Mobile toggle */
 .map-fab { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--navy); color: #fff; border: none; border-radius: 28px; padding: 14px 28px; font-size: 15px; font-weight: 700; cursor: pointer; z-index: 200; box-shadow: 0 6px 24px rgba(0,0,0,0.35); min-height: 52px; gap: 8px; align-items: center; white-space: nowrap; }
@@ -935,22 +933,17 @@ function showRep(stateName) {
     ? `<a class="rep-website-btn" href="${rep.website.href}" target="_blank" rel="noopener">${webIcon} ${rep.website.label}</a>`
     : '';
 
-  const NEW_BIZ_STATES = new Set(['Alabama','Arkansas','Mississippi','Florida']);
-  const newBizHTML = NEW_BIZ_STATES.has(stateName)
-    ? `<div class="new-biz-banner"><strong>New business inquiry?</strong>For companies not yet a current customer, please contact UWC Headquarters directly — <a href="tel:+18157484876">815-748-4876</a> or <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`
-    : '';
   const addressHTML = rep.address ? `<div class="rep-address">${rep.address.replace(/\n/g,'<br>')}</div>` : '';
   const repKey = Object.keys(repData.reps).find(k => repData.reps[k] === rep) || repData.defaultRepKey;
   const corpNoteHTML = (repKey === repData.defaultRepKey)
     ? ''
-    : `<div class="corp-note">If inactive or new customer, please contact Corporate Sales to be placed with a representative in your territory — <a href="tel:+18157484876">815-748-4876</a> &nbsp;·&nbsp; <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`;
+    : `<div class="corp-note"><strong>New customer or inactive account?</strong>Contact UWC HQ to be assigned to a rep — <a href="tel:+18157484876">815-748-4876</a> &nbsp;·&nbsp; <a href="mailto:uwcsales@unifiedwire.com">uwcsales@unifiedwire.com</a></div>`;
 
   card.innerHTML = `
     <div class="rep-state-tag" style="background:${rep.color}">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg>
       ${stateName}
     </div>
-    ${newBizHTML}
     <div class="rep-firm-name">${rep.name}</div>
     ${addressHTML}
     <div class="rep-contacts">${contactsHTML}</div>

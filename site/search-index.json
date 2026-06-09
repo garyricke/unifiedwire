@@ -142,71 +142,8 @@
     "title": "Markets & Industries",
     "family": "Overview",
     "tags": ["All Markets"],
-    "snippet": "Application-specific wire and cable solutions for appliance, automotive, marine, RV, electronics, military, and distribution.",
-    "keywords": "markets industries applications appliance automotive marine rv electronics oem military distribution"
-  },
-  {
-    "url": "markets/appliance.html",
-    "type": "Market",
-    "title": "Appliance Wire & Cable",
-    "family": "Appliance",
-    "tags": ["UL 1007", "UL 1015", "TEW"],
-    "snippet": "Internal wiring for major and small appliances. UL/CSA recognized, RoHS compliant, custom colors.",
-    "keywords": "appliance internal wiring oem major small kitchen laundry hvac ul 1007 ul 1015 tew rohs custom color"
-  },
-  {
-    "url": "markets/automotive.html",
-    "type": "Market",
-    "title": "Automotive Wire & Cable",
-    "family": "Automotive",
-    "tags": ["GPT", "GXL", "SAE J1128"],
-    "snippet": "Primary wire for cars, trucks, and heavy equipment. GPT, GXL, and TXL constructions to SAE J1128.",
-    "keywords": "automotive primary wire car truck vehicle heavy duty gpt gxl txl sae j1128 harness"
-  },
-  {
-    "url": "markets/marine.html",
-    "type": "Market",
-    "title": "Marine Wire & Cable",
-    "family": "Marine",
-    "tags": ["GPTM", "Tinned Copper", "USCG", "ABYC"],
-    "snippet": "Tinned-copper marine wire and cable. USCG approved, ABYC compliant, corrosion-resistant in saltwater environments.",
-    "keywords": "marine boat yacht ship tinned copper uscg abyc corrosion saltwater gptm bc-5w2 ul 1426"
-  },
-  {
-    "url": "markets/rv.html",
-    "type": "Market",
-    "title": "Recreational Vehicle Wire",
-    "family": "RV",
-    "tags": ["12V DC", "Primary Wire", "Trailer"],
-    "snippet": "12V DC primary wire and trailer cable for motorhomes, fifth-wheels, travel trailers, and toy haulers.",
-    "keywords": "recreational vehicle rv motorhome trailer fifth wheel travel toy hauler 12v dc primary wire camper"
-  },
-  {
-    "url": "markets/electronics-oem.html",
-    "type": "Market",
-    "title": "Electronics & OEM",
-    "family": "Electronics",
-    "tags": ["UL 1007", "Hookup Wire", "Custom"],
-    "snippet": "Hookup wire for circuit boards, consumer electronics, and industrial controls. Custom AWGs and colors.",
-    "keywords": "electronics oem hookup wire circuit board pcb consumer industrial control ul 1007 ul 1015 custom awg color"
-  },
-  {
-    "url": "markets/military.html",
-    "type": "Market",
-    "title": "Military Wire & Cable",
-    "family": "Military",
-    "tags": ["MIL-Spec", "Defense", "ITAR"],
-    "snippet": "Military-grade wire and cable to MIL specifications. Defense, aerospace ground support, and tactical equipment.",
-    "keywords": "military mil-spec mil-w defense aerospace tactical itar government dod"
-  },
-  {
-    "url": "markets/distribution.html",
-    "type": "Market",
-    "title": "Wire Distribution",
-    "family": "Distribution",
-    "tags": ["Wholesale", "Partner Program"],
-    "snippet": "Wholesale distribution partnerships. Stock programs, private labeling, and direct-mill pricing.",
-    "keywords": "distribution distributor wholesale partner program stock private label direct mill pricing reseller"
+    "snippet": "Application-specific wire and cable solutions for automotive & marine, building & lighting, hook-up wire, power & battery, portable cord, medium voltage, and data center.",
+    "keywords": "markets industries applications automotive marine building lighting hook-up wire power battery portable cord sjtoow stoow medium voltage data center"
   },
 
   {
@@ -291,24 +228,6 @@
     "tags": ["Process", "Quality"],
     "snippet": "The proprietary skin-coat process behind UWC's color consistency, surface finish, and dimensional accuracy.",
     "keywords": "skin coat technology process quality color consistency surface finish dimensional accuracy extrusion"
-  },
-  {
-    "url": "daniela.html",
-    "type": "Page",
-    "title": "Daniela — The Bridge Between Quality & The Floor",
-    "family": "Story",
-    "tags": ["Team", "Quality"],
-    "snippet": "How Daniela bridges the QA lab and the production floor, line by line.",
-    "keywords": "daniela team story quality control qa floor production employee profile"
-  },
-  {
-    "url": "tim-foley.html",
-    "type": "Page",
-    "title": "Tim Foley — 25 Years Inside the Wire",
-    "family": "Story",
-    "tags": ["Team", "Operations"],
-    "snippet": "Tim Foley's 25-year career on the UWC mill floor and what longevity does to product quality.",
-    "keywords": "tim foley team story operations mill floor veteran 25 years employee profile"
   },
   {
     "url": "privacy-policy.html",

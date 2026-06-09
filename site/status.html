@@ -499,6 +499,75 @@
 
   <div class="day">
     <div class="day-date">
+      <div class="day-date-iso">2026-06-09</div>
+      <div class="day-date-pretty">Tuesday, June 9</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">May 18 batch approved &mdash; live in production <span class="item-tag orange">Launch</span></div>
+          <div class="item-desc">Jason approved the full client-review batch and it merged to <code>main</code>: spec-sheet library tile cleanup, Medium Voltage range to 5&nbsp;kV&ndash;69&nbsp;kV (site-wide), the three-option voltage-drop calculator (bare/tinned copper + aluminum), the seven-application reconciliation, and the reworked About aerial. One pre-launch tweak per Jason: homepage facility size corrected from 75K to 100K sq ft to match the About timeline. The animated drone fly-over was punted &mdash; shipping a polished web-optimized static aerial for now, with the motion version to follow once we have a clean render.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-06-04</div>
+      <div class="day-date-pretty">Thursday, June 4</div>
+    </div>
+    <div class="day-items">
+      <div class="item major">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Applications reconciled to the spec-sheet suite <span class="item-tag">Site</span></div>
+          <div class="item-desc">Per Jason's direction, the site now limits applications to the ones backed by a current line card. The homepage's two overlapping market sections were merged into a single grid of seven applications &mdash; Automotive &amp; Marine, Building &amp; Lighting, Hook-Up Wire, Power &amp; Battery, Portable Cord, Medium Voltage, and Data Center &mdash; each linking to the product library. The same seven now drive the Markets page and the top navigation. Segments not tied to a sheet were retired (Appliance, EV Charging, Solar/PV, Military, Wire Distribution), the seven old market detail pages were removed, and the search index was updated to match.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Cord naming &amp; "Data Center" confirmed <span class="item-tag">Site</span></div>
+          <div class="item-desc">Client confirmed the portable cord is <strong>SJTOOW</strong> (300V) &mdash; the homepage and spec sheet now agree, with STOOW reserved for the 600V group. The "Data Center &amp; Mission Critical" label was shortened to "Data Center" on the homepage and in the products selector.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
+      <div class="day-date-iso">2026-05-21</div>
+      <div class="day-date-pretty">Thursday, May 21</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Les Tucker portrait refreshed <span class="item-tag">Site</span></div>
+          <div class="item-desc">Replaced Les's team-grid portrait with a new client-supplied photo (navy UWC-branded quarter-zip over the striped polo). Original outdoor backdrop swapped for the same blurred wire-spool factory-floor backdrop the rest of the team grid uses. Cloudinary asset <code>uwc/les-tucker-profile-square</code> overwritten in place.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Gabriel Ferguson added to the team grid <span class="item-tag">Site</span></div>
+          <div class="item-desc">New team-page card for Gabriel Ferguson (Planning / Scheduling), slotted between Jorge and Tina, composited onto the same blurred wire-spool backdrop. Uploaded to Cloudinary as <code>uwc/gabriel-ferguson-profile-square</code>.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Find a Rep: consolidated new-customer note <span class="item-tag">Site</span></div>
+          <div class="item-desc">The two overlapping callouts on the rep panel were merged into a single peach note at the bottom of the rep card: "New customer or inactive account? Contact UWC HQ to be assigned to a rep &mdash; 815-748-4876 &middot; uwcsales@unifiedwire.com". States like Arkansas no longer show the same message twice.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
       <div class="day-date-iso">2026-05-20</div>
       <div class="day-date-pretty">Wednesday, May 20</div>
     </div>
@@ -507,42 +576,28 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Client-review workflow: branch + PR + Netlify Deploy Preview <span class="item-tag orange">Tooling</span></div>
-          <div class="item-desc">Visual changes from the May 18 batch no longer go straight to <code>main</code>. They land on <code>client-review/&lt;batch&gt;</code> branches, open a PR, and Netlify auto-builds a Deploy Preview at <code>deploy-preview-N--unifiedwire.netlify.app</code>. The preview URL stays current as we stack commits, so iteration with Jason &amp; Tim doesn't require resharing links. Live now: <a href="https://github.com/garyricke/unifiedwire/pull/1" target="_blank" rel="noopener" style="color: var(--blue);">PR #1</a> → <a href="https://deploy-preview-1--unifiedwire.netlify.app" target="_blank" rel="noopener" style="color: var(--blue);">preview</a>.</div>
+          <div class="item-desc">Visual changes from the May 18 batch land on <code>client-review/&lt;batch&gt;</code> branches, open a PR, and Netlify auto-builds a Deploy Preview at <code>deploy-preview-N--unifiedwire.netlify.app</code>, so iteration with Jason &amp; Tim doesn't require resharing links.</div>
         </div>
       </div>
       <div class="item major">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Our Story rewrite — 9-milestone arc, no family framing <span class="item-tag">Site</span></div>
-          <div class="item-desc">Rebuilt the About-page "Our Story" timeline around the milestone list from Jason's 5/18 follow-up doc. Six chapters now: 1977 (founded with 1 extrusion line), 1992 (own 20K sq ft building), 2001–02 (3 lines + 65K sq ft), 2013–14 (in-house copper stranding + cross-link products), 2024 (own copper rod — vertical integration completes), Today (100K sq ft / 7 lines / 50 years in 2027). Dropped the 1965 pre-founding chapter and the "one Foley brother" 1983 chapter; reframed 2024 from the Mueller acquisition to the copper-rod milestone. Deep-dive modals rewritten to match.</div>
+          <div class="item-title">Our Story rewrite &mdash; milestone arc, no family framing <span class="item-tag">Site</span></div>
+          <div class="item-desc">Rebuilt the About-page "Our Story" timeline around the milestone list from Jason's 5/18 follow-up doc: 1977, 1992, 2001&ndash;02, 2013&ndash;14, 2024 (own copper rod), and Today (100K sq ft / 7 lines / 50 years in 2027). Deep-dive modals rewritten to match.</div>
         </div>
       </div>
       <div class="item major">
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Home hero: 4-slide product slideshow with Ken Burns <span class="item-tag">Site</span></div>
-          <div class="item-desc">Pulled the warehouse-walkthrough video and replaced it with a rotating slideshow of four spec-sheet families: THHN-2 (building wire), SOOW (portable cord), MV-105 (medium voltage), TFFN (hook-up). All four shot in the same dark cinematic macro aesthetic via nano-banana so the crossfade reads as variety. 5.5s auto-rotate with 1.2s opacity crossfade, navy/glass indicator pill with orange-active dots + a mono-font product label that swaps with each slide, 8s slow scale-and-drift Ken Burns on the active slide. Pauses on hover and when the tab is backgrounded.</div>
-        </div>
-      </div>
-      <div class="item major">
-        <div class="item-dot"></div>
-        <div class="item-body">
-          <div class="item-title">About-page facility aerial: now a true Veo3 drone-fly video <span class="item-tag">Site</span></div>
-          <div class="item-desc">Generated a new 3-building aerial concept via nano-banana that includes 335 Wurlitzer (with the painted-roof treatment) and replaces the intermediate non-UWC plumbing building with grass. Then piped that still into Veo3 to animate it — a real 8-second drone-fly with gentle rightward drift, cloud movement, tree sway, and light shifting across the metal roofs. Letterbox bars baked in by Veo3 (88px top / 92px bottom from the 21:9-to-16:9 fit) are cropped out at the CDN via a chained <code>c_crop,x_0,y_88,w_1280,h_540</code> transform before the encode runs. Concept piece for sign-off — re-promptable if Jason wants different motion.</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-dot"></div>
-        <div class="item-body">
-          <div class="item-title">"Through the factory door" walkthrough — full-bleed video hero on About <span class="item-tag">Site</span></div>
-          <div class="item-desc">Tim's edited walkthrough (uploaded as <code>Office_into_factory_V1_muv3ss</code>) is now a full-bleed hero between The Facility and Vertical Integration sections. Text overlay matches the home-hero pattern — orange tick + mono eyebrow, white H2, muted body copy, 90° gradient darkening the left side. Auto-plays muted in a loop; the gradient hides the not-as-bright production-floor lighting per client feedback.</div>
+          <div class="item-desc">Replaced the walkthrough video with a rotating slideshow of four spec-sheet families shot in the same dark cinematic macro aesthetic, with a slow Ken Burns move on the active slide.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Update plan synced to Jason's 5/18 follow-up doc <span class="item-tag">Docs</span></div>
-          <div class="item-desc">Folded the inputs from <em>5_18 Website Updates.docx</em> into <code>update-plan-18may2026.html</code> — Tim's bio delivered (inlined), full team roster with new hire Gabriel Ferguson, the 9 milestone years, the aerial direction confirmation, and the three competitor reference URLs (atlaswirecorp / sequelwire / jamesmonroewire). Items 06/07/08 moved from "Awaiting input" to "Ready to build" status.</div>
+          <div class="item-desc">Folded the inputs from <em>5_18 Website Updates.docx</em> into <code>update-plan-18may2026.html</code> &mdash; Tim's bio, the full team roster with new hire Gabriel Ferguson, the milestone years, and the aerial direction confirmation.</div>
         </div>
       </div>
     </div>

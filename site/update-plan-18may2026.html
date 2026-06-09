@@ -501,13 +501,14 @@
 <!-- ── HEADER ── -->
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Call Notes &amp; Action Items · May 18, 2026 · Updated May 20 with client follow-up doc</div>
+    <div class="hero-eyebrow">Call Notes &amp; Action Items · May 18, 2026 · Updated May 20, then May 28 with client review batch</div>
     <h1>Update plan — May 18 call.</h1>
     <p>Working list of all changes raised on the call with Jason Foley &amp; Tim Foley on May 18, 2026. Each item shows what was said, the proposed approach, status, and any open questions before we touch the site. Review and approve in batches.</p>
-    <p style="margin-top: 14px; font-size: .98rem; color: var(--text); background: rgba(3,98,188,.06); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 4px;"><strong>May 20 update:</strong> Jason sent <em>5_18 Website Updates.docx</em> with new direction. Items 4–9 now have client inputs woven in — most are ready to build pending only Gabriel Ferguson's photo and the remaining team bios.</p>
+    <p style="margin-top: 14px; font-size: .98rem; color: var(--text); background: rgba(3,98,188,.06); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 4px;"><strong>May 20 update:</strong> Jason sent <em>5_18 Website Updates.docx</em> with new direction. Items 4–9 had client inputs woven in pending only Gabriel Ferguson's photo and the remaining team bios.</p>
+    <p style="margin-top: 10px; font-size: .98rem; color: var(--text); background: rgba(34,139,34,.08); border-left: 3px solid #228B22; padding: 10px 14px; border-radius: 4px;"><strong>May 28 update:</strong> Client reviewed <a href="https://deploy-preview-1--unifiedwire.netlify.app/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: underline;">deploy-preview-1</a> and sent a second pass. Tim &amp; Les bios delivered (now live). Factual corrections to the Our Story timeline (1977 + 2005 dates) shipped. SOOW → STOOW rename shipped on the home rotator. "Read full chapter" buttons + deep-dive modals removed. One open ask: a second edit pass on the walkthrough video (client editing).</p>
     <div class="hero-meta">
-      <span class="meta-pill"><span class="count">11</span>&nbsp;items</span>
-      <span class="meta-pill orange"><span class="count">Pending</span>&nbsp;Gabriel Ferguson photo + 9 team bios from UWC</span>
+      <span class="meta-pill"><span class="count">13</span>&nbsp;items</span>
+      <span class="meta-pill orange"><span class="count">Pending</span>&nbsp;8 team bios + SOOW/STOOW confirmation</span>
     </div>
   </div>
 </header>
@@ -616,7 +617,7 @@
         <div class="tag-row">
           <span class="tag">About</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-progress">Tim's bio in — 9 more pending</span>
+          <span class="status-chip status-progress">Tim &amp; Les bios live · 8 more pending</span>
         </div>
       </div>
     </div>
@@ -638,15 +639,14 @@
         </ul>
       </div>
       <div class="field client">
-        <div class="field-label">Tim's bio — delivered May 20</div>
-        <p>With more than 30 years of experience in the wire harness and manufacturing industry, Tim joined UWC in July 2001 as a Sales Representative and was later promoted to Vice President of Sales. In this role, Tim is responsible for managing key accounts and driving strategic customer relationships.</p>
-        <p>Prior to joining UWC, Tim spent 16 years as a partner in a harness manufacturing company, serving in a variety of roles including Vice President of Operations, with full profit and loss responsibility. His extensive background in operations, sales, and customer management provides a strong foundation for delivering value-driven solutions to customers and partners.</p>
+        <div class="field-label">Tim &amp; Les bios — live as of May 28</div>
+        <p><strong>Tim Foley</strong> (VP Sales) and <strong>Les Tucker</strong> (VP of Sales &amp; Commercial Strategy) cards now open click-to-expand bio modals using the final copy the client sent on May 28 (Tim's revised from the May 20 draft to "40 years of experience"; Les delivered fresh). Click + keyboard (Enter/Space) supported; Esc to close.</p>
+        <p><strong>Long-form story pages retired:</strong> <code>tim-foley.html</code> and <code>daniela.html</code> hard-deleted from the build and removed from <code>search-index.json</code>. The Daniela card no longer links anywhere (matches the rest of the grid until her bio arrives).</p>
       </div>
       <div class="field question">
         <div class="field-label">Open questions / inputs needed</div>
         <ul>
-          <li>3–4 sentence bios for the other 9 team members — using Tim's as the reference style. ("We are waiting for everyone to send their own.")</li>
-          <li>Should we keep the existing <code>tim-foley.html</code> and <code>daniela.html</code> URLs as redirects to <code>about.html</code>, or 410 / hard-delete them?</li>
+          <li><strong>8 remaining bios</strong> — John, Tom, Jorge, Tina, Daniela, Amaya, Brittany, Ebaa (Gabriel pending alongside his photo). Per Tim: "we are waiting for everyone to send their own."</li>
         </ul>
       </div>
     </div>
@@ -660,7 +660,7 @@
         <div class="item-title">Team roster — title updates, new hire, ordering</div>
         <div class="tag-row">
           <span class="tag">About</span>
-          <span class="status-chip status-progress">Ready except Gabriel's photo</span>
+          <span class="status-chip status-done">Done — Gabriel's photo also in</span>
         </div>
       </div>
     </div>
@@ -692,11 +692,9 @@
           <li>Add Gabriel Ferguson card with placeholder portrait until the photo arrives.</li>
         </ul>
       </div>
-      <div class="field question">
-        <div class="field-label">Inputs needed</div>
-        <ul>
-          <li>Gabriel Ferguson's photo.</li>
-        </ul>
+      <div class="field plan">
+        <div class="field-label">Shipped</div>
+        <p>All 11 cards rendered with the May 20 title list. Gabriel Ferguson's photo arrived and is live (Cloudinary <code>uwc/gabriel-ferguson-profile-square</code>). Amaya Hoffman's card added in the same pass.</p>
       </div>
     </div>
   </div>
@@ -710,7 +708,7 @@
         <div class="tag-row">
           <span class="tag">About</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-ready">Ready to build</span>
+          <span class="status-chip status-done">Done · May 28 corrections applied</span>
         </div>
       </div>
     </div>
@@ -728,27 +726,26 @@
         <cite>Client doc — May 20</cite>
       </blockquote>
       <div class="field client">
-        <div class="field-label">Milestone list — client doc, May 20</div>
+        <div class="field-label">Corrected milestone list — client review, May 28</div>
         <ul>
-          <li><strong>1977</strong> — UWC opens doors with 1 extrusion line</li>
+          <li><strong>1977</strong> — UWC opens doors with 1 extrusion line. <em>Not yet vertically integrated; no copper draw or stranding at founding.</em></li>
           <li><strong>1992</strong> — built 20,000 sq ft building</li>
           <li><strong>2001</strong> — grew to 3 extrusion lines</li>
           <li><strong>2002</strong> — grew to 65,000 sq ft</li>
-          <li><strong>2013</strong> — started buying copper rod &amp; doing in-house copper stranding</li>
-          <li><strong>2014</strong> — added cross-link to product offerings</li>
-          <li><strong>2024</strong> — started producing our own copper rod (vertical integration)</li>
+          <li><strong>2005</strong> — added <strong>cross-link</strong> to product offerings <em>and</em> brought <strong>copper drawing &amp; bunching</strong> in-house <span style="color: var(--orange-dk);">(client correction May 28: original date was 2014 — wrong)</span></li>
+          <li><strong>2013</strong> — started buying copper rod &amp; doing in-house copper <strong>stranding</strong></li>
+          <li><strong>2024</strong> — started producing our own copper rod (vertical integration completes)</li>
           <li><strong>2025</strong> — grew to 100,000 sq ft</li>
           <li><strong>2026</strong> — currently running 7 extrusion lines</li>
         </ul>
       </div>
       <div class="field plan">
-        <div class="field-label">Proposed approach</div>
+        <div class="field-label">Shipped</div>
         <ul>
-          <li>Rebuild the "Our Story" timeline around the 9 milestones above — milestone- and growth-focused, not founder/family-focused.</li>
-          <li>Use 1977 as the anchor and lead the "50 years in 2027" thread.</li>
-          <li>Spotlight the vertical-integration arc (2013 in-house stranding → 2024 own copper rod) — that's the real differentiator.</li>
-          <li>End on the current scale (100,000 sq ft, 7 extrusion lines).</li>
-          <li>Draft tight 2-sentence treatments per chapter; strip "Foley" as the headline (factual mentions OK).</li>
+          <li>"Our Story" timeline rebuilt around the milestones above — milestone- and growth-focused, no Foley headline.</li>
+          <li>1977 chapter rewritten to drop vertical-integration/copper-draw/stranding claims (those were not yet in place at founding).</li>
+          <li>Chapter 3 relabeled "2005 &amp; 2013 · Vertical integration begins" — crosslink + copper drawing/bunching in 2005, stranding in 2013. Rail dot updated 2014 → 2005.</li>
+          <li>"Read full chapter" buttons removed and the six deep-dive modals deleted — client confirmed the shorter chapter snippets are all that's needed.</li>
         </ul>
       </div>
     </div>
@@ -762,7 +759,7 @@
         <div class="item-title">Aerial facility photo — expand to three buildings</div>
         <div class="tag-row">
           <span class="tag">About</span>
-          <span class="status-chip status-ready">Ready to build</span>
+          <span class="status-chip status-done">Done — live on About</span>
         </div>
       </div>
     </div>
@@ -808,7 +805,7 @@
         <div class="tag-row">
           <span class="tag">Home</span>
           <span class="tag grey">Big change</span>
-          <span class="status-chip status-ready">Ready to build</span>
+          <span class="status-chip status-done">Done — live on home</span>
         </div>
       </div>
     </div>
@@ -849,7 +846,7 @@
         <div class="tag-row">
           <span class="tag">Home</span>
           <span class="tag">About</span>
-          <span class="status-chip status-ready">Ready to build</span>
+          <span class="status-chip status-done">Done — v2 cut live on About</span>
         </div>
       </div>
     </div>
@@ -863,19 +860,16 @@
         <cite>Client doc — May 20 (confirms destination + trim)</cite>
       </blockquote>
       <div class="field plan">
-        <div class="field-label">Proposed approach</div>
+        <div class="field-label">Shipped</div>
         <ul>
-          <li>Trim the walkthrough video so it begins the moment we cross the factory door (drop the fisheye / office-area lead-in).</li>
-          <li>Relocate to the About page (confirmed) — most likely below the drone hero.</li>
-          <li>Push to Cloudinary as a new asset; keep the original full-length take stored as a fallback master.</li>
+          <li><strong>Relocation done</strong> — full-bleed "Inside the Plant" walkthrough section landed below the drone hero on About.</li>
+          <li><strong>v2 cut live</strong> — client-edited version uploaded to Cloudinary as <code>uwc/office-into-factory-v2</code> (1920×1080, 2m 30s); microwave/office lead-in removed, 5/16″ rod-coiling shot moved to the front, transitions into the factory walk. Source <code>about.html:996–997</code> swapped.</li>
         </ul>
       </div>
-      <div class="field question">
-        <div class="field-label">Open questions</div>
-        <ul>
-          <li>Confirm About-page placement (under the drone hero) vs. a new standalone section.</li>
-          <li>Title for the section — "Inside the plant"? "Plant walkthrough"? Open to suggestions.</li>
-        </ul>
+      <div class="field client">
+        <div class="field-label">May 28 client direction (verbatim)</div>
+        <p>"Start the office/factory drone footage about two seconds later so it does not begin with the microwave in the office. Ideally it should start right as you walk into the factory."</p>
+        <p>"The video currently ends with the 5/16″ rod being coiled up at our sister location. Since that is the beginning of the process, can we move that footage to the start of the video, then transition into opening the door and walking into the factory?"</p>
       </div>
     </div>
   </div>
@@ -894,27 +888,65 @@
         <div class="item-title">Reconcile website markets to the line cards</div>
         <div class="tag-row">
           <span class="tag">Markets</span>
-          <span class="status-chip status-progress">Lower priority — later this week</span>
+          <span class="tag">Home</span>
+          <span class="status-chip status-waiting">Question for UWC — 4 decisions below</span>
         </div>
       </div>
     </div>
     <div class="item-body">
       <blockquote>
-        "All the line cards are accurate and correct — how we want them worded, the products associated with them. But the markets on the website have not been updated. Right now Markets says Military, which we got rid of. It says Distribution, which was never one. Put it towards the bottom right now — it's not a priority for today and tomorrow."
-        <cite>Jason — call transcript</cite>
+        "All the line cards are accurate and correct — how we want them worded, the products associated with them. But the markets on the website have not been updated. Right now Markets says Military, which we got rid of. It says Distribution, which was never one."
+        <cite>Jason — call transcript, May 18</cite>
       </blockquote>
+
       <div class="field plan">
-        <div class="field-label">Proposed approach</div>
+        <div class="field-label">Where markets currently appear on the site</div>
+        <p>Three places say "markets" today, and they don't fully agree with each other:</p>
         <ul>
-          <li>Re-read each line card and produce a definitive market list (name + products mapped to each).</li>
-          <li>Compare to <code>markets/</code> on the site; remove "Military" and "Distribution"; rename any divergences; add anything missing.</li>
-          <li>Update the home page application panels and the search index in the same pass so everything stays in sync.</li>
+          <li><strong>Home page · "Shop by Application" strip</strong> (6 cards): Commercial Construction · Industrial &amp; Manufacturing · EV Charging Infrastructure · Solar / PV Systems · Residential Wiring · Data Center &amp; Mission Critical.</li>
+          <li><strong><a href="markets/" style="color: var(--blue); text-decoration: underline;">/markets/ index</a></strong> (7 tiles): Appliance · Automotive · Marine · Recreational Vehicle · Electronics &amp; OEM · <span style="text-decoration: line-through; color: var(--orange-dk);">Military</span> · <span style="text-decoration: line-through; color: var(--orange-dk);">Wire Distribution</span>.</li>
+          <li><strong><a href="0-spec-sheets-for-print/" style="color: var(--blue); text-decoration: underline;">v2.0 print line cards</a></strong> (8 sheets — the source of truth Jason pointed to): 01 Corporate Capabilities · 02 Automotive &amp; Marine · 03 Building &amp; Lighting · 04 Hook-Up Wire · 05 Power &amp; Battery · 06 Portable Cord (SJTOOW) · 07 Medium Voltage · 08 Data Center.</li>
         </ul>
       </div>
+
       <div class="field question">
-        <div class="field-label">Inputs needed</div>
+        <div class="field-label">Question for UWC — please answer the 4 below so we can sweep cleanly</div>
+
+        <p style="margin-top: 8px;"><strong>1. Confirm the v2.0 print suite is the authoritative market list.</strong></p>
+        <p>You said on the call that the line cards are "accurate and correct." If we treat the 8 v2.0 sheets above as the canonical list, the website Markets becomes seven markets (corporate sheet 01 is the umbrella, not a market). Yes or no?</p>
+
+        <p style="margin-top: 16px;"><strong>2. What to remove — confirm Jason's call list.</strong></p>
         <ul>
-          <li>The current line-card set — confirming we're working from the <a href="0-spec-sheets-for-print/" style="color: var(--blue); text-decoration: underline;">May 1 print-delivery v2.0 suite</a>.</li>
+          <li><strong>Military</strong> — Jason: "we got rid of." → Remove from <code>/markets/military.html</code> and any other surface. ✅?</li>
+          <li><strong>Wire Distribution</strong> — Jason: "this was never one." → Remove from <code>/markets/distribution.html</code> and any other surface. ✅?</li>
+        </ul>
+
+        <p style="margin-top: 16px;"><strong>3. What to keep — confirm the remaining markets and their canonical names.</strong></p>
+        <p>Below is the proposed reconciled list mapped to the print line card that backs each. <em>Mark anything to rename, drop, split, or merge:</em></p>
+        <ul>
+          <li><strong>Automotive &amp; Marine</strong> → backed by sheet 02. <em>(Today these are 3 separate tiles: Automotive, Marine, RV. Should they collapse into one "Automotive &amp; Marine" market, or stay as 3?)</em></li>
+          <li><strong>Building &amp; Lighting</strong> → backed by sheet 03. <em>(Today the home page calls this "Commercial Construction" + "Residential Wiring" as two separate tiles. Collapse to one, or keep split?)</em></li>
+          <li><strong>Hook-Up Wire</strong> → backed by sheet 04. <em>(Today this is /markets/electronics-oem.html — Electronics &amp; OEM. Rename to "Hook-Up Wire" to match the line card, or keep "Electronics &amp; OEM" as the customer-facing name?)</em></li>
+          <li><strong>Power &amp; Battery</strong> → backed by sheet 05. <em>(Not currently a market on the site. Add as a new one?)</em></li>
+          <li><strong>Portable Cord</strong> → backed by sheet 06. <em>(Not currently a standalone market. Add as a new one?)</em></li>
+          <li><strong>Medium Voltage</strong> → backed by sheet 07. <em>(Not currently a market. Add as a new one — the 2026 brand-new category?)</em></li>
+          <li><strong>Data Center</strong> → backed by sheet 08. Today "Data Center &amp; Mission Critical" on home. Keep that name, or shorten to "Data Center"?</li>
+          <li><strong>Appliance</strong> → not directly mapped to a v2.0 sheet. <em>Keep, drop, or fold into another market?</em></li>
+          <li><strong>EV Charging Infrastructure</strong> → not directly mapped to a v2.0 sheet. <em>Keep on home as an application card even without a dedicated line card, or drop?</em></li>
+          <li><strong>Solar / PV Systems</strong> → not directly mapped to a v2.0 sheet. <em>Keep or drop?</em></li>
+        </ul>
+
+        <p style="margin-top: 16px;"><strong>4. Should the home "Shop by Application" strip mirror /markets/?</strong></p>
+        <p>Right now they're two different lists. Most cleanly, they should be the same set — the home strip just teases the markets page. <em>Sound right, or do you want the home strip curated to a different (shorter, "top markets") subset?</em></p>
+      </div>
+
+      <div class="field plan">
+        <div class="field-label">What we'll do once you answer</div>
+        <ul>
+          <li>Edit/delete the relevant <code>/markets/*.html</code> pages to match the final list; rename URLs where needed and 301 the old ones.</li>
+          <li>Rewrite each market page's product associations against the matching v2.0 line card so the names, families, and product tags align exactly.</li>
+          <li>Rebuild the home "Shop by Application" strip with the same set (or your chosen subset) and re-point each "View Products" CTA at the right place (its market page, the relevant individual product spec sheet, or the print line card — whichever you prefer).</li>
+          <li>Sync <code>search-index.json</code> in the same pass so search results don't reference dropped markets.</li>
         </ul>
       </div>
     </div>
@@ -954,12 +986,88 @@
     </div>
   </div>
 
+  <!-- Section: May 28 review batch -->
+  <div class="section-head">
+    <h2>May 28 client review · second pass</h2>
+    <p>New items raised by the client's review of <a href="https://deploy-preview-1--unifiedwire.netlify.app/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: underline;">deploy-preview-1</a>. Timeline + leadership corrections from this batch are folded into items 04 / 06 / 09 above.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">12</div>
+      <div class="item-title-wrap">
+        <div class="item-title">SOOW → STOOW rename (home rotator + Industrial market card)</div>
+        <div class="tag-row">
+          <span class="tag">Home</span>
+          <span class="status-chip status-done">Done</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <blockquote>
+        "Landing page – rotating wire section. Please change the word SOOW to STOOW."
+        <cite>Client — May 28</cite>
+      </blockquote>
+      <div class="field plan">
+        <div class="field-label">Shipped</div>
+        <p>Portable-cord label in the hero rotator now reads <strong>STOOW · Portable Cord</strong> (<code>home.html:406</code>). The SOOW tag on the Industrial market card (<code>home.html:529</code>) was also renamed to STOOW per the May 28 follow-up.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="item-block">
+    <div class="item-head">
+      <div class="item-num">13</div>
+      <div class="item-title-wrap">
+        <div class="item-title">SOOW elsewhere on the site — sweep to STOOW, or keep?</div>
+        <div class="tag-row">
+          <span class="tag">Products</span>
+          <span class="tag">Spec Sheets</span>
+          <span class="status-chip status-waiting">Question for UWC</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-body">
+      <div class="field question">
+        <div class="field-label">Question for UWC</div>
+        <p style="font-size: 1.05rem; color: var(--text);"><strong>Does UWC make SOOW as a distinct product alongside STOOW, or was that a mislabel on our end that should also be renamed?</strong></p>
+        <p>The May 28 STOOW rename has been applied to both the home rotator and the Industrial market card. But the rest of the site still references SOOW in places that look like real product data — so we want UWC to confirm before we sweep the rest:</p>
+        <ul>
+          <li><code>products.html</code> — filter checkbox "SOOW Flexible Cord" (line 611), product entry SKU <code>UWC-SOOW123</code> ("SOOW 12/3 300V", family <code>SOOW</code>, lines 1199–1201), the families array on the Industrial application card (line 1231), and search keyword mappings sending "flexible cord" / "portable cord" / "extension cord" → SOOW (lines 1288–1289).</li>
+          <li><code>0-spec-sheets-for-print/spec-sheet-01-corporate.html</code> — the Portable Cord row at line 487 already lists "SJT, SJTOOW, STOW, <strong>STOOW</strong>, SVT" with STOOW as a distinct type and no SOOW alongside it.</li>
+        </ul>
+        <p style="margin-top: 16px;"><strong>Two options:</strong></p>
+        <ul>
+          <li><strong>(a)</strong> "We don't make SOOW — that was wrong." → Sweep all SOOW references to STOOW (including the SKU, filter label, search mappings, and tag arrays). Cleanest outcome.</li>
+          <li><strong>(b)</strong> "We make both SOOW and STOOW." → Leave the existing product data as is; the May 28 rename only applied to the two locations where the label was incorrect.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- Approval -->
 <div class="approval">
-  <h3>Next step</h3>
-  <p>Most of what was outstanding came in with the May 20 client doc — milestone list, full team roster, aerial direction, competitor references, and Tim's bio. Items 06, 07, 08 are ready to build; items 04 and 05 are ready except for the remaining team bios and Gabriel Ferguson's photo. We'll begin implementation in priority order (home hero + About story rewrite first) and queue Markets reconciliation for later in the week.</p>
+  <h3>What's open</h3>
+  <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.7;">
+    <li><strong>8 team bios</strong> — John, Tom, Jorge, Tina, Daniela, Amaya, Brittany, Ebaa (item 04). Gabriel's bio waits alongside.</li>
+    <li><strong>Markets reconciliation</strong> (item 10) — 4 specific decisions needed before we sweep <code>/markets/*.html</code> and the home "Shop by Application" strip. Detailed inline.</li>
+    <li><strong>Question for UWC</strong> — does UWC actually make SOOW alongside STOOW, or should the SOOW references on the products page (filter, SKU <code>UWC-SOOW123</code>, search mappings) and corporate spec sheet also be renamed? See item 13.</li>
+  </ul>
+  <h3 style="margin-top: 28px;">What's done since the last update</h3>
+  <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.7;">
+    <li>Items 01–03 shipped earlier (rep locator).</li>
+    <li>Item 04 (partial) — Tim &amp; Les bio modals live; long-form story pages <code>tim-foley.html</code> and <code>daniela.html</code> hard-deleted and removed from search index.</li>
+    <li>Item 05 — team roster complete with Gabriel's photo and Amaya's card.</li>
+    <li>Item 06 — Our Story timeline rebuilt with the corrected 1977 + 2005 dates; "Read full chapter" buttons and deep-dive modals removed.</li>
+    <li>Item 07 — aerial facility shot expanded to three buildings, live on About.</li>
+    <li>Item 08 — warehouse-walkthrough hero on home replaced with wire imagery.</li>
+    <li>Item 09 — walkthrough v2 (client cut: microwave/office lead-in removed, rod-coiling shot front-loaded) live on About.</li>
+    <li>Item 12 — SOOW → STOOW on the home rotator and Industrial market card tag.</li>
+  </ul>
 </div>
 
 <footer>

@@ -16,24 +16,103 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-video {
+    .hero-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center right;
       z-index: 0;
+      opacity: 0;
+      transform: scale(1.12) translateX(-1.5%);
+      transform-origin: 60% 50%;
+      transition: opacity 1.2s ease, transform 1.2s ease;
+      will-change: opacity, transform;
+    }
+    .hero-img.active {
+      opacity: 1;
+      animation: heroKenBurns 8000ms linear;
+    }
+    @keyframes heroKenBurns {
+      from { transform: scale(1.0)  translateX(0); }
+      to   { transform: scale(1.12) translateX(-1.5%); }
+    }
+    .hero.is-paused .hero-img.active { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-img,
+      .hero-img.active { animation: none !important; transform: none; transition: opacity .3s ease; }
     }
     .hero::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
-        135deg,
-        rgba(10,22,40,.82) 0%,
-        rgba(10,22,40,.60) 50%,
-        rgba(10,22,40,.72) 100%
+        90deg,
+        rgba(10,22,40,.92) 0%,
+        rgba(10,22,40,.78) 35%,
+        rgba(10,22,40,.45) 65%,
+        rgba(10,22,40,.20) 100%
       );
       z-index: 1;
       pointer-events: none;
+    }
+    @media (max-width: 720px) {
+      .hero-img { object-position: center; }
+      .hero::after {
+        background: linear-gradient(
+          180deg,
+          rgba(10,22,40,.88) 0%,
+          rgba(10,22,40,.72) 60%,
+          rgba(10,22,40,.55) 100%
+        );
+      }
+    }
+
+    /* ── Hero slideshow chrome ──────────────────────────── */
+    .hero-slide-bar {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex; align-items: center; gap: 18px;
+      padding: 8px 18px;
+      background: rgba(10,22,40,.55);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 999px;
+      max-width: calc(100% - 48px);
+    }
+    .hero-dots { display: flex; gap: 10px; }
+    .hero-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.30);
+      border: 0; padding: 0;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .hero-dot:hover { background: rgba(255,255,255,.6); }
+    .hero-dot.active { background: var(--orange); transform: scale(1.3); }
+    .hero-slide-label {
+      font-family: var(--mono);
+      font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.88);
+      position: relative;
+      height: 1.1em;
+      min-width: 220px;
+      overflow: hidden;
+    }
+    .hero-slide-label span {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity .8s ease;
+      white-space: nowrap;
+    }
+    .hero-slide-label span.active { opacity: 1; }
+    @media (max-width: 720px) {
+      .hero-slide-bar { left: 16px; right: 16px; transform: none; max-width: none; }
+      .hero-slide-label { min-width: 0; flex: 1; font-size: .64rem; }
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -281,10 +360,23 @@
 <!-- ══════════════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════════════ -->
-<section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto">
-    <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/q_auto/f_auto/v1776461808/unified-home-hero-v0_d26a22.mov" type="video/mp4">
-  </video>
+<section class="hero" id="hero">
+  <img class="hero-img active" data-slide="0"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-thhn-may2026.jpg"
+       alt="Building wire — four stripped THHN conductors with copper strands fanned out"
+       fetchpriority="high" decoding="async">
+  <img class="hero-img" data-slide="1"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-soow-may2026.jpg"
+       alt="Portable cord — black rubber jacket cut open to show four insulated conductors inside"
+       decoding="async" loading="lazy">
+  <img class="hero-img" data-slide="2"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-mv-may2026.jpg"
+       alt="Medium voltage cable cross-section showing concentric copper, XLPE insulation, and neutral wrap"
+       decoding="async" loading="lazy">
+  <img class="hero-img" data-slide="3"
+       src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_2000,c_fill,g_auto/uwc/home-hero-hookup-may2026.jpg"
+       alt="Hook-up wire bundle — fine-gauge conductors in saturated colors with stripped tinned-copper ends"
+       decoding="async" loading="lazy">
   <div class="container">
     <div class="hero-inner">
       <div class="hero-eyebrow">
@@ -300,6 +392,20 @@
         <a href="spec-sheets.html" class="btn btn-primary btn-lg">Browse Products</a>
         <a href="contact.html" class="btn btn-ghost btn-lg">Request a Quote</a>
       </div>
+    </div>
+  </div>
+  <div class="hero-slide-bar" role="tablist" aria-label="Product family showcase">
+    <div class="hero-dots">
+      <button type="button" class="hero-dot active" data-slide="0" role="tab" aria-selected="true"  aria-label="Building wire"></button>
+      <button type="button" class="hero-dot"        data-slide="1" role="tab" aria-selected="false" aria-label="Portable cord"></button>
+      <button type="button" class="hero-dot"        data-slide="2" role="tab" aria-selected="false" aria-label="Medium voltage"></button>
+      <button type="button" class="hero-dot"        data-slide="3" role="tab" aria-selected="false" aria-label="Hook-up wire"></button>
+    </div>
+    <div class="hero-slide-label" aria-live="polite">
+      <span class="active" data-slide="0">THHN-2 · Building Wire</span>
+      <span data-slide="1">SJTOOW · Portable Cord</span>
+      <span data-slide="2">MV-105 · Medium Voltage</span>
+      <span data-slide="3">TFFN · Hook-Up Wire</span>
     </div>
   </div>
 </section>
@@ -342,7 +448,7 @@
           </svg>
         </div>
         <h4>Manufacturing Capacity</h4>
-        <p>75,000 sq ft facility with 7 extrusion lines and industry-leading technology — built to meet your needs regardless of order size.</p>
+        <p>100,000 sq ft facility with 7 extrusion lines and industry-leading technology — built to meet your needs regardless of order size.</p>
       </div>
       <div class="pillar pillar-img" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto:good,w_800,c_fill,g_auto/uwc/pillar-flexibility)">
         <div class="pillar-icon">
@@ -399,65 +505,79 @@
     </div>
     <div class="grid-3 fade-in" style="margin-bottom:24px;">
 
-      <a href="spec-sheet-thhn-mtw-thwn-2.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-commercial)">
+      <a href="spec-sheets.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/market-automotive)">
         <div class="market-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-2"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
         </div>
-        <h3>Commercial Construction</h3>
-        <p>Office, retail, and mixed-use projects. NEC 2023 compliant.</p>
+        <h3>Automotive &amp; Marine</h3>
+        <p>Primary wire, boat cable, and trailer harnesses.</p>
+        <div class="market-card-tags">
+          <span class="tag">GPT/GXL</span>
+          <span class="tag">Marine</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="spec-sheets.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-commercial)">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4"/></svg>
+        </div>
+        <h3>Building &amp; Lighting</h3>
+        <p>Branch circuits, fixtures, and luminaire wiring. NEC 2023 compliant.</p>
         <div class="market-card-tags">
           <span class="tag">THHN/THWN-2</span>
+          <span class="tag">TFN/TFFN</span>
+        </div>
+        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a href="spec-sheets.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/market-electronics-oem)">
+        <div class="market-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Hook-Up Wire</h3>
+        <p>UL-style lead and appliance wire for OEM and electronics assemblies.</p>
+        <div class="market-card-tags">
+          <span class="tag">UL1007/1015</span>
+          <span class="tag">MTW</span>
         </div>
         <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </a>
 
       <a href="spec-sheets.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-industrial)">
         <div class="market-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M6 20V10l6-6 6 6v10"/><rect x="9" y="14" width="6" height="6"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="2"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="11" x2="6" y2="13"/><line x1="10" y1="11" x2="10" y2="13"/><line x1="14" y1="11" x2="14" y2="13"/></svg>
         </div>
-        <h3>Industrial &amp; Manufacturing</h3>
-        <p>Harsh environments, heavy machinery, and plant wiring.</p>
+        <h3>Power &amp; Battery</h3>
+        <p>Battery, welding, and power cable for high-current connections.</p>
         <div class="market-card-tags">
-          <span class="tag">THHN/THWN-2</span>
-          <span class="tag">XHHW-2</span>
-          <span class="tag">SOOW</span>
+          <span class="tag">Battery Cable</span>
         </div>
         <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </a>
 
-      <a href="spec-sheet-thhn-mtw-thwn-2.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-ev)">
+      <a href="spec-sheets.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/home-hero-soow-may2026)">
         <div class="market-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg>
         </div>
-        <h3>EV Charging Infrastructure</h3>
-        <p>Level 2 &amp; DCFC charger circuits. High-ampacity feeders.</p>
+        <h3>Portable Cord</h3>
+        <p>Flexible portable cord for tools, equipment, and drop cords.</p>
         <div class="market-card-tags">
-          <span class="tag">THHN/THWN-2</span>
+          <span class="tag">SJTOOW</span>
+          <span class="tag">STOOW</span>
         </div>
         <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </a>
 
-      <a href="spec-sheet-xhhw-sis.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-solar)">
+      <a href="spec-sheets.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/home-hero-mv-may2026)">
         <div class="market-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <h3>Solar / PV Systems</h3>
-        <p>Sunlight-resistant, direct-burial, and array wiring.</p>
+        <h3>Medium Voltage</h3>
+        <p>5 kV–69 kV distribution cable — our 2026 brand-new category.</p>
         <div class="market-card-tags">
-          <span class="tag">USE-2</span>
-          <span class="tag">XHHW-2</span>
-        </div>
-        <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </a>
-
-      <a href="spec-sheets.html" class="market-card" style="background-image:url(https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto/uwc/app-residential)">
-        <div class="market-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h3>Residential Wiring</h3>
-        <p>New construction, renovation, and service upgrades.</p>
-        <div class="market-card-tags">
-          <span class="tag">USE-2</span>
+          <span class="tag">5kV–69kV</span>
+          <span class="tag">MV-105</span>
         </div>
         <span class="market-card-link">View Products <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </a>
@@ -466,7 +586,7 @@
         <div class="market-card-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
         </div>
-        <h3>Data Center &amp; Mission Critical</h3>
+        <h3>Data Center</h3>
         <p>High-density feeders, 24/7 uptime requirements.</p>
         <div class="market-card-tags">
           <span class="tag">THHN/THWN-2</span>
@@ -525,77 +645,6 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     MARKETS WE SERVE
-══════════════════════════════════════════════════════════ -->
-<section class="section-dark">
-  <div class="container">
-    <div class="sec-head fade-in">
-      <span class="badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);">Industries</span>
-      <h2 style="margin-top:12px;">Markets we serve</h2>
-      <p>Specialized wire and cable solutions for seven core industries — built to your application's exact specification.</p>
-    </div>
-    <div class="market-grid fade-in">
-      <a href="markets/appliance.html" class="market-item">
-        <div class="market-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
-          </svg>
-        </div>
-        <div class="market-name">Appliance</div>
-      </a>
-      <a href="markets/automotive.html" class="market-item">
-        <div class="market-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v9a2 2 0 01-2 2h-2"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
-          </svg>
-        </div>
-        <div class="market-name">Automotive</div>
-      </a>
-      <a href="markets/marine.html" class="market-item">
-        <div class="market-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 20a2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1"/><path d="M4 18L3 8l5 4 4-7 4 7 5-4-1 10"/>
-          </svg>
-        </div>
-        <div class="market-name">Marine</div>
-      </a>
-      <a href="markets/rv.html" class="market-item">
-        <div class="market-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v4h-7"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>
-          </svg>
-        </div>
-        <div class="market-name">Recreational Vehicle</div>
-      </a>
-      <a href="markets/electronics-oem.html" class="market-item">
-        <div class="market-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
-        </div>
-        <div class="market-name">Electronics &amp; OEM</div>
-      </a>
-      <a href="markets/military.html" class="market-item">
-        <div class="market-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <div class="market-name">Military</div>
-      </a>
-      <a href="markets/distribution.html" class="market-item">
-        <div class="market-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
-        </div>
-        <div class="market-name">Distribution</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════
      BY THE NUMBERS
 ══════════════════════════════════════════════════════════ -->
 <section class="section-alt">
@@ -606,7 +655,7 @@
         <div class="stat-label">Year Founded</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">75K</div>
+        <div class="stat-number">100K</div>
         <div class="stat-label">Square Feet</div>
       </div>
       <div class="stat-item">
@@ -649,6 +698,47 @@
 <script>
   window._uwcDepth = '';
   window._uwcPage  = 'Home';
+
+  /* Hero slideshow — auto-rotate, click to jump, pause on hover */
+  (function () {
+    var hero = document.getElementById('hero');
+    if (!hero) return;
+    var imgs   = hero.querySelectorAll('.hero-img');
+    var dots   = hero.querySelectorAll('.hero-dot');
+    var labels = hero.querySelectorAll('.hero-slide-label span');
+    if (imgs.length < 2 || imgs.length !== dots.length) return;
+    var idx = 0, n = imgs.length, timer = null, userPaused = false;
+    var DELAY = 5500;
+
+    function show(i) {
+      idx = (i + n) % n;
+      imgs.forEach(function (el, k)   { el.classList.toggle('active', k === idx); });
+      dots.forEach(function (el, k)   {
+        el.classList.toggle('active', k === idx);
+        el.setAttribute('aria-selected', k === idx ? 'true' : 'false');
+      });
+      labels.forEach(function (el, k) { el.classList.toggle('active', k === idx); });
+    }
+    function start() { stop(); if (userPaused) return; timer = setInterval(function () { show(idx + 1); }, DELAY); }
+    function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () {
+        userPaused = true;
+        stop();
+        show(parseInt(d.getAttribute('data-slide'), 10));
+      });
+    });
+    function pause() { stop(); hero.classList.add('is-paused'); }
+    function resume() { hero.classList.remove('is-paused'); start(); }
+    hero.addEventListener('mouseenter', pause);
+    hero.addEventListener('mouseleave', resume);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) pause(); else resume();
+    });
+
+    start();
+  })();
 </script>
 <script src="assets/js/uwc.js"></script>
 </body>
