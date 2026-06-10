@@ -99,7 +99,8 @@ function renderNav(depth) {
     '      <div class="nav-menu" role="menu">',
     '        <a href="' + depth + 'resources/index.html">Resources Hub</a>',
     '        <div class="nav-menu-divider"></div>',
-    '        <a href="' + depth + 'products.html">Spec Navigator</a>',
+    // Spec Navigator intentionally omitted — products.html is password-gated
+    // while the selector is being rebuilt. Re-add here when it goes public.
     '        <a href="' + depth + 'resources/compliance.html">Compliance Center</a>',
     '        <a href="' + depth + 'resources/tools.html">Engineering Tools</a>',
     '        <a href="' + depth + 'find-a-rep.html">Find a Sales Rep</a>',
