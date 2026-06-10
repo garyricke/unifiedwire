@@ -5,7 +5,12 @@ function setActiveNav() {
   var path = window.location.pathname;
   document.querySelectorAll('#site-nav .nav-links a').forEach(function (a) {
     var href = a.getAttribute('href');
-    if (href && path.endsWith(href.replace(/^.*\//, ''))) {
+    if (!href) return;
+    // Normalize the href to a root-relative path: drop any leading ./ or ../
+    // segments and any query/hash. Match on a full slash-bounded suffix so
+    // e.g. markets/index.html doesn't match resources/index.html.
+    var clean = href.replace(/^(\.\.?\/)+/, '').replace(/[?#].*$/, '');
+    if (clean && path.endsWith('/' + clean)) {
       a.classList.add('active');
       // Mark parent dropdown trigger as active too
       var parentItem = a.closest('.nav-item');
