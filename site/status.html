@@ -499,6 +499,22 @@
 
   <div class="day">
     <div class="day-date">
+      <div class="day-date-iso">2026-06-10</div>
+      <div class="day-date-pretty">Wednesday, June 10</div>
+    </div>
+    <div class="day-items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Nav fixes &mdash; Markets link + Resources dropdown <span class="item-tag orange">Launch</span></div>
+          <div class="item-desc">Two items from Jason's June 9 review of the live site, fixed and pushed straight to <code>main</code>. (1) The <strong>Markets</strong> nav link rendered "blacked out" &mdash; a CSS bug: it's the only item structured as <code>.nav-item &gt; a</code>, which the nav color rules never matched, so it fell back to the default dark link color. Added <code>.nav-links &gt; .nav-item &gt; a</code> to the base and hover/active rules. (2) The <strong>Resources dropdown</strong> now mirrors the Resources Hub cards &mdash; added <strong>Spec Navigator</strong> (&rarr; <code>products.html</code>, matching the hub card and avoiding the password-gated internal navigator) and <strong>Find a Sales Rep</strong> (&rarr; <code>find-a-rep.html</code>). Both edits live in the shared nav (<code>assets/js/uwc.js</code>, <code>assets/css/uwc.css</code>), so they apply across every page.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-date">
       <div class="day-date-iso">2026-06-09</div>
       <div class="day-date-pretty">Tuesday, June 9</div>
     </div>
