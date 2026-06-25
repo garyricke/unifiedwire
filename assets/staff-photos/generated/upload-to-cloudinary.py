@@ -34,6 +34,7 @@ UPLOADS = [
     ("daniela-troconiz-onsite.png",  "uwc/daniela-troconiz-profile-square"),
     ("ebaa-albarbarawi-onsite.png",  "uwc/ebaa-albarbarawi-profile-square"),
     ("gabriel-ferguson-onsite.png",  "uwc/gabriel-ferguson-profile-square"),
+    ("geno-booker-onsite.png",       "uwc/geno-booker-profile-square"),
     ("john-nelson-onsite.png",       "uwc/john-nelson-profile-square"),
     ("les-tucker-onsite.png",        "uwc/les-tucker-profile-square"),
     ("tina-fant-onsite.png",         "uwc/tina-fant-profile-square"),
