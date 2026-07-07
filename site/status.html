@@ -430,6 +430,10 @@
     .day { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
     .day-date { position: static; }
   }
+
+  .st-link { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(3,98,188,.32); font-weight: 600; transition: border-color .15s; }
+  .st-link:hover { border-bottom-color: var(--blue); }
+  .st-link code { color: inherit; }
 </style>
 </head>
 <body>
@@ -506,22 +510,22 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Spec Navigator &mdash; Product Data Build Plan page + intro email to Unified <span class="item-tag orange">Spec Navigator</span></div>
-          <div class="item-desc">Built a gated internal coordination hub (<code>spec-navigator-data-plan.html</code>, password <code>copper</code>) to unblock the Spec Navigator by finally collecting real product/SKU data from Unified. The page frames the vision, recaps the Mar&ndash;Jul data-request timeline, explains the <strong>base-product model</strong> (you describe product families, we auto-generate the thousands of SKUs), lists what to send (lead ask: a sample <strong>CableBuilder</strong> export for weights/O.D.), proposes an easy ongoing-upkeep workflow (a single master sheet the tool syncs from), and carries an <strong>open-questions tracker</strong> with owners the team can reply against &mdash; so the document itself becomes the coordination hub. Registered in the internal-pages menu (<code>uwc.js</code>); <code>noindex</code> and kept out of public nav/search. Sent an intro email to Jason and Ebaa (cc Tom, Les, Jamie) routing them to the page and the tracker.</div>
+          <div class="item-title"><a class="st-link" href="spec-navigator.html">Spec Navigator</a> &mdash; <a class="st-link" href="spec-navigator-data-plan.html">Product Data Build Plan</a> page + intro email to Unified <span class="item-tag orange">Spec Navigator</span></div>
+          <div class="item-desc">Built a gated internal coordination hub (<a class="st-link" href="spec-navigator-data-plan.html"><code>spec-navigator-data-plan.html</code></a>, password <code>copper</code>) to unblock the <a class="st-link" href="spec-navigator.html">Spec Navigator</a> by finally collecting real product/SKU data from Unified. The page frames the vision, recaps the Mar&ndash;Jul data-request timeline, explains the <strong>base-product model</strong> (you describe product families, we auto-generate the thousands of SKUs), lists what to send (lead ask: a sample <strong>CableBuilder</strong> export for weights/O.D.), proposes an easy ongoing-upkeep workflow (a single master sheet the tool syncs from), and carries an <strong>open-questions tracker</strong> with owners the team can reply against &mdash; so the document itself becomes the coordination hub. Registered in the internal-pages menu (<code>uwc.js</code>); <code>noindex</code> and kept out of public nav/search. Sent an intro email to Jason and Ebaa (cc Tom, Les, Jamie) routing them to the page and the tracker.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">CMRT updated to v6.6 on the Compliance page <span class="item-tag">Compliance</span></div>
-          <div class="item-desc">At <strong>Ebaa's</strong> request, swapped the downloadable Conflict Minerals Reporting Template on the Compliance page from RMI CMRT <strong>v6.4 to v6.6</strong> (RMI release 2026-04-17), using the file she supplied. Updated the on-page version label and "updated" date; the download filename/link is unchanged so nothing else breaks. Pushed straight to <code>main</code> and confirmed live.</div>
+          <div class="item-title">CMRT updated to v6.6 on the <a class="st-link" href="resources/compliance.html">Compliance page</a> <span class="item-tag">Compliance</span></div>
+          <div class="item-desc">At <strong>Ebaa's</strong> request, swapped the downloadable Conflict Minerals Reporting Template on the <a class="st-link" href="resources/compliance.html">Compliance page</a> from RMI CMRT <strong>v6.4 to v6.6</strong> (RMI release 2026-04-17), using the file she supplied. Updated the on-page version label and "updated" date; the download filename/link is unchanged so nothing else breaks. Pushed straight to <code>main</code> and confirmed live.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Gabriel Ferguson removed from the team grid <span class="item-tag">Site</span></div>
-          <div class="item-desc">At the customer's request, <strong>Gabriel Ferguson (Planning / Scheduling)</strong> is no longer with UWC, so his team-grid card and photo were removed from the About page. The grid closes up cleanly between Jorge and Tina with no visible gap. Pushed straight to <code>main</code>; the Cloudinary asset <code>uwc/gabriel-ferguson-profile-square</code> is no longer referenced anywhere public.</div>
+          <div class="item-desc">At the customer's request, <strong>Gabriel Ferguson (Planning / Scheduling)</strong> is no longer with UWC, so his team-grid card and photo were removed from the <a class="st-link" href="about.html">About page</a>. The grid closes up cleanly between Jorge and Tina with no visible gap. Pushed straight to <code>main</code>; the Cloudinary asset <code>uwc/gabriel-ferguson-profile-square</code> is no longer referenced anywhere public.</div>
         </div>
       </div>
     </div>
@@ -537,7 +541,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">New team member &mdash; Geno Booker added to About <span class="item-tag orange">Launch</span></div>
-          <div class="item-desc">Added <strong>Geno Booker, Commercial Sales Manager</strong> to the About-page team grid with a "Read Bio" card and bio modal, placed alongside the other sales leadership. His studio headshot was composited onto the same softly-blurred factory-floor backdrop (wire spools + certification wall) the rest of the grid uses, so the new card matches the shoot. The portrait is hosted on Cloudinary (<code>uwc/geno-booker-profile-square</code>) and served web-optimized via the standard <code>f_auto,q_auto:good,w_800,c_fill,g_face</code> transform &mdash; no raster committed to the repo. Pushed straight to <code>main</code>.</div>
+          <div class="item-desc">Added <strong>Geno Booker, Commercial Sales Manager</strong> to the <a class="st-link" href="about.html">About-page</a> team grid with a "Read Bio" card and bio modal, placed alongside the other sales leadership. His studio headshot was composited onto the same softly-blurred factory-floor backdrop (wire spools + certification wall) the rest of the grid uses, so the new card matches the shoot. The portrait is hosted on Cloudinary (<code>uwc/geno-booker-profile-square</code>) and served web-optimized via the standard <code>f_auto,q_auto:good,w_800,c_fill,g_face</code> transform &mdash; no raster committed to the repo. Pushed straight to <code>main</code>.</div>
         </div>
       </div>
     </div>
@@ -552,8 +556,8 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Nav fixes &mdash; Markets link + Resources dropdown <span class="item-tag orange">Launch</span></div>
-          <div class="item-desc">Two items from Jason's June 9 review of the live site, fixed and pushed straight to <code>main</code>. (1) The <strong>Markets</strong> nav link rendered "blacked out" &mdash; a CSS bug: it's the only item structured as <code>.nav-item &gt; a</code>, which the nav color rules never matched, so it fell back to the default dark link color. Added <code>.nav-links &gt; .nav-item &gt; a</code> to the base and hover/active rules. (2) The <strong>Resources dropdown</strong> now mirrors the Resources Hub &mdash; added <strong>Find a Sales Rep</strong> (&rarr; <code>find-a-rep.html</code>). <strong>Spec Navigator</strong> was intentionally left out: its target (<code>products.html</code>) is still password-gated while the selector is being rebuilt, and we don't want to route visitors into a gate. For the same reason, the existing Spec Navigator card was pulled from the Resources Hub page too &mdash; both will be restored once the navigator goes public. Nav edits live in the shared files (<code>assets/js/uwc.js</code>, <code>assets/css/uwc.css</code>), so they apply across every page. Follow-up: tightened the active-page detection &mdash; it had been matching on filename only, so <code>markets/index.html</code> collided with any <code>index.html</code> path (e.g. the Resources Hub) and gave Markets a stray "active" highlight box. Now matches the full slash-bounded path.</div>
+          <div class="item-title">Nav fixes &mdash; <a class="st-link" href="markets/index.html">Markets</a> link + Resources dropdown <span class="item-tag orange">Launch</span></div>
+          <div class="item-desc">Two items from Jason's June 9 review of the live site, fixed and pushed straight to <code>main</code>. (1) The <strong><a class="st-link" href="markets/index.html">Markets</a></strong> nav link rendered "blacked out" &mdash; a CSS bug: it's the only item structured as <code>.nav-item &gt; a</code>, which the nav color rules never matched, so it fell back to the default dark link color. Added <code>.nav-links &gt; .nav-item &gt; a</code> to the base and hover/active rules. (2) The <strong>Resources dropdown</strong> now mirrors the <a class="st-link" href="resources/index.html">Resources Hub</a> &mdash; added <strong>Find a Sales Rep</strong> (&rarr; <a class="st-link" href="find-a-rep.html"><code>find-a-rep.html</code></a>). <strong><a class="st-link" href="spec-navigator.html">Spec Navigator</a></strong> was intentionally left out: its target (<a class="st-link" href="products.html"><code>products.html</code></a>) is still password-gated while the selector is being rebuilt, and we don't want to route visitors into a gate. For the same reason, the existing Spec Navigator card was pulled from the Resources Hub page too &mdash; both will be restored once the navigator goes public. Nav edits live in the shared files (<code>assets/js/uwc.js</code>, <code>assets/css/uwc.css</code>), so they apply across every page. Follow-up: tightened the active-page detection &mdash; it had been matching on filename only, so <code>markets/index.html</code> collided with any <code>index.html</code> path (e.g. the Resources Hub) and gave Markets a stray "active" highlight box. Now matches the full slash-bounded path.</div>
         </div>
       </div>
     </div>
@@ -569,7 +573,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">May 18 batch approved &mdash; live in production <span class="item-tag orange">Launch</span></div>
-          <div class="item-desc">Jason approved the full client-review batch and it merged to <code>main</code>: spec-sheet library tile cleanup, Medium Voltage range to 5&nbsp;kV&ndash;69&nbsp;kV (site-wide), the three-option voltage-drop calculator (bare/tinned copper + aluminum), the seven-application reconciliation, and the reworked About aerial. One pre-launch tweak per Jason: homepage facility size corrected from 75K to 100K sq ft to match the About timeline. The animated drone fly-over was punted &mdash; shipping a polished web-optimized static aerial for now, with the motion version to follow once we have a clean render.</div>
+          <div class="item-desc">Jason approved the full client-review batch and it merged to <code>main</code>: <a class="st-link" href="spec-sheets.html">spec-sheet library</a> tile cleanup, Medium Voltage range to 5&nbsp;kV&ndash;69&nbsp;kV (site-wide), the three-option voltage-drop calculator (bare/tinned copper + aluminum), the seven-application reconciliation, and the reworked About aerial. One pre-launch tweak per Jason: <a class="st-link" href="home.html">homepage</a> facility size corrected from 75K to 100K sq ft to match the About timeline. The animated drone fly-over was punted &mdash; shipping a polished web-optimized static aerial for now, with the motion version to follow once we have a clean render.</div>
         </div>
       </div>
     </div>
@@ -585,14 +589,14 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Applications reconciled to the spec-sheet suite <span class="item-tag">Site</span></div>
-          <div class="item-desc">Per Jason's direction, the site now limits applications to the ones backed by a current line card. The homepage's two overlapping market sections were merged into a single grid of seven applications &mdash; Automotive &amp; Marine, Building &amp; Lighting, Hook-Up Wire, Power &amp; Battery, Portable Cord, Medium Voltage, and Data Center &mdash; each linking to the product library. The same seven now drive the Markets page and the top navigation. Segments not tied to a sheet were retired (Appliance, EV Charging, Solar/PV, Military, Wire Distribution), the seven old market detail pages were removed, and the search index was updated to match.</div>
+          <div class="item-desc">Per Jason's direction, the site now limits applications to the ones backed by a current line card. The <a class="st-link" href="home.html">homepage</a>'s two overlapping market sections were merged into a single grid of seven applications &mdash; Automotive &amp; Marine, Building &amp; Lighting, Hook-Up Wire, Power &amp; Battery, Portable Cord, Medium Voltage, and Data Center &mdash; each linking to the product library. The same seven now drive the <a class="st-link" href="markets/index.html">Markets</a> page and the top navigation. Segments not tied to a sheet were retired (Appliance, EV Charging, Solar/PV, Military, Wire Distribution), the seven old market detail pages were removed, and the search index was updated to match.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Cord naming &amp; "Data Center" confirmed <span class="item-tag">Site</span></div>
-          <div class="item-desc">Client confirmed the portable cord is <strong>SJTOOW</strong> (300V) &mdash; the homepage and spec sheet now agree, with STOOW reserved for the 600V group. The "Data Center &amp; Mission Critical" label was shortened to "Data Center" on the homepage and in the products selector.</div>
+          <div class="item-desc">Client confirmed the portable cord is <strong>SJTOOW</strong> (300V) &mdash; the <a class="st-link" href="home.html">homepage</a> and spec sheet now agree, with STOOW reserved for the 600V group. The "Data Center &amp; Mission Critical" label was shortened to "Data Center" on the homepage and in the products selector.</div>
         </div>
       </div>
     </div>
@@ -621,7 +625,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Find a Rep: consolidated new-customer note <span class="item-tag">Site</span></div>
+          <div class="item-title"><a class="st-link" href="find-a-rep.html">Find a Rep</a>: consolidated new-customer note <span class="item-tag">Site</span></div>
           <div class="item-desc">The two overlapping callouts on the rep panel were merged into a single peach note at the bottom of the rep card: "New customer or inactive account? Contact UWC HQ to be assigned to a rep &mdash; 815-748-4876 &middot; uwcsales@unifiedwire.com". States like Arkansas no longer show the same message twice.</div>
         </div>
       </div>
@@ -645,13 +649,13 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Our Story rewrite &mdash; milestone arc, no family framing <span class="item-tag">Site</span></div>
-          <div class="item-desc">Rebuilt the About-page "Our Story" timeline around the milestone list from Jason's 5/18 follow-up doc: 1977, 1992, 2001&ndash;02, 2013&ndash;14, 2024 (own copper rod), and Today (100K sq ft / 7 lines / 50 years in 2027). Deep-dive modals rewritten to match.</div>
+          <div class="item-desc">Rebuilt the <a class="st-link" href="about.html">About-page</a> "Our Story" timeline around the milestone list from Jason's 5/18 follow-up doc: 1977, 1992, 2001&ndash;02, 2013&ndash;14, 2024 (own copper rod), and Today (100K sq ft / 7 lines / 50 years in 2027). Deep-dive modals rewritten to match.</div>
         </div>
       </div>
       <div class="item major">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Home hero: 4-slide product slideshow with Ken Burns <span class="item-tag">Site</span></div>
+          <div class="item-title"><a class="st-link" href="home.html">Home hero</a>: 4-slide product slideshow with Ken Burns <span class="item-tag">Site</span></div>
           <div class="item-desc">Replaced the walkthrough video with a rotating slideshow of four spec-sheet families shot in the same dark cinematic macro aesthetic, with a slow Ken Burns move on the active slide.</div>
         </div>
       </div>
@@ -659,7 +663,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Update plan synced to Jason's 5/18 follow-up doc <span class="item-tag">Docs</span></div>
-          <div class="item-desc">Folded the inputs from <em>5_18 Website Updates.docx</em> into <code>update-plan-18may2026.html</code> &mdash; Tim's bio, the full team roster with new hire Gabriel Ferguson, the milestone years, and the aerial direction confirmation.</div>
+          <div class="item-desc">Folded the inputs from <em>5_18 Website Updates.docx</em> into <a class="st-link" href="update-plan-18may2026.html"><code>update-plan-18may2026.html</code></a> &mdash; Tim's bio, the full team roster with new hire Gabriel Ferguson, the milestone years, and the aerial direction confirmation.</div>
         </div>
       </div>
     </div>
@@ -675,7 +679,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Team page refresh + new studio profiles <span class="item-tag">Site</span></div>
-          <div class="item-desc">Reordered the About page team to John, Tom, Tim, Les, Jorge, Tina, Daniela, Amaya, Brittany, Ebaa. Added Amaya Hoffman (Customer Service and Logistics). Updated titles — Tina → Manager of Customer Service and Logistics, Brittany → Quality Assurance, Daniela → Assistant Quality Manager. Simplified every card to just name + title (pulled the tenure lines, founder/employee tags, credential tags, quotes, and Read-his/her-story CTAs).</div>
+          <div class="item-desc">Reordered the <a class="st-link" href="about.html">About page</a> team to John, Tom, Tim, Les, Jorge, Tina, Daniela, Amaya, Brittany, Ebaa. Added Amaya Hoffman (Customer Service and Logistics). Updated titles — Tina → Manager of Customer Service and Logistics, Brittany → Quality Assurance, Daniela → Assistant Quality Manager. Simplified every card to just name + title (pulled the tenure lines, founder/employee tags, credential tags, quotes, and Read-his/her-story CTAs).</div>
         </div>
       </div>
       <div class="item">
@@ -696,7 +700,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Site-wide search icon in nav <span class="item-tag">Site</span></div>
-          <div class="item-desc">Added a magnifying-glass icon to the nav actions on every public page. Routes to <code>/search.html</code>. Depth-aware so it works from nested pages (markets/, resources/).</div>
+          <div class="item-desc">Added a magnifying-glass icon to the nav actions on every public page. Routes to <code><a class="st-link" href="search.html">/search.html</a></code>. Depth-aware so it works from nested pages (markets/, resources/).</div>
         </div>
       </div>
       <div class="item">
@@ -709,7 +713,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Find a Rep: Riffle &amp; Associates promoted + territory updates <span class="item-tag">Site</span></div>
+          <div class="item-title"><a class="st-link" href="find-a-rep.html">Find a Rep</a>: Riffle &amp; Associates promoted + territory updates <span class="item-tag">Site</span></div>
           <div class="item-desc">Riffle &amp; Associates is now a standalone rep firm on the map (warm amber color) covering OH, IN, KY, PA, MI, WV. James Nunn picks up AL, MS, AR on top of his existing states. Bobby Griffith picks up LA, TX. Where two firms overlap on a state, the rep panel stacks both with an "or" separator.</div>
         </div>
       </div>
@@ -739,8 +743,8 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Brand Guide gated + moved into site/</div>
-          <div class="item-desc">Brand Guide picked up its own password gate and joined the other internal pages under <code>site/</code> so they're reachable on the live deployment.</div>
+          <div class="item-title"><a class="st-link" href="brand-guide.html">Brand Guide</a> gated + moved into site/</div>
+          <div class="item-desc"><a class="st-link" href="brand-guide.html">Brand Guide</a> picked up its own password gate and joined the other internal pages under <code>site/</code> so they're reachable on the live deployment.</div>
         </div>
       </div>
     </div>
@@ -755,7 +759,7 @@
       <div class="item major">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Site search launched at /search.html <span class="item-tag">Site</span></div>
+          <div class="item-title">Site search launched at <a class="st-link" href="search.html">/search.html</a> <span class="item-tag">Site</span></div>
           <div class="item-desc">Client-side fuzzy match over a hand-curated 35-entry index covering spec sheets, markets, resources, and tools. Includes synonyms (PV, mil-spec, UL numbers), live filtering, and a sitemap-as-empty-state.</div>
         </div>
       </div>
@@ -763,7 +767,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">NM-B removed from site</div>
-          <div class="item-desc">UWC does not manufacture NM-B/Romex — pulled it from spec sheets, products list, and the search index after client confirmation.</div>
+          <div class="item-desc">UWC does not manufacture NM-B/Romex — pulled it from spec sheets, <a class="st-link" href="products.html">products list</a>, and the search index after client confirmation.</div>
         </div>
       </div>
     </div>
@@ -779,7 +783,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Print-suite landing page deployed</div>
-          <div class="item-desc">Spec sheet print suite browsable at <code>/0-spec-sheets-for-print/</code>.</div>
+          <div class="item-desc">Spec sheet print suite browsable at <code><a class="st-link" href="0-spec-sheets-for-print/">/0-spec-sheets-for-print/</a></code>.</div>
         </div>
       </div>
     </div>
@@ -795,14 +799,14 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">New site live <span class="item-tag orange">Milestone</span></div>
-          <div class="item-desc">unifiedwire.com is now served from the new <code>/site/</code> build via Netlify. Home, products, spec sheets library, all market pages, About, Skin Coat Technology, Find a Rep, Contact, and Tim Foley / Daniela story pages are public.</div>
+          <div class="item-desc">unifiedwire.com is now served from the new <code>/site/</code> build via Netlify. Home, products, <a class="st-link" href="spec-sheets.html">spec sheets library</a>, all market pages, About, <a class="st-link" href="skin-coat-technology.html">Skin Coat Technology</a>, <a class="st-link" href="find-a-rep.html">Find a Rep</a>, Contact, and Tim Foley / Daniela story pages are public.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Home application panels wired to spec sheets</div>
-          <div class="item-desc">Each industry panel on the home page now deep-links to the specific spec sheet or the spec library.</div>
+          <div class="item-desc">Each industry panel on the <a class="st-link" href="home.html">home page</a> now deep-links to the specific spec sheet or the <a class="st-link" href="spec-sheets.html">spec library</a>.</div>
         </div>
       </div>
       <div class="item">
@@ -824,14 +828,14 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">About page: drone facility hero video</div>
+          <div class="item-title"><a class="st-link" href="about.html">About page</a>: drone facility hero video</div>
           <div class="item-desc">Looping aerial drone footage of the DeKalb plant replaces the static aerial photo, with a glass facility-stats card overlapping the bottom of the video.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Skin Coat Technology page: ping-pong hero video</div>
+          <div class="item-title"><a class="st-link" href="skin-coat-technology.html">Skin Coat Technology</a> page: ping-pong hero video</div>
           <div class="item-desc">Seamless forward/reverse hero video via Cloudinary splice; overlay lightened so the cable extrusion footage reads clearly.</div>
         </div>
       </div>
@@ -847,7 +851,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">AirPod Giveaway sheets for EWPTE 2026 <span class="item-tag">Print</span></div>
+          <div class="item-title"><a class="st-link" href="airpod-giveaway/index.html">AirPod Giveaway</a> sheets for EWPTE 2026 <span class="item-tag">Print</span></div>
           <div class="item-desc">10 print-ready 8.5×11 concept sheets (5 concepts × Nano-Banana &amp; OpenAI variants) for the badge-scan AirPods drawing at the show.</div>
         </div>
       </div>
@@ -878,7 +882,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Spec sheet detail pages public, pretty URLs added</div>
-          <div class="item-desc">Each printed QR code now resolves to a clean URL (<code>unifiedwire.com/spec-sheet-thhn-mtw-thwn-2</code> etc.) via Netlify redirects.</div>
+          <div class="item-desc">Each printed QR code now resolves to a clean URL (<code>unifiedwire.com/<a class="st-link" href="spec-sheet-thhn-mtw-thwn-2.html">spec-sheet-thhn-mtw-thwn-2</a></code> etc.) via Netlify redirects.</div>
         </div>
       </div>
     </div>
@@ -909,7 +913,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">All tradeshow banners regenerated at Topaz 6× upscale</div>
+          <div class="item-title">All <a class="st-link" href="tradeshow-banners-v2.html">tradeshow banners</a> regenerated at Topaz 6× upscale</div>
           <div class="item-desc">Background plates upgraded to 6× upscaled versions; all 14 print PDFs regenerated.</div>
         </div>
       </div>
@@ -964,7 +968,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Tradeshow Banners v2 — expanded to 6 banners</div>
+          <div class="item-title"><a class="st-link" href="tradeshow-banners-v2.html">Tradeshow Banners v2</a> — expanded to 6 banners</div>
           <div class="item-desc">Three additional concepts join the original three: a richer review-page lineup across cable categories.</div>
         </div>
       </div>
@@ -987,7 +991,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Tradeshow Banners v2 review page</div>
+          <div class="item-title"><a class="st-link" href="tradeshow-banners-v2.html">Tradeshow Banners v2</a> review page</div>
           <div class="item-desc">Six 33"×81" banner concepts presented for client review, each with live preview + downloadable print PDF.</div>
         </div>
       </div>
@@ -1026,15 +1030,15 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Tradeshow Banners v1 — 3 AI-generated concepts</div>
+          <div class="item-title"><a class="st-link" href="tradeshow-banners-v2.html">Tradeshow Banners</a> v1 — 3 AI-generated concepts</div>
           <div class="item-desc">First tradeshow banner review page (password-protected) with the real UWC logo applied.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">America 250 logo page</div>
-          <div class="item-desc">Password-protected internal page hosting the UWC America 250 lockup.</div>
+          <div class="item-title"><a class="st-link" href="USA250.html">America 250</a> logo page</div>
+          <div class="item-desc">Password-protected internal page hosting the UWC <a class="st-link" href="USA250.html">America 250</a> lockup.</div>
         </div>
       </div>
     </div>
@@ -1049,7 +1053,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Rep Locator: territory cache + favicon + nav fixes</div>
+          <div class="item-title"><a class="st-link" href="find-a-rep.html">Rep Locator</a>: territory cache + favicon + nav fixes</div>
           <div class="item-desc">Rep territory data cached in localStorage with 10-min TTL; UWC favicon added across all pages; contact form 404 fixed by handling submission via fetch.</div>
         </div>
       </div>
@@ -1081,7 +1085,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Rep Locator: updated territory assignments</div>
+          <div class="item-title"><a class="st-link" href="find-a-rep.html">Rep Locator</a>: updated territory assignments</div>
           <div class="item-desc">New rep assignments applied, Jordan removed, corporate-rep note added. State label positions polished to inspector-exact coordinates over the next few days.</div>
         </div>
       </div>
@@ -1097,7 +1101,7 @@
       <div class="item major">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Rep Locator launched <span class="item-tag">Tooling</span></div>
+          <div class="item-title"><a class="st-link" href="find-a-rep.html">Rep Locator</a> launched <span class="item-tag">Tooling</span></div>
           <div class="item-desc">Interactive SVG U.S. map with admin editor for territory assignments; tutorial video and info-modal walkthrough added the same day.</div>
         </div>
       </div>
@@ -1113,7 +1117,7 @@
       <div class="item">
         <div class="item-dot"></div>
         <div class="item-body">
-          <div class="item-title">Truck Wrap concept page</div>
+          <div class="item-title"><a class="st-link" href="truck-wrap.html">Truck Wrap</a> concept page</div>
           <div class="item-desc">Four design concepts (A–D) with an inline commenting system. Round 2 and Round 3 revisions delivered through March 18 — UWC wordmark + colorful wire treatment.</div>
         </div>
       </div>
@@ -1130,7 +1134,7 @@
         <div class="item-dot"></div>
         <div class="item-body">
           <div class="item-title">Engagement kickoff <span class="item-tag orange">Milestone</span></div>
-          <div class="item-desc">Initial UWC proposal delivered. Brand Guide published in HTML form, the Spec Sheet Navigator went online (AES-GCM password gated), and the project repository spun up.</div>
+          <div class="item-desc">Initial UWC proposal delivered. <a class="st-link" href="brand-guide.html">Brand Guide</a> published in HTML form, the <a class="st-link" href="spec-navigator.html">Spec Sheet Navigator</a> went online (AES-GCM password gated), and the project repository spun up.</div>
         </div>
       </div>
     </div>
