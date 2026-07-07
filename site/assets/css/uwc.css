@@ -498,6 +498,28 @@ p  { font-size: 1.05rem; font-weight: 400; color: var(--text-lt); line-height: 1
 }
 .uwc-ipw-pop a:hover svg { color: var(--blue, #0362BC); }
 
+/* password gate inside the internal-pages popup */
+.uwc-ipw-gate { display: flex; flex-direction: column; gap: 8px; }
+.uwc-ipw-gate[hidden] { display: none; }
+.uwc-ipw-input {
+  width: 100%; padding: 9px 12px;
+  border: 1.5px solid #dce3ed; border-radius: 8px;
+  font: inherit; font-size: .95rem; color: #1a2535;
+  outline: none; transition: border-color .15s;
+}
+.uwc-ipw-input:focus { border-color: var(--blue, #0362BC); }
+.uwc-ipw-input.shake { animation: uwcIpwShake .4s; }
+@keyframes uwcIpwShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.uwc-ipw-enter {
+  padding: 9px 12px; background: var(--blue, #0362BC); color: #fff;
+  border: none; border-radius: 8px; font: inherit; font-weight: 700; font-size: .9rem; cursor: pointer;
+  transition: background .15s;
+}
+.uwc-ipw-enter:hover { background: var(--blue-dk, #024a90); }
+.uwc-ipw-err { display: none; color: #c0362c; font-size: .8rem; }
+.uwc-ipw-err.show { display: block; }
+.uwc-ipw-links[hidden] { display: none; }
+
 @media (max-width: 860px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
 }

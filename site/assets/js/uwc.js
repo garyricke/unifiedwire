@@ -214,12 +214,18 @@ function renderInternalPagesWidget(basePath) {
            it.label +
            '</a>';
   }).join('');
+  window._uwcIpwLinks = links;
   return [
     '<div class="uwc-ipw" id="uwc-ipw">',
     '  <button type="button" class="uwc-ipw-btn" id="uwc-ipw-btn" aria-label="Internal pages" aria-expanded="false">A</button>',
     '  <div class="uwc-ipw-pop" id="uwc-ipw-pop" role="menu" aria-hidden="true">',
-    '    <div class="uwc-ipw-eyebrow">Internal Pages</div>',
-    links,
+    '    <div class="uwc-ipw-eyebrow" id="uwc-ipw-eyebrow">Enter password</div>',
+    '    <form class="uwc-ipw-gate" id="uwc-ipw-gate" autocomplete="off">',
+    '      <input type="password" id="uwc-ipw-pass" class="uwc-ipw-input" placeholder="Password" autocomplete="current-password" aria-label="Admin password">',
+    '      <button type="submit" class="uwc-ipw-enter">Enter</button>',
+    '      <div class="uwc-ipw-err" id="uwc-ipw-err">Incorrect password.</div>',
+    '    </form>',
+    '    <div class="uwc-ipw-links" id="uwc-ipw-links" hidden></div>',
     '  </div>',
     '</div>'
   ].join('\n');
@@ -229,6 +235,40 @@ function initInternalPagesWidget() {
   var btn = document.getElementById('uwc-ipw-btn');
   var pop = document.getElementById('uwc-ipw-pop');
   if (!btn || !pop) return;
+
+  // ── Password gate: the menu is not revealed until the password is supplied.
+  var PASS = 'copper';
+  var KEYS = ['uwc_internal_auth', 'uwc_auth', 'uwc_admin']; // honor any existing gate this session
+  var eyebrow = document.getElementById('uwc-ipw-eyebrow');
+  var gate = document.getElementById('uwc-ipw-gate');
+  var linksEl = document.getElementById('uwc-ipw-links');
+  var pass = document.getElementById('uwc-ipw-pass');
+  var err = document.getElementById('uwc-ipw-err');
+  function authed() {
+    try { return KEYS.some(function (k) { return sessionStorage.getItem(k) === PASS; }); }
+    catch (e) { return false; }
+  }
+  function reveal() {
+    if (linksEl) { linksEl.innerHTML = window._uwcIpwLinks || ''; linksEl.hidden = false; }
+    if (gate) gate.hidden = true;
+    if (eyebrow) eyebrow.textContent = 'Internal Pages';
+  }
+  if (authed()) reveal();
+  if (gate) {
+    gate.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if ((pass.value || '').trim().toLowerCase() === PASS) {
+        try { sessionStorage.setItem('uwc_internal_auth', PASS); } catch (e2) {}
+        if (err) err.classList.remove('show');
+        reveal();
+      } else {
+        if (err) err.classList.add('show');
+        pass.classList.remove('shake'); void pass.offsetWidth; pass.classList.add('shake');
+        pass.value = ''; pass.focus();
+      }
+    });
+  }
+
   function close() {
     pop.classList.remove('open');
     btn.classList.remove('active');
@@ -242,6 +282,7 @@ function initInternalPagesWidget() {
     btn.classList.toggle('active', open);
     btn.setAttribute('aria-expanded', String(open));
     pop.setAttribute('aria-hidden', String(!open));
+    if (open && !authed() && pass) setTimeout(function () { pass.focus(); }, 30);
   });
   document.addEventListener('click', function (e) {
     if (!pop.contains(e.target) && !btn.contains(e.target)) close();
