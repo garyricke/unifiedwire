@@ -1,0 +1,161 @@
+{
+  "defaultRepKey": "hq",
+  "reps": {
+    "hq": {
+      "name": "Unified Wire & Cable HQ",
+      "address": "338 Wurlitzer Drive\nDeKalb, IL 60115",
+      "contacts": [
+        {
+          "name": "Corporate Sales",
+          "phone": "815-748-4876",
+          "email": "uwcsales@unifiedwire.com"
+        }
+      ],
+      "color": "#3d5a80",
+      "states": [
+        "Maine",
+        "New Hampshire",
+        "Vermont",
+        "Massachusetts",
+        "Rhode Island",
+        "Connecticut",
+        "New York",
+        "New Jersey",
+        "Pennsylvania",
+        "Delaware",
+        "Maryland",
+        "Virginia",
+        "West Virginia"
+      ]
+    },
+    "riffle": {
+      "name": "Riffle & Associates",
+      "address": "",
+      "contacts": [
+        {
+          "name": "Riffle & Associates",
+          "office": "513-771-0002",
+          "phone": "513-771-0002",
+          "email": "riffle@riffleassoc.com"
+        }
+      ],
+      "color": "#d97706",
+      "states": [
+        "Ohio",
+        "Indiana",
+        "Kentucky",
+        "Pennsylvania",
+        "Michigan",
+        "West Virginia"
+      ]
+    },
+    "ohio": {
+      "name": "Ohio Territory",
+      "address": "",
+      "contacts": [
+        {
+          "name": "Deb Freeman \u2014 DF Sales",
+          "phone": "260-438-9101",
+          "email": "debrafreeman@frontier.com"
+        }
+      ],
+      "color": "#3d5a80",
+      "states": [
+        "Ohio"
+      ]
+    },
+    "df": {
+      "name": "DF Sales",
+      "address": "2616N 400E\nAlbion, IN 46701",
+      "contacts": [
+        {
+          "name": "Deb Freeman",
+          "phone": "260-438-9101",
+          "email": "debrafreeman@frontier.com"
+        }
+      ],
+      "color": "#0362BC",
+      "states": [
+        "Indiana"
+      ]
+    },
+    "bobby": {
+      "name": "MYA Inc.",
+      "address": "",
+      "contacts": [
+        {
+          "name": "Bobby Griffith",
+          "phone": "334-324-9687",
+          "email": "bobby@MYAinc.net"
+        }
+      ],
+      "color": "#16a34a",
+      "states": [
+        "Alabama",
+        "Florida",
+        "Mississippi",
+        "Arkansas",
+        "Louisiana",
+        "Texas"
+      ]
+    },
+    "jason": {
+      "name": "Premier Sales Group",
+      "address": "",
+      "contacts": [
+        {
+          "name": "Jason Foley",
+          "phone": "847-826-6062",
+          "email": "Jason.Foley@PremierSalesGrp.com"
+        }
+      ],
+      "color": "#7c3aed",
+      "states": [
+        "Illinois",
+        "Michigan",
+        "Wisconsin",
+        "Iowa",
+        "Minnesota",
+        "Missouri",
+        "Kansas",
+        "Colorado",
+        "Nebraska",
+        "South Dakota",
+        "North Dakota",
+        "Wyoming",
+        "Utah",
+        "Idaho",
+        "Montana",
+        "Nevada",
+        "Oregon",
+        "Washington",
+        "California"
+      ]
+    },
+    "james": {
+      "name": "S2Nunn Inc.",
+      "address": "",
+      "contacts": [
+        {
+          "name": "James Nunn",
+          "phone": "256-962-4055",
+          "email": "James@S2Nunn.com"
+        }
+      ],
+      "color": "#0891b2",
+      "states": [
+        "Georgia",
+        "North Carolina",
+        "South Carolina",
+        "Louisiana",
+        "Oklahoma",
+        "Texas",
+        "New Mexico",
+        "Arizona",
+        "Alabama",
+        "Mississippi",
+        "Arkansas"
+      ]
+    }
+  }
+}

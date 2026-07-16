@@ -94,6 +94,11 @@ def mutate(data: dict) -> dict:
               }
       data["reps"] = new_reps
     """
+    # 2026-07-16 (Les Tucker): Deb Freeman's address is debrafreeman@, not debora...
+    for rep in data.get("reps", {}).values():
+        for contact in rep.get("contacts", []):
+            if contact.get("email", "").lower() == "deborafreeman@frontier.com":
+                contact["email"] = "debrafreeman@frontier.com"
     return data
 
 
