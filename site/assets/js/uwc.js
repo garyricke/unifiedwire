@@ -237,8 +237,8 @@ function initInternalPagesWidget() {
   if (!btn || !pop) return;
 
   // ── Password gate: the menu is not revealed until the password is supplied.
-  var PASS = 'copper';
-  var KEYS = ['uwc_internal_auth', 'uwc_auth', 'uwc_admin']; // honor any existing gate this session
+  var PASS = UWC_PASS;
+  var KEYS = UWC_AUTH_KEYS; // honor any existing gate this session
   var eyebrow = document.getElementById('uwc-ipw-eyebrow');
   var gate = document.getElementById('uwc-ipw-gate');
   var linksEl = document.getElementById('uwc-ipw-links');
@@ -291,9 +291,26 @@ function initInternalPagesWidget() {
 }
 
 // ── Gate HTML helper ─────────────────────────────────────────
+// ── Shared gate credentials ──────────────────────────────────
+// Used by both the page gate (#uwc-gate) and the internal-pages "A" widget.
+var UWC_PASS = 'copper';
+var UWC_AUTH_KEYS = ['uwc_internal_auth', 'uwc_auth', 'uwc_admin'];
+
+function uwcIsAuthed() {
+  try {
+    return UWC_AUTH_KEYS.some(function (k) {
+      return sessionStorage.getItem(k) === UWC_PASS;
+    });
+  } catch (e) { return false; }
+}
+
 function renderGate(pageName) {
   var gate = document.getElementById('uwc-gate');
   if (!gate) return;
+
+  // Already unlocked this session (here or via the "A" widget) — never paint.
+  if (uwcIsAuthed()) { gate.remove(); return; }
+
   gate.innerHTML = [
     '<div class="gate-card">',
     '  <div class="gate-logo">',
@@ -312,6 +329,26 @@ function renderGate(pageName) {
     '  <div class="gate-footer">Unified Wire & Cable &nbsp;·&nbsp; Internal Preview</div>',
     '</div>'
   ].join('\n');
+
+  // Bind the unlock. Without this the form submits natively (a GET) and the
+  // overlay just reloads — the page was impossible to enter.
+  var form  = document.getElementById('gate-form');
+  var input = document.getElementById('gate-input');
+  var err   = document.getElementById('gate-error');
+  if (!form || !input) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if ((input.value || '').trim().toLowerCase() === UWC_PASS) {
+      try { sessionStorage.setItem('uwc_internal_auth', UWC_PASS); } catch (e2) {}
+      gate.remove();
+    } else {
+      if (err) err.classList.add('visible');
+      input.value = '';
+      input.focus();
+    }
+  });
+  setTimeout(function () { try { input.focus(); } catch (e3) {} }, 60);
 }
 
 // ── See Also: mini product navigator ─────────────────────────
