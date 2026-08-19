@@ -1,3 +1,15 @@
+# ── Domain canonicalisation ──────────────────────────────────────────────────
+# unifiedwireandcable.com is the legacy domain (email signatures, print, the
+# Google listing). It must keep resolving forever, but it should NOT serve a
+# second copy of the site — that splits SEO between two identical domains.
+# Send every request to unifiedwire.com, preserving the path.
+# Forced (!) because real files exist at these paths and would otherwise win.
+# The www rules stay inert until the www CNAME exists in DNS; harmless till then.
+https://unifiedwireandcable.com/*       https://unifiedwire.com/:splat      301!
+https://www.unifiedwireandcable.com/*   https://unifiedwire.com/:splat      301!
+http://unifiedwireandcable.com/*        https://unifiedwire.com/:splat      301!
+http://www.unifiedwireandcable.com/*    https://unifiedwire.com/:splat      301!
+
 # Serve home.html at domain root
 /                               /home.html                          200
 
