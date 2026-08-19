@@ -1,6 +1,13 @@
 # Serve home.html at domain root
 /                               /home.html                          200
 
+# Spec Navigator — the old encrypted-snapshot page (spec-navigator.html) is a
+# stale build: it still carries NM-B/Romex and local image paths that 404.
+# The live engine is products.html. Force these to it so no shared link lands
+# on the broken snapshot. Forced (!) because the old file still exists on disk.
+/spec-navigator                 /products                           301!
+/spec-navigator.html            /products                           301!
+
 # Spec sheet detail pages — pretty URLs
 # QR codes printed on the spec sheets point to unifiedwire.com/spec-sheet-{slug}
 /spec-sheet-1007                /spec-sheet-1007.html               200
