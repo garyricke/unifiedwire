@@ -110,8 +110,14 @@ if [ "$FAILED" -eq 0 ]; then SUMMARY="HEALTHY"; else SUMMARY="BROKEN($FAILED)"; 
 echo "$TS  $SUMMARY  $(printf '%s;' "${RESULTS[@]}")" >> "$LOG"
 cat "$LATEST"
 
-# ── notify only on a state change ───────────────────────────────────────────
+# ── notify on a state change ────────────────────────────────────────────────
 PREV="$(cat "$STATE" 2>/dev/null || echo 'UNKNOWN')"
+NOW_EPOCH="$(date +%s)"
+SINCE_F="$STATE_DIR/failing_since"
+ESC_F="$STATE_DIR/last_escalation"
+
+notify() { osascript -e "display notification \"$1\" with title \"Unified Wire domain watch\" sound name \"Glass\"" 2>/dev/null; }
+
 if [ "$PREV" != "$SUMMARY" ]; then
   echo "$SUMMARY" > "$STATE"
   if [ "$PREV" != "UNKNOWN" ]; then
@@ -120,9 +126,34 @@ if [ "$PREV" != "$SUMMARY" ]; then
     else
       MSG="Domain check FAILING ($FAILED). Was: $PREV."
     fi
-    osascript -e "display notification \"$MSG\" with title \"Unified Wire domain watch\" sound name \"Glass\"" 2>/dev/null
+    notify "$MSG"
     echo ">>> STATE CHANGE: $PREV -> $SUMMARY"
   fi
+fi
+
+# ── escalate a failure that is simply being ignored ─────────────────────────
+# A state-change alert is useless if the other party never acts: the check just
+# stays BROKEN and stays quiet. This is the exact failure mode that let the www
+# record sit dead for three months. So: nag on a schedule while it stays broken.
+FIRST_ESCALATE=${UWC_FIRST_ESCALATE:-14400}   # 4 hours before the first nag
+ESCALATE_EVERY=${UWC_ESCALATE_EVERY:-86400}   # then once a day
+
+if [ "$FAILED" -gt 0 ]; then
+  [ -f "$SINCE_F" ] || echo "$NOW_EPOCH" > "$SINCE_F"
+  SINCE="$(cat "$SINCE_F")"
+  LAST_ESC="$(cat "$ESC_F" 2>/dev/null || echo 0)"
+  BROKEN_FOR=$(( NOW_EPOCH - SINCE ))
+  SINCE_ESC=$(( NOW_EPOCH - LAST_ESC ))
+  if [ "$BROKEN_FOR" -ge "$FIRST_ESCALATE" ] && [ "$SINCE_ESC" -ge "$ESCALATE_EVERY" ]; then
+    HRS=$(( BROKEN_FOR / 3600 ))
+    notify "Still broken after ${HRS}h with no fix. Time to chase Entre (dmaggio@entrerock.com)."
+    echo "$NOW_EPOCH" > "$ESC_F"
+    echo ">>> ESCALATION: unresolved for ${HRS}h — chase the vendor"
+  else
+    echo "    (failing for $(( BROKEN_FOR / 60 ))m; first nag at $(( FIRST_ESCALATE / 3600 ))h, then daily)"
+  fi
+else
+  rm -f "$SINCE_F" "$ESC_F"
 fi
 
 [ "$FAILED" -eq 0 ] && exit 0 || exit 1
